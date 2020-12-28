@@ -1,0 +1,12 @@
+name: mocktail
+description: A Dart mocking library which simplifies mocking with null safety support and no manual mocks or code generation.
+version: 0.0.1-dev.1
+
+environment:
+  sdk: ">=2.12-0-0 <3.0.0"
+
+dependencies:
+  test: ">=1.16.0-nullsafety.13 <1.16.0"
+
+dev_dependencies:
+  coverage: ^0.14.2
