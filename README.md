@@ -1,4 +1,4 @@
-# mocktail
+# 🍹 mocktail
 
 [![Pub](https://img.shields.io/pub/v/mocktail.svg)](https://pub.dev/packages/mocktail)
 [![build](https://github.com/felangel/mocktail/workflows/build/badge.svg)](https://github.com/felangel/mocktail/actions)
