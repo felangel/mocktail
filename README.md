@@ -89,6 +89,5 @@ expect(cat.sound(), 'meow');
 ## Resetting Mocks
 
 ```dart
-// Reset stubs and interactions
-reset(cat);
+reset(cat); // Reset stubs and interactions
 ```
