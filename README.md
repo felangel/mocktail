@@ -33,7 +33,7 @@ void main() {
 
 ## Verifying Behavior
 
-The `MockCat` class can then be used to stub and verify calls.
+The `MockCat` instance can then be used to stub and verify calls.
 
 ```dart
 // Interact with the mock cat
