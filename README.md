@@ -19,6 +19,7 @@ import 'package:mocktail/mocktail.dart';
 // A Real Cat class
 class Cat {
   String sound() => 'meow!';
+  bool likes(String food, {bool isHungry = false}) => false;
   int lives = 9;
 }
 
@@ -60,6 +61,19 @@ expect(cat.sound(), 'meow');
 // You can stub getters.
 when(cat).calls('lives').thenReturn(10);
 expect(cat.lives, 10);
+
+// You can stub a method for specific arguments.
+when(cat).calls('likes').withArgs(
+  positional: ['fish'],
+  named: {'isHungry': false},
+).thenReturn(true);
+expect(cat.likes('fish'), isTrue);
+
+// You can verify the interaction for specific arguments.
+verify(cat).calls('likes').withArgs(
+  positional: ['fish'],
+  named: {'isHungry': false},
+).times(1);
 
 // You can stub a method to throw.
 when(cat).calls('sound').thenThrow(Exception('oops'));

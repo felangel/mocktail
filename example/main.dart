@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 // A Real Cat class
 class Cat {
   String sound() => 'meow!';
+  bool likes(String food, {bool isHungry = false}) => false;
   int lives = 9;
 }
 
@@ -25,8 +26,21 @@ void main() {
       // Interact with the mock.
       expect(cat.sound(), 'purr');
 
-      // Verify the interaction occurred.
+      // Verify the interaction.
       verify(cat).calls('sound').times(1);
+
+      // Stub a method with parameters
+      when(cat).calls('likes').withArgs(
+        positional: ['fish'],
+        named: {'isHungry': false},
+      ).thenReturn(true);
+      expect(cat.likes('fish'), isTrue);
+
+      // Verify the interaction.
+      verify(cat).calls('likes').withArgs(
+        positional: ['fish'],
+        named: {'isHungry': false},
+      ).times(1);
     });
   });
 }
