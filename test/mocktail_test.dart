@@ -207,7 +207,7 @@ void main() {
     });
 
     test(
-        'throws TestFailure when verifyMocks is called '
+        'throws MocktailFailure when verifyMocks is called '
         'and not all mocks were used', () {
       runZonedGuarded(() {
         when(foo).calls('intValue').thenReturn(10);
@@ -216,7 +216,7 @@ void main() {
       }, (error, _) {
         expect(
           error,
-          isA<TestFailure>().having(
+          isA<MocktailFailure>().having(
             (f) => f.message,
             'message',
             'MockFoo.Symbol("intValue") => 10 was stubbed but never invoked',
@@ -227,7 +227,7 @@ void main() {
     });
 
     test(
-        'throws TestFailure when verify call count is called '
+        'throws MocktailFailure when verify call count is called '
         'with incorrect call count', () {
       runZonedGuarded(() {
         when(foo).calls('intValue').thenReturn(10);
@@ -236,7 +236,7 @@ void main() {
       }, (error, _) {
         expect(
           error,
-          isA<TestFailure>().having(
+          isA<MocktailFailure>().having(
             (f) => f.message,
             'message',
             '''Expected MockFoo.intValue to be called 1 time(s) but actual call count was 0.''',

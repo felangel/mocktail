@@ -1,4 +1,13 @@
-import 'package:test/test.dart';
+/// {@template mocktail_failure}
+/// An exception thrown from the mocktail library.
+/// {@endtemplate}
+class MocktailFailure implements Exception {
+  /// {@macro mocktail_failure}
+  const MocktailFailure(this.message);
+
+  /// The failure message
+  final String message;
+}
 
 /// {@template mock}
 /// Extend this class to mark an implementation as a [Mock].
@@ -103,8 +112,7 @@ void verifyMocks(Object object) {
   }
   for (final entry in object._stubs.entries) {
     if (entry.value.callCount == 0) {
-      // ignore: only_throw_errors
-      throw TestFailure(
+      throw MocktailFailure(
         '''${object.runtimeType}.${entry.key.memberName} => ${entry.value._result()} was stubbed but never invoked''',
       );
     }
@@ -229,8 +237,7 @@ class _CallCountCall extends _MockInvocationCall {
     }
 
     if (actualCallCount != callCount) {
-      // ignore: only_throw_errors
-      throw TestFailure(
+      throw MocktailFailure(
         '''Expected ${_object.runtimeType}.$_memberName to be called $callCount time(s) but actual call count was $actualCallCount.''',
       );
     }
