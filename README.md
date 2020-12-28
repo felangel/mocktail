@@ -9,7 +9,7 @@
 
 Mock library for Dart inspired by [mockito](https://pub.dev/packages/mockito).
 
-`Mocktail` focuses on providing a familiar, simple API for creating mocks in Dart (with null-safety) without the need for manual mocks or code generation.
+Mocktail focuses on providing a familiar, simple API for creating mocks in Dart (with null-safety) without the need for manual mocks or code generation.
 
 ## Creating a Mock
 
