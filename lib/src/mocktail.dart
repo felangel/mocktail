@@ -47,16 +47,18 @@ class Mock {
   dynamic noSuchMethod(Invocation invocation) {
     final _invocationStrict = _Invocation(
       memberName: invocation.memberName,
-      positionalArgs: List.of(invocation.positionalArguments),
-      namedArgs: Map.of(invocation.namedArguments),
+      positionalArguments: List.of(invocation.positionalArguments),
+      namedArguments: Map.of(invocation.namedArguments),
     );
     final _invocationLax = _Invocation(memberName: invocation.memberName);
 
     if (_stubs.containsKey(_invocationStrict)) {
-      return _stubs[_invocationStrict]!.result();
+      final stub = _stubs[_invocationStrict]!.._invocation = invocation;
+      return stub.result();
     }
     if (_stubs.containsKey(_invocationLax)) {
-      return _stubs[_invocationLax]!.result();
+      final stub = _stubs[_invocationLax]!.._invocation = invocation;
+      return stub.result();
     }
     return super.noSuchMethod(invocation);
   }
@@ -113,7 +115,7 @@ void verifyMocks(Object object) {
   for (final entry in object._stubs.entries) {
     if (entry.value.callCount == 0) {
       throw MocktailFailure(
-        '''${object.runtimeType}.${entry.key.memberName} => ${entry.value._result()} was stubbed but never invoked''',
+        '''${object.runtimeType}.${entry.key.memberName} => ${entry.value._result(Invocation.getter(const Symbol('entry.key.memberName')))} was stubbed but never invoked''',
       );
     }
   }
@@ -130,13 +132,13 @@ void reset(Object object) {
 class _Invocation {
   const _Invocation({
     required this.memberName,
-    this.positionalArgs = const [],
-    this.namedArgs = const {},
+    this.positionalArguments = const [],
+    this.namedArguments = const {},
   });
 
   final Symbol memberName;
-  final Iterable<Object?> positionalArgs;
-  final Map<Symbol, Object?> namedArgs;
+  final Iterable<Object?> positionalArguments;
+  final Map<Symbol, Object?> namedArguments;
 
   @override
   bool operator ==(Object o) {
@@ -144,28 +146,32 @@ class _Invocation {
 
     return o is _Invocation &&
         o.memberName == memberName &&
-        _listEquals(o.positionalArgs.toList(), positionalArgs.toList()) &&
-        _mapEquals(o.namedArgs, namedArgs);
+        _listEquals(
+            o.positionalArguments.toList(), positionalArguments.toList()) &&
+        _mapEquals(o.namedArguments, namedArguments);
   }
 
   @override
   int get hashCode {
-    final positionalArgsHash = positionalArgs.fold<int>(
+    final positionalArgumentsHash = positionalArguments.fold<int>(
         0, (previous, element) => previous ^ element.hashCode);
-    final namedArgsHash = namedArgs.entries.fold<int>(0, (previous, element) {
+    final namedArgumentsHash =
+        namedArguments.entries.fold<int>(0, (previous, element) {
       return previous ^ element.key.hashCode ^ element.value.hashCode;
     });
-    return memberName.hashCode ^ positionalArgsHash ^ namedArgsHash;
+    return memberName.hashCode ^ positionalArgumentsHash ^ namedArgumentsHash;
   }
 }
 
 class _Stub {
   _Stub(this._result);
 
-  final Object? Function() _result;
+  final Object? Function(Invocation) _result;
+  late Invocation _invocation;
+
   Object? result() {
     _callCount++;
-    return _result();
+    return _result(_invocation);
   }
 
   int _callCount = 0;
@@ -191,10 +197,11 @@ class _VerifyArgsCall extends _CallCountCall {
   _VerifyArgsCall(
     Mock object,
     String memberName, {
-    Iterable<Object?>? positionalArgs,
-    Map<String, Object?>? namedArgs,
+    Iterable<Object?>? positionalArguments,
+    Map<String, Object?>? namedArguments,
   }) : super(object, memberName,
-            positionalArgs: positionalArgs, namedArgs: namedArgs);
+            positionalArguments: positionalArguments,
+            namedArguments: namedArguments);
 
   _CallCountCall withArgs({
     Iterable<Object?>? positional,
@@ -203,8 +210,8 @@ class _VerifyArgsCall extends _CallCountCall {
     return _CallCountCall(
       _object,
       _memberName,
-      positionalArgs: positional,
-      namedArgs: named,
+      positionalArguments: positional,
+      namedArguments: named,
     );
   }
 }
@@ -213,16 +220,17 @@ class _CallCountCall extends _MockInvocationCall {
   _CallCountCall(
     Mock object,
     String memberName, {
-    Iterable<Object?>? positionalArgs,
-    Map<String, Object?>? namedArgs,
+    Iterable<Object?>? positionalArguments,
+    Map<String, Object?>? namedArguments,
   }) : super(object, memberName,
-            positionalArgs: positionalArgs, namedArgs: namedArgs);
+            positionalArguments: positionalArguments,
+            namedArguments: namedArguments);
 
   void times(int callCount) {
     var actualCallCount = 0;
 
     // Lax Invocation Verification (any)
-    if (_positionalArgs == null && _namedArgs == null) {
+    if (_positionalArguments == null && _namedArguments == null) {
       for (final entry in _object._stubs.entries) {
         if (entry.key.memberName == Symbol(_memberName)) {
           actualCallCount += entry.value.callCount;
@@ -248,10 +256,11 @@ class _StubFunction extends _MockInvocationCall {
   _StubFunction(
     Mock object,
     String memberName, {
-    Iterable<Object?>? positionalArgs,
-    Map<String, Object?>? namedArgs,
+    Iterable<Object?>? positionalArguments,
+    Map<String, Object?>? namedArguments,
   }) : super(object, memberName,
-            positionalArgs: positionalArgs, namedArgs: namedArgs);
+            positionalArguments: positionalArguments,
+            namedArguments: namedArguments);
 
   _StubFunction withArgs({
     Iterable<Object?>? positional,
@@ -260,22 +269,22 @@ class _StubFunction extends _MockInvocationCall {
     return _StubFunction(
       _object,
       _memberName,
-      positionalArgs: positional,
-      namedArgs: named,
+      positionalArguments: positional,
+      namedArguments: named,
     );
   }
 
   void thenReturn(Object? result) {
-    _object._stubs[_invocation] = _Stub(() => result);
+    _object._stubs[_invocation] = _Stub((_) => result);
   }
 
-  void thenAnswer(Object? Function(_Invocation) callback) {
-    _object._stubs[_invocation] = _Stub(() => callback(_invocation));
+  void thenAnswer(Object? Function(Invocation) callback) {
+    _object._stubs[_invocation] = _Stub(callback);
   }
 
   void thenThrow(Object throwable) {
     // ignore: only_throw_errors
-    _object._stubs[_invocation] = _Stub(() => throw throwable);
+    _object._stubs[_invocation] = _Stub((_) => throw throwable);
   }
 }
 
@@ -283,38 +292,38 @@ class _MockInvocationCall {
   _MockInvocationCall(
     this._object,
     this._memberName, {
-    Iterable<Object?>? positionalArgs,
-    Map<String, Object?>? namedArgs,
-  })  : _positionalArgs = positionalArgs,
-        _namedArgs = namedArgs;
+    Iterable<Object?>? positionalArguments,
+    Map<String, Object?>? namedArguments,
+  })  : _positionalArguments = positionalArguments,
+        _namedArguments = namedArguments;
 
   final Mock _object;
   final String _memberName;
-  final Iterable<Object?>? _positionalArgs;
-  final Map<String, Object?>? _namedArgs;
+  final Iterable<Object?>? _positionalArguments;
+  final Map<String, Object?>? _namedArguments;
 
   _Invocation get _invocation {
-    if (_positionalArgs == null && _namedArgs == null) {
+    if (_positionalArguments == null && _namedArguments == null) {
       return _Invocation(memberName: Symbol(_memberName));
     }
-    if (_positionalArgs != null && _namedArgs == null) {
+    if (_positionalArguments != null && _namedArguments == null) {
       return _Invocation(
         memberName: Symbol(_memberName),
-        positionalArgs: _positionalArgs!,
+        positionalArguments: _positionalArguments!,
       );
     }
-    if (_positionalArgs == null && _namedArgs != null) {
+    if (_positionalArguments == null && _namedArguments != null) {
       return _Invocation(
         memberName: Symbol(_memberName),
-        namedArgs: _namedArgs!.map<Symbol, Object?>(
+        namedArguments: _namedArguments!.map<Symbol, Object?>(
           (key, value) => MapEntry(Symbol(key), value),
         ),
       );
     }
     return _Invocation(
       memberName: Symbol(_memberName),
-      positionalArgs: _positionalArgs!,
-      namedArgs: _namedArgs!.map<Symbol, Object?>(
+      positionalArguments: _positionalArguments!,
+      namedArguments: _namedArguments!.map<Symbol, Object?>(
         (key, value) => MapEntry(Symbol(key), value),
       ),
     );

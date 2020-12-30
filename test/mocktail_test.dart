@@ -191,6 +191,21 @@ void main() {
           .withArgs(positional: [2], named: {'y': 4}).times(1);
     });
 
+    test('invocation contains correct arguments', () async {
+      late Iterable<Object?> positionalArguments;
+      late Map<Symbol, dynamic> namedArguments;
+      when(foo)
+          .calls('asyncValueWithNamedAndPositionalArgs')
+          .thenAnswer((invocation) async {
+        positionalArguments = invocation.positionalArguments;
+        namedArguments = invocation.namedArguments;
+        return 10;
+      });
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
+      expect(positionalArguments, equals([1]));
+      expect(namedArguments, equals({#y: 2}));
+    });
+
     test('when streamValue', () {
       when(foo).calls('streamValue').thenAnswer((_) => Stream.value(42));
       expectLater(
