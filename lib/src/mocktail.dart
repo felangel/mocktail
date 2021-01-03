@@ -1,13 +1,4 @@
-/// {@template mocktail_failure}
-/// An exception thrown from the mocktail library.
-/// {@endtemplate}
-class MocktailFailure implements Exception {
-  /// {@macro mocktail_failure}
-  const MocktailFailure(this.message);
-
-  /// The failure message
-  final String message;
-}
+import 'package:test/test.dart';
 
 /// {@template mock}
 /// Extend this class to mark an implementation as a [Mock].
@@ -114,7 +105,7 @@ void verifyMocks(Object object) {
   }
   for (final entry in object._stubs.entries) {
     if (entry.value.callCount == 0) {
-      throw MocktailFailure(
+      fail(
         '''${object.runtimeType}.${entry.key.memberName} => ${entry.value._result(Invocation.getter(const Symbol('entry.key.memberName')))} was stubbed but never invoked''',
       );
     }
@@ -226,7 +217,7 @@ class _CallCountCall extends _MockInvocationCall {
             positionalArguments: positionalArguments,
             namedArguments: namedArguments);
 
-  void times(int callCount) {
+  void times(dynamic callCount) {
     var actualCallCount = 0;
 
     // Lax Invocation Verification (any)
@@ -244,9 +235,10 @@ class _CallCountCall extends _MockInvocationCall {
       actualCallCount = stub?.callCount ?? 0;
     }
 
-    if (actualCallCount != callCount) {
-      throw MocktailFailure(
-        '''Expected ${_object.runtimeType}.$_memberName to be called $callCount time(s) but actual call count was $actualCallCount.''',
+    final matcher = wrapMatcher(callCount);
+    if (!matcher.matches(actualCallCount, <dynamic, dynamic>{})) {
+      fail(
+        '''Expected ${_object.runtimeType}.$_memberName to be called ${matcher.describe(StringDescription())} time(s) but actual call count was <$actualCallCount>.''',
       );
     }
   }

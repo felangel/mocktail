@@ -38,6 +38,10 @@ void main() {
       verifyMocks(foo);
     });
 
+    test('verify supports matchers', () {
+      verify(foo).calls('intValue').times(lessThan(1));
+    });
+
     test('verify called 0 times (value)', () {
       verify(foo).calls('intValue').times(0);
     });
@@ -231,7 +235,7 @@ void main() {
       }, (error, _) {
         expect(
           error,
-          isA<MocktailFailure>().having(
+          isA<TestFailure>().having(
             (f) => f.message,
             'message',
             'MockFoo.Symbol("intValue") => 10 was stubbed but never invoked',
@@ -246,15 +250,15 @@ void main() {
         'with incorrect call count', () {
       runZonedGuarded(() {
         when(foo).calls('intValue').thenReturn(10);
-        verify(foo).calls('intValue').times(1);
+        verify(foo).calls('intValue').times(equals(1));
         fail('should throw');
       }, (error, _) {
         expect(
           error,
-          isA<MocktailFailure>().having(
+          isA<TestFailure>().having(
             (f) => f.message,
             'message',
-            '''Expected MockFoo.intValue to be called 1 time(s) but actual call count was 0.''',
+            '''Expected MockFoo.intValue to be called <1> time(s) but actual call count was <0>.''',
           ),
         );
       });
