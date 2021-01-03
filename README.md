@@ -32,12 +32,15 @@ void main() {
 }
 ```
 
-## Verifying Behavior
+## Stub and Verify Behavior
 
 The `MockCat` instance can then be used to stub and verify calls.
 
 ```dart
-// Interact with the mock cat
+// Stub the `sound` method.
+when(cat).calls('sound').thenReturn('meow');
+
+// Interact with the mock cat instance.
 cat.sound();
 
 // Verify the interaction occurred.

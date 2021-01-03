@@ -235,7 +235,7 @@ void main() {
       }, (error, _) {
         expect(
           error,
-          isA<TestFailure>().having(
+          isA<MocktailFailure>().having(
             (f) => f.message,
             'message',
             'MockFoo.Symbol("intValue") => 10 was stubbed but never invoked',
@@ -255,7 +255,7 @@ void main() {
       }, (error, _) {
         expect(
           error,
-          isA<TestFailure>().having(
+          isA<MocktailFailure>().having(
             (f) => f.message,
             'message',
             '''Expected MockFoo.intValue to be called <1> time(s) but actual call count was <0>.''',

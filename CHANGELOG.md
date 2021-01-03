@@ -1,6 +1,5 @@
 # 0.0.1-dev.4
 
-- **BREAKING** refactor: replace `MocktailFailure` with `TestFailure`
 - feat: add `Matcher` support to verify times API
 
 # 0.0.1-dev.3
