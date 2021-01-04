@@ -43,11 +43,11 @@ when(cat).calls('sound').thenReturn('meow');
 // Interact with the mock cat instance.
 cat.sound();
 
-// Verify the interaction occurred.
-verify(cat).calls('sound').times(1);
+// Verify the interaction occurred (with matcher support).
+verify(cat).calls('sound').times(equals(1));
 ```
 
-## Stubbing
+## Additional Usage
 
 ```dart
 // Stub a method before interacting with the mock.

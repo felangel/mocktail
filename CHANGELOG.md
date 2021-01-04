@@ -1,6 +1,7 @@
 # 0.0.1-dev.4
 
 - feat: add `Matcher` support to verify times API
+- docs: minor usage documentation updates in README
 
 # 0.0.1-dev.3
 
