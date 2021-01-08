@@ -1,3 +1,7 @@
+# 0.0.1-dev.5
+
+- fix: override `toString` on `MocktailFailure` to improve visibility of failure messages
+
 # 0.0.1-dev.4
 
 - feat: add `Matcher` support to verify times API

@@ -9,6 +9,9 @@ class MocktailFailure implements Exception {
 
   /// The failure message
   final String message;
+
+  @override
+  String toString() => 'MocktailFailure: $message';
 }
 
 /// {@template mock}
