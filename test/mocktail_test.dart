@@ -313,4 +313,12 @@ void main() {
       expect(bar.foo.intValue, 42);
     });
   });
+
+  group('MocktailFailure', () {
+    test('overrides toString', () {
+      const message = 'example mocktail failure message';
+      const expected = 'MocktailFailure: $message';
+      expect(const MocktailFailure(message).toString(), expected);
+    });
+  });
 }
