@@ -1,3 +1,8 @@
+# 0.0.1-dev.6
+
+- **BREAKING** refactor: use `Symbol` rather than `String`
+- fix: strict argument matching on verification when arguments are provided
+
 # 0.0.1-dev.5
 
 - fix: override `toString` on `MocktailFailure` to improve visibility of failure messages

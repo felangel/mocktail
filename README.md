@@ -38,53 +38,53 @@ The `MockCat` instance can then be used to stub and verify calls.
 
 ```dart
 // Stub the `sound` method.
-when(cat).calls('sound').thenReturn('meow');
+when(cat).calls(#sound).thenReturn('meow');
 
 // Interact with the mock cat instance.
 cat.sound();
 
 // Verify the interaction occurred (with matcher support).
-verify(cat).calls('sound').times(equals(1));
+verify(cat).calls(#sound).times(equals(1));
 ```
 
 ## Additional Usage
 
 ```dart
 // Stub a method before interacting with the mock.
-when(cat).calls('sound').thenReturn('purrr!');
+when(cat).calls(#sound).thenReturn('purrr!');
 expect(cat.sound(), 'purrr!');
 
 // You can interact with the mock multiple times.
 expect(cat.sound(), 'purrr!');
 
 // You can change the stub.
-when(cat).calls('sound').thenReturn('meow');
+when(cat).calls(#sound).thenReturn('meow');
 expect(cat.sound(), 'meow');
 
 // You can stub getters.
-when(cat).calls('lives').thenReturn(10);
+when(cat).calls(#lives).thenReturn(10);
 expect(cat.lives, 10);
 
 // You can stub a method for specific arguments.
-when(cat).calls('likes').withArgs(
+when(cat).calls(#likes).withArgs(
   positional: ['fish'],
-  named: {'isHungry': false},
+  named: {#isHungry: false},
 ).thenReturn(true);
 expect(cat.likes('fish'), isTrue);
 
 // You can verify the interaction for specific arguments.
-verify(cat).calls('likes').withArgs(
+verify(cat).calls(#likes).withArgs(
   positional: ['fish'],
-  named: {'isHungry': false},
+  named: {#isHungry: false},
 ).times(1);
 
 // You can stub a method to throw.
-when(cat).calls('sound').thenThrow(Exception('oops'));
+when(cat).calls(#sound).thenThrow(Exception('oops'));
 expect(() => cat.sound(), throwsA(isA<Exception>()));
 
 // You can calculate stubs dynamically.
 final sounds = ['purrr', 'meow'];
-when(cat).calls('sound').thenAnswer((_) => sounds.removeAt(0));
+when(cat).calls(#sound).thenAnswer((_) => sounds.removeAt(0));
 expect(cat.sound(), 'purrr');
 expect(cat.sound(), 'meow');
 ```
