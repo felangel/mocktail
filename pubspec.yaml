@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.12-0-0 <3.0.0"
 
 dependencies:
-  matcher: ^0.12.10-nullsafety.3
+  matcher: ">=0.12.10-nullsafety.3 <0.12.10"
 
 dev_dependencies:
   coverage: ^0.14.2
