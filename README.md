@@ -40,11 +40,20 @@ The `MockCat` instance can then be used to stub and verify calls.
 // Stub the `sound` method.
 when(cat).calls(#sound).thenReturn('meow');
 
+// Verify no interactions have occurred.
+verify(cat).called(#sound).never();
+
 // Interact with the mock cat instance.
 cat.sound();
 
-// Verify the interaction occurred (with matcher support).
-verify(cat).calls(#sound).times(equals(1));
+// Verify the interaction occurred.
+verify(cat).called(#sound).once();
+
+// Interact with the mock instance again.
+cat.sound();
+
+// Verify the interaction occurred twice.
+verify(cat).called(#sound).times(2);
 ```
 
 ## Additional Usage
@@ -73,10 +82,17 @@ when(cat).calls(#likes).withArgs(
 expect(cat.likes('fish'), isTrue);
 
 // You can verify the interaction for specific arguments.
-verify(cat).calls(#likes).withArgs(
+verify(cat).called(#likes).withArgs(
   positional: ['fish'],
   named: {#isHungry: false},
 ).times(1);
+
+// You can stub a method using argument matchers: `any` or `anyThat`.
+when(cat).calls(#likes).withArgs(
+  positional: [any],
+  named: {#isHungry: anyThat(isFalse)},
+).thenReturn(true);
+expect(cat.likes('fish'), isTrue);
 
 // You can stub a method to throw.
 when(cat).calls(#sound).thenThrow(Exception('oops'));
