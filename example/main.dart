@@ -27,7 +27,7 @@ void main() {
       expect(cat.sound(), 'purr');
 
       // Verify the interaction.
-      verify(cat).calls(#sound).times(1);
+      verify(cat).called(#sound).once();
 
       // Stub a method with parameters
       when(cat).calls(#likes).withArgs(
@@ -37,10 +37,10 @@ void main() {
       expect(cat.likes('fish'), isTrue);
 
       // Verify the interaction.
-      verify(cat).calls(#likes).withArgs(
+      verify(cat).called(#likes).withArgs(
         positional: ['fish'],
         named: {#isHungry: false},
-      ).times(1);
+      ).once();
     });
   });
 }

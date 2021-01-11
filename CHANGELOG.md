@@ -1,3 +1,12 @@
+# 0.0.1-dev.7
+
+- **BREAKING** refactor: rename `verify(mock).calls(#member)` to `verify(mock).called(#member)`
+- feat: add `any` argument matcher support to `verify` and `calls`
+- feat: add `anyThat` argument matcher support to `verify` and `calls`
+- feat: support `verify(mock).called(#member).once()`
+- feat: support `verify(mock).called(#member).never()`
+- feat: improve error messages to include invocation arguments
+
 # 0.0.1-dev.6
 
 - **BREAKING** refactor: use `Symbol` rather than `String`

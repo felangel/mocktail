@@ -39,17 +39,27 @@ void main() {
     });
 
     test('verify supports matchers', () {
-      verify(foo).calls(#intValue).times(lessThan(1));
+      verify(foo).called(#intValue).times(lessThan(1));
+    });
+
+    test('verify supports never', () {
+      verify(foo).called(#intValue).never();
+    });
+
+    test('verify supports once', () {
+      when(foo).calls(#intValue).thenReturn(10);
+      expect(foo.intValue, 10);
+      verify(foo).called(#intValue).once();
     });
 
     test('verify called 0 times (value)', () {
-      verify(foo).calls(#intValue).times(0);
+      verify(foo).called(#intValue).times(0);
     });
 
     test('when value (int)', () {
       when(foo).calls(#intValue).thenReturn(10);
       expect(foo.intValue, 10);
-      verify(foo).calls(#intValue).times(1);
+      verify(foo).called(#intValue).times(1);
     });
 
     test('when value (map)', () {
@@ -65,7 +75,19 @@ void main() {
     test('when asyncValueWithPositionalArg (any)', () async {
       when(foo).calls(#asyncValueWithPositionalArg).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArg(1), 10);
-      verify(foo).calls(#asyncValueWithPositionalArg).times(1);
+      verify(foo).called(#asyncValueWithPositionalArg).times(1);
+    });
+
+    test('when asyncValueWithPositionalArg (custom matcher)', () async {
+      final isEven = isA<int>().having((x) => x % 2 == 0, 'isEven', true);
+      when(foo)
+          .calls(#asyncValueWithPositionalArg)
+          .withArgs(positional: [anyThat(isEven)]).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithPositionalArg(2), 10);
+      verify(foo).called(#asyncValueWithPositionalArg).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArg)
+          .withArgs(positional: [anyThat(isEven)]).times(1);
     });
 
     test('when asyncValueWithPositionalArg (explicit)', () async {
@@ -75,12 +97,12 @@ void main() {
           .withArgs(positional: [1]).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithPositionalArg(1), 42);
       expect(await foo.asyncValueWithPositionalArg(2), 10);
-      verify(foo).calls(#asyncValueWithPositionalArg).times(2);
+      verify(foo).called(#asyncValueWithPositionalArg).times(2);
       verify(foo)
-          .calls(#asyncValueWithPositionalArg)
+          .called(#asyncValueWithPositionalArg)
           .withArgs(positional: [1]).times(1);
       verify(foo)
-          .calls(#asyncValueWithPositionalArg)
+          .called(#asyncValueWithPositionalArg)
           .withArgs(positional: [2]).times(1);
     });
 
@@ -89,10 +111,41 @@ void main() {
           .calls(#asyncValueWithPositionalArgs)
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
-      verify(foo).calls(#asyncValueWithPositionalArgs).times(1);
+      verify(foo).called(#asyncValueWithPositionalArgs).times(1);
       verify(foo)
-          .calls(#asyncValueWithPositionalArgs)
+          .called(#asyncValueWithPositionalArgs)
           .withArgs(positional: [1, 2]).times(1);
+    });
+
+    test('when asyncValueWithPositionalArgs (1 any matcher)', () async {
+      when(foo)
+          .calls(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [any, 2]).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
+      verify(foo).called(#asyncValueWithPositionalArgs).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [1, 2]).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [any, 2]).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [any, any]).times(1);
+    });
+
+    test('when asyncValueWithPositionalArgs (2 any matchers)', () async {
+      when(foo)
+          .calls(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [any, any]).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
+      verify(foo).called(#asyncValueWithPositionalArgs).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [1, 2]).times(1);
+      verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [any, any]).times(1);
     });
 
     test('when asyncValueWithPositionalArgs (explicit)', () async {
@@ -104,22 +157,34 @@ void main() {
           .withArgs(positional: [1, 2]).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 42);
       expect(await foo.asyncValueWithPositionalArgs(2, 4), 10);
-      verify(foo).calls(#asyncValueWithPositionalArgs).times(2);
+      verify(foo).called(#asyncValueWithPositionalArgs).times(2);
       verify(foo)
-          .calls(#asyncValueWithPositionalArgs)
+          .called(#asyncValueWithPositionalArgs)
           .withArgs(positional: [1, 2]).times(1);
       verify(foo)
-          .calls(#asyncValueWithPositionalArgs)
+          .called(#asyncValueWithPositionalArgs)
           .withArgs(positional: [2, 4]).times(1);
     });
 
     test('when asyncValueWithNamedArg (any)', () async {
       when(foo).calls(#asyncValueWithNamedArg).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArg(x: 1), 10);
-      verify(foo).calls(#asyncValueWithNamedArg).times(1);
+      verify(foo).called(#asyncValueWithNamedArg).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedArg)
+          .called(#asyncValueWithNamedArg)
           .withArgs(named: {#x: 1}).times(1);
+    });
+
+    test('when asyncValueWithNamedArg (custom matcher)', () async {
+      final isOdd = isA<int>().having((x) => x % 2 == 0, 'isOdd', false);
+      when(foo)
+          .calls(#asyncValueWithNamedArg)
+          .withArgs(named: {#x: anyThat(isOdd)}).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithNamedArg(x: 1), 10);
+      verify(foo).called(#asyncValueWithNamedArg).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArg)
+          .withArgs(named: {#x: anyThat(isOdd)}).times(1);
     });
 
     test('when asyncValueWithNamedArg (explicit)', () async {
@@ -129,22 +194,53 @@ void main() {
           .withArgs(named: {#x: 1}).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithNamedArg(x: 1), 42);
       expect(await foo.asyncValueWithNamedArg(x: 2), 10);
-      verify(foo).calls(#asyncValueWithNamedArg).times(2);
+      verify(foo).called(#asyncValueWithNamedArg).times(2);
       verify(foo)
-          .calls(#asyncValueWithNamedArg)
+          .called(#asyncValueWithNamedArg)
           .withArgs(named: {#x: 1}).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedArg)
+          .called(#asyncValueWithNamedArg)
           .withArgs(named: {#x: 2}).times(1);
     });
 
     test('when asyncValueWithNamedArgs (any)', () async {
       when(foo).calls(#asyncValueWithNamedArgs).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
-      verify(foo).calls(#asyncValueWithNamedArgs).times(1);
+      verify(foo).called(#asyncValueWithNamedArgs).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedArgs)
+          .called(#asyncValueWithNamedArgs)
           .withArgs(named: {#x: 1, #y: 2}).times(1);
+    });
+
+    test('when asyncValueWithNamedArgs (1 any matchers)', () async {
+      when(foo)
+          .calls(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: any, #y: 2}).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
+      verify(foo).called(#asyncValueWithNamedArgs).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: 1, #y: 2}).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: any, #y: 2}).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: any, #y: any}).times(1);
+    });
+
+    test('when asyncValueWithNamedArgs (2 any matchers)', () async {
+      when(foo)
+          .calls(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: any, #y: any}).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
+      verify(foo).called(#asyncValueWithNamedArgs).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: 1, #y: 2}).times(1);
+      verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: any, #y: any}).times(1);
     });
 
     test('when asyncValueWithNamedArgs (explicit)', () async {
@@ -154,12 +250,12 @@ void main() {
           .withArgs(named: {#x: 1, #y: 2}).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 42);
       expect(await foo.asyncValueWithNamedArgs(x: 2, y: 4), 10);
-      verify(foo).calls(#asyncValueWithNamedArgs).times(2);
+      verify(foo).called(#asyncValueWithNamedArgs).times(2);
       verify(foo)
-          .calls(#asyncValueWithNamedArgs)
+          .called(#asyncValueWithNamedArgs)
           .withArgs(named: {#x: 1, #y: 2}).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedArgs)
+          .called(#asyncValueWithNamedArgs)
           .withArgs(named: {#x: 2, #y: 4}).times(1);
     });
 
@@ -168,9 +264,9 @@ void main() {
           .calls(#asyncValueWithNamedAndPositionalArgs)
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
-      verify(foo).calls(#asyncValueWithNamedAndPositionalArgs).times(1);
+      verify(foo).called(#asyncValueWithNamedAndPositionalArgs).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .called(#asyncValueWithNamedAndPositionalArgs)
           .withArgs(positional: [1], named: {#y: 2}).times(1);
     });
 
@@ -182,12 +278,12 @@ void main() {
           positional: [1], named: {#y: 2}).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 42);
       expect(await foo.asyncValueWithNamedAndPositionalArgs(2, y: 4), 10);
-      verify(foo).calls(#asyncValueWithNamedAndPositionalArgs).times(2);
+      verify(foo).called(#asyncValueWithNamedAndPositionalArgs).times(2);
       verify(foo)
-          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .called(#asyncValueWithNamedAndPositionalArgs)
           .withArgs(positional: [1], named: {#y: 2}).times(1);
       verify(foo)
-          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .called(#asyncValueWithNamedAndPositionalArgs)
           .withArgs(positional: [2], named: {#y: 4}).times(1);
     });
 
@@ -212,7 +308,7 @@ void main() {
         foo.streamValue,
         emitsInOrder(<Matcher>[equals(42), emitsDone]),
       );
-      verify(foo).calls(#streamValue).times(1);
+      verify(foo).called(#streamValue).times(1);
     });
 
     test('throws Exception when thenThrow is used to stub the mock', () {
@@ -223,7 +319,7 @@ void main() {
 
     test(
         'throws MocktailFailure when verifyMocks is called '
-        'and not all mocks were used', () {
+        'and not all mocks were used (getter)', () {
       runZonedGuarded(() {
         when(foo).calls(#intValue).thenReturn(10);
         verifyMocks(foo);
@@ -234,7 +330,7 @@ void main() {
           isA<MocktailFailure>().having(
             (f) => f.message,
             'message',
-            'MockFoo.Symbol("intValue") => 10 was stubbed but never invoked',
+            'MockFoo.intValue => 10 was stubbed but never invoked.',
           ),
         );
       });
@@ -242,11 +338,37 @@ void main() {
     });
 
     test(
+        'throws MocktailFailure when verifyMocks is called '
+        'and not all mocks were used (method)', () {
+      final expected = Future.value(42);
+      runZonedGuarded(() async {
+        when(foo)
+            .calls(#asyncValueWithNamedAndPositionalArgs)
+            .withArgs(positional: [1], named: {#y: 2}).thenReturn(expected);
+        verifyMocks(foo);
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''MockFoo.asyncValueWithNamedAndPositionalArgs(1, y: 2) => Instance of 'Future<int>' was stubbed but never invoked.''',
+          ),
+        );
+        expect(
+          foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
+          expected,
+        );
+      });
+    });
+
+    test(
         'throws MocktailFailure when verify call count is called '
         'with incorrect call count', () {
       runZonedGuarded(() {
         when(foo).calls(#intValue).thenReturn(10);
-        verify(foo).calls(#intValue).times(equals(1));
+        verify(foo).called(#intValue).times(equals(1));
         fail('should throw');
       }, (error, _) {
         expect(
@@ -259,19 +381,112 @@ void main() {
         );
       });
       expect(foo.intValue, equals(10));
-      verify(foo).calls(#intValue).times(1);
+      verify(foo).called(#intValue).times(1);
     });
 
     test(
         'throws MocktailFailure when verify is called '
-        'with incorrect args', () {
+        'with incorrect positional args (lax)', () {
       runZonedGuarded(() async {
         when(foo)
             .calls(#asyncValueWithPositionalArg)
             .thenAnswer((_) async => 10);
         expect(await foo.asyncValueWithPositionalArg(2), 10);
         verify(foo)
-            .calls(#asyncValueWithPositionalArg)
+            .called(#asyncValueWithPositionalArg)
+            .withArgs(positional: [1]).times(1);
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithPositionalArg(1) to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with incorrect named arg (lax)', () {
+      runZonedGuarded(() async {
+        when(foo).calls(#asyncValueWithNamedArg).thenAnswer((_) async => 10);
+        expect(await foo.asyncValueWithNamedArg(x: 2), 10);
+        verify(foo)
+            .called(#asyncValueWithNamedArg)
+            .withArgs(named: {#x: 1}).times(1);
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithNamedArg(x: 1) to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with incorrect named args (lax)', () {
+      runZonedGuarded(() async {
+        when(foo).calls(#asyncValueWithNamedArgs).thenAnswer((_) async => 10);
+        expect(await foo.asyncValueWithNamedArgs(x: 2, y: 3), 10);
+        verify(foo)
+            .called(#asyncValueWithNamedArgs)
+            .withArgs(named: {#x: 1, #y: 1}).times(1);
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithNamedArgs(x: 1, y: 1) to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with incorrect positional and named args (lax)', () {
+      runZonedGuarded(() async {
+        when(foo)
+            .calls(#asyncValueWithNamedAndPositionalArgs)
+            .thenAnswer((_) async => 10);
+        expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
+        verify(foo)
+            .called(#asyncValueWithNamedAndPositionalArgs)
+            .withArgs(positional: [2], named: {#y: 1}).times(1);
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithNamedAndPositionalArgs(2, y: 1) to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with incorrect args (strict)', () {
+      final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
+      runZonedGuarded(() async {
+        when(foo).calls(#asyncValueWithPositionalArg).withArgs(
+          positional: [anyThat(isEven)],
+        ).thenAnswer((_) async => 10);
+        expect(await foo.asyncValueWithPositionalArg(2), 10);
+        verify(foo)
+            .called(#asyncValueWithPositionalArg)
             .withArgs(positional: [1]).times(1);
         fail('should throw');
       }, (error, _) {
