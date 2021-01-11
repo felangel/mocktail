@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 class Cat {
   String sound() => 'meow!';
   bool likes(String food, {bool isHungry = false}) => false;
-  int lives = 9;
+  final int lives = 9;
 }
 
 // A Mock Cat class
