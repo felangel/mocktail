@@ -20,7 +20,7 @@ class MocktailFailure implements Exception {
 /// A mocked class implements all fields and methods with a default
 /// implementation that does not throw a [NoSuchMethodError], and may be further
 /// customized at runtime to define how it may behave using [when].
-/// ````dart
+/// ```dart
 /// // Real class.
 /// class Cat {
 ///   String getSound(String suffix) => 'Meow$suffix';
