@@ -1,3 +1,7 @@
+# 0.0.1-dev.8
+
+- fix: throw `NoSuchMethodError` when arguments match but memberName does not
+
 # 0.0.1-dev.7
 
 - **BREAKING** refactor: rename `verify(mock).calls(#member)` to `verify(mock).called(#member)`

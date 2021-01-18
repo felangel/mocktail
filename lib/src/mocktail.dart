@@ -70,13 +70,14 @@ class Mock {
     }
 
     final invocationMatch = _stubs.keys.firstWhere(
-      (invocation) {
+      (_invocation) {
+        if (_invocation.memberName != invocation.memberName) return false;
         final positionalArgsMatch = _listEquals<Object?>(
-          invocation.positionalArguments.toList(),
+          _invocation.positionalArguments.toList(),
           positionalArgs,
         );
         final namedArgsMatch = _mapEquals<Symbol, Object?>(
-          invocation.namedArguments,
+          _invocation.namedArguments,
           namedArgs,
         );
         return positionalArgsMatch && namedArgsMatch;
