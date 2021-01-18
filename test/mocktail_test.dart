@@ -15,6 +15,8 @@ class Foo {
   Future<int> asyncValueWithNamedAndPositionalArgs(int x, {required int y}) =>
       Future.value(x + y);
   Stream<int> get streamValue => Stream.value(0);
+  int increment(int x) => x + 1;
+  int addOne(int x) => x + 1;
 }
 
 class Bar {
@@ -523,6 +525,14 @@ void main() {
     test('throws StateError if reset is called on a real object', () {
       final realFoo = Foo();
       expect(() => reset(realFoo), throwsA(isA<StateError>()));
+    });
+
+    test(
+        'throws NoSuchMethodError when arguments '
+        'match but memberName does not', () {
+      when(foo).calls(#increment).withArgs(positional: [41]).thenReturn(42);
+      expect(foo.increment(41), equals(42));
+      expect(() => foo.addOne(41), throwsNoSuchMethodError);
     });
   });
 
