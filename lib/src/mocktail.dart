@@ -152,10 +152,7 @@ void verifyMocks(Object object) {
       var argString = '';
       final hasArgs = entry.key.namedArguments.isNotEmpty ||
           entry.key.positionalArguments.isNotEmpty;
-      if ((entry.value._calls.isNotEmpty &&
-              entry.value._calls
-                  .any((call) => call.invocation.isMethod == true)) ||
-          hasArgs) {
+      if (hasArgs) {
         argString = _argsToString(
           namedArgs: entry.key.namedArguments,
           positionalArgs: entry.key.positionalArguments.toList(),
@@ -228,18 +225,6 @@ class _ArgMatcher {
     if (_matcher == null) return false;
     return _matcher!.matches(value, <dynamic, dynamic>{});
   }
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is _ArgMatcher &&
-        o._anything == _anything &&
-        o._matcher == _matcher;
-  }
-
-  @override
-  int get hashCode => _anything.hashCode ^ _matcher.hashCode;
 }
 
 class _Invocation {
@@ -295,18 +280,6 @@ class _CallPair {
   _Invocation get _invocation => _Invocation.fromInvocation(invocation);
   int _callCount = 0;
   int get callCount => _callCount;
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is _CallPair &&
-        o._invocation == _invocation &&
-        o._callCount == _callCount;
-  }
-
-  @override
-  int get hashCode => _invocation.hashCode ^ _callCount.hashCode;
 }
 
 class _Stub {
@@ -411,52 +384,12 @@ class _CallCountCall extends _MockInvocationCall {
         },
         orElse: () => MapEntry(_Invocation.empty, _Stub((_) => null)),
       );
-      final strictStub = entry.key != _Invocation.empty ? entry.value : null;
-      if (strictStub != null) {
-        stub = strictStub;
+      stub = entry.key != _Invocation.empty
+          ? entry.value
+          : _object._stubs[_Invocation(memberName: _memberName)];
+      if (stub != null) {
         final call = stub.getCall(entry.key);
         actualCallCount += call?.callCount ?? 0;
-      } else {
-        final laxStub = _object._stubs[_Invocation(memberName: _memberName)];
-        if (laxStub != null) {
-          stub = laxStub;
-
-          final call = laxStub.getCall(_invocation);
-          final positionalArgsMatch = _listEquals<Object?>(
-            call?.invocation.positionalArguments ?? [],
-            positionalArgs,
-          );
-          final namedArgsMatch = _mapEquals<Symbol, Object?>(
-            call?.invocation.namedArguments ?? {},
-            namedArgs,
-          );
-
-          if (positionalArgsMatch && namedArgsMatch) {
-            final call = stub.getCall(_invocation);
-            actualCallCount += call?.callCount ?? 0;
-          }
-        } else {
-          final invocationMatch = _object._stubs.keys.firstWhere(
-            (invocation) {
-              final positionalArgsMatch = _listEquals<Object?>(
-                invocation.positionalArguments.toList(),
-                positionalArgs,
-              );
-              final namedArgsMatch = _mapEquals<Symbol, Object?>(
-                invocation.namedArguments,
-                namedArgs,
-              );
-              return positionalArgsMatch && namedArgsMatch;
-            },
-            orElse: () => _Invocation.empty,
-          );
-
-          if (invocationMatch != _Invocation.empty) {
-            stub = _object._stubs[invocationMatch]!;
-            final call = stub.getCall(_invocation);
-            actualCallCount += call?.callCount ?? 0;
-          }
-        }
       }
     }
 
@@ -575,7 +508,6 @@ bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
 bool _isMatch(dynamic a, dynamic b) {
   if (identical(a, b)) return true;
   if (a == any || b == any) return true;
-  if (a is _ArgMatcher && b is _ArgMatcher) return a == b;
   if (a is _ArgMatcher) return a.matches(b);
   if (b is _ArgMatcher) return b.matches(a);
   return a == b;

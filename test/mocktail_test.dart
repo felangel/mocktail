@@ -17,6 +17,7 @@ class Foo {
   Stream<int> get streamValue => Stream.value(0);
   int increment(int x) => x + 1;
   int addOne(int x) => x + 1;
+  void voidFunction() {}
 }
 
 class Bar {
@@ -342,6 +343,12 @@ void main() {
       verify(foo).called(#streamValue).times(1);
     });
 
+    test('when voidFunction', () {
+      when(foo).calls(#voidFunction).thenReturn(null);
+      expect(() => foo.voidFunction(), returnsNormally);
+      verify(foo).called(#voidFunction).once();
+    });
+
     test('throws Exception when thenThrow is used to stub the mock', () {
       final exception = Exception('oops');
       when(foo).calls(#streamValue).thenThrow(exception);
@@ -413,6 +420,53 @@ void main() {
       });
       expect(foo.intValue, equals(10));
       verify(foo).called(#intValue).times(1);
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with with void function and no calls were made', () {
+      runZonedGuarded(() async {
+        when(foo).calls(#voidFunction).thenReturn(null);
+        verify(foo).called(#voidFunction).once();
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.voidFunction to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+      foo.voidFunction();
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with with asyncValueWithPositionalArg and no calls were made', () {
+      runZonedGuarded(() async {
+        when(foo)
+            .calls(#asyncValueWithPositionalArg)
+            .thenAnswer((_) async => 10);
+        verify(foo)
+            .called(#asyncValueWithPositionalArg)
+            .withArgs(positional: [1]).once();
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithPositionalArg to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+      expectLater(
+        foo.asyncValueWithPositionalArg(1),
+        completes,
+      );
     });
 
     test(
