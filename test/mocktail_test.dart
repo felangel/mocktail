@@ -17,6 +17,7 @@ class Foo {
   Stream<int> get streamValue => Stream.value(0);
   int increment(int x) => x + 1;
   int addOne(int x) => x + 1;
+  void voidFunction() {}
 }
 
 class Bar {
@@ -24,9 +25,38 @@ class Bar {
   final Foo foo;
 }
 
+class Baz<T> {
+  void add(T element) {}
+}
+
 class MockFoo extends Mock implements Foo {}
 
 class MockBar extends Mock implements Bar {}
+
+class MockBaz<T> extends Mock implements Baz<T> {
+  static const _unimplemented = Object();
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) {
+    try {
+      final dynamic result = super.noSuchMethod(invocation);
+      return result;
+    } on NoSuchMethodError {
+      final dynamic result = _noSuchMethod(invocation);
+      if (result == _unimplemented) rethrow;
+      return result;
+    }
+  }
+
+  dynamic _noSuchMethod(Invocation invocation) {
+    switch (invocation.memberName) {
+      case #add:
+        return (T element) {}(invocation.positionalArguments.first as T);
+      default:
+        return _unimplemented;
+    }
+  }
+}
 
 void main() {
   group('Foo', () {
@@ -313,6 +343,12 @@ void main() {
       verify(foo).called(#streamValue).times(1);
     });
 
+    test('when voidFunction', () {
+      when(foo).calls(#voidFunction).thenReturn(null);
+      expect(() => foo.voidFunction(), returnsNormally);
+      verify(foo).called(#voidFunction).once();
+    });
+
     test('throws Exception when thenThrow is used to stub the mock', () {
       final exception = Exception('oops');
       when(foo).calls(#streamValue).thenThrow(exception);
@@ -384,6 +420,53 @@ void main() {
       });
       expect(foo.intValue, equals(10));
       verify(foo).called(#intValue).times(1);
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with with void function and no calls were made', () {
+      runZonedGuarded(() async {
+        when(foo).calls(#voidFunction).thenReturn(null);
+        verify(foo).called(#voidFunction).once();
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.voidFunction to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+      foo.voidFunction();
+    });
+
+    test(
+        'throws MocktailFailure when verify is called '
+        'with with asyncValueWithPositionalArg and no calls were made', () {
+      runZonedGuarded(() async {
+        when(foo)
+            .calls(#asyncValueWithPositionalArg)
+            .thenAnswer((_) async => 10);
+        verify(foo)
+            .called(#asyncValueWithPositionalArg)
+            .withArgs(positional: [1]).once();
+        fail('should throw');
+      }, (error, _) {
+        expect(
+          error,
+          isA<MocktailFailure>().having(
+            (f) => f.message,
+            'message',
+            '''Expected MockFoo.asyncValueWithPositionalArg to be called <1> time(s) but actual call count was <0>.''',
+          ),
+        );
+      });
+      expectLater(
+        foo.asyncValueWithPositionalArg(1),
+        completes,
+      );
     });
 
     test(
@@ -534,6 +617,15 @@ void main() {
       expect(foo.increment(41), equals(42));
       expect(() => foo.addOne(41), throwsNoSuchMethodError);
     });
+
+    test('verify count strictly depends on member name and arguments', () {
+      when(foo).calls(#increment).withArgs(positional: [41]).thenReturn(42);
+      when(foo).calls(#increment).withArgs(positional: [42]).thenReturn(43);
+      expect(foo.increment(41), equals(42));
+      expect(foo.increment(42), equals(43));
+      verify(foo).called(#increment).withArgs(positional: [41]).once();
+      verify(foo).called(#increment).withArgs(positional: [42]).once();
+    });
   });
 
   group('Bar', () {
@@ -556,6 +648,59 @@ void main() {
       when(foo).calls(#intValue).thenReturn(42);
       when(bar).calls(#foo).thenReturn(foo);
       expect(bar.foo.intValue, 42);
+    });
+  });
+
+  group('Baz', () {
+    late Baz<String> baz;
+
+    setUp(() {
+      baz = MockBaz<String>();
+    });
+
+    tearDown(() {
+      verifyMocks(baz);
+    });
+
+    test('verify count strictly depends on both member name and arguments', () {
+      when(baz).calls(#add).thenReturn(null);
+
+      const arg1 = 'A';
+      const arg2 = 'B';
+      const arg3 = 'C';
+
+      baz.add(arg1);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+
+      baz.add(arg2);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+      verify(baz).called(#add).withArgs(positional: [arg2]).once();
+
+      baz.add(arg3);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+      verify(baz).called(#add).withArgs(positional: [arg2]).once();
+      verify(baz).called(#add).withArgs(positional: [arg3]).once();
+    });
+
+    test(
+        'verify count strictly depends on both '
+        'member name and arguments (multiple calls)', () {
+      const arg1 = 'A';
+
+      when(baz).calls(#add).thenReturn(null);
+      verify(baz).called(#add).withArgs(positional: [arg1]).never();
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).times(2);
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).times(3);
     });
   });
 
