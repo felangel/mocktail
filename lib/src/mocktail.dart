@@ -50,25 +50,27 @@ class Mock {
 
   @override
   dynamic noSuchMethod(Invocation invocation) {
-    final positionalArgs = List<Object?>.of(invocation.positionalArguments);
-    final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
-    final _invocationStrict = _Invocation(
-      memberName: invocation.memberName,
-      positionalArguments: positionalArgs,
-      namedArguments: namedArgs,
-    );
+    final _invocationStrict = _Invocation.fromInvocation(invocation);
     final _invocationLax = _Invocation(memberName: invocation.memberName);
 
     if (_stubs.containsKey(_invocationStrict)) {
-      final stub = _stubs[_invocationStrict]!.._invocation = invocation;
-      return stub.result();
+      final stub = _stubs[_invocationStrict]!;
+      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
+        stub._calls.add(_CallPair(invocation));
+      }
+      return stub.result(_invocationStrict);
     }
 
     if (_stubs.containsKey(_invocationLax)) {
-      final stub = _stubs[_invocationLax]!.._invocation = invocation;
-      return stub.result();
+      final stub = _stubs[_invocationLax]!;
+      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
+        stub._calls.add(_CallPair(invocation));
+      }
+      return stub.result(_invocationLax);
     }
 
+    final positionalArgs = List<Object?>.of(invocation.positionalArguments);
+    final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
     final invocationMatch = _stubs.keys.firstWhere(
       (_invocation) {
         if (_invocation.memberName != invocation.memberName) return false;
@@ -86,8 +88,11 @@ class Mock {
     );
 
     if (invocationMatch != _Invocation.empty) {
-      final stub = _stubs[invocationMatch]!.._invocation = invocation;
-      return stub.result();
+      final stub = _stubs[invocationMatch]!;
+      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
+        stub._calls.add(_CallPair(invocation));
+      }
+      return stub.result(invocationMatch);
     }
 
     return super.noSuchMethod(invocation);
@@ -143,11 +148,14 @@ void verifyMocks(Object object) {
     throw StateError('verifyMocks called on a real object.');
   }
   for (final entry in object._stubs.entries) {
-    if (entry.value.callCount == 0) {
+    if (entry.value._calls.isEmpty) {
       var argString = '';
       final hasArgs = entry.key.namedArguments.isNotEmpty ||
           entry.key.positionalArguments.isNotEmpty;
-      if (entry.value._invocation?.isMethod == true || hasArgs) {
+      if ((entry.value._calls.isNotEmpty &&
+              entry.value._calls
+                  .any((call) => call.invocation.isMethod == true)) ||
+          hasArgs) {
         argString = _argsToString(
           namedArgs: entry.key.namedArguments,
           positionalArgs: entry.key.positionalArguments.toList(),
@@ -241,6 +249,16 @@ class _Invocation {
     this.namedArguments = const {},
   });
 
+  factory _Invocation.fromInvocation(Invocation invocation) {
+    final positionalArgs = List<Object?>.of(invocation.positionalArguments);
+    final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
+    return _Invocation(
+      memberName: invocation.memberName,
+      positionalArguments: positionalArgs,
+      namedArguments: namedArgs,
+    );
+  }
+
   final Symbol memberName;
   final Iterable<Object?> positionalArguments;
   final Map<Symbol, Object?> namedArguments;
@@ -270,19 +288,49 @@ class _Invocation {
   }
 }
 
+class _CallPair {
+  _CallPair(this.invocation);
+
+  final Invocation invocation;
+  _Invocation get _invocation => _Invocation.fromInvocation(invocation);
+  int _callCount = 0;
+  int get callCount => _callCount;
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is _CallPair &&
+        o._invocation == _invocation &&
+        o._callCount == _callCount;
+  }
+
+  @override
+  int get hashCode => _invocation.hashCode ^ _callCount.hashCode;
+}
+
 class _Stub {
   _Stub(this._result);
 
   final Object? Function(Invocation) _result;
-  Invocation? _invocation;
+  final Set<_CallPair> _calls = {};
 
-  Object? result() {
-    _callCount++;
-    return _result(_invocation!);
+  _CallPair? getCall(_Invocation invocation) {
+    _CallPair? fallback;
+    for (final call in _calls) {
+      if (call._invocation == invocation) return call;
+      if (_Invocation(memberName: call._invocation.memberName) == invocation) {
+        fallback = call;
+      }
+    }
+    return fallback;
   }
 
-  int _callCount = 0;
-  int get callCount => _callCount;
+  Object? result(_Invocation invocation) {
+    final call = getCall(invocation)!;
+    call._callCount++;
+    return _result(call.invocation);
+  }
 }
 
 class _WhenCall {
@@ -348,32 +396,44 @@ class _CallCountCall extends _MockInvocationCall {
       for (final entry in _object._stubs.entries) {
         if (entry.key.memberName == _memberName) {
           stub = entry.value;
-          actualCallCount += entry.value.callCount;
+          for (final call in stub._calls) {
+            actualCallCount += call.callCount;
+          }
         }
       }
     }
     // Strict Invocation Verification
     else {
-      final strictStub = _object._stubs[_invocation];
+      final entry = _object._stubs.entries.firstWhere(
+        (entry) {
+          final invocation = entry.value.getCall(_invocation);
+          return invocation != null;
+        },
+        orElse: () => MapEntry(_Invocation.empty, _Stub((_) => null)),
+      );
+      final strictStub = entry.key != _Invocation.empty ? entry.value : null;
       if (strictStub != null) {
         stub = strictStub;
-        actualCallCount = strictStub.callCount;
+        final call = stub.getCall(entry.key);
+        actualCallCount += call?.callCount ?? 0;
       } else {
         final laxStub = _object._stubs[_Invocation(memberName: _memberName)];
         if (laxStub != null) {
           stub = laxStub;
-          final invocation = laxStub._invocation;
+
+          final call = laxStub.getCall(_invocation);
           final positionalArgsMatch = _listEquals<Object?>(
-            invocation?.positionalArguments ?? [],
+            call?.invocation.positionalArguments ?? [],
             positionalArgs,
           );
           final namedArgsMatch = _mapEquals<Symbol, Object?>(
-            invocation?.namedArguments ?? {},
+            call?.invocation.namedArguments ?? {},
             namedArgs,
           );
 
           if (positionalArgsMatch && namedArgsMatch) {
-            actualCallCount = laxStub._callCount;
+            final call = stub.getCall(_invocation);
+            actualCallCount += call?.callCount ?? 0;
           }
         } else {
           final invocationMatch = _object._stubs.keys.firstWhere(
@@ -393,14 +453,15 @@ class _CallCountCall extends _MockInvocationCall {
 
           if (invocationMatch != _Invocation.empty) {
             stub = _object._stubs[invocationMatch]!;
-            actualCallCount = stub._callCount;
+            final call = stub.getCall(_invocation);
+            actualCallCount += call?.callCount ?? 0;
           }
         }
       }
     }
 
     var argString = '';
-    if (stub != null && stub._invocation?.isMethod == true) {
+    if (stub != null && stub._calls.any((call) => call.invocation.isMethod)) {
       argString = _argsToString(
         positionalArgs: positionalArgs,
         namedArgs: namedArgs,

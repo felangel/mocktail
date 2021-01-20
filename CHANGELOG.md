@@ -1,3 +1,7 @@
+# 0.0.1-dev.9
+
+- fix: call verification count per specific real invocation
+
 # 0.0.1-dev.8
 
 - fix: throw `NoSuchMethodError` when arguments match but memberName does not

@@ -24,9 +24,38 @@ class Bar {
   final Foo foo;
 }
 
+class Baz<T> {
+  void add(T element) {}
+}
+
 class MockFoo extends Mock implements Foo {}
 
 class MockBar extends Mock implements Bar {}
+
+class MockBaz<T> extends Mock implements Baz<T> {
+  static const _unimplemented = Object();
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) {
+    try {
+      final dynamic result = super.noSuchMethod(invocation);
+      return result;
+    } on NoSuchMethodError {
+      final dynamic result = _noSuchMethod(invocation);
+      if (result == _unimplemented) rethrow;
+      return result;
+    }
+  }
+
+  dynamic _noSuchMethod(Invocation invocation) {
+    switch (invocation.memberName) {
+      case #add:
+        return (T element) {}(invocation.positionalArguments.first as T);
+      default:
+        return _unimplemented;
+    }
+  }
+}
 
 void main() {
   group('Foo', () {
@@ -534,6 +563,15 @@ void main() {
       expect(foo.increment(41), equals(42));
       expect(() => foo.addOne(41), throwsNoSuchMethodError);
     });
+
+    test('verify count strictly depends on member name and arguments', () {
+      when(foo).calls(#increment).withArgs(positional: [41]).thenReturn(42);
+      when(foo).calls(#increment).withArgs(positional: [42]).thenReturn(43);
+      expect(foo.increment(41), equals(42));
+      expect(foo.increment(42), equals(43));
+      verify(foo).called(#increment).withArgs(positional: [41]).once();
+      verify(foo).called(#increment).withArgs(positional: [42]).once();
+    });
   });
 
   group('Bar', () {
@@ -556,6 +594,59 @@ void main() {
       when(foo).calls(#intValue).thenReturn(42);
       when(bar).calls(#foo).thenReturn(foo);
       expect(bar.foo.intValue, 42);
+    });
+  });
+
+  group('Baz', () {
+    late Baz<String> baz;
+
+    setUp(() {
+      baz = MockBaz<String>();
+    });
+
+    tearDown(() {
+      verifyMocks(baz);
+    });
+
+    test('verify count strictly depends on both member name and arguments', () {
+      when(baz).calls(#add).thenReturn(null);
+
+      const arg1 = 'A';
+      const arg2 = 'B';
+      const arg3 = 'C';
+
+      baz.add(arg1);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+
+      baz.add(arg2);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+      verify(baz).called(#add).withArgs(positional: [arg2]).once();
+
+      baz.add(arg3);
+
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+      verify(baz).called(#add).withArgs(positional: [arg2]).once();
+      verify(baz).called(#add).withArgs(positional: [arg3]).once();
+    });
+
+    test(
+        'verify count strictly depends on both '
+        'member name and arguments (multiple calls)', () {
+      const arg1 = 'A';
+
+      when(baz).calls(#add).thenReturn(null);
+      verify(baz).called(#add).withArgs(positional: [arg1]).never();
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).once();
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).times(2);
+
+      baz.add(arg1);
+      verify(baz).called(#add).withArgs(positional: [arg1]).times(3);
     });
   });
 
