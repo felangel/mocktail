@@ -111,7 +111,7 @@ final captured = verify(cat).called(#likes)
   .withArgs(positional: [captureAny]).captured;
 expect(captured.last, equals(['fish']));
 
-// You can specific capture based on a matcher.
+// You can capture a specific argument based on a matcher.
 when(cat).calls(#likes).thenReturn(true);
 expect(cat.likes('fish'), isTrue);
 expect(cat.likes('dog food'), isTrue);
