@@ -228,16 +228,28 @@ class _ArgMatcher {
 }
 
 class _Invocation {
-  const _Invocation({
+  const _Invocation._({
     required this.memberName,
     this.positionalArguments = const [],
     this.namedArguments = const {},
   });
 
+  factory _Invocation({
+    required Symbol memberName,
+    Iterable<Object?>? positionalArguments,
+    Map<Symbol, Object?>? namedArguments,
+  }) {
+    return _Invocation._(
+      memberName: memberName,
+      positionalArguments: positionalArguments ?? <Object?>[],
+      namedArguments: namedArguments ?? <Symbol, Object?>{},
+    );
+  }
+
   factory _Invocation.fromInvocation(Invocation invocation) {
     final positionalArgs = List<Object?>.of(invocation.positionalArguments);
     final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
-    return _Invocation(
+    return _Invocation._(
       memberName: invocation.memberName,
       positionalArguments: positionalArgs,
       namedArguments: namedArgs,
@@ -248,7 +260,7 @@ class _Invocation {
   final Iterable<Object?> positionalArguments;
   final Map<Symbol, Object?> namedArguments;
 
-  static const empty = _Invocation(memberName: Symbol(''));
+  static const empty = _Invocation._(memberName: Symbol(''));
 
   @override
   bool operator ==(Object o) {
@@ -432,7 +444,7 @@ class _StubFunction extends _MockInvocationCall {
     );
   }
 
-  void thenReturn(Object? result) {
+  void thenReturn([Object? result]) {
     _object._stubs[_invocation] = _Stub((_) => result);
   }
 
@@ -486,8 +498,11 @@ class _MockInvocationCall {
 
 bool _listEquals<T>(List<T>? a, List<T>? b) {
   if (a == null) return b == null;
-  if (b == null || a.length != b.length) return false;
+  if (b == null) return false;
   if (identical(a, b)) return true;
+  a = List.of(a)..removeWhere((e) => e == null);
+  b = List.of(b)..removeWhere((b) => b == null);
+  if (a.length != b.length) return false;
   for (var index = 0; index < a.length; index += 1) {
     if (!_isMatch(a[index], b[index])) return false;
   }
@@ -496,8 +511,11 @@ bool _listEquals<T>(List<T>? a, List<T>? b) {
 
 bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
   if (a == null) return b == null;
-  if (b == null || a.length != b.length) return false;
+  if (b == null) return false;
   if (identical(a, b)) return true;
+  a = Map.of(a)..removeWhere((key, value) => value == null);
+  b = Map.of(b)..removeWhere((key, value) => value == null);
+  if (a.length != b.length) return false;
   for (final key in a.keys) {
     if (!b.containsKey(key)) return false;
     if (!_isMatch(a[key], b[key])) return false;
@@ -510,6 +528,7 @@ bool _isMatch(dynamic a, dynamic b) {
   if (a == any || b == any) return true;
   if (a is _ArgMatcher) return a.matches(b);
   if (b is _ArgMatcher) return b.matches(a);
+  if (a is Map && b is Map) return _mapEquals<dynamic, dynamic>(a, b);
   return a == b;
 }
 
