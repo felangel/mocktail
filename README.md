@@ -103,6 +103,21 @@ final sounds = ['purrr', 'meow'];
 when(cat).calls(#sound).thenAnswer((_) => sounds.removeAt(0));
 expect(cat.sound(), 'purrr');
 expect(cat.sound(), 'meow');
+
+// You can capture any argument.
+when(cat).calls(#likes).thenReturn(true);
+expect(cat.likes('fish'), isTrue);
+final captured = verify(cat).called(#likes)
+  .withArgs(positional: [captureAny]).captured;
+expect(captured.last, equals(['fish']));
+
+// You can specific capture based on a matcher.
+when(cat).calls(#likes).thenReturn(true);
+expect(cat.likes('fish'), isTrue);
+expect(cat.likes('dog food'), isTrue);
+final captured = verify(cat).called(#likes)
+  .withArgs(positional: [captureAnyThat(startsWith('d'))]).captured;
+expect(captured.last, equals(['dog food']));
 ```
 
 ## Resetting Mocks
