@@ -1,3 +1,9 @@
+# 0.0.1-dev.10
+
+- feat: `thenReturn` argument is optional for `VoidCallback` returns.
+  - `when(cat).calls(#makeSound).thenReturn()`
+- fix: verify fixes for default arguments (named and positional)
+
 # 0.0.1-dev.9
 
 - fix: call verification count per specific real invocation

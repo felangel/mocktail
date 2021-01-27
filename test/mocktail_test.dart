@@ -18,6 +18,11 @@ class Foo {
   int increment(int x) => x + 1;
   int addOne(int x) => x + 1;
   void voidFunction() {}
+  void voidWithOptionalPositionalArg([int? x]) {}
+  void voidWithOptionalNamedArg({int? x}) {}
+  void voidWithDefaultPositionalArg([int x = 0]) {}
+  void voidWithDefaultNamedArg({int x = 0}) {}
+  void voidWithPositionalAndOptionalNamedArg(int x, {int? y}) {}
 }
 
 class Bar {
@@ -108,6 +113,15 @@ void main() {
       when(foo).calls(#asyncValueWithPositionalArg).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArg(1), 10);
       verify(foo).called(#asyncValueWithPositionalArg).times(1);
+    });
+
+    test('when asyncValueWithPositionalArg multiple times', () async {
+      when(foo).calls(#asyncValueWithPositionalArg).thenAnswer((_) async => 10);
+      expect(await foo.asyncValueWithPositionalArg(1), 10);
+      expect(await foo.asyncValueWithPositionalArg(1), 10);
+      verify(foo)
+          .called(#asyncValueWithPositionalArg)
+          .withArgs(positional: [1]).times(2);
     });
 
     test('when asyncValueWithPositionalArg (custom matcher)', () async {
@@ -343,10 +357,102 @@ void main() {
       verify(foo).called(#streamValue).times(1);
     });
 
-    test('when voidFunction', () {
+    test('when voidFunction (explicit)', () {
       when(foo).calls(#voidFunction).thenReturn(null);
       expect(() => foo.voidFunction(), returnsNormally);
       verify(foo).called(#voidFunction).once();
+    });
+
+    test('when voidFunction (implicit)', () {
+      when(foo).calls(#voidFunction).thenReturn();
+      expect(() => foo.voidFunction(), returnsNormally);
+      verify(foo).called(#voidFunction).once();
+    });
+
+    test('when voidWithPositionalAndOptionalNamedArg (default)', () {
+      when(foo).calls(#voidWithPositionalAndOptionalNamedArg).thenReturn();
+      expect(
+          () => foo.voidWithPositionalAndOptionalNamedArg(10), returnsNormally);
+      verify(foo).called(#voidWithPositionalAndOptionalNamedArg).once();
+      verify(foo)
+          .called(#voidWithPositionalAndOptionalNamedArg)
+          .withArgs(positional: [10]).once();
+    });
+
+    test('when voidWithPositionalAndOptionalNamedArg (override)', () {
+      when(foo).calls(#voidWithPositionalAndOptionalNamedArg).thenReturn();
+      expect(() => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42),
+          returnsNormally);
+      verify(foo).called(#voidWithPositionalAndOptionalNamedArg).once();
+      verify(foo)
+          .called(#voidWithPositionalAndOptionalNamedArg)
+          .withArgs(positional: [10], named: {#y: 42}).once();
+    });
+
+    test('when voidWithOptionalPositionalArg (default)', () {
+      when(foo).calls(#voidWithOptionalPositionalArg).thenReturn();
+      expect(() => foo.voidWithOptionalPositionalArg(), returnsNormally);
+      verify(foo).called(#voidWithOptionalPositionalArg).once();
+    });
+
+    test('when voidWithOptionalPositionalArg (override)', () {
+      when(foo).calls(#voidWithOptionalPositionalArg).thenReturn();
+      expect(() => foo.voidWithOptionalPositionalArg(10), returnsNormally);
+      verify(foo).called(#voidWithOptionalPositionalArg).once();
+      verify(foo)
+          .called(#voidWithOptionalPositionalArg)
+          .withArgs(positional: [10]).once();
+    });
+
+    test('when voidWithOptionalNamedArg (default)', () {
+      when(foo).calls(#voidWithOptionalNamedArg).thenReturn();
+      expect(() => foo.voidWithOptionalNamedArg(), returnsNormally);
+      verify(foo).called(#voidWithOptionalNamedArg).once();
+    });
+
+    test('when voidWithOptionalNamedArg (override)', () {
+      when(foo).calls(#voidWithOptionalNamedArg).thenReturn();
+      expect(() => foo.voidWithOptionalNamedArg(x: 10), returnsNormally);
+      verify(foo).called(#voidWithOptionalNamedArg).once();
+      verify(foo)
+          .called(#voidWithOptionalNamedArg)
+          .withArgs(named: {#x: 10}).once();
+    });
+
+    test('when voidWithDefaultPositionalArg (default)', () {
+      when(foo).calls(#voidWithDefaultPositionalArg).thenReturn();
+      expect(() => foo.voidWithDefaultPositionalArg(), returnsNormally);
+      verify(foo).called(#voidWithDefaultPositionalArg).once();
+      verify(foo)
+          .called(#voidWithDefaultPositionalArg)
+          .withArgs(positional: [0]).once();
+    });
+
+    test('when voidWithDefaultPositionalArg (override)', () {
+      when(foo).calls(#voidWithDefaultPositionalArg).thenReturn();
+      expect(() => foo.voidWithDefaultPositionalArg(10), returnsNormally);
+      verify(foo).called(#voidWithDefaultPositionalArg).once();
+      verify(foo)
+          .called(#voidWithDefaultPositionalArg)
+          .withArgs(positional: [10]).once();
+    });
+
+    test('when voidWithDefaultNamedArg (default)', () {
+      when(foo).calls(#voidWithDefaultNamedArg).thenReturn();
+      expect(() => foo.voidWithDefaultNamedArg(), returnsNormally);
+      verify(foo).called(#voidWithDefaultNamedArg).once();
+      verify(foo)
+          .called(#voidWithDefaultNamedArg)
+          .withArgs(named: {#x: 0}).once();
+    });
+
+    test('when voidWithDefaultNamedArg (override)', () {
+      when(foo).calls(#voidWithDefaultNamedArg).thenReturn();
+      expect(() => foo.voidWithDefaultNamedArg(x: 10), returnsNormally);
+      verify(foo).called(#voidWithDefaultNamedArg).once();
+      verify(foo)
+          .called(#voidWithDefaultNamedArg)
+          .withArgs(named: {#x: 10}).once();
     });
 
     test('throws Exception when thenThrow is used to stub the mock', () {
