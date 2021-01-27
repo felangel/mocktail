@@ -348,6 +348,121 @@ void main() {
       expect(namedArguments, equals({#y: 2}));
     });
 
+    test('captureAny captures any positional argument', () async {
+      when(foo)
+          .calls(#asyncValueWithPositionalArgs)
+          .thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
+      final captured = verify(foo)
+          .called(#asyncValueWithPositionalArgs)
+          .withArgs(positional: [captureAny, captureAny]).captured;
+      expect(
+        captured,
+        equals([
+          [1, 2]
+        ]),
+      );
+    });
+
+    test('captureAny captures any named argument', () async {
+      when(foo).calls(#asyncValueWithNamedArgs).thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
+      final captured = verify(foo)
+          .called(#asyncValueWithNamedArgs)
+          .withArgs(named: {#x: captureAny, #y: captureAny}).captured;
+      expect(
+        captured,
+        equals([
+          [1, 2]
+        ]),
+      );
+    });
+
+    test('captureAny captures any positional and named argument', () async {
+      when(foo)
+          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
+      final captured = verify(foo)
+          .called(#asyncValueWithNamedAndPositionalArgs)
+          .withArgs(positional: [captureAny], named: {#y: captureAny}).captured;
+      expect(
+        captured,
+        equals([
+          [1, 2]
+        ]),
+      );
+    });
+
+    test('captureAny captures any positional and named argument (multiple)',
+        () async {
+      when(foo)
+          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(10, y: 42), 10);
+      final captured = verify(foo)
+          .called(#asyncValueWithNamedAndPositionalArgs)
+          .withArgs(positional: [captureAny], named: {#y: captureAny}).captured;
+      expect(
+        captured,
+        equals([
+          [1, 2],
+          [10, 42]
+        ]),
+      );
+    });
+
+    test('captureAnyThat captures positional and named argument (alternating)',
+        () async {
+      final isOdd = isA<int>().having((x) => x % 2 == 0, 'isOdd', false);
+      final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
+      when(foo)
+          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(2, y: 3), 10);
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(3, y: 4), 10);
+      final captured =
+          verify(foo).called(#asyncValueWithNamedAndPositionalArgs).withArgs(
+        positional: [captureAnyThat(isOdd)],
+        named: {#y: captureAnyThat(isEven)},
+      ).captured;
+      expect(
+        captured,
+        equals([
+          [1, 2],
+          <int>[],
+          [3, 4]
+        ]),
+      );
+    });
+
+    test('captureAnyThat captures positional and named argument (inverse)',
+        () async {
+      final isOdd = isA<int>().having((x) => x % 2 == 0, 'isOdd', false);
+      final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
+      when(foo)
+          .calls(#asyncValueWithNamedAndPositionalArgs)
+          .thenReturn(Future.value(10));
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 1), 10);
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(2, y: 2), 10);
+      expect(await foo.asyncValueWithNamedAndPositionalArgs(3, y: 3), 10);
+      final captured =
+          verify(foo).called(#asyncValueWithNamedAndPositionalArgs).withArgs(
+        positional: [captureAnyThat(isOdd)],
+        named: {#y: captureAnyThat(isEven)},
+      ).captured;
+      expect(
+        captured,
+        equals([
+          [1],
+          [2],
+          [3]
+        ]),
+      );
+    });
+
     test('when streamValue', () {
       when(foo).calls(#streamValue).thenAnswer((_) => Stream.value(42));
       expectLater(
