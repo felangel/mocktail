@@ -1,7 +1,8 @@
 # 0.0.1-dev.10
 
-- feat: `thenReturn` argument is optional for `VoidCallback` returns.
+- feat: `thenReturn` argument is optional for `VoidCallback` returns
   - `when(cat).calls(#makeSound).thenReturn()`
+- feat: add support for `captured` with `captureAny` and `captureAnyThat` matchers
 - fix: verify fixes for default arguments (named and positional)
 
 # 0.0.1-dev.9

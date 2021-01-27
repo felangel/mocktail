@@ -188,7 +188,24 @@ void reset(Object object) {
 ///   .withArgs(named: {#x: 42, #y: 1})
 ///   .times(1);
 /// ```
-const any = _ArgMatcher.anything();
+const any = _ArgMatcher.any();
+
+/// Argument matcher which matches any argument and captures that argument
+/// for further inspection/assertions.
+///
+/// ```dart
+/// final calculator = MockCalculator();
+///
+/// when(calculator).calls(#sum).thenReturn(0);
+///
+/// expect(calculator.sum(42, 1), equals(42));
+///
+/// final captured = verify(calculator).calls(#sum)
+///   .withArgs(named: {#x: captureAny, #y: captureAny}).captured;
+///
+/// expect(captured.last, equals([42, 1]));
+/// ```
+const captureAny = _ArgMatcher.captureAny();
 
 /// Argument matcher which matches any argument which matches against
 /// the provided [predicate].
@@ -209,15 +226,40 @@ const any = _ArgMatcher.anything();
 ///   .times(1);
 /// ```
 Object anyThat(dynamic predicate) {
-  return _ArgMatcher.matches(wrapMatcher(predicate));
+  return _ArgMatcher.anyThat(wrapMatcher(predicate));
+}
+
+/// Argument matcher which captures any argument which matches against
+/// the provided [predicate].
+/// The predicate can be an object instance or a [Matcher].
+///
+/// ```dart
+/// final calculator = MockCalculator();
+/// final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
+///
+/// when(calculator).calls(#sum).thenReturn(42);
+///
+/// expect(calculator.sum(42, 1), equals(42));
+///
+/// final captured = verify(calculator).calls(#sum)
+///   .withArgs(named: {#x: captureAnyThat(isEven), #y: 1}).captured;
+///
+/// expect(captured.last, equals([42]));
+/// ```
+Object captureAnyThat(dynamic predicate) {
+  return _ArgMatcher.captureAnyThat(wrapMatcher(predicate));
 }
 
 class _ArgMatcher {
-  const _ArgMatcher._(this._anything, this._matcher);
-  const _ArgMatcher.anything() : this._(true, null);
-  const _ArgMatcher.matches(Matcher matcher) : this._(false, matcher);
+  const _ArgMatcher._(this._anything, this._capture, this._matcher);
+  const _ArgMatcher.any() : this._(true, false, null);
+  const _ArgMatcher.captureAny() : this._(true, true, null);
+  const _ArgMatcher.captureAnyThat(Matcher matcher)
+      : this._(false, true, matcher);
+  const _ArgMatcher.anyThat(Matcher matcher) : this._(false, false, matcher);
 
   final bool _anything;
+  final bool _capture;
   final Matcher? _matcher;
 
   bool matches(dynamic value) {
@@ -226,6 +268,8 @@ class _ArgMatcher {
     return _matcher!.matches(value, <dynamic, dynamic>{});
   }
 }
+
+bool _isArgCapture(dynamic e) => e is _ArgMatcher && e._capture;
 
 class _Invocation {
   const _Invocation._({
@@ -298,7 +342,7 @@ class _Stub {
   _Stub(this._result);
 
   final Object? Function(Invocation) _result;
-  final Set<_CallPair> _calls = {};
+  final _calls = <_CallPair>{};
 
   _CallPair? getCall(_Invocation invocation) {
     _CallPair? fallback;
@@ -365,6 +409,70 @@ class _CallCountCall extends _MockInvocationCall {
   }) : super(object, memberName,
             positionalArguments: positionalArguments,
             namedArguments: namedArguments);
+
+  List<dynamic> _captureArgs(
+    List<Object?> positionalArguments,
+    Map<Symbol, Object?> namedArguments,
+    Invocation invocation,
+  ) {
+    final captured = <dynamic>[];
+    for (var i = 0; i < positionalArguments.length; i++) {
+      final dynamic arg = positionalArguments[i];
+      final dynamic invocationArg = invocation.positionalArguments[i];
+      if (_isArgCapture(arg) && (arg as _ArgMatcher).matches(invocationArg)) {
+        captured.add(invocationArg);
+      }
+    }
+    for (final entry in namedArguments.entries) {
+      final arg = entry.value;
+      final dynamic invocationArg = invocation.namedArguments[entry.key];
+      if (_isArgCapture(arg) && (arg as _ArgMatcher).matches(invocationArg)) {
+        captured.add(invocationArg);
+      }
+    }
+    return captured;
+  }
+
+  List<dynamic> get captured {
+    _Stub? stub;
+    final _captured = <dynamic>[];
+
+    if (_positionalArguments == null && _namedArguments == null) {
+      return _captured;
+    }
+    final hasPositionalArgCapture =
+        _positionalArguments?.any(_isArgCapture) ?? false;
+    final hasNamedArgCapture =
+        _namedArguments?.values.any(_isArgCapture) ?? false;
+
+    if (!hasPositionalArgCapture && !hasNamedArgCapture) return _captured;
+
+    final entry = _object._stubs.entries.firstWhere(
+      (entry) {
+        final invocation = entry.value.getCall(_invocation);
+        return invocation != null;
+      },
+      orElse: () => MapEntry(_Invocation.empty, _Stub((_) => null)),
+    );
+    stub = entry.key != _Invocation.empty
+        ? entry.value
+        : _object._stubs[_Invocation(memberName: _memberName)];
+    if (stub != null) {
+      for (final call in stub._calls) {
+        _captured.add(
+          _captureArgs(
+            _positionalArguments != null ? List.of(_positionalArguments!) : [],
+            _namedArguments != null
+                ? Map.of(_namedArguments!)
+                : <Symbol, Object?>{},
+            call.invocation,
+          ),
+        );
+      }
+    }
+
+    return _captured;
+  }
 
   void times(dynamic callCount) => _times(callCount);
   void once() => _times(1);
