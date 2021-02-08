@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.12-0-0 <3.0.0"
 
 dependencies:
-  mocktail: ^0.0.1-dev.10
+  mocktail: ^0.0.1-dev.11
 
 dev_dependencies:
   coverage: ^0.14.2
