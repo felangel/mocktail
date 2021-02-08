@@ -15,4 +15,3 @@ dev_dependencies:
     sdk: flutter
   mocktail_image_network:
     path: ../
-  test: ">=1.16.0-nullsafety.13 <1.16.0"
