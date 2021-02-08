@@ -39,7 +39,7 @@ import 'package:mocktail/mocktail.dart';
 /// }
 /// ```
 /// {@endtemplate}
-T mockNetworkImages<T>(T body()) {
+T mockNetworkImages<T>(T Function() body) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createHttpClient(),
