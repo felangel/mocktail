@@ -1,9 +1,21 @@
-name: build
+name: mocktail
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "packages/mocktail/**"
+      - ".github/workflows/mocktail.yaml"
+
+  pull_request:
+    paths:
+      - "packages/mocktail/**"
+      - ".github/workflows/mocktail.yaml"
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: packages/mocktail
     runs-on: ubuntu-latest
     container:
       image: google/dart:2.12-dev
@@ -14,8 +26,10 @@ jobs:
       - name: Format
         run: dartfmt --dry-run --set-exit-if-changed .
       - name: Analyze
-        run: dart analyze --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos --fatal-warnings lib test example
       - name: Run tests
         run: dart test --coverage=coverage && pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        with:
+          path: packages/mocktail/coverage/lcov.info
