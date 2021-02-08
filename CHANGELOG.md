@@ -1,3 +1,9 @@
+# 0.0.1-dev.11
+
+- chore: bump dependencies
+  - `matcher: ^0.12.10`
+  - `test: ^1.16.0`
+
 # 0.0.1-dev.10
 
 - feat: `thenReturn` argument is optional for `VoidCallback` returns
