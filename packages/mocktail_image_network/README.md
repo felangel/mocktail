@@ -1,6 +1,6 @@
 # mocktail_image_network
 
-Mock Image.network in your widget tests with confidence using [mocktail](https://pub.dev/packages/mocktail)
+Mock `Image.network` in your widget tests with confidence using [mocktail](https://pub.dev/packages/mocktail)
 
 ## How to use
 

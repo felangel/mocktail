@@ -48,9 +48,7 @@ T mockNetworkImages<T>(T body()) {
 
 class _MockHttpClient extends Mock implements HttpClient {
   @override
-  set autoUncompress(bool _autoUncompress) {
-    // do nothing
-  }
+  set autoUncompress(bool _autoUncompress) {}
 }
 
 class _MockHttpClientRequest extends Mock implements HttpClientRequest {}
@@ -84,4 +82,5 @@ HttpClient _createHttpClient() {
 }
 
 final _transparentPixelPng = base64Decode(
-    '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==''');
+  '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==''',
+);

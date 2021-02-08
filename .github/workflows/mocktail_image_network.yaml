@@ -30,6 +30,9 @@ jobs:
         run: flutter analyze lib test example
       - name: Run tests
         run: flutter test --no-pub --coverage --test-randomize-ordering-seed random
+      - name: Run example tests
+        working-directory: packages/mocktail_image_network/example
+        run: flutter test --test-randomize-ordering-seed random
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
