@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:matcher/matcher.dart';
 
 /// {@template mocktail_failure}
@@ -608,9 +610,11 @@ bool _listEquals<T>(List<T>? a, List<T>? b) {
   if (a == null) return b == null;
   if (b == null) return false;
   if (identical(a, b)) return true;
-  if (a.length != b.length) return false;
-  for (var index = 0; index < a.length; index += 1) {
-    if (!_isMatch(a[index], b[index])) return false;
+  final length = max(a.length, b.length);
+  for (var index = 0; index < length; index++) {
+    final ai = index < a.length ? a[index] : null;
+    final bi = index < b.length ? b[index] : null;
+    if (!_isMatch(ai, bi)) return false;
   }
   return true;
 }
@@ -619,9 +623,8 @@ bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
   if (a == null) return b == null;
   if (b == null) return false;
   if (identical(a, b)) return true;
-  if (a.length != b.length) return false;
-  for (final key in a.keys) {
-    if (!b.containsKey(key)) return false;
+  final keys = Set<T>.from(a.keys)..addAll(b.keys);
+  for (final key in keys) {
     if (!_isMatch(a[key], b[key])) return false;
   }
   return true;
