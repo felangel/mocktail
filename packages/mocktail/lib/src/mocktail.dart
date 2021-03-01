@@ -608,8 +608,6 @@ bool _listEquals<T>(List<T>? a, List<T>? b) {
   if (a == null) return b == null;
   if (b == null) return false;
   if (identical(a, b)) return true;
-  a = List.of(a)..removeWhere((e) => e == null);
-  b = List.of(b)..removeWhere((b) => b == null);
   if (a.length != b.length) return false;
   for (var index = 0; index < a.length; index += 1) {
     if (!_isMatch(a[index], b[index])) return false;
@@ -621,8 +619,6 @@ bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
   if (a == null) return b == null;
   if (b == null) return false;
   if (identical(a, b)) return true;
-  a = Map.of(a)..removeWhere((key, value) => value == null);
-  b = Map.of(b)..removeWhere((key, value) => value == null);
   if (a.length != b.length) return false;
   for (final key in a.keys) {
     if (!b.containsKey(key)) return false;
