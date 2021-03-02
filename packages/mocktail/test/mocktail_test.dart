@@ -519,6 +519,14 @@ void main() {
           .withArgs(positional: [10]).once();
     });
 
+    test('when voidWithOptionalPositionalArg (any matcher without value)', () {
+      when(foo)
+          .calls(#voidWithOptionalPositionalArg)
+          .withArgs(positional: [any]).thenReturn();
+      expect(() => foo.voidWithOptionalPositionalArg(), returnsNormally);
+      verify(foo).called(#voidWithOptionalPositionalArg).once();
+    });
+
     test('when voidWithOptionalNamedArg (default)', () {
       when(foo).calls(#voidWithOptionalNamedArg).thenReturn();
       expect(() => foo.voidWithOptionalNamedArg(), returnsNormally);
@@ -532,6 +540,14 @@ void main() {
       verify(foo)
           .called(#voidWithOptionalNamedArg)
           .withArgs(named: {#x: 10}).once();
+    });
+
+    test('when voidWithOptionalNamedArg (any matcher without value)', () {
+      when(foo)
+          .calls(#voidWithOptionalNamedArg)
+          .withArgs(named: {#x: any}).thenReturn();
+      expect(() => foo.voidWithOptionalNamedArg(), returnsNormally);
+      verify(foo).called(#voidWithOptionalNamedArg).once();
     });
 
     test('when voidWithDefaultPositionalArg (default)', () {
