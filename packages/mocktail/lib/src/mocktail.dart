@@ -623,7 +623,7 @@ bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
   if (a == null) return b == null;
   if (b == null) return false;
   if (identical(a, b)) return true;
-  final keys = Set<T>.from(a.keys)..addAll(b.keys);
+  final keys = <T>{...a.keys, ...b.keys};
   for (final key in keys) {
     if (!_isMatch(a[key], b[key])) return false;
   }
