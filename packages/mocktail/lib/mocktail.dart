@@ -12,6 +12,7 @@ export 'src/mocktail.dart'
         Answer,
         Expectation,
         When,
+        registerFallbackValue,
 
         // -- verification
         verify,
