@@ -1,10 +1,10 @@
 part of 'mocktail.dart';
 
 /// An argument matcher that matches any argument passed in.
-T any<T>({String? named, Matcher? that, required T type}) {
+T any<T>({required T of, String? named, Matcher? that}) {
   return _registerMatcher(
     that ?? anything,
-    type,
+    of,
     false,
     named: named,
     argumentMatcher: named != null ? 'anyNamed' : 'any',
@@ -12,10 +12,10 @@ T any<T>({String? named, Matcher? that, required T type}) {
 }
 
 /// An argument matcher that captures any argument passed in.
-T captureAny<T>({String? named, Matcher? that, required T type}) {
+T captureAny<T>({required T of, String? named, Matcher? that}) {
   return _registerMatcher(
     that ?? anything,
-    type,
+    of,
     true,
     named: named,
     argumentMatcher: named != null ? 'anyNamed' : 'any',

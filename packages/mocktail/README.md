@@ -82,7 +82,7 @@ expect(cat.likes('fish', isHungry: false), isTrue);
 verify(() => cat.likes('fish', isHungry: false)).called(1);
 
 // You can stub a method using argument matchers: `any`.
-when(() => cat.likes(any(type: ''), isHungry: any(that: isFalse, type: false)).thenReturn(true);
+when(() => cat.likes(any(of: ''), isHungry: any(that: isFalse, of: false)).thenReturn(true);
 expect(cat.likes('fish', isHungry: false), isTrue);
 
 // You can stub a method to throw.
@@ -98,14 +98,14 @@ expect(cat.sound(), 'meow');
 // You can capture any argument.
 when(() => cat.likes('fish')).thenReturn(true);
 expect(cat.likes('fish'), isTrue);
-final captured = verify(() => cat.likes(captureAny(type: ''))).captured;
+final captured = verify(() => cat.likes(captureAny(of: ''))).captured;
 expect(captured.last, equals(['fish']));
 
 // You can capture a specific argument based on a matcher.
-when(() => cat.likes(any(type: ''))).thenReturn(true);
+when(() => cat.likes(any(of: ''))).thenReturn(true);
 expect(cat.likes('fish'), isTrue);
 expect(cat.likes('dog food'), isTrue);
-final captured = verify(() => cat.likes(captureAny(that: startsWith('d'), type: ''))).captured;
+final captured = verify(() => cat.likes(captureAny(of: '', that: startsWith('d')))).captured;
 expect(captured.last, equals(['dog food']));
 ```
 

@@ -100,7 +100,7 @@ void main() {
     });
 
     test('when asyncValueWithPositionalArg (any)', () async {
-      when(() => foo.asyncValueWithPositionalArg(any(type: 0))).thenAnswer(
+      when(() => foo.asyncValueWithPositionalArg(any(of: 0))).thenAnswer(
         (_) async => 10,
       );
       expect(await foo.asyncValueWithPositionalArg(1), 10);
@@ -108,7 +108,7 @@ void main() {
     });
 
     test('when asyncValueWithPositionalArg multiple times', () async {
-      when(() => foo.asyncValueWithPositionalArg(any(type: 0))).thenAnswer(
+      when(() => foo.asyncValueWithPositionalArg(any(of: 0))).thenAnswer(
         (_) async => 10,
       );
       expect(await foo.asyncValueWithPositionalArg(1), 10);
@@ -118,14 +118,14 @@ void main() {
 
     test('when asyncValueWithPositionalArg (custom matcher)', () async {
       final isEven = isA<int>().having((x) => x % 2 == 0, 'isEven', true);
-      when(() => foo.asyncValueWithPositionalArg(any(that: isEven, type: 0)))
+      when(() => foo.asyncValueWithPositionalArg(any(that: isEven, of: 0)))
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArg(2), 10);
       verify(() => foo.asyncValueWithPositionalArg(2)).called(1);
     });
 
     test('when asyncValueWithPositionalArg (any)', () async {
-      when(() => foo.asyncValueWithPositionalArg(any(type: 0)))
+      when(() => foo.asyncValueWithPositionalArg(any(of: 0)))
           .thenAnswer((_) async => 10);
       when(() => foo.asyncValueWithPositionalArg(1))
           .thenAnswer((_) async => 42);
@@ -135,21 +135,21 @@ void main() {
     });
 
     test('when asyncValueWithPositionalArgs (any)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(type: 0), any(type: 0)))
+      when(() => foo.asyncValueWithPositionalArgs(any(of: 0), any(of: 0)))
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (1 any matcher)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(type: 0), 2))
+      when(() => foo.asyncValueWithPositionalArgs(any(of: 0), 2))
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (2 any matchers)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(type: 0), any(type: 0)))
+      when(() => foo.asyncValueWithPositionalArgs(any(of: 0), any(of: 0)))
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
@@ -165,7 +165,7 @@ void main() {
 
     test('when asyncValueWithNamedArg (any)', () async {
       when(
-        () => foo.asyncValueWithNamedArg(x: any(type: 0, named: 'x')),
+        () => foo.asyncValueWithNamedArg(x: any(of: 0, named: 'x')),
       ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArg(x: 1), 10);
       verify(() => foo.asyncValueWithNamedArg(x: 1)).called(1);
@@ -175,7 +175,7 @@ void main() {
       final isOdd = isA<int>().having((x) => x % 2 == 0, 'isOdd', false);
       when(
         () => foo.asyncValueWithNamedArg(
-          x: any(type: 0, that: isOdd, named: 'x'),
+          x: any(of: 0, that: isOdd, named: 'x'),
         ),
       ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArg(x: 1), 10);
@@ -196,7 +196,7 @@ void main() {
     });
 
     test('when asyncValueWithNamedArgs (1 any matchers)', () async {
-      when(() => foo.asyncValueWithNamedArgs(x: any(type: 0, named: 'x'), y: 2))
+      when(() => foo.asyncValueWithNamedArgs(x: any(of: 0, named: 'x'), y: 2))
           .thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
       verify(() => foo.asyncValueWithNamedArgs(x: 1, y: 2)).called(1);
@@ -205,8 +205,8 @@ void main() {
     test('when asyncValueWithNamedArgs (2 any matchers)', () async {
       when(
         () => foo.asyncValueWithNamedArgs(
-          x: any(type: 0, named: 'x'),
-          y: any(type: 0, named: 'y'),
+          x: any(of: 0, named: 'x'),
+          y: any(of: 0, named: 'y'),
         ),
       ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
@@ -239,7 +239,7 @@ void main() {
           .thenAnswer((_) => Future.value(10));
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
       final captured = verify(() => foo.asyncValueWithPositionalArgs(
-          captureAny(type: 0), captureAny(type: 0))).captured;
+          captureAny(of: 0), captureAny(of: 0))).captured;
       expect(captured, equals([1, 2]));
     });
 
@@ -249,8 +249,8 @@ void main() {
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), 10);
       final captured = verify(
         () => foo.asyncValueWithNamedArgs(
-          x: captureAny(type: 0, named: 'x'),
-          y: captureAny(type: 0, named: 'y'),
+          x: captureAny(of: 0, named: 'x'),
+          y: captureAny(of: 0, named: 'y'),
         ),
       ).captured;
       expect(captured, equals([1, 2]));
@@ -262,8 +262,8 @@ void main() {
       expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
       final captured = verify(
         () => foo.asyncValueWithNamedAndPositionalArgs(
-          captureAny(type: 0),
-          y: captureAny(type: 0, named: 'y'),
+          captureAny(of: 0),
+          y: captureAny(of: 0, named: 'y'),
         ),
       ).captured;
       expect(captured, equals([1, 2]));
@@ -273,16 +273,16 @@ void main() {
         () async {
       when(
         () => foo.asyncValueWithNamedAndPositionalArgs(
-          any(type: 0),
-          y: any(type: 0, named: 'y'),
+          any(of: 0),
+          y: any(of: 0, named: 'y'),
         ),
       ).thenAnswer((_) => Future.value(10));
       expect(await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2), 10);
       expect(await foo.asyncValueWithNamedAndPositionalArgs(10, y: 42), 10);
       final captured = verify(
         () => foo.asyncValueWithNamedAndPositionalArgs(
-          captureAny(type: 0),
-          y: captureAny(type: 0, named: 'y'),
+          captureAny(of: 0),
+          y: captureAny(of: 0, named: 'y'),
         ),
       ).captured;
       expect(
@@ -326,7 +326,7 @@ void main() {
     });
 
     test('when voidWithOptionalPositionalArg (default)', () {
-      when(() => foo.voidWithOptionalPositionalArg(any(type: 0)))
+      when(() => foo.voidWithOptionalPositionalArg(any(of: 0)))
           .thenReturn(null);
       expect(() => foo.voidWithOptionalPositionalArg(1), returnsNormally);
       verify(() => foo.voidWithOptionalPositionalArg(1)).called(1);
@@ -415,7 +415,7 @@ void main() {
     tearDown(resetMocktailState);
 
     test('verify count strictly depends on both member name and arguments', () {
-      when(() => baz.add(any(type: ''))).thenReturn(null);
+      when(() => baz.add(any(of: ''))).thenReturn(null);
 
       const arg1 = 'A';
       const arg2 = 'B';
@@ -439,7 +439,7 @@ void main() {
         'member name and arguments (multiple calls)', () {
       const arg1 = 'A';
 
-      when(() => baz.add(any(type: ''))).thenReturn(null);
+      when(() => baz.add(any(of: ''))).thenReturn(null);
 
       verifyNever(() => baz.add(arg1));
 

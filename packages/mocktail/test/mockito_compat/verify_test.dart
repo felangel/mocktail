@@ -126,7 +126,7 @@ void main() {
         verify(
           () => mock.methodWithNormalArgs(any(
             that: greaterThan(100),
-            type: null,
+            of: null,
           )),
         );
       });
@@ -134,7 +134,7 @@ void main() {
         () => mock.methodWithNormalArgs(
           any(
             that: greaterThanOrEqualTo(100),
-            type: null,
+            of: null,
           ),
         ),
       );
@@ -149,7 +149,7 @@ void main() {
           '$noMatchingCallsFooter', () {
         verify(
           () => mock.methodWithPositionalArgs(
-              any(that: greaterThanOrEqualTo(100), type: null), 18),
+              any(that: greaterThanOrEqualTo(100), of: null), 18),
         );
       });
       expectFail(
@@ -157,10 +157,10 @@ void main() {
           '_MockedClass.methodWithPositionalArgs(100, 17)\n'
           '$noMatchingCallsFooter', () {
         verify(() => mock.methodWithPositionalArgs(
-            any(that: greaterThan(100), type: null), 17));
+            any(that: greaterThan(100), of: null), 17));
       });
       verify(() => mock.methodWithPositionalArgs(
-          any(that: greaterThanOrEqualTo(100), type: null), 17));
+          any(that: greaterThanOrEqualTo(100), of: null), 17));
     });
 
     test('should mock getter', () {
@@ -492,9 +492,9 @@ void main() {
         ..methodWithoutArgs()
         ..methodWithNormalArgs(2);
       final captured = verifyInOrder([
-        mock.methodWithNormalArgs(captureAny(type: null)),
+        mock.methodWithNormalArgs(captureAny(of: null)),
         mock.methodWithoutArgs(),
-        mock.methodWithNormalArgs(captureAny(type: null))
+        mock.methodWithNormalArgs(captureAny(of: null))
       ]).captured;
       expect(captured, hasLength(3));
       expect(captured[0], equals([1]));

@@ -108,7 +108,7 @@ void main() {
     test('should mock method with argument matcher', () {
       when(
         () => mock.methodWithNormalArgs(
-          any(that: greaterThan(100), type: null),
+          any(that: greaterThan(100), of: null),
         ),
       ).thenReturn('A lot!');
       expect(mock.methodWithNormalArgs(100), isNull);
@@ -116,14 +116,14 @@ void main() {
     });
 
     test('should mock method with any argument matcher', () {
-      when(() => mock.methodWithNormalArgs(any(type: 0))).thenReturn('A lot!');
+      when(() => mock.methodWithNormalArgs(any(of: 0))).thenReturn('A lot!');
       expect(mock.methodWithNormalArgs(100), equals('A lot!'));
       expect(mock.methodWithNormalArgs(101), equals('A lot!'));
     });
 
     test('should mock method with any list argument matcher', () {
       List<int?>? list;
-      when(() => mock.methodWithListArgs(any(type: list))).thenReturn('A lot!');
+      when(() => mock.methodWithListArgs(any(of: list))).thenReturn('A lot!');
       expect(mock.methodWithListArgs([42]), equals('A lot!'));
       expect(mock.methodWithListArgs([43]), equals('A lot!'));
     });
@@ -131,14 +131,14 @@ void main() {
     test('should mock method with multiple named args and matchers', () {
       when(
         () => mock.methodWithTwoNamedArgs(
-          any(type: 0),
-          y: any(type: 0, named: 'y'),
+          any(of: 0),
+          y: any(of: 0, named: 'y'),
         ),
       ).thenReturn('x y');
       when(
         () => mock.methodWithTwoNamedArgs(
-          any(type: 0),
-          z: any(type: 0, named: 'z'),
+          any(of: 0),
+          z: any(of: 0, named: 'z'),
         ),
       ).thenReturn('x z');
       expect(mock.methodWithTwoNamedArgs(42), 'x z');
@@ -147,9 +147,9 @@ void main() {
       expect(mock.methodWithTwoNamedArgs(42, y: 18, z: 17), isNull);
       when(
         () => mock.methodWithTwoNamedArgs(
-          any(type: 0),
-          y: any(type: 0, named: 'y'),
-          z: any(type: 0, named: 'z'),
+          any(of: 0),
+          y: any(of: 0, named: 'y'),
+          z: any(of: 0, named: 'z'),
         ),
       ).thenReturn('x y z');
       expect(mock.methodWithTwoNamedArgs(42, y: 18, z: 17), equals('x y z'));
@@ -159,7 +159,7 @@ void main() {
         () {
       when(
         () => mock.methodWithPositionalArgs(
-          any(that: greaterThan(100), type: 0),
+          any(that: greaterThan(100), of: 0),
           17,
         ),
       ).thenReturn('A lot with 17');
@@ -188,13 +188,13 @@ void main() {
     });
 
     test('should mock method with thrown result', () {
-      when(() => mock.methodWithNormalArgs(any(type: 0)))
+      when(() => mock.methodWithNormalArgs(any(of: 0)))
           .thenThrow(StateError('Boo'));
       expect(() => mock.methodWithNormalArgs(42), throwsStateError);
     });
 
     test('should mock method with calculated result', () {
-      when(() => mock.methodWithNormalArgs(any(type: 0))).thenAnswer(
+      when(() => mock.methodWithNormalArgs(any(of: 0))).thenAnswer(
           (Invocation inv) => inv.positionalArguments[0].toString());
       expect(mock.methodWithNormalArgs(43), equals('43'));
       expect(mock.methodWithNormalArgs(42), equals('42'));
@@ -213,9 +213,9 @@ void main() {
     });
 
     test('should mock method with calculated result', () {
-      when(() => mock.methodWithNormalArgs(any(that: equals(43), type: null)))
+      when(() => mock.methodWithNormalArgs(any(that: equals(43), of: null)))
           .thenReturn('43');
-      when(() => mock.methodWithNormalArgs(any(that: equals(42), type: null)))
+      when(() => mock.methodWithNormalArgs(any(that: equals(42), of: null)))
           .thenReturn('42');
       expect(mock.methodWithNormalArgs(43), equals('43'));
     });
@@ -267,7 +267,7 @@ void main() {
       expect(
         () {
           when(
-            () => mock.methodWithNamedArgs(42, y: any(type: 0, named: 'z')),
+            () => mock.methodWithNamedArgs(42, y: any(of: 0, named: 'z')),
           ).thenReturn('99');
         },
         throwsArgumentError,
@@ -314,7 +314,7 @@ void main() {
       'verification', () {
     int? type;
     expect(
-      () => mock.methodWithNormalArgs(any(type: type)),
+      () => mock.methodWithNormalArgs(any(of: type)),
       throwsArgumentError,
     );
   });
