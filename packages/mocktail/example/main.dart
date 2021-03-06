@@ -21,26 +21,20 @@ void main() {
 
     test('example', () {
       // Stub a method before interacting with the mock.
-      when(cat).calls(#sound).thenReturn('purr');
+      when(() => cat.sound()).thenReturn('purr');
 
       // Interact with the mock.
       expect(cat.sound(), 'purr');
 
       // Verify the interaction.
-      verify(cat).called(#sound).once();
+      verify(() => cat.sound()).called(1);
 
       // Stub a method with parameters
-      when(cat).calls(#likes).withArgs(
-        positional: ['fish'],
-        named: {#isHungry: false},
-      ).thenReturn(true);
+      when(() => cat.likes('fish', isHungry: false)).thenReturn(true);
       expect(cat.likes('fish'), isTrue);
 
-      // Verify the interaction.
-      verify(cat).called(#likes).withArgs(
-        positional: ['fish'],
-        named: {#isHungry: false},
-      ).once();
+      // // Verify the interaction.
+      verify(() => cat.likes('fish', isHungry: false)).called(1);
     });
   });
 }

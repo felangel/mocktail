@@ -7,4 +7,5 @@
 pubspec.lock
 
 coverage/
+.test_coverage.dart
 build/

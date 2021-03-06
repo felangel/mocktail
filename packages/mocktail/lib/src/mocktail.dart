@@ -1,105 +1,170 @@
-import 'dart:math';
+import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:matcher/matcher.dart';
+import 'package:test/test.dart';
 
-/// {@template mocktail_failure}
-/// An exception thrown from the mocktail library.
-/// {@endtemplate}
-class MocktailFailure implements Exception {
-  /// {@macro mocktail_failure}
-  const MocktailFailure(this.message);
+import 'fake.dart';
 
-  /// The failure message
-  final String message;
+part '_arg_matcher.dart';
+part '_invocation_matcher.dart';
+part '_is_invocation.dart';
+part '_real_call.dart';
+part '_register_matcher.dart';
+part '_time_stamp_provider.dart';
 
-  @override
-  String toString() => 'MocktailFailure: $message';
+_WhenCall? _whenCall;
+_UntilCall? _untilCall;
+var _whenInProgress = false;
+bool _untilCalledInProgress = false;
+var _verificationInProgress = false;
+var _numMatchers = 0;
+
+final _timer = _TimeStampProvider();
+final _capturedArgs = <dynamic>[];
+final _storedArgs = <ArgMatcher>[];
+final _storedNamedArgs = <String, ArgMatcher>{};
+final _verifyCalls = <_VerifyCall>[];
+
+/// Opt-into [Mock] throwing [NoSuchMethodError] for unimplemented methods.
+///
+/// The default behavior when not using this is to always return `null`.
+void throwOnMissingStub(
+  Mock mock, {
+  void Function(Invocation)? exceptionBuilder,
+}) {
+  exceptionBuilder ??= mock._noSuchMethod;
+  mock._defaultResponse = () {
+    return Expectation<dynamic>.allInvocations(exceptionBuilder!);
+  };
 }
 
-/// {@template mock}
-/// Extend this class to mark an implementation as a [Mock].
+/// Extend or mixin this class to mark the implementation as a [Mock].
 ///
 /// A mocked class implements all fields and methods with a default
 /// implementation that does not throw a [NoSuchMethodError], and may be further
 /// customized at runtime to define how it may behave using [when].
-/// ```dart
-/// // Real class.
-/// class Cat {
-///   String getSound(String suffix) => 'Meow$suffix';
-/// }
 ///
-/// // Mock class.
-/// class MockCat extends Mock implements Cat {}
+/// __Example use__:
 ///
-/// void main() {
-///   // Create a mock Cat at runtime.
-///   final cat = MockCat();
+///     // Real class.
+///     class Cat {
+///       String getSound(String suffix) => 'Meow$suffix';
+///     }
 ///
-///   // When 'getSound' is called, return 'Woof'
-///   when(cat).calls('getSound').thenReturn('Woof');
+///     // Mock class.
+///     class MockCat extends Mock implements Cat {}
 ///
-///   // Try making a Cat sound...
-///   print(cat.getSound('foo')); // Prints 'Woof'
-/// }
-/// ```
+///     void main() {
+///       // Create a new mocked Cat at runtime.
+///       final cat = MockCat();
+///
+///       // When 'getSound' is called, return 'Woof'
+///       when(() => cat.getSound(any(type: ''))).thenReturn('Woof');
+///
+///       // Try making a Cat sound...
+///       print(cat.getSound('foo')); // Prints 'Woof'
+///     }
 ///
 /// A class which `extends Mock` should not have any directly implemented
 /// overridden fields or methods. These fields would not be usable as a [Mock]
-/// with [verify] or [when].
-/// {@endtemplate}
+/// with [verify] or [when]. To implement a subset of an interface manually use
+/// [Fake] instead.
+///
+/// **WARNING**: [Mock] uses [noSuchMethod](goo.gl/r3IQUH), which is a _form_ of
+/// runtime reflection, and causes sub-standard code to be generated. As such,
+/// [Mock] should strictly _not_ be used in any production code, especially if
+/// used within the context of Dart for Web (dart2js, DDC) and Dart for Mobile
+/// (Flutter).
 class Mock {
-  final _stubs = <_Invocation, _Stub>{};
+  static Null _answerNull(dynamic _) => null;
+  static const _nullResponse = Expectation<Null>.allInvocations(_answerNull);
+
+  final _invocationStreamController = StreamController<Invocation>.broadcast();
+
+  final _responses = <Expectation<dynamic>>[];
+  final _realCalls = <RealCall>[];
+  _ReturnsCannedResponse _defaultResponse = () => _nullResponse;
 
   @override
   dynamic noSuchMethod(Invocation invocation) {
-    final _invocationStrict = _Invocation.fromInvocation(invocation);
-    final _invocationLax = _Invocation(memberName: invocation.memberName);
-
-    if (_stubs.containsKey(_invocationStrict)) {
-      final stub = _stubs[_invocationStrict]!;
-      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
-        stub._calls.add(_CallPair(invocation));
-      }
-      return stub.result(_invocationStrict);
+    invocation = _useMatchedInvocationIfSet(invocation);
+    if (_whenInProgress) {
+      _whenCall = _WhenCall(this, invocation);
+      return null;
+    } else if (_verificationInProgress) {
+      _verifyCalls.add(_VerifyCall(this, invocation));
+      return null;
+    } else if (_untilCalledInProgress) {
+      _untilCall = _UntilCall(this, invocation);
+      return null;
+    } else {
+      _realCalls.add(RealCall(this, invocation));
+      _invocationStreamController.add(invocation);
+      final cannedResponse = _responses.lastWhere(
+        (response) {
+          return response.call.matches(invocation, <dynamic, dynamic>{});
+        },
+        orElse: _defaultResponse,
+      );
+      return cannedResponse.response(invocation);
     }
-
-    if (_stubs.containsKey(_invocationLax)) {
-      final stub = _stubs[_invocationLax]!;
-      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
-        stub._calls.add(_CallPair(invocation));
-      }
-      return stub.result(_invocationLax);
-    }
-
-    final positionalArgs = List<Object?>.of(invocation.positionalArguments);
-    final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
-    final invocationMatch = _stubs.keys.firstWhere(
-      (_invocation) {
-        if (_invocation.memberName != invocation.memberName) return false;
-        final positionalArgsMatch = _listEquals<Object?>(
-          _invocation.positionalArguments.toList(),
-          positionalArgs,
-        );
-        final namedArgsMatch = _mapEquals<Symbol, Object?>(
-          _invocation.namedArguments,
-          namedArgs,
-        );
-        return positionalArgsMatch && namedArgsMatch;
-      },
-      orElse: () => _Invocation.empty,
-    );
-
-    if (invocationMatch != _Invocation.empty) {
-      final stub = _stubs[invocationMatch]!;
-      if (!stub._calls.any((call) => call._invocation == _invocationStrict)) {
-        stub._calls.add(_CallPair(invocation));
-      }
-      return stub.result(invocationMatch);
-    }
-
-    return super.noSuchMethod(invocation);
   }
+
+  @override
+  int get hashCode => 0;
+
+  @override
+  bool operator ==(Object other) => identical(this, other);
+
+  @override
+  String toString() => runtimeType.toString();
+
+  dynamic _noSuchMethod(Invocation invocation) {
+    throw MissingStubError(invocation);
+  }
+
+  void _setExpected(Expectation<dynamic> cannedResponse) {
+    _responses.add(cannedResponse);
+  }
+
+  String _realCallsToString([Iterable<RealCall>? realCalls]) {
+    var stringRepresentations =
+        (realCalls ?? _realCalls).map((call) => call.toString());
+    if (stringRepresentations.any((s) => s.contains('\n'))) {
+      // As each call contains newlines, put each on its own line, for better
+      // readability.
+      return stringRepresentations.join(',\n');
+    } else {
+      // A compact String should be perfect.
+      return stringRepresentations.join(', ');
+    }
+  }
+
+  String _unverifiedCallsToString() =>
+      _realCallsToString(_realCalls.where((call) => !call.verified));
 }
+
+/// {@template missing_stub_error}
+/// An error which is thrown when no stub is found which matches the arguments
+/// of a real method call on a mock object.
+/// {@endtemplate}
+class MissingStubError extends Error {
+  /// {@macro missing_stub_error}
+  MissingStubError(this.invocation);
+
+  /// The current invocation instance.
+  final Invocation invocation;
+
+  @override
+  String toString() =>
+      "MissingStubError: '${_symbolToString(invocation.memberName)}'\n"
+      'No stub was found which matches the arguments of this method call:\n'
+      '${invocation.toPrettyString()}\n\n'
+      "Add a stub for this method using Mocktail's 'when' API.";
+}
+
+typedef _ReturnsCannedResponse = Expectation<dynamic> Function();
 
 /// Create a stub method response.
 ///
@@ -107,558 +172,557 @@ class Mock {
 /// canned response method on the result. For example:
 ///
 /// ```dart
-/// when(cat).calls('eatFood').withArgs(positional: ["fish"]).thenReturn(true);
+/// when(cat.eatFood("fish")).thenReturn(true);
 /// ```
 ///
-/// Mocktail will store the stub for `cat.eatFood`, and pair the exact
-/// arguments given with the response. When `cat.eatFood` is called,
-/// Mocktail will respond with the stubbed response
-/// if it can match the mock method parameters.
+/// Mocktail will store the fake call to `cat.eatFood`, and pair the exact
+/// arguments given with the response. When `cat.eatFood` is called outside a
+/// `when` or `verify` context (a call "for real"), Mocktail will respond with
+/// the stored canned response, if it can match the mock method parameters.
 ///
 /// The response generators include `thenReturn`, `thenAnswer`, and `thenThrow`.
-_WhenCall when(Object object) {
-  if (object is! Mock) {
-    throw StateError('when called on a real object.');
+///
+/// See the README for more information.
+When<T> Function<T>(T Function() x) get when {
+  if (_whenCall != null) {
+    throw StateError('Cannot call `when` within a stub response');
   }
-  return _WhenCall(object);
+  _whenInProgress = true;
+  return <T>(T Function() _) {
+    try {
+      _();
+    } catch (_) {
+      if (_ is! TypeError) rethrow;
+    }
+    _whenInProgress = false;
+    return When<T>();
+  };
 }
 
-/// Verify that a method on a mock object was called with the given arguments.
-///
-/// Call a method on a mock object within the call to `verify`.
-///
-/// ```dart
-/// cat.eatFood("chicken");
-/// verify(cat).calls("eatFood").withArgs(positional: ["chicken"]).times(1);
-/// ```
-///
-/// Mocktail will fail the current test case if `cat.eatFood`
-/// has not been called with `"chicken"`.
-_VerifyCall verify(Object object) {
-  if (object is! Mock) {
-    throw StateError('verify called on a real object.');
-  }
-  return _VerifyCall(object);
-}
-
-/// Verifies that all stubs were used.
-/// It is generally recommended to call `verifyMocks`
-/// in the `tearDown` in order to ensure that all stubs
-/// were invoked.
-void verifyMocks(Object object) {
-  if (object is! Mock) {
-    throw StateError('verifyMocks called on a real object.');
-  }
-  for (final entry in object._stubs.entries) {
-    if (entry.value._calls.isEmpty) {
-      var argString = '';
-      final hasArgs = entry.key.namedArguments.isNotEmpty ||
-          entry.key.positionalArguments.isNotEmpty;
-      if (hasArgs) {
-        argString = _argsToString(
-          namedArgs: entry.key.namedArguments,
-          positionalArgs: entry.key.positionalArguments.toList(),
-        );
-      }
-      throw MocktailFailure(
-        '''${object.runtimeType}.${entry.key.memberName.value}$argString => ${entry.value._result(Invocation.getter(const Symbol('entry.key.memberName')))} was stubbed but never invoked.''',
+/// Result of [when] which enables methods to be stubbed via
+/// - [thenReturn]
+/// - [thenThrow]
+/// - [thenAnswer]
+class When<T> {
+  /// Store a canned response for this method stub.
+  ///
+  /// Note: [expected] cannot be a Future or Stream, due to Zone considerations.
+  /// To return a Future or Stream from a method stub, use [thenAnswer].
+  void thenReturn(T expected) {
+    if (expected is Future) {
+      throw ArgumentError(
+        '`thenReturn` should not be used to return a Future. '
+        'Instead, use `thenAnswer((_) => future)`.',
       );
     }
-  }
-}
-
-/// Reset the state of the mock, typically for use between tests.
-void reset(Object object) {
-  if (object is! Mock) {
-    throw StateError('reset called on a real object.');
-  }
-  object._stubs.clear();
-}
-
-/// Argument matcher which matches any argument.
-///
-/// ```dart
-/// final calculator = MockCalculator();
-///
-/// when(calculator).calls(#sum)
-///   .withArgs(named: {#x: any, #y: any})
-///   .thenReturn(42);
-///
-/// expect(calculator.sum(42, 1), equals(42));
-///
-/// verify(calculator).calls(#sum)
-///   .withArgs(named: {#x: 42, #y: 1})
-///   .times(1);
-/// ```
-const any = _ArgMatcher.any();
-
-/// Argument matcher which matches any argument and captures that argument
-/// for further inspection/assertions.
-///
-/// ```dart
-/// final calculator = MockCalculator();
-///
-/// when(calculator).calls(#sum).thenReturn(0);
-///
-/// expect(calculator.sum(42, 1), equals(42));
-///
-/// final captured = verify(calculator).calls(#sum)
-///   .withArgs(named: {#x: captureAny, #y: captureAny}).captured;
-///
-/// expect(captured.last, equals([42, 1]));
-/// ```
-const captureAny = _ArgMatcher.captureAny();
-
-/// Argument matcher which matches any argument which matches against
-/// the provided [predicate].
-/// The predicate can be an object instance or a [Matcher].
-///
-/// ```dart
-/// final calculator = MockCalculator();
-/// final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
-///
-/// when(calculator).calls(#sum)
-///   .withArgs(named: {#x: anyThat(isEven), #y: any})
-///   .thenReturn(42);
-///
-/// expect(calculator.sum(42, 1), equals(42));
-///
-/// verify(calculator).calls(#sum)
-///   .withArgs(named: {#x: anyThat(isEven), #y: 1})
-///   .times(1);
-/// ```
-Object anyThat(dynamic predicate) {
-  return _ArgMatcher.anyThat(wrapMatcher(predicate));
-}
-
-/// Argument matcher which captures any argument which matches against
-/// the provided [predicate].
-/// The predicate can be an object instance or a [Matcher].
-///
-/// ```dart
-/// final calculator = MockCalculator();
-/// final isEven = isA<int>().having((x) => x % 2 == 0, 'even', true);
-///
-/// when(calculator).calls(#sum).thenReturn(42);
-///
-/// expect(calculator.sum(42, 1), equals(42));
-///
-/// final captured = verify(calculator).calls(#sum)
-///   .withArgs(named: {#x: captureAnyThat(isEven), #y: 1}).captured;
-///
-/// expect(captured.last, equals([42]));
-/// ```
-Object captureAnyThat(dynamic predicate) {
-  return _ArgMatcher.captureAnyThat(wrapMatcher(predicate));
-}
-
-class _ArgMatcher {
-  const _ArgMatcher._(this._anything, this._capture, this._matcher);
-  const _ArgMatcher.any() : this._(true, false, null);
-  const _ArgMatcher.captureAny() : this._(true, true, null);
-  const _ArgMatcher.captureAnyThat(Matcher matcher)
-      : this._(false, true, matcher);
-  const _ArgMatcher.anyThat(Matcher matcher) : this._(false, false, matcher);
-
-  final bool _anything;
-  final bool _capture;
-  final Matcher? _matcher;
-
-  bool matches(dynamic value) {
-    if (_anything) return true;
-    if (_matcher == null) return false;
-    return _matcher!.matches(value, <dynamic, dynamic>{});
-  }
-}
-
-bool _isArgCapture(dynamic e) => e is _ArgMatcher && e._capture;
-
-class _Invocation {
-  const _Invocation._({
-    required this.memberName,
-    this.positionalArguments = const [],
-    this.namedArguments = const {},
-  });
-
-  factory _Invocation({
-    required Symbol memberName,
-    Iterable<Object?>? positionalArguments,
-    Map<Symbol, Object?>? namedArguments,
-  }) {
-    return _Invocation._(
-      memberName: memberName,
-      positionalArguments: positionalArguments ?? <Object?>[],
-      namedArguments: namedArguments ?? <Symbol, Object?>{},
-    );
-  }
-
-  factory _Invocation.fromInvocation(Invocation invocation) {
-    final positionalArgs = List<Object?>.of(invocation.positionalArguments);
-    final namedArgs = Map<Symbol, Object?>.of(invocation.namedArguments);
-    return _Invocation._(
-      memberName: invocation.memberName,
-      positionalArguments: positionalArgs,
-      namedArguments: namedArgs,
-    );
-  }
-
-  final Symbol memberName;
-  final Iterable<Object?> positionalArguments;
-  final Map<Symbol, Object?> namedArguments;
-
-  static const empty = _Invocation._(memberName: Symbol(''));
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is _Invocation &&
-        o.memberName == memberName &&
-        _listEquals(
-            o.positionalArguments.toList(), positionalArguments.toList()) &&
-        _mapEquals(o.namedArguments, namedArguments);
-  }
-
-  @override
-  int get hashCode {
-    final positionalArgumentsHash = positionalArguments.fold<int>(
-        0, (previous, element) => previous ^ element.hashCode);
-    final namedArgumentsHash =
-        namedArguments.entries.fold<int>(0, (previous, element) {
-      return previous ^ element.key.hashCode ^ element.value.hashCode;
-    });
-    return memberName.hashCode ^ positionalArgumentsHash ^ namedArgumentsHash;
-  }
-}
-
-class _CallPair {
-  _CallPair(this.invocation);
-
-  final Invocation invocation;
-  _Invocation get _invocation => _Invocation.fromInvocation(invocation);
-  int _callCount = 0;
-  int get callCount => _callCount;
-}
-
-class _Stub {
-  _Stub(this._result);
-
-  final Object? Function(Invocation) _result;
-  final _calls = <_CallPair>{};
-
-  _CallPair? getCall(_Invocation invocation) {
-    _CallPair? fallback;
-    for (final call in _calls) {
-      if (call._invocation == invocation) return call;
-      if (_Invocation(memberName: call._invocation.memberName) == invocation) {
-        fallback = call;
-      }
+    if (expected is Stream) {
+      throw ArgumentError(
+        '`thenReturn` should not be used to return a Stream. '
+        'Instead, use `thenAnswer((_) => stream)`.',
+      );
     }
-    return fallback;
+    return _completeWhen((_) => expected);
   }
 
-  Object? result(_Invocation invocation) {
-    final call = getCall(invocation)!;
-    call._callCount++;
-    return _result(call.invocation);
+  /// Store an exception to throw when this method stub is called.
+  void thenThrow(Object throwable) {
+    return _completeWhen((Invocation _) {
+      // ignore: only_throw_errors
+      throw throwable;
+    });
+  }
+
+  /// Store a function which is called when this method stub is called.
+  ///
+  /// The function will be called, and the return value will be returned.
+  void thenAnswer(Answer<T> answer) {
+    return _completeWhen(answer);
+  }
+
+  void _completeWhen(Answer<T> answer) {
+    if (_whenCall == null) {
+      throw StateError(
+        'No method stub was called from within `when()`. Was a real method '
+        'called, or perhaps an extension method?',
+      );
+    }
+    _numMatchers = 0;
+    _whenCall!._setExpected<T>(answer);
+    _whenCall = null;
+    _whenInProgress = false;
   }
 }
 
 class _WhenCall {
-  const _WhenCall(this._object);
-  final Mock _object;
+  _WhenCall(this.mock, this.whenInvocation);
 
-  _StubFunction calls(Symbol memberName) => _StubFunction(_object, memberName);
+  final Mock mock;
+  final Invocation whenInvocation;
+
+  void _setExpected<T>(Answer<T> answer) {
+    mock._setExpected(Expectation<T>(isInvocation(whenInvocation), answer));
+  }
+}
+
+/// Returns a value dependent on the details of an [invocation].
+typedef Answer<T> = T Function(Invocation invocation);
+
+/// {@template expectation}
+/// A captured method or property accessor -> a function that returns a value.
+/// {@endtemplate}
+class Expectation<T> {
+  /// {@macro expectation}
+  const Expectation(this.call, this.response);
+
+  /// {@macro expectation}
+  const Expectation.allInvocations(this.response)
+      : call = const TypeMatcher<Invocation>();
+
+  /// A captured method or property accessor.
+  final Matcher call;
+
+  /// Result function that should be invoked.
+  final Answer<T> response;
+
+  @override
+  String toString() => '$Expectation {$call -> $response}';
+}
+
+/// Verify that a method on a mock object was called with the given arguments.
+///
+/// Call a method on a mock object within the call to `verify`. For example:
+///
+/// ```dart
+/// cat.eatFood("chicken");
+/// verify(cat.eatFood("fish"));
+/// ```
+///
+/// Mocktail will fail the current test case if `cat.eatFood` hasn't been called
+/// with `"fish"`. Optionally, call `called` on the result, to verify that the
+/// method was called a certain number of times. For example:
+///
+/// ```dart
+/// verify(cat.eatFood("fish")).called(2);
+/// verify(cat.eatFood("fish")).called(greaterThan(3));
+/// ```
+///
+/// Note: When mocktail verifies a method call, said call is then excluded from
+/// further verifications. A single method call cannot be verified from multiple
+/// calls to `verify`, or `verifyInOrder`. See more details in the FAQ.
+///
+/// Note: because of an unintended limitation, `verify(...).called(0);` will
+/// not work as expected. Please use `verifyNever(...);` instead.
+///
+/// See also: [verifyNever], [verifyInOrder], [verifyZeroInteractions], and
+/// [verifyNoMoreInteractions].
+_Verify get verify => _makeVerify(false);
+
+/// Verify that a method on a mock object was never called with the given
+/// arguments.
+///
+/// Call a method on a mock object within a `verifyNever` call. For example:
+///
+/// ```dart
+/// cat.eatFood("chicken");
+/// verifyNever(cat.eatFood("fish"));
+/// ```
+///
+/// Mocktail will pass the current test case, as `cat.eatFood` has not been
+/// called with `"chicken"`.
+_Verify get verifyNever => _makeVerify(true);
+
+/// Verifies that a list of methods on a mock object have been called with the
+/// given arguments. For example:
+///
+/// ```dart
+/// verifyInOrder([cat.eatFood("Milk"), cat.sound(), cat.eatFood(any)]);
+/// ```
+///
+/// This verifies that `eatFood` was called with `"Milk"`, `sound` was called
+/// with no arguments, and `eatFood` was then called with some argument.
+///
+/// Returns a list of verification results, one for each call which was
+/// verified.
+///
+/// For example, if [verifyInOrder] is given these calls to verify:
+///
+/// ```dart
+/// var verification = verifyInOrder(
+///     [cat.eatFood(captureAny), cat.chew(), cat.eatFood(captureAny)]);
+/// ```
+///
+/// then `verification` is a list which contains a `captured` getter which
+/// returns three lists:
+///
+/// 1. a list containing the argument passed to `eatFood` in the first
+///    verified `eatFood` call,
+/// 2. an empty list, as nothing was captured in the verified `chew` call,
+/// 3. a list containing the argument passed to `eatFood` in the second
+///    verified `eatFood` call.
+///
+/// Note: [verifyInOrder] only verifies that each call was made in the order
+/// given, but not that those were the only calls. In the example above, if
+/// other calls were made to `eatFood` or `sound` between the three given
+/// calls, or before or after them, the verification will still succeed.
+List<VerificationResult> Function<T>(
+  List<T> recordedInvocations,
+) get verifyInOrder {
+  if (_verifyCalls.isNotEmpty) {
+    throw StateError(_verifyCalls.join());
+  }
+  _verificationInProgress = true;
+  return <T>(List<T> _) {
+    _verificationInProgress = false;
+    var verificationResults = <VerificationResult>[];
+    var time = DateTime.fromMillisecondsSinceEpoch(0);
+    var tmpVerifyCalls = List<_VerifyCall>.from(_verifyCalls);
+    _verifyCalls.clear();
+    var matchedCalls = <RealCall>[];
+    for (var verifyCall in tmpVerifyCalls) {
+      try {
+        var matched = verifyCall._findAfter(time);
+        matchedCalls.add(matched.realCall);
+        verificationResults.add(VerificationResult._(1, matched.capturedArgs));
+        time = matched.realCall.timeStamp;
+      } on StateError {
+        var mocks = tmpVerifyCalls.map((vc) => vc.mock).toSet();
+        var allInvocations = mocks
+            .expand((m) => m._realCalls)
+            .toList(growable: false)
+              ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp));
+        var otherCalls = '';
+        if (allInvocations.isNotEmpty) {
+          otherCalls = " All calls: ${allInvocations.join(", ")}";
+        }
+        fail('Matching call #${tmpVerifyCalls.indexOf(verifyCall)} '
+            'not found.$otherCalls');
+      }
+    }
+    for (var call in matchedCalls) {
+      call.verified = true;
+    }
+    return verificationResults;
+  };
+}
+
+/// Ensure no redundant invocations occur.
+void verifyNoMoreInteractions(dynamic mock) {
+  if (mock is Mock) {
+    var unverified = mock._realCalls.where((inv) => !inv.verified).toList();
+    if (unverified.isNotEmpty) {
+      fail('No more calls expected, but following found: ${unverified.join()}');
+    }
+  } else {
+    _throwMockArgumentError('verifyNoMoreInteractions', mock);
+  }
+}
+
+/// Ensure interactions never happened on a [mock].
+void verifyZeroInteractions(dynamic mock) {
+  if (mock is Mock) {
+    if (mock._realCalls.isNotEmpty) {
+      fail(
+        '''No interaction expected, but following found: ${mock._realCalls.join()}''',
+      );
+    }
+  } else {
+    _throwMockArgumentError('verifyZeroInteractions', mock);
+  }
+}
+
+/// {@template list_of_verification_result}
+/// Returns the list of argument lists which were captured within
+/// [verifyInOrder].
+/// {@endtemplate}
+extension ListOfVerificationResult on List<VerificationResult> {
+  /// {@macro list_of_verification_result}
+  List<List<dynamic>> get captured => [...map((result) => result.captured)];
+}
+
+void _throwMockArgumentError(String method, dynamic nonMockInstance) {
+  if (nonMockInstance == null) {
+    throw ArgumentError('$method was called with a null argument');
+  }
+  throw ArgumentError('$method must only be given a Mock object');
+}
+
+_Verify _makeVerify(bool never) {
+  if (_verifyCalls.isNotEmpty) {
+    var message = 'Verification appears to be in progress.';
+    if (_verifyCalls.length == 1) {
+      message =
+          '$message One verify call has been stored: ${_verifyCalls.single}';
+    } else {
+      message =
+          '$message ${_verifyCalls.length} verify calls have been stored. '
+          '[${_verifyCalls.first}, ..., ${_verifyCalls.last}]';
+    }
+    throw StateError(message);
+  }
+  if (_verificationInProgress) {
+    fail(
+      'There is already a verification in progress, '
+      'check if it was not called with a verify argument(s)',
+    );
+  }
+  _verificationInProgress = true;
+  return <T>(T Function() mock) {
+    try {
+      mock();
+    } catch (_) {
+      if (_ is! TypeError) rethrow;
+    }
+    _verificationInProgress = false;
+    if (_verifyCalls.length == 1) {
+      var verifyCall = _verifyCalls.removeLast();
+      var result = VerificationResult._(verifyCall.matchingInvocations.length,
+          verifyCall.matchingCapturedArgs);
+      verifyCall._checkWith(never);
+      return result;
+    } else {
+      fail('Used on a non-mocktail object');
+    }
+  };
+}
+
+typedef _Verify = VerificationResult Function<T>(
+  T Function() matchingInvocations,
+);
+
+/// Information about a stub call verification.
+///
+/// This class is most useful to users in two ways:
+///
+/// * verifying call count, via [called],
+/// * collecting captured arguments, via [captured].
+class VerificationResult {
+  VerificationResult._(this.callCount, this._captured);
+
+  final List<dynamic> _captured;
+
+  /// List of all arguments captured in real calls.
+  ///
+  /// This list will include any captured default arguments and has no
+  /// structure differentiating the arguments of one call from another. Given
+  /// the following class:
+  ///
+  /// ```dart
+  /// class C {
+  ///   String methodWithPositionalArgs(int x, [int y]) => '';
+  ///   String methodWithTwoNamedArgs(int x, {int y, int z}) => '';
+  /// }
+  /// ```
+  ///
+  /// the following stub calls will result in the following captured arguments:
+  ///
+  /// ```dart
+  /// mock.methodWithPositionalArgs(1);
+  /// mock.methodWithPositionalArgs(2, 3);
+  /// var captured = verify(
+  ///   () => mock.methodWithPositionalArgs(
+  ///     captureAny(type: 0), captureAny(type: 0),
+  ///    )
+  /// ).captured;
+  /// print(captured); // Prints "[1, null, 2, 3]"
+  ///
+  /// mock.methodWithTwoNamedArgs(1, y: 42, z: 43);
+  /// mock.methodWithTwoNamedArgs(1, y: 44, z: 45);
+  /// var captured = verify(
+  ///     () => mock.methodWithTwoNamedArgs(
+  ///       any(type: 0),
+  ///       y: captureAny(named: 'y', type: 0),
+  ///       z: captureAny(named: 'z', type: 0),
+  ///     ),
+  /// ).captured;
+  /// print(captured); // Prints "[42, 43, 44, 45]"
+  /// ```
+  // ignore: unnecessary_getters_setters
+  List<dynamic> get captured => _captured;
+
+  /// The number of calls matched in this verification.
+  int callCount;
+
+  /// Assert that the number of calls matches [matcher].
+  ///
+  /// Examples:
+  ///
+  /// * `verify(mock.m()).called(1)` asserts that `m()` is called exactly once.
+  /// * `verify(mock.m()).called(greaterThan(2))` asserts that `m()` is called
+  ///   more than two times.
+  ///
+  /// To assert that a method was called zero times, use [verifyNever].
+  void called(dynamic matcher) {
+    expect(
+      callCount,
+      wrapMatcher(matcher),
+      reason: 'Unexpected number of calls',
+    );
+  }
+}
+
+class _UntilCall {
+  _UntilCall(this._mock, Invocation invocation)
+      : _invocationMatcher = InvocationMatcher(invocation);
+  final InvocationMatcher _invocationMatcher;
+  final Mock _mock;
+
+  bool _matchesInvocation(RealCall realCall) =>
+      _invocationMatcher.matches(realCall.invocation);
+
+  List<RealCall> get _realCalls => _mock._realCalls;
+
+  Future<Invocation> get invocationFuture {
+    if (_realCalls.any(_matchesInvocation)) {
+      return Future.value(_realCalls.firstWhere(_matchesInvocation).invocation);
+    }
+
+    return _mock._invocationStreamController.stream
+        .firstWhere(_invocationMatcher.matches);
+  }
+}
+
+/// Print all collected invocations of any mock methods of [mocks].
+void logInvocations(List<Mock> mocks) {
+  mocks.expand((m) => m._realCalls).toList(growable: false)
+    ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp))
+    ..forEach((inv) {
+      print(inv.toString());
+    });
+}
+
+/// Reset the state of Mocktail, typically for use between tests.
+///
+/// For example, when using the test package, mock methods may accumulate calls
+/// in a `setUp` method, making it hard to verify method calls that were made
+/// _during_ an individual test. Or, there may be unverified calls from previous
+/// test cases that should not affect later test cases.
+///
+/// In these cases, [resetMocktailState] might be called at the end of `setUp`,
+/// or in `tearDown`.
+void resetMocktailState() {
+  _whenInProgress = false;
+  _untilCalledInProgress = false;
+  _verificationInProgress = false;
+  _whenCall = null;
+  _numMatchers = 0;
+  _untilCall = null;
+  _verifyCalls.clear();
+  _capturedArgs.clear();
+  _storedArgs.clear();
+  _storedNamedArgs.clear();
+}
+
+/// Clear stubs of, and collected interactions with [mock].
+void reset(dynamic mock) {
+  if (mock is Mock) {
+    mock._realCalls.clear();
+    mock._responses.clear();
+  } else {
+    _throwMockArgumentError('reset', mock);
+  }
+}
+
+/// Clear the collected interactions with [mock].
+void clearInteractions(dynamic mock) {
+  if (mock is Mock) {
+    mock._realCalls.clear();
+  } else {
+    _throwMockArgumentError('clearInteractions', mock);
+  }
 }
 
 class _VerifyCall {
-  const _VerifyCall(this._object);
-  final Mock _object;
+  _VerifyCall._(
+    this.mock,
+    this.verifyInvocation,
+    this.matchingInvocations,
+    this.matchingCapturedArgs,
+  );
 
-  _VerifyArgsCall called(Symbol memberName) =>
-      _VerifyArgsCall(_object, memberName);
-}
-
-class _VerifyArgsCall extends _CallCountCall {
-  _VerifyArgsCall(
-    Mock object,
-    Symbol memberName, {
-    Iterable<Object?>? positionalArguments,
-    Map<Symbol, Object?>? namedArguments,
-  }) : super(object, memberName,
-            positionalArguments: positionalArguments,
-            namedArguments: namedArguments);
-
-  _CallCountCall withArgs({
-    Iterable<Object?>? positional,
-    Map<Symbol, Object?>? named,
-  }) {
-    return _CallCountCall(
-      _object,
-      _memberName,
-      positionalArguments: positional,
-      namedArguments: named,
-    );
-  }
-}
-
-class _CallCountCall extends _MockInvocationCall {
-  _CallCountCall(
-    Mock object,
-    Symbol memberName, {
-    Iterable<Object?>? positionalArguments,
-    Map<Symbol, Object?>? namedArguments,
-  }) : super(object, memberName,
-            positionalArguments: positionalArguments,
-            namedArguments: namedArguments);
-
-  List<dynamic> _captureArgs(
-    List<Object?> positionalArguments,
-    Map<Symbol, Object?> namedArguments,
-    Invocation invocation,
-  ) {
-    final captured = <dynamic>[];
-    for (var i = 0; i < positionalArguments.length; i++) {
-      final dynamic arg = positionalArguments[i];
-      final dynamic invocationArg = invocation.positionalArguments[i];
-      if (_isArgCapture(arg) && (arg as _ArgMatcher).matches(invocationArg)) {
-        captured.add(invocationArg);
-      }
-    }
-    for (final entry in namedArguments.entries) {
-      final arg = entry.value;
-      final dynamic invocationArg = invocation.namedArguments[entry.key];
-      if (_isArgCapture(arg) && (arg as _ArgMatcher).matches(invocationArg)) {
-        captured.add(invocationArg);
-      }
-    }
-    return captured;
-  }
-
-  List<dynamic> get captured {
-    _Stub? stub;
-    final _captured = <dynamic>[];
-
-    if (_positionalArguments == null && _namedArguments == null) {
-      return _captured;
-    }
-    final hasPositionalArgCapture =
-        _positionalArguments?.any(_isArgCapture) ?? false;
-    final hasNamedArgCapture =
-        _namedArguments?.values.any(_isArgCapture) ?? false;
-
-    if (!hasPositionalArgCapture && !hasNamedArgCapture) return _captured;
-
-    final entry = _object._stubs.entries.firstWhere(
-      (entry) {
-        final invocation = entry.value.getCall(_invocation);
-        return invocation != null;
-      },
-      orElse: () => MapEntry(_Invocation.empty, _Stub((_) => null)),
-    );
-    stub = entry.key != _Invocation.empty
-        ? entry.value
-        : _object._stubs[_Invocation(memberName: _memberName)];
-    if (stub != null) {
-      for (final call in stub._calls) {
-        _captured.add(
-          _captureArgs(
-            _positionalArguments != null ? List.of(_positionalArguments!) : [],
-            _namedArguments != null
-                ? Map.of(_namedArguments!)
-                : <Symbol, Object?>{},
-            call.invocation,
-          ),
+  factory _VerifyCall(Mock mock, Invocation verifyInvocation) {
+    final expectedMatcher = InvocationMatcher(verifyInvocation);
+    final matchingInvocations = <RealCallWithCapturedArgs>[];
+    for (final realCall in mock._realCalls) {
+      if (!realCall.verified && expectedMatcher.matches(realCall.invocation)) {
+        matchingInvocations.add(
+          RealCallWithCapturedArgs(realCall, [..._capturedArgs]),
         );
+        _capturedArgs.clear();
       }
     }
 
-    return _captured;
-  }
+    final matchingCapturedArgs = [
+      for (final invocation in matchingInvocations) ...invocation.capturedArgs,
+    ];
 
-  void times(dynamic callCount) => _times(callCount);
-  void once() => _times(1);
-  void never() => _times(0);
-
-  void _times(dynamic callCount) {
-    _Stub? stub;
-    var actualCallCount = 0;
-    final positionalArgs = _positionalArguments?.toList() ?? <Object?>[];
-    final namedArgs = _namedArguments ?? <Symbol, Object?>{};
-
-    // Lax Invocation Verification (any)
-    if (_positionalArguments == null && _namedArguments == null) {
-      for (final entry in _object._stubs.entries) {
-        if (entry.key.memberName == _memberName) {
-          stub = entry.value;
-          for (final call in stub._calls) {
-            actualCallCount += call.callCount;
-          }
-        }
-      }
-    }
-    // Strict Invocation Verification
-    else {
-      final entry = _object._stubs.entries.firstWhere(
-        (entry) {
-          final invocation = entry.value.getCall(_invocation);
-          return invocation != null;
-        },
-        orElse: () => MapEntry(_Invocation.empty, _Stub((_) => null)),
-      );
-      stub = entry.key != _Invocation.empty
-          ? entry.value
-          : _object._stubs[_Invocation(memberName: _memberName)];
-      if (stub != null) {
-        final call = stub.getCall(entry.key);
-        actualCallCount += call?.callCount ?? 0;
-      }
-    }
-
-    var argString = '';
-    if (stub != null && stub._calls.any((call) => call.invocation.isMethod)) {
-      argString = _argsToString(
-        positionalArgs: positionalArgs,
-        namedArgs: namedArgs,
-      );
-    }
-
-    final matcher = wrapMatcher(callCount);
-    if (!matcher.matches(actualCallCount, <dynamic, dynamic>{})) {
-      throw MocktailFailure(
-        '''Expected ${_object.runtimeType}.${_memberName.value}$argString to be called ${matcher.describe(StringDescription())} time(s) but actual call count was <$actualCallCount>.''',
-      );
-    }
-  }
-}
-
-class _StubFunction extends _MockInvocationCall {
-  _StubFunction(
-    Mock object,
-    Symbol memberName, {
-    Iterable<Object?>? positionalArguments,
-    Map<Symbol, Object?>? namedArguments,
-  }) : super(object, memberName,
-            positionalArguments: positionalArguments,
-            namedArguments: namedArguments);
-
-  _StubFunction withArgs({
-    Iterable<Object?>? positional,
-    Map<Symbol, Object?>? named,
-  }) {
-    return _StubFunction(
-      _object,
-      _memberName,
-      positionalArguments: positional,
-      namedArguments: named,
+    return _VerifyCall._(
+      mock,
+      verifyInvocation,
+      matchingInvocations,
+      matchingCapturedArgs,
     );
   }
 
-  void thenReturn([Object? result]) {
-    _object._stubs[_invocation] = _Stub((_) => result);
+  final Mock mock;
+  final Invocation verifyInvocation;
+  final List<RealCallWithCapturedArgs> matchingInvocations;
+  final List<Object?> matchingCapturedArgs;
+
+  RealCallWithCapturedArgs _findAfter(DateTime time) {
+    return matchingInvocations.firstWhere((invocation) =>
+        !invocation.realCall.verified &&
+        invocation.realCall.timeStamp.isAfter(time));
   }
 
-  void thenAnswer(Object? Function(Invocation) callback) {
-    _object._stubs[_invocation] = _Stub(callback);
-  }
-
-  void thenThrow(Object throwable) {
-    // ignore: only_throw_errors
-    _object._stubs[_invocation] = _Stub((_) => throw throwable);
-  }
-}
-
-class _MockInvocationCall {
-  _MockInvocationCall(
-    this._object,
-    this._memberName, {
-    Iterable<Object?>? positionalArguments,
-    Map<Symbol, Object?>? namedArguments,
-  })  : _positionalArguments = positionalArguments,
-        _namedArguments = namedArguments;
-
-  final Mock _object;
-  final Symbol _memberName;
-  final Iterable<Object?>? _positionalArguments;
-  final Map<Symbol, Object?>? _namedArguments;
-
-  _Invocation get _invocation {
-    if (_positionalArguments == null && _namedArguments == null) {
-      return _Invocation(memberName: _memberName);
+  void _checkWith(bool never) {
+    if (!never && matchingInvocations.isEmpty) {
+      String message;
+      if (mock._realCalls.isEmpty) {
+        message = 'No matching calls (actually, no calls at all).';
+      } else {
+        var otherCalls = mock._realCallsToString();
+        message = 'No matching calls. All calls: $otherCalls';
+      }
+      fail('$message\n'
+          '(If you called `verify(...).called(0);`, please instead use '
+          '`verifyNever(...);`.)');
     }
-    if (_positionalArguments != null && _namedArguments == null) {
-      return _Invocation(
-        memberName: _memberName,
-        positionalArguments: _positionalArguments!,
-      );
+    if (never && matchingInvocations.isNotEmpty) {
+      var calls = mock._unverifiedCallsToString();
+      fail('Unexpected calls: $calls');
     }
-    if (_positionalArguments == null && _namedArguments != null) {
-      return _Invocation(
-        memberName: _memberName,
-        namedArguments: _namedArguments!,
-      );
+    for (var invocation in matchingInvocations) {
+      invocation.realCall.verified = true;
     }
-    return _Invocation(
-      memberName: _memberName,
-      positionalArguments: _positionalArguments!,
-      namedArguments: _namedArguments!,
-    );
   }
+
+  @override
+  String toString() =>
+      'VerifyCall<mock: $mock, memberName: ${verifyInvocation.memberName}>';
 }
 
-bool _listEquals<T>(List<T>? a, List<T>? b) {
-  if (a == null) return b == null;
-  if (b == null) return false;
-  if (identical(a, b)) return true;
-  final length = max(a.length, b.length);
-  for (var index = 0; index < length; index++) {
-    final ai = index < a.length ? a[index] : null;
-    final bi = index < b.length ? b[index] : null;
-    if (!_isMatch(ai, bi)) return false;
-  }
-  return true;
-}
-
-bool _mapEquals<T, U>(Map<T, U>? a, Map<T, U>? b) {
-  if (a == null) return b == null;
-  if (b == null) return false;
-  if (identical(a, b)) return true;
-  final keys = <T>{...a.keys, ...b.keys};
-  for (final key in keys) {
-    if (!_isMatch(a[key], b[key])) return false;
-  }
-  return true;
-}
-
-bool _isMatch(dynamic a, dynamic b) {
-  if (identical(a, b)) return true;
-  if (a == any || b == any) return true;
-  if (a is _ArgMatcher) return a.matches(b);
-  if (b is _ArgMatcher) return b.matches(a);
-  if (a is Map && b is Map) return _mapEquals<dynamic, dynamic>(a, b);
-  return a == b;
-}
-
-final _memberNameRegExp = RegExp(r'Symbol\("(.*?)"\)');
-
-extension on Symbol {
-  String get value {
-    return _memberNameRegExp.firstMatch(toString())?.group(1) ?? toString();
-  }
-}
-
-String _argsToString({
-  List<Object?> positionalArgs = const [],
-  Map<Symbol, Object?> namedArgs = const {},
-}) {
-  var argString = '(${positionalArgs.join(',')}';
-  if (namedArgs.isNotEmpty) {
-    if (positionalArgs.isNotEmpty) argString += ', ';
-    for (final entry in namedArgs.entries) {
-      argString += '${entry.key.value}: ${entry.value}, ';
+/// Returns a future [Invocation] that will complete upon the first occurrence
+/// of the given invocation.
+///
+/// Usage of this is as follows:
+///
+/// ```dart
+/// cat.eatFood("fish");
+/// await untilCalled(cat.chew());
+/// ```
+///
+/// In the above example, the untilCalled(cat.chew()) will complete only when
+/// that method is called. If the given invocation has already been called, the
+/// future will return immediately.
+Future<Invocation> Function<T>(T Function() _) get untilCalled {
+  _untilCalledInProgress = true;
+  return <T>(T Function() _) {
+    try {
+      _();
+    } catch (_) {
+      if (_ is! TypeError) rethrow;
     }
-    argString = argString.substring(0, argString.length - 2);
-  }
-  argString += ')';
-  return argString;
+    _untilCalledInProgress = false;
+    return _untilCall!.invocationFuture;
+  };
 }
