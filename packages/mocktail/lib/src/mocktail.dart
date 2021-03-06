@@ -61,7 +61,7 @@ void throwOnMissingStub(
 ///       final cat = MockCat();
 ///
 ///       // When 'getSound' is called, return 'Woof'
-///       when(() => cat.getSound(any(of: ''))).thenReturn('Woof');
+///       when(() => cat.getSound(any())).thenReturn('Woof');
 ///
 ///       // Try making a Cat sound...
 ///       print(cat.getSound('foo')); // Prints 'Woof'
@@ -521,7 +521,7 @@ class VerificationResult {
   /// mock.methodWithPositionalArgs(2, 3);
   /// var captured = verify(
   ///   () => mock.methodWithPositionalArgs(
-  ///     captureAny(of: 0), captureAny(of: 0),
+  ///     captureAny(), captureAny(),
   ///    )
   /// ).captured;
   /// print(captured); // Prints "[1, null, 2, 3]"
@@ -530,9 +530,9 @@ class VerificationResult {
   /// mock.methodWithTwoNamedArgs(1, y: 44, z: 45);
   /// var captured = verify(
   ///     () => mock.methodWithTwoNamedArgs(
-  ///       any(of: 0),
-  ///       y: captureAny(named: 'y', of: 0),
-  ///       z: captureAny(named: 'z', of: 0),
+  ///       any(),
+  ///       y: captureAny(named: 'y'),
+  ///       z: captureAny(named: 'z'),
   ///     ),
   /// ).captured;
   /// print(captured); // Prints "[42, 43, 44, 45]"
