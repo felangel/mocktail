@@ -33,6 +33,19 @@ void main() {
     when(() => mock<List<bool>>(any())).thenReturn('OK');
     when(() => mock<List<bool?>>(any())).thenReturn('OK');
     when(() => mock<List<dynamic>>(any())).thenReturn('OK');
+    when(() => mock<Set<int>>(any())).thenReturn('OK');
+    when(() => mock<Set<int?>>(any())).thenReturn('OK');
+    when(() => mock<Set<double>>(any())).thenReturn('OK');
+    when(() => mock<Set<double?>>(any())).thenReturn('OK');
+    when(() => mock<Set<num>>(any())).thenReturn('OK');
+    when(() => mock<Set<num?>>(any())).thenReturn('OK');
+    when(() => mock<Set<String>>(any())).thenReturn('OK');
+    when(() => mock<Set<String?>>(any())).thenReturn('OK');
+    when(() => mock<Set<Object>>(any())).thenReturn('OK');
+    when(() => mock<Set<Object?>>(any())).thenReturn('OK');
+    when(() => mock<Set<bool>>(any())).thenReturn('OK');
+    when(() => mock<Set<bool?>>(any())).thenReturn('OK');
+    when(() => mock<Set<dynamic>>(any())).thenReturn('OK');
 
     expect(mock<bool>(false), 'OK');
     expect(mock<int>(42), 'OK');
@@ -60,6 +73,19 @@ void main() {
     expect(mock<List<bool>>([]), 'OK');
     expect(mock<List<bool?>>([]), 'OK');
     expect(mock<List<dynamic>>(<dynamic>[]), 'OK');
+    expect(mock<Set<int>>({}), 'OK');
+    expect(mock<Set<int?>>({}), 'OK');
+    expect(mock<Set<double>>({}), 'OK');
+    expect(mock<Set<double?>>({}), 'OK');
+    expect(mock<Set<num>>({}), 'OK');
+    expect(mock<Set<num?>>({}), 'OK');
+    expect(mock<Set<String>>({}), 'OK');
+    expect(mock<Set<String?>>({}), 'OK');
+    expect(mock<Set<Object>>({}), 'OK');
+    expect(mock<Set<Object?>>({}), 'OK');
+    expect(mock<Set<bool>>({}), 'OK');
+    expect(mock<Set<bool?>>({}), 'OK');
+    expect(mock<Set<dynamic>>(<dynamic>{}), 'OK');
   });
 
   test(

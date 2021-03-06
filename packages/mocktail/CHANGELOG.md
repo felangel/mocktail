@@ -1,3 +1,7 @@
+# 0.0.2-dev.1
+
+- **BREAKING** refactor: removed the `of` parameter of matchers in exchange for a `registerFallbackValue`
+
 # 0.0.2-dev.0
 
 - **BREAKING** refactor: revamp `mocktail` API to be typesafe instead of relying on `Symbol`
