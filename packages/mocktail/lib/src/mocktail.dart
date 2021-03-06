@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:matcher/matcher.dart';
-import 'package:test/test.dart';
+// ignore: deprecated_member_use
+import 'package:test_api/test_api.dart';
 
 import 'fake.dart';
 
