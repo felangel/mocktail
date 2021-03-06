@@ -52,7 +52,7 @@ Map<Type, Object?> _createInitialFallbackValues() {
   return result;
 }
 
-var _fallbackValues = _createInitialFallbackValues();
+final _fallbackValues = _createInitialFallbackValues();
 
 /// Allows [any] and [captureAny] to be used on parameters of type [T].
 ///
