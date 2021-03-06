@@ -72,7 +72,7 @@ void main() {
     test(
         'a method with a non-nullable positional parameter accepts an argument '
         'matcher while stubbing', () {
-      when(() => foo.positionalParameter(any(type: 0))).thenReturn('Stubbed');
+      when(() => foo.positionalParameter(any(of: 0))).thenReturn('Stubbed');
       expect(foo.positionalParameter(42), equals('Stubbed'));
     });
 
@@ -80,7 +80,7 @@ void main() {
         'a method with a non-nullable named parameter accepts an argument '
         'matcher while stubbing', () {
       when(
-        () => foo.namedParameter(x: any(type: 0, named: 'x')),
+        () => foo.namedParameter(x: any(of: 0, named: 'x')),
       ).thenReturn('Stubbed');
       expect(foo.namedParameter(x: 42), equals('Stubbed'));
     });
@@ -88,19 +88,19 @@ void main() {
     test(
         'a method with a non-nullable parameter accepts an argument matcher '
         'while verifying', () {
-      when(() => foo.positionalParameter(any(type: 0))).thenReturn('Stubbed');
+      when(() => foo.positionalParameter(any(of: 0))).thenReturn('Stubbed');
       foo.positionalParameter(42);
       expect(
-        () => verify(() => foo.positionalParameter(any(type: 0))),
+        () => verify(() => foo.positionalParameter(any(of: 0))),
         returnsNormally,
       );
     });
 
     test('a method with a non-nullable parameter can capture an argument', () {
-      when(() => foo.positionalParameter(any(type: 0))).thenReturn('Stubbed');
+      when(() => foo.positionalParameter(any(of: 0))).thenReturn('Stubbed');
       foo.positionalParameter(42);
       final captured = verify(
-        () => foo.positionalParameter(captureAny(type: 0)),
+        () => foo.positionalParameter(captureAny(of: 0)),
       ).captured;
       expect(captured[0], equals(42));
     });
