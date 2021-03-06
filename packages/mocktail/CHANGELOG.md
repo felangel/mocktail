@@ -1,3 +1,7 @@
+# 0.0.2-dev.2
+
+- chore: documentation updates
+
 # 0.0.2-dev.1
 
 - **BREAKING** refactor: removed the `of` parameter of matchers in exchange for a `registerFallbackValue`
