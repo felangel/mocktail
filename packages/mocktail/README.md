@@ -82,7 +82,7 @@ expect(cat.likes('fish', isHungry: false), isTrue);
 verify(() => cat.likes('fish', isHungry: false)).called(1);
 
 // You can stub a method using argument matchers: `any`.
-when(() => cat.likes(any(), isHungry: any(that: isFalse)).thenReturn(true);
+when(() => cat.likes(any(), isHungry: any(named: 'isHungry', that: isFalse)).thenReturn(true);
 expect(cat.likes('fish', isHungry: false), isTrue);
 
 // You can stub a method to throw.
