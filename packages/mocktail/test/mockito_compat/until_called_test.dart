@@ -78,67 +78,71 @@ void main() {
       test('waits for method with normal args', () async {
         mock.methodWithNormalArgs(1);
 
-        await untilCalled(() => mock.methodWithNormalArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithNormalArgs(any()));
 
-        verify(() => mock.methodWithNormalArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithNormalArgs(any())).called(1);
       });
 
       test('waits for method with list args', () async {
         mock.methodWithListArgs([1]);
 
-        await untilCalled(() => mock.methodWithListArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithListArgs(any()));
 
-        verify(() => mock.methodWithListArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithListArgs(any())).called(1);
       });
 
       test('waits for method with positional args', () async {
         mock.methodWithPositionalArgs(1, 2);
 
-        await untilCalled(
-            () => mock.methodWithPositionalArgs(any(of: null), any(of: null)));
+        await untilCalled(() => mock.methodWithPositionalArgs(any(), any()));
 
-        verify(() =>
-                mock.methodWithPositionalArgs(any(of: null), any(of: null)))
-            .called(1);
+        verify(() => mock.methodWithPositionalArgs(any(), any())).called(1);
       });
 
       test('waits for method with named args', () async {
         mock.methodWithNamedArgs(1, y: 2);
 
-        await untilCalled(() =>
-            mock.methodWithNamedArgs(any(of: 0), y: any(named: 'y', of: 0)));
+        await untilCalled(
+          () => mock.methodWithNamedArgs(any(), y: any(named: 'y')),
+        );
 
-        verify(() =>
-                mock.methodWithNamedArgs(any(of: 0), y: any(named: 'y', of: 0)))
+        verify(() => mock.methodWithNamedArgs(any(), y: any(named: 'y')))
             .called(1);
       });
 
       test('waits for method with two named args', () async {
         mock.methodWithTwoNamedArgs(1, y: 2, z: 3);
 
-        await untilCalled(() => mock.methodWithTwoNamedArgs(any(of: 0),
-            y: any(named: 'y', of: 0), z: any(named: 'z', of: 0)));
+        await untilCalled(
+          () => mock.methodWithTwoNamedArgs(
+            any(),
+            y: any(named: 'y'),
+            z: any(named: 'z'),
+          ),
+        );
 
-        verify(() => mock.methodWithTwoNamedArgs(any(of: 0),
-            y: any(named: 'y', of: 0), z: any(named: 'z', of: 0))).called(1);
+        verify(() => mock.methodWithTwoNamedArgs(
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            )).called(1);
       });
 
       test('waits for method with obj args', () async {
         mock.methodWithObjArgs(_RealClass());
 
-        await untilCalled(() => mock.methodWithObjArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithObjArgs(any()));
 
-        verify(() => mock.methodWithObjArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithObjArgs(any())).called(1);
       });
 
       test('waits for function with positional parameters', () async {
         mock.typeParameterizedFn([1, 2], [3, 4], [5, 6], [7, 8]);
 
-        await untilCalled(() => mock.typeParameterizedFn(
-            any(of: null), any(of: null), any(of: null), any(of: null)));
+        await untilCalled(
+            () => mock.typeParameterizedFn(any(), any(), any(), any()));
 
-        verify(() => mock.typeParameterizedFn(
-                any(of: null), any(of: null), any(of: null), any(of: null)))
+        verify(() => mock.typeParameterizedFn(any(), any(), any(), any()))
             .called(1);
       });
 
@@ -146,12 +150,18 @@ void main() {
         mock.typeParameterizedNamedFn([1, 2], [3, 4], y: [5, 6], z: [7, 8]);
 
         await untilCalled(() => mock.typeParameterizedNamedFn(
-            any(of: null), any(of: null),
-            y: any(named: 'y', of: null), z: any(named: 'z', of: null)));
+              any(),
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            ));
 
-        verify(() => mock.typeParameterizedNamedFn(any(of: null), any(of: null),
-            y: any(named: 'y', of: null),
-            z: any(named: 'z', of: null))).called(1);
+        verify(() => mock.typeParameterizedNamedFn(
+              any(),
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            )).called(1);
       });
 
       test('waits for getter', () async {
@@ -187,94 +197,106 @@ void main() {
 
       test('waits for method with normal args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() => mock.methodWithNormalArgs(any(of: null)));
+        verifyNever(() => mock.methodWithNormalArgs(any()));
 
-        await untilCalled(() => mock.methodWithNormalArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithNormalArgs(any()));
 
-        verify(() => mock.methodWithNormalArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithNormalArgs(any())).called(1);
       });
 
       test('waits for method with list args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() => mock.methodWithListArgs(any(of: null)));
+        verifyNever(() => mock.methodWithListArgs(any()));
 
-        await untilCalled(() => mock.methodWithListArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithListArgs(any()));
 
-        verify(() => mock.methodWithListArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithListArgs(any())).called(1);
       });
 
       test('waits for method with positional args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(
-            () => mock.methodWithPositionalArgs(any(of: 0), any(of: 0)));
+        verifyNever(() => mock.methodWithPositionalArgs(any(), any()));
 
-        await untilCalled(
-            () => mock.methodWithPositionalArgs(any(of: 0), any(of: 0)));
+        await untilCalled(() => mock.methodWithPositionalArgs(any(), any()));
 
-        verify(() => mock.methodWithPositionalArgs(any(of: 0), any(of: 0)))
-            .called(1);
+        verify(() => mock.methodWithPositionalArgs(any(), any())).called(1);
       });
 
       test('waits for method with named args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() =>
-            mock.methodWithNamedArgs(any(of: 0), y: any(named: 'y', of: 0)));
+        verifyNever(() => mock.methodWithNamedArgs(any(), y: any(named: 'y')));
 
-        await untilCalled(() =>
-            mock.methodWithNamedArgs(any(of: 0), y: any(named: 'y', of: 0)));
+        await untilCalled(
+          () => mock.methodWithNamedArgs(any(), y: any(named: 'y')),
+        );
 
-        verify(() =>
-                mock.methodWithNamedArgs(any(of: 0), y: any(named: 'y', of: 0)))
+        verify(() => mock.methodWithNamedArgs(any(), y: any(named: 'y')))
             .called(1);
       });
 
       test('waits for method with two named args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() => mock.methodWithTwoNamedArgs(any(of: 0),
-            y: any(named: 'y', of: 0), z: any(named: 'z', of: 0)));
+        verifyNever(() => mock.methodWithTwoNamedArgs(
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            ));
 
-        await untilCalled(() => mock.methodWithTwoNamedArgs(any(of: 0),
-            y: any(named: 'y', of: 0), z: any(named: 'z', of: 0)));
+        await untilCalled(() => mock.methodWithTwoNamedArgs(
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            ));
 
-        verify(() => mock.methodWithTwoNamedArgs(any(of: 0),
-            y: any(named: 'y', of: 0), z: any(named: 'z', of: 0))).called(1);
+        verify(() => mock.methodWithTwoNamedArgs(
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            )).called(1);
       });
 
       test('waits for method with obj args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() => mock.methodWithObjArgs(any(of: null)));
+        verifyNever(() => mock.methodWithObjArgs(any()));
 
-        await untilCalled(() => mock.methodWithObjArgs(any(of: null)));
+        await untilCalled(() => mock.methodWithObjArgs(any()));
 
-        verify(() => mock.methodWithObjArgs(any(of: null))).called(1);
+        verify(() => mock.methodWithObjArgs(any())).called(1);
       });
 
       test('waits for function with positional parameters', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() => mock.typeParameterizedFn(
-            any(of: null), any(of: null), any(of: null), any(of: null)));
+        verifyNever(() => mock.typeParameterizedFn(any(), any(), any(), any()));
 
-        await untilCalled(() => mock.typeParameterizedFn(
-            any(of: null), any(of: null), any(of: null), any(of: null)));
+        await untilCalled(
+            () => mock.typeParameterizedFn(any(), any(), any(), any()));
 
-        verify(() => mock.typeParameterizedFn(
-                any(of: null), any(of: null), any(of: null), any(of: null)))
+        verify(() => mock.typeParameterizedFn(any(), any(), any(), any()))
             .called(1);
       });
 
       test('waits for function with named parameters', () async {
         streamController.add(CallMethodsEvent());
         verifyNever(() => mock.typeParameterizedNamedFn(
-            any(of: null), any(of: null),
-            y: any(named: 'y', of: null), z: any(named: 'z', of: null)));
+              any(),
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            ));
 
         await untilCalled(() => mock.typeParameterizedNamedFn(
-            any(of: null), any(of: null),
-            y: any(named: 'y', of: null), z: any(named: 'z', of: null)));
+              any(),
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            ));
 
-        verify(() => mock.typeParameterizedNamedFn(any(of: null), any(of: null),
-            y: any(named: 'y', of: null),
-            z: any(named: 'z', of: null))).called(1);
+        verify(() => mock.typeParameterizedNamedFn(
+              any(),
+              any(),
+              y: any(named: 'y'),
+              z: any(named: 'z'),
+            )).called(1);
       });
 
       test('waits for getter', () async {
