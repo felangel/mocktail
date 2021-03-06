@@ -1,3 +1,7 @@
+# 0.0.2-dev.0
+
+- **BREAKING** refactor: revamp `mocktail` API to be typesafe instead of relying on `Symbol`
+
 # 0.0.1-dev.12
 
 - fix: any matcher with no value
