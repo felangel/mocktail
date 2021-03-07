@@ -1,3 +1,9 @@
+# 0.0.2-dev.3
+
+- **BREAKING** fix: `verifyInOrder` function signature
+- docs: update inline API documentation
+- test: add nnbd compat tests
+
 # 0.0.2-dev.2
 
 - chore: documentation updates

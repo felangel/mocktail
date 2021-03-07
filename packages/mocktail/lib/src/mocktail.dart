@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:matcher/matcher.dart';
+import 'package:mocktail/mocktail.dart';
 // ignore: deprecated_member_use
 import 'package:test_api/test_api.dart';
-
-import 'fake.dart';
 
 part '_arg_matcher.dart';
 part '_invocation_matcher.dart';
@@ -47,26 +46,26 @@ void throwOnMissingStub(
 /// customized at runtime to define how it may behave using [when].
 ///
 /// __Example use__:
+/// ```dart
+/// // Real class.
+/// class Cat {
+///   String getSound(String suffix) => 'Meow$suffix';
+/// }
 ///
-///     // Real class.
-///     class Cat {
-///       String getSound(String suffix) => 'Meow$suffix';
-///     }
+/// // Mock class.
+/// class MockCat extends Mock implements Cat {}
 ///
-///     // Mock class.
-///     class MockCat extends Mock implements Cat {}
+/// void main() {
+///   // Create a new mocked Cat at runtime.
+///   final cat = MockCat();
 ///
-///     void main() {
-///       // Create a new mocked Cat at runtime.
-///       final cat = MockCat();
+///   // When 'getSound' is called, return 'Woof'
+///   when(() => cat.getSound(any())).thenReturn('Woof');
 ///
-///       // When 'getSound' is called, return 'Woof'
-///       when(() => cat.getSound(any())).thenReturn('Woof');
-///
-///       // Try making a Cat sound...
-///       print(cat.getSound('foo')); // Prints 'Woof'
-///     }
-///
+///   // Try making a Cat sound...
+///   print(cat.getSound('foo')); // Prints 'Woof'
+/// }
+/// ```
 /// A class which `extends Mock` should not have any directly implemented
 /// overridden fields or methods. These fields would not be usable as a [Mock]
 /// with [verify] or [when]. To implement a subset of an interface manually use
@@ -173,7 +172,7 @@ typedef _ReturnsCannedResponse = Expectation<dynamic> Function();
 /// canned response method on the result. For example:
 ///
 /// ```dart
-/// when(cat.eatFood("fish")).thenReturn(true);
+/// when(() => cat.eatFood("fish")).thenReturn(true);
 /// ```
 ///
 /// Mocktail will store the fake call to `cat.eatFood`, and pair the exact
@@ -295,7 +294,7 @@ class Expectation<T> {
 ///
 /// ```dart
 /// cat.eatFood("chicken");
-/// verify(cat.eatFood("fish"));
+/// verify(() => cat.eatFood("fish"));
 /// ```
 ///
 /// Mocktail will fail the current test case if `cat.eatFood` hasn't been called
@@ -303,8 +302,8 @@ class Expectation<T> {
 /// method was called a certain number of times. For example:
 ///
 /// ```dart
-/// verify(cat.eatFood("fish")).called(2);
-/// verify(cat.eatFood("fish")).called(greaterThan(3));
+/// verify(() => cat.eatFood("fish")).called(2);
+/// verify(() => cat.eatFood("fish")).called(greaterThan(3));
 /// ```
 ///
 /// Note: When mocktail verifies a method call, said call is then excluded from
@@ -325,7 +324,7 @@ _Verify get verify => _makeVerify(false);
 ///
 /// ```dart
 /// cat.eatFood("chicken");
-/// verifyNever(cat.eatFood("fish"));
+/// verifyNever(() => cat.eatFood("fish"));
 /// ```
 ///
 /// Mocktail will pass the current test case, as `cat.eatFood` has not been
@@ -336,7 +335,7 @@ _Verify get verifyNever => _makeVerify(true);
 /// given arguments. For example:
 ///
 /// ```dart
-/// verifyInOrder([cat.eatFood("Milk"), cat.sound(), cat.eatFood(any)]);
+/// verifyInOrder(() => [cat.eatFood("Milk"), cat.sound(), cat.eatFood(any)]);
 /// ```
 ///
 /// This verifies that `eatFood` was called with `"Milk"`, `sound` was called
@@ -348,8 +347,9 @@ _Verify get verifyNever => _makeVerify(true);
 /// For example, if [verifyInOrder] is given these calls to verify:
 ///
 /// ```dart
-/// var verification = verifyInOrder(
-///     [cat.eatFood(captureAny), cat.chew(), cat.eatFood(captureAny)]);
+/// final verification = verifyInOrder(
+///   () => [cat.eatFood(captureAny), cat.chew(), cat.eatFood(captureAny)],
+/// );
 /// ```
 ///
 /// then `verification` is a list which contains a `captured` getter which
@@ -366,13 +366,18 @@ _Verify get verifyNever => _makeVerify(true);
 /// other calls were made to `eatFood` or `sound` between the three given
 /// calls, or before or after them, the verification will still succeed.
 List<VerificationResult> Function<T>(
-  List<T> recordedInvocations,
+  List<T> Function() recordedInvocations,
 ) get verifyInOrder {
   if (_verifyCalls.isNotEmpty) {
     throw StateError(_verifyCalls.join());
   }
   _verificationInProgress = true;
-  return <T>(List<T> _) {
+  return <T>(List<T> Function() _) {
+    try {
+      _();
+    } catch (_) {
+      if (_ is! TypeError) rethrow;
+    }
     _verificationInProgress = false;
     var verificationResults = <VerificationResult>[];
     var time = DateTime.fromMillisecondsSinceEpoch(0);
