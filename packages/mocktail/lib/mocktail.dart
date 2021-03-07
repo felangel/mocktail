@@ -1,6 +1,7 @@
 library mocktail;
 
-export 'src/fake.dart';
+// ignore: deprecated_member_use
+export 'package:test_api/fake.dart' show Fake;
 export 'src/mocktail.dart'
     show
         Mock,
