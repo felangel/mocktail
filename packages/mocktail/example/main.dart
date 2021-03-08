@@ -33,10 +33,10 @@ void main() {
       when(
         () => cat.likes('fish', isHungry: any(named: 'isHungry')),
       ).thenReturn(true);
-      expect(cat.likes('fish'), isTrue);
+      expect(cat.likes('fish', isHungry: true), isTrue);
 
       // // Verify the interaction.
-      verify(() => cat.likes('fish', isHungry: false)).called(1);
+      verify(() => cat.likes('fish', isHungry: true)).called(1);
     });
   });
 }
