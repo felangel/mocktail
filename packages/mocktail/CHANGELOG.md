@@ -1,3 +1,7 @@
+# 0.0.2-dev.5
+
+- fix: `verify` should use arg matcher from invocation if a matcher wasn't provided
+
 # 0.0.2-dev.4
 
 - **BREAKING** fix: `verifyInOrder` handles multiple method invocation verifications

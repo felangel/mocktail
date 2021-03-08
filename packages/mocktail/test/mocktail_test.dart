@@ -25,6 +25,7 @@ class Foo {
   void voidWithDefaultNamedArg({int x = 0}) {}
   void voidWithDefaultNamedArgs({int x = 0, int y = 0}) {}
   void voidWithPositionalAndOptionalNamedArg(int x, {int? y}) {}
+  void voidWithPositionalArgs(int x, int y) {}
 }
 
 class Bar {
@@ -411,6 +412,12 @@ void main() {
             .thenReturn(null),
         throwsArgumentError,
       );
+    });
+
+    test('when voidWithPositionalArgs with partial matchers', () {
+      when(() => foo.voidWithPositionalArgs(any(), any())).thenReturn(null);
+      expect(() => foo.voidWithPositionalArgs(1, 10), returnsNormally);
+      verify(() => foo.voidWithPositionalArgs(1, any())).called(1);
     });
 
     test('throws Exception when thenThrow is used to stub the mock', () {
