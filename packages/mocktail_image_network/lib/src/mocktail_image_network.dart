@@ -47,6 +47,11 @@ T mockNetworkImages<T>(T Function() body) {
 }
 
 class _MockHttpClient extends Mock implements HttpClient {
+  _MockHttpClient() {
+    registerFallbackValue<void Function(List<int>)>((List<int> _) {});
+    registerFallbackValue<Uri>(Uri());
+  }
+
   @override
   set autoUncompress(bool _autoUncompress) {}
 }
@@ -62,22 +67,26 @@ HttpClient _createHttpClient() {
   final request = _MockHttpClientRequest();
   final response = _MockHttpClientResponse();
   final headers = _MockHttpHeaders();
-  when(response)
-      .calls(#compressionState)
+  when(() => response.compressionState)
       .thenReturn(HttpClientResponseCompressionState.notCompressed);
-  when(response).calls(#contentLength).thenReturn(_transparentPixelPng.length);
-  when(response).calls(#statusCode).thenReturn(HttpStatus.ok);
-  when(response).calls(#listen).thenAnswer((invocation) {
+  when(() => response.contentLength).thenReturn(_transparentPixelPng.length);
+  when(() => response.statusCode).thenReturn(HttpStatus.ok);
+  when(
+    () => response.listen(
+      any(),
+      onDone: any(named: 'onDone'),
+      onError: any(named: 'onError'),
+      cancelOnError: any(named: 'cancelOnError'),
+    ),
+  ).thenAnswer((invocation) {
     final onData =
         invocation.positionalArguments[0] as void Function(List<int>);
     return Stream<List<int>>.fromIterable(<List<int>>[_transparentPixelPng])
         .listen(onData);
   });
-  when(request).calls(#headers).thenReturn(headers);
-  when(request).calls(#close).thenAnswer((_) async => response);
-  when(client)
-      .calls(#getUrl)
-      .withArgs(positional: [any]).thenAnswer((_) async => request);
+  when(() => request.headers).thenReturn(headers);
+  when(request.close).thenAnswer((_) async => response);
+  when(() => client.getUrl(any())).thenAnswer((_) async => request);
   return client;
 }
 
