@@ -111,7 +111,6 @@ T _registerMatcher<T>(
     // matchers will be processed later erroneously.
     _storedArgs.clear();
     _storedNamedArgs.clear();
-    _numMatchers = 0;
     throw ArgumentError(
       'The "$argumentMatcher" argument matcher is used outside of method '
       '''stubbing (via `when`) or verification (via `verify` or `untilCalled`). '''
@@ -119,16 +118,15 @@ T _registerMatcher<T>(
       'or verification.',
     );
   }
-  _numMatchers++;
-  final argMatcher = ArgMatcher(matcher, capture);
-  if (named == null) {
-    _storedArgs.add(argMatcher);
-  } else {
-    _storedNamedArgs[named] = argMatcher;
-  }
 
   if (T == _typeof<T?>()) {
     // T is nullable, so we can safely return `null`
+    final argMatcher = ArgMatcher(matcher, null, capture);
+    if (named == null) {
+      _storedArgs.add(argMatcher);
+    } else {
+      _storedNamedArgs[named] = argMatcher;
+    }
     return null as T;
   }
 
@@ -161,5 +159,13 @@ void main() {
 ''');
   }
 
-  return _fallbackValues[T] as T;
+  final fallbackValue = _fallbackValues[T] as T;
+  final argMatcher = ArgMatcher(matcher, fallbackValue, capture);
+  if (named == null) {
+    _storedArgs.add(argMatcher);
+  } else {
+    _storedNamedArgs[named] = argMatcher;
+  }
+
+  return fallbackValue;
 }

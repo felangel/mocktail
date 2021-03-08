@@ -120,12 +120,6 @@ class _InvocationForMatchedArguments extends Invocation {
 
   @override
   factory _InvocationForMatchedArguments(Invocation invocation) {
-    if (_storedArgs.isEmpty && _storedNamedArgs.isEmpty) {
-      throw StateError(
-        '''_InvocationForMatchedArguments called when no ArgMatchers have been saved.''',
-      );
-    }
-
     // Handle named arguments first, so that we can provide useful errors for
     // the various bad states. If all is well with the named arguments, then we
     // can process the positional arguments, and resort to more general errors
@@ -197,11 +191,13 @@ class _InvocationForMatchedArguments extends Invocation {
         throw ArgumentError(
           'An ArgumentMatcher was declared as named $name, but was not '
           'passed as an argument named $name.\n\n'
-          'BAD:  when(obj.fn(any(named: "a")))\n'
-          'GOOD: when(obj.fn(a: any(named: "a")))',
+          'BAD:  when(() => obj.fn(any(named: "a")))\n'
+          'GOOD: when(() => obj.fn(a: any(named: "a")))',
         );
       }
-      if (!invocation.namedArguments.containsKey(nameSymbol)) {
+      final dynamic namedArgValue = invocation.namedArguments[nameSymbol];
+      final isNotFallbackValue = namedArgValue != arg._fallbackValue;
+      if (namedArgValue != null && isNotFallbackValue) {
         // Clear things out for the next call.
         _storedArgs.clear();
         _storedNamedArgs.clear();
@@ -209,8 +205,8 @@ class _InvocationForMatchedArguments extends Invocation {
           'An ArgumentMatcher was declared as named $name, but a different '
           'value (${invocation.namedArguments[nameSymbol]}) was passed as '
           '$name.\n\n'
-          'BAD:  when(obj.fn(b: any(named: "a")))\n'
-          'GOOD: when(obj.fn(b: any(named: "b")))',
+          'BAD:  when(() => obj.fn(b: any(named: "a")))\n'
+          'GOOD: when(() => obj.fn(b: any(named: "b")))',
         );
       }
       namedArguments[nameSymbol] = arg;
@@ -222,30 +218,34 @@ class _InvocationForMatchedArguments extends Invocation {
   static List<dynamic> _reconstitutePositionalArgs(Invocation invocation) {
     final positionalArguments = <dynamic>[];
     final nullPositionalArguments =
-        invocation.positionalArguments.where((dynamic arg) => arg == null);
-    if ((_storedArgs.length - _numMatchers) > nullPositionalArguments.length) {
+        invocation.positionalArguments.where((dynamic arg) {
+      return arg == null ||
+          _storedArgs.any(
+            (storedArg) => storedArg._fallbackValue == arg,
+          );
+    });
+    if (_storedArgs.length > nullPositionalArguments.length) {
       // More _positional_ ArgMatchers were stored than were actually passed as
       // positional arguments. There are three ways this call could have been
       // parsed and resolved:
       //
       // * an ArgMatcher was passed in [invocation] as a named argument, but
       //   without a name, and thus stored in [_storedArgs], something like
-      //   `when(obj.fn(a: any))`,
+      //   `when(() => obj.fn(a: any()))`,
       // * an ArgMatcher was passed in an expression which was passed in
       //   [invocation], and thus stored in [_storedArgs], something like
-      //   `when(obj.fn(Foo(any)))`, or
+      //   `when(() => obj.fn(Foo(any())))`, or
       // * a combination of the above.
-      _numMatchers = 0;
       _storedArgs.clear();
       _storedNamedArgs.clear();
       throw ArgumentError(
-        'An argument matcher (like `any`) was either not used as an '
+        'An argument matcher (like `any()`) was either not used as an '
         'immediate argument to ${invocation.memberName} (argument matchers '
         'can only be used as an argument for the very method being stubbed '
         'or verified), or was used as a named argument without the Mocktail '
         '"named" API (Each argument matcher that is used as a named argument '
         'needs to specify the name of the argument it is being used in. For '
-        'example: `when(obj.fn(x: any(named: "x")))`).',
+        'example: `when(() => obj.fn(x: any(named: "x")))`).',
       );
     }
     var storedIndex = 0;
@@ -256,19 +256,6 @@ class _InvocationForMatchedArguments extends Invocation {
       positionalArguments.add(arg);
       storedIndex++;
       positionalIndex++;
-      // if (invocation.positionalArguments[positionalIndex] == null) {
-      //   // Add the [ArgMatcher] given to the argument matching helper.
-      //   positionalArguments.add(arg);
-      //   storedIndex++;
-      //   positionalIndex++;
-      // } else {
-      //   // An argument matching helper was not used; add the [ArgMatcher] from
-      //   // [invocation].
-      //   positionalArguments.add(
-      //     invocation.positionalArguments[positionalIndex],
-      //   );
-      //   positionalIndex++;
-      // }
     }
     while (positionalIndex < invocation.positionalArguments.length) {
       // Some trailing non-ArgMatcher arguments.

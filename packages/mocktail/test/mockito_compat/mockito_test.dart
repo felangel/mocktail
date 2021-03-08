@@ -11,9 +11,15 @@ class _RealClass {
   String? methodWithNamedArgs(int? x, {int? y}) => 'Real';
   String? methodWithTwoNamedArgs(int? x, {int? y, int? z}) => 'Real';
   String? methodWithObjArgs(_RealClass x) => 'Real';
+  String? methodWithDynamicArgs(dynamic x) => 'Real';
   Future<String>? methodReturningFuture() => Future.value('Real');
   Stream<String>? methodReturningStream() => Stream.fromIterable(['Real']);
   String? get getter => 'Real';
+}
+
+class _Dynamic {
+  const _Dynamic(this.value);
+  final dynamic value;
 }
 
 abstract class _Foo {
@@ -89,6 +95,15 @@ void main() {
       expect(mock.methodWithObjArgs(m1), equals('Ultimate Answer'));
     });
 
+    test('should throw ArgumentError if passing matcher as nested arg', () {
+      expect(
+        () => when(
+          () => mock.methodWithDynamicArgs(_Dynamic(any<dynamic>())),
+        ).thenReturn('Utimate Answer'),
+        throwsArgumentError,
+      );
+    });
+
     test('should mock method with positional args', () {
       when(() => mock.methodWithPositionalArgs(42, 17))
           .thenReturn('Answer and...');
@@ -112,11 +127,7 @@ void main() {
 
     test('should mock method with argument matcher', () {
       when(
-        () => mock.methodWithNormalArgs(
-          any(
-            that: greaterThan(100),
-          ),
-        ),
+        () => mock.methodWithNormalArgs(any(that: greaterThan(100))),
       ).thenReturn('A lot!');
       expect(mock.methodWithNormalArgs(100), isNull);
       expect(mock.methodWithNormalArgs(101), equals('A lot!'));
@@ -231,14 +242,17 @@ void main() {
 
     // Error path tests.
     test('should throw if `when` is called while stubbing', () {
-      expect(() {
-        var responseHelper = () {
-          var mock2 = _MockedClass();
-          when(() => mock2.getter).thenReturn('A');
-          return mock2;
-        };
-        when(() => mock.innerObj).thenReturn(responseHelper());
-      }, throwsStateError);
+      expect(
+        () {
+          final responseHelper = () {
+            final mock2 = _MockedClass();
+            when(() => mock2.getter).thenReturn('A');
+            return mock2;
+          };
+          when(() => mock.innerObj).thenReturn(responseHelper());
+        },
+        throwsStateError,
+      );
     });
 
     test('thenReturn throws if provided Future', () {
@@ -285,9 +299,12 @@ void main() {
 
     test('should throw if attempting to stub a real method', () {
       var foo = _MockFoo();
-      expect(() {
-        when(() => foo.quux()).thenReturn('Stub');
-      }, throwsStateError);
+      expect(
+        () {
+          when(() => foo.quux()).thenReturn('Stub');
+        },
+        throwsStateError,
+      );
     });
   });
 

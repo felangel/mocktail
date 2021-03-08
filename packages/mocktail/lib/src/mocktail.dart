@@ -18,7 +18,6 @@ _UntilCall? _untilCall;
 var _whenInProgress = false;
 bool _untilCalledInProgress = false;
 var _verificationInProgress = false;
-var _numMatchers = 0;
 
 final _timer = _TimeStampProvider();
 final _capturedArgs = <dynamic>[];
@@ -246,7 +245,6 @@ class When<T> {
         'called, or perhaps an extension method?',
       );
     }
-    _numMatchers = 0;
     _whenCall!._setExpected<T>(answer);
     _whenCall = null;
     _whenInProgress = false;
@@ -610,7 +608,6 @@ void resetMocktailState() {
   _untilCalledInProgress = false;
   _verificationInProgress = false;
   _whenCall = null;
-  _numMatchers = 0;
   _untilCall = null;
   _verifyCalls.clear();
   _capturedArgs.clear();

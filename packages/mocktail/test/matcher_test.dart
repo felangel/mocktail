@@ -130,6 +130,14 @@ void main() {
     );
   });
 
+  test('throws an error when matcher used outside context of when/verify/until',
+      () {
+    expect(
+      () => mock<ManuallyRegisteredObject>(any()),
+      throwsArgumentError,
+    );
+  });
+
   test('calling registerFallbackValue allows matchers to work with this type',
       () {
     registerFallbackValue<ManuallyRegisteredObject>(ManuallyRegisteredObject());

@@ -316,6 +316,10 @@ void main() {
 
         verify(() => mock.setter = 'A').called(1);
       });
+
+      test('throws if exception occurs within lambda', () {
+        expect(() => untilCalled(() => throw Exception('')), throwsException);
+      });
     });
   });
 }
