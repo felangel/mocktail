@@ -1,3 +1,9 @@
+# 0.0.2-dev.4
+
+- **BREAKING** fix: `verifyInOrder` handles multiple method invocation verifications
+- test: 100% coverage
+- docs: additional inline API documentation updates
+
 # 0.0.2-dev.3
 
 - **BREAKING** fix: `verifyInOrder` function signature

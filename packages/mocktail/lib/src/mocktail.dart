@@ -333,7 +333,11 @@ _Verify get verifyNever => _makeVerify(true);
 /// given arguments. For example:
 ///
 /// ```dart
-/// verifyInOrder(() => [cat.eatFood("Milk"), cat.sound(), cat.eatFood(any)]);
+/// verifyInOrder([
+///   () => cat.eatFood("Milk"),
+///   () => cat.sound(),
+///   () => cat.eatFood(any),
+/// ]);
 /// ```
 ///
 /// This verifies that `eatFood` was called with `"Milk"`, `sound` was called
@@ -345,9 +349,11 @@ _Verify get verifyNever => _makeVerify(true);
 /// For example, if [verifyInOrder] is given these calls to verify:
 ///
 /// ```dart
-/// final verification = verifyInOrder(
-///   () => [cat.eatFood(captureAny), cat.chew(), cat.eatFood(captureAny)],
-/// );
+/// final verification = verifyInOrder([
+///   () => cat.eatFood(captureAny),
+///   () => cat.chew(),
+///   () => cat.eatFood(captureAny),
+/// ]);
 /// ```
 ///
 /// then `verification` is a list which contains a `captured` getter which
@@ -364,33 +370,38 @@ _Verify get verifyNever => _makeVerify(true);
 /// other calls were made to `eatFood` or `sound` between the three given
 /// calls, or before or after them, the verification will still succeed.
 List<VerificationResult> Function<T>(
-  List<T> Function() recordedInvocations,
+  List<T Function()> recordedInvocations,
 ) get verifyInOrder {
   if (_verifyCalls.isNotEmpty) {
     throw StateError(_verifyCalls.join());
   }
   _verificationInProgress = true;
-  return <T>(List<T> Function() _) {
-    try {
-      _();
-    } catch (_) {
-      if (_ is! TypeError) rethrow;
+  return <T>(List<T Function()> _) {
+    for (final invocation in _) {
+      if (invocation is Function) {
+        try {
+          invocation();
+        } catch (_) {
+          if (_ is! TypeError) rethrow;
+        }
+      }
     }
+
     _verificationInProgress = false;
-    var verificationResults = <VerificationResult>[];
+    final verificationResults = <VerificationResult>[];
+    final tmpVerifyCalls = List<_VerifyCall>.from(_verifyCalls);
     var time = DateTime.fromMillisecondsSinceEpoch(0);
-    var tmpVerifyCalls = List<_VerifyCall>.from(_verifyCalls);
     _verifyCalls.clear();
-    var matchedCalls = <RealCall>[];
-    for (var verifyCall in tmpVerifyCalls) {
+    final matchedCalls = <RealCall>[];
+    for (final verifyCall in tmpVerifyCalls) {
       try {
-        var matched = verifyCall._findAfter(time);
+        final matched = verifyCall._findAfter(time);
         matchedCalls.add(matched.realCall);
         verificationResults.add(VerificationResult._(1, matched.capturedArgs));
         time = matched.realCall.timeStamp;
       } on StateError {
-        var mocks = tmpVerifyCalls.map((vc) => vc.mock).toSet();
-        var allInvocations = mocks
+        final mocks = tmpVerifyCalls.map((vc) => vc.mock).toSet();
+        final allInvocations = mocks
             .expand((m) => m._realCalls)
             .toList(growable: false)
               ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp));
@@ -398,8 +409,10 @@ List<VerificationResult> Function<T>(
         if (allInvocations.isNotEmpty) {
           otherCalls = " All calls: ${allInvocations.join(", ")}";
         }
-        fail('Matching call #${tmpVerifyCalls.indexOf(verifyCall)} '
-            'not found.$otherCalls');
+        fail(
+          'Matching call #${tmpVerifyCalls.indexOf(verifyCall)} '
+          'not found.$otherCalls',
+        );
       }
     }
     for (var call in matchedCalls) {
@@ -412,7 +425,7 @@ List<VerificationResult> Function<T>(
 /// Ensure no redundant invocations occur.
 void verifyNoMoreInteractions(dynamic mock) {
   if (mock is Mock) {
-    var unverified = mock._realCalls.where((inv) => !inv.verified).toList();
+    final unverified = mock._realCalls.where((inv) => !inv.verified).toList();
     if (unverified.isNotEmpty) {
       fail('No more calls expected, but following found: ${unverified.join()}');
     }

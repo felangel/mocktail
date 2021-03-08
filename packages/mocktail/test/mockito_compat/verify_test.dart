@@ -479,7 +479,7 @@ void main() {
       mock
         ..methodWithoutArgs()
         ..getter;
-      verifyInOrder(() => [mock.methodWithoutArgs(), mock.getter]);
+      verifyInOrder([() => mock.methodWithoutArgs(), () => mock.getter]);
     });
 
     test('right order passes (ns)', () {
@@ -487,7 +487,7 @@ void main() {
       mock
         ..methodWithoutArgs()
         ..nsGetter;
-      verifyInOrder(() => [mock.methodWithoutArgs(), mock.nsGetter]);
+      verifyInOrder([() => mock.methodWithoutArgs(), () => mock.nsGetter]);
     });
 
     test('wrong order fails', () {
@@ -497,7 +497,7 @@ void main() {
       expectFail(
           'Matching call #1 not found. All calls: '
           '_MockedClass.methodWithoutArgs(), _MockedClass.getter', () {
-        verifyInOrder(() => [mock.getter, mock.methodWithoutArgs()]);
+        verifyInOrder([() => mock.getter, () => mock.methodWithoutArgs()]);
       });
     });
 
@@ -508,10 +508,10 @@ void main() {
       expectFail(
           'There is already a verification in progress, '
           'check if it was not called with a verify argument(s)', () {
-        verifyInOrder(() => [
-              verify(() => mock.getter),
-              verify(() => mock.methodWithoutArgs()),
-            ]);
+        verifyInOrder([
+          () => verify(() => mock.getter),
+          () => verify(() => mock.methodWithoutArgs()),
+        ]);
       });
     });
 
@@ -520,7 +520,7 @@ void main() {
       expectFail(
           'Matching call #1 not found. All calls: '
           '_MockedClass.methodWithoutArgs()', () {
-        verifyInOrder(() => [mock.methodWithoutArgs(), mock.getter]);
+        verifyInOrder([() => mock.methodWithoutArgs(), () => mock.getter]);
       });
     });
 
@@ -529,8 +529,11 @@ void main() {
         ..methodWithoutArgs()
         ..getter
         ..methodWithoutArgs();
-      verifyInOrder(() =>
-          [mock.methodWithoutArgs(), mock.getter, mock.methodWithoutArgs()]);
+      verifyInOrder([
+        () => mock.methodWithoutArgs(),
+        () => mock.getter,
+        () => mock.methodWithoutArgs(),
+      ]);
     });
 
     test('can return captures from capturing argument matchers', () {
@@ -538,11 +541,11 @@ void main() {
         ..methodWithNormalArgs(1)
         ..methodWithoutArgs()
         ..methodWithNormalArgs(2);
-      final captured = verifyInOrder(() => [
-            mock.methodWithNormalArgs(captureAny()),
-            mock.methodWithoutArgs(),
-            mock.methodWithNormalArgs(captureAny())
-          ]).captured;
+      final captured = verifyInOrder([
+        () => mock.methodWithNormalArgs(captureAny()),
+        () => mock.methodWithoutArgs(),
+        () => mock.methodWithNormalArgs(captureAny()),
+      ]).captured;
       expect(captured, hasLength(3));
       expect(captured[0], equals([1]));
       expect(captured[1], equals(<int>[]));
@@ -559,10 +562,10 @@ void main() {
           '_MockedClass.methodWithoutArgs(), _MockedClass.methodWithoutArgs(), '
           '_MockedClass.getter', () {
         verifyInOrder(
-          () => [
-            mock.methodWithoutArgs(),
-            mock.getter,
-            mock.methodWithoutArgs(),
+          [
+            () => mock.methodWithoutArgs(),
+            () => mock.getter,
+            () => mock.methodWithoutArgs(),
           ],
         );
       });
@@ -581,7 +584,7 @@ void main() {
       // adds items to `_verifyCalls`.
       mock.methodWithNamedArgs(42, y: 17);
       try {
-        verifyInOrder(() => [mock.methodWithNamedArgs(42, y: 17)]);
+        verifyInOrder([() => mock.methodWithNamedArgs(42, y: 17)]);
         fail('verify call was expected to throw!');
       } catch (exception) {
         expect(

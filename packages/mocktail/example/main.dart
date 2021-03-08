@@ -19,6 +19,17 @@ void main() {
       cat = MockCat();
     });
 
+    test('...', () {
+      when(() => cat.sound()).thenReturn('purr');
+      when(() => cat.likes('fish')).thenReturn(true);
+
+      expect(cat.sound(), equals('purr'));
+      expect(cat.likes('fish'), isTrue);
+
+      verifyInOrder([() => cat.sound(), () => cat.likes('fish')]);
+      verifyNoMoreInteractions(cat);
+    });
+
     test('example', () {
       // Stub a method before interacting with the mock.
       when(() => cat.sound()).thenReturn('purr');
