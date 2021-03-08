@@ -253,9 +253,21 @@ class _InvocationForMatchedArguments extends Invocation {
     while (storedIndex < _storedArgs.length &&
         positionalIndex < invocation.positionalArguments.length) {
       final arg = _storedArgs[storedIndex];
-      positionalArguments.add(arg);
-      storedIndex++;
-      positionalIndex++;
+      final dynamic positionalArgument =
+          invocation.positionalArguments[positionalIndex];
+      if (positionalArgument == null ||
+          positionalArgument == arg._fallbackValue) {
+        // Add the [ArgMatcher] given to the argument matching helper.
+        positionalArguments.add(arg);
+        storedIndex++;
+        positionalIndex++;
+      } else {
+        // An argument matching helper was not used; add the [ArgMatcher] from
+        // [invocation].
+        positionalArguments
+            .add(invocation.positionalArguments[positionalIndex]);
+        positionalIndex++;
+      }
     }
     while (positionalIndex < invocation.positionalArguments.length) {
       // Some trailing non-ArgMatcher arguments.
