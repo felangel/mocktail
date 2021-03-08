@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:mocktail/mocktail.dart';
+import 'package:mocktail/src/mocktail.dart';
 import 'package:test/test.dart';
 
 class Foo {
@@ -22,6 +23,7 @@ class Foo {
   void voidWithOptionalNamedArg({int? x}) {}
   void voidWithDefaultPositionalArg([int x = 0]) {}
   void voidWithDefaultNamedArg({int x = 0}) {}
+  void voidWithDefaultNamedArgs({int x = 0, int y = 0}) {}
   void voidWithPositionalAndOptionalNamedArg(int x, {int? y}) {}
 }
 
@@ -62,6 +64,8 @@ class MockBaz<T> extends Mock implements Baz<T> {
     }
   }
 }
+
+class MockInvocation extends Mock implements Invocation {}
 
 void main() {
   group('Foo', () {
@@ -239,9 +243,9 @@ void main() {
       when(() => foo.asyncValueWithPositionalArgs(1, 2))
           .thenAnswer((_) => Future.value(10));
       expect(await foo.asyncValueWithPositionalArgs(1, 2), 10);
-      final captured = verify(() =>
-              foo.asyncValueWithPositionalArgs(captureAny(), captureAny()))
-          .captured;
+      final captured = verify(
+        () => foo.asyncValueWithPositionalArgs(captureAny(), captureAny()),
+      ).captured;
       expect(captured, equals([1, 2]));
     });
 
@@ -375,6 +379,14 @@ void main() {
       verify(() => foo.voidWithDefaultNamedArg(x: 10)).called(1);
     });
 
+    test('when voidWithDefaultNamedArgs throws mismatch named arg matcher', () {
+      expect(
+        () => when(() => foo.voidWithDefaultNamedArgs(x: any(named: 'y')))
+            .thenReturn(null),
+        throwsArgumentError,
+      );
+    });
+
     test('throws Exception when thenThrow is used to stub the mock', () {
       final exception = Exception('oops');
       when(() => foo.streamValue).thenThrow(exception);
@@ -453,6 +465,74 @@ void main() {
 
       baz..add(arg1)..add(arg1)..add(arg1);
       verify(() => baz.add(arg1)).called(3);
+    });
+  });
+
+  group('reset', () {
+    test('throws when called on non-mock', () {
+      expect(() => reset(Object()), throwsArgumentError);
+    });
+
+    test('throws when called on null', () {
+      expect(() => reset(null), throwsArgumentError);
+    });
+  });
+
+  group('logInvocations', () {
+    test('returns normally (no mocks)', () {
+      expect(() => logInvocations([]), returnsNormally);
+    });
+
+    test('returns normally (mocks)', () {
+      final mock = MockFoo();
+      when(() => mock.intValue).thenReturn(42);
+      expect(mock.intValue, equals(42));
+      expect(() => logInvocations([mock]), returnsNormally);
+    });
+  });
+
+  group('clearInteractions', () {
+    test('throws ArgumentError when invoked on non-mock', () {
+      expect(() => clearInteractions(Object()), throwsArgumentError);
+    });
+
+    test('returns normally when invoked on mock', () {
+      expect(() => clearInteractions(MockFoo()), returnsNormally);
+    });
+  });
+
+  group('MissingStubError', () {
+    test('throws StateError when invocation type is unsupported', () {
+      final invocation = MockInvocation();
+      when(() => invocation.memberName).thenReturn(#name);
+      when(() => invocation.positionalArguments).thenReturn(<dynamic>[]);
+      when(() => invocation.namedArguments).thenReturn(<Symbol, dynamic>{});
+      when(() => invocation.isMethod).thenReturn(false);
+      when(() => invocation.isGetter).thenReturn(false);
+      when(() => invocation.isSetter).thenReturn(false);
+      expect(() => MissingStubError(invocation).toString(), throwsStateError);
+    });
+  });
+
+  group('ArgMatcher', () {
+    test('toString', () {
+      const argMatcher = ArgMatcher(isFalse, '', false);
+      expect(
+        argMatcher.toString(),
+        equals('$ArgMatcher {$isFalse: false}'),
+      );
+    });
+  });
+
+  group('Expectation', () {
+    test('toString', () {
+      final call = isFalse;
+      final response = (Invocation _) => 10;
+      final expectation = Expectation<int>(call, response);
+      expect(
+        expectation.toString(),
+        equals('$Expectation {$call -> $response}'),
+      );
     });
   });
 }

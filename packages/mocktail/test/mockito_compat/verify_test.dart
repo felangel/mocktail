@@ -160,6 +160,12 @@ void main() {
           any(that: greaterThanOrEqualTo(100)), 17));
     });
 
+    test('should fail on non-mock object', () {
+      expectFail('Used on a non-mocktail object', () {
+        verify(() => Object().toString());
+      });
+    });
+
     test('should mock getter', () {
       mock.getter;
       verify(() => mock.getter);
@@ -176,7 +182,39 @@ void main() {
       verify(() => mock.setter = 'A');
     });
 
-    test('should throw meaningful errors when verification is interrupted', () {
+    test(
+        'should throw meaningful errors '
+        'when verification is interrupted (1)', () {
+      // ignore: only_throw_errors
+      final badHelper = () => throw 'boo';
+      try {
+        verify(() => mock.methodWithNamedArgs(42, y: badHelper()));
+      } catch (_) {}
+      // At this point, verification was interrupted, so
+      // `_verificationInProgress` is still `true`. Calling mock methods below
+      // adds items to `_verifyCalls`.
+      mock.methodWithNamedArgs(42, y: 17);
+      try {
+        verify(() => mock.methodWithNamedArgs(42, y: 17));
+        fail('verify call was expected to throw!');
+      } catch (exception) {
+        expect(
+          exception,
+          isA<StateError>().having(
+            (exception) => exception.message,
+            'message',
+            contains(
+              'Verification appears to be in progress. '
+              'One verify call has been stored',
+            ),
+          ),
+        );
+      }
+    });
+
+    test(
+        'should throw meaningful errors '
+        'when verification is interrupted (2)', () {
       // ignore: only_throw_errors
       final badHelper = () => throw 'boo';
       try {
@@ -405,6 +443,10 @@ void main() {
         verifyZeroInteractions(mock);
       });
     });
+
+    test('throws if given a real object', () {
+      expect(() => verifyZeroInteractions(_RealClass()), throwsArgumentError);
+    });
   });
 
   group('verifyNoMoreInteractions', () {
@@ -517,10 +559,42 @@ void main() {
           '_MockedClass.methodWithoutArgs(), _MockedClass.methodWithoutArgs(), '
           '_MockedClass.getter', () {
         verifyInOrder(
-          () =>
-              [mock.methodWithoutArgs(), mock.getter, mock.methodWithoutArgs()],
+          () => [
+            mock.methodWithoutArgs(),
+            mock.getter,
+            mock.methodWithoutArgs(),
+          ],
         );
       });
+    });
+
+    test(
+        'should throw meaningful errors '
+        'when verification is interrupted', () {
+      // ignore: only_throw_errors
+      final badHelper = () => throw 'boo';
+      try {
+        verify(() => mock.methodWithNamedArgs(42, y: badHelper()));
+      } catch (_) {}
+      // At this point, verification was interrupted, so
+      // `_verificationInProgress` is still `true`. Calling mock methods below
+      // adds items to `_verifyCalls`.
+      mock.methodWithNamedArgs(42, y: 17);
+      try {
+        verifyInOrder(() => [mock.methodWithNamedArgs(42, y: 17)]);
+        fail('verify call was expected to throw!');
+      } catch (exception) {
+        expect(
+          exception,
+          isA<StateError>().having(
+            (exception) => exception.message,
+            'message',
+            contains(
+              '''VerifyCall<mock: _MockedClass, memberName: Symbol("methodWithNamedArgs")>''',
+            ),
+          ),
+        );
+      }
     });
   });
 
