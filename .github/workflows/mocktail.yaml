@@ -29,9 +29,9 @@ jobs:
         run: dartanalyzer --fatal-infos --fatal-warnings lib test example
       - name: Run Tests
         run: |
-          pub global activate coverage          
+          pub global activate test_coverage          
           export PATH=$PATH:$HOME/.pub-cache/bin
-          dart test --coverage=coverage && pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+          test_coverage
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
