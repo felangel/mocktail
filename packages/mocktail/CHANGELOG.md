@@ -1,3 +1,7 @@
+# 0.0.2-dev.6
+
+- chore: upgrade to `test_api: ^0.3.0`
+
 # 0.0.2-dev.5
 
 - fix: `verify` should use arg matcher from invocation if a matcher wasn't provided
