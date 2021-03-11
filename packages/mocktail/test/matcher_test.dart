@@ -108,7 +108,7 @@ To fix, do:
 
 ```
 void main() {
-  setupAll(() {
+  setUpAll(() {
     registerFallbackValue<UnregisteredObject>(UnregisteredObject());
   });
 }
@@ -120,7 +120,7 @@ If you cannot easily create an instance of UnregisteredObject, consider defining
 class UnregisteredObjectFake extends Fake implements UnregisteredObject {}
 
 void main() {
-  setupAll(() {
+  setUpAll(() {
     registerFallbackValue<UnregisteredObject>(UnregisteredObjectFake());
   });
 }
