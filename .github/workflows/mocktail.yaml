@@ -28,13 +28,8 @@ jobs:
       - name: Analyze
         run: dartanalyzer --fatal-infos --fatal-warnings lib test example
       - name: Run Tests
-        env:
-          FLUTTER_DART_HOME: ${{ env.FLUTTER_HOME }}/bin/cache/dart-sdk/bin
-          FLUTTER_PUB_CACHE: ${{env.FLUTTER_HOME}}/.pub-cache/bin
         run: |
-          flutter pub global activate coverage
-          export PATH=$PATH:$FLUTTER_DART_HOME
-          export PATH=$PATH:$FLUTTER_PUB_CACHE
+          pub global activate coverage          
           dart test --coverage=coverage && pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
