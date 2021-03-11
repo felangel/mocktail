@@ -139,7 +139,7 @@ To fix, do:
 
 ```
 void main() {
-  setupAll(() {
+  setUpAll(() {
     registerFallbackValue<$T>($T());
   });
 }
@@ -151,7 +151,7 @@ If you cannot easily create an instance of $T, consider defining a `Fake`:
 class ${T}Fake extends Fake implements $T {}
 
 void main() {
-  setupAll(() {
+  setUpAll(() {
     registerFallbackValue<$T>(${T}Fake());
   });
 }

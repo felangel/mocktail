@@ -1,5 +1,6 @@
 # 0.0.2-dev.6
 
+- fix: typo in matcher registration (`setUpAll`)
 - chore: upgrade to `test_api: ^0.3.0`
 
 # 0.0.2-dev.5
