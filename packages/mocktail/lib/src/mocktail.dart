@@ -19,11 +19,27 @@ var _whenInProgress = false;
 bool _untilCalledInProgress = false;
 var _verificationInProgress = false;
 
+_ReturnsCannedResponse _defaultResponse = _nullResponse;
+
+Expectation<Null> _nullResponse() {
+  return Expectation<Null>.allInvocations((_) => null);
+}
+
+Expectation<dynamic> _exceptionResponse(
+  void Function(Invocation)? exceptionBuilder,
+) {
+  exceptionBuilder ??= (invocation) {
+    throw MissingStubError(invocation);
+  };
+  return Expectation<dynamic>.allInvocations(exceptionBuilder);
+}
+
 final _timer = _TimeStampProvider();
 final _capturedArgs = <dynamic>[];
 final _storedArgs = <ArgMatcher>[];
 final _storedNamedArgs = <String, ArgMatcher>{};
 final _verifyCalls = <_VerifyCall>[];
+final _defaultResponses = <Mock, _ReturnsCannedResponse>{};
 
 /// Opt-into [Mock] throwing [NoSuchMethodError] for unimplemented methods.
 ///
@@ -32,10 +48,7 @@ void throwOnMissingStub(
   Mock mock, {
   void Function(Invocation)? exceptionBuilder,
 }) {
-  exceptionBuilder ??= mock._noSuchMethod;
-  mock._defaultResponse = () {
-    return Expectation<dynamic>.allInvocations(exceptionBuilder!);
-  };
+  _defaultResponses[mock] = () => _exceptionResponse(exceptionBuilder);
 }
 
 /// Extend or mixin this class to mark the implementation as a [Mock].
@@ -76,14 +89,24 @@ void throwOnMissingStub(
 /// used within the context of Dart for Web (dart2js, DDC) and Dart for Mobile
 /// (Flutter).
 class Mock {
-  static Null _answerNull(dynamic _) => null;
-  static const _nullResponse = Expectation<Null>.allInvocations(_answerNull);
+  /// A method which can be invoked to trigger all unstubbed methods
+  /// to result in exceptions.
+  ///
+  /// This is equivalent to calling `throwOnMissingStub` with a specific [Mock]
+  /// but applies generally to all [Mock] instances.
+  static void throwOnMissingStub({
+    void Function(Invocation)? exceptionBuilder,
+  }) {
+    _defaultResponse = () => _exceptionResponse(exceptionBuilder);
+  }
 
   final _invocationStreamController = StreamController<Invocation>.broadcast();
-
   final _responses = <Expectation<dynamic>>[];
   final _realCalls = <RealCall>[];
-  _ReturnsCannedResponse _defaultResponse = () => _nullResponse;
+
+  _ReturnsCannedResponse get __defaultResponse {
+    return _defaultResponses[this] ?? _defaultResponse;
+  }
 
   @override
   dynamic noSuchMethod(Invocation invocation) {
@@ -104,7 +127,7 @@ class Mock {
         (response) {
           return response.call.matches(invocation, <dynamic, dynamic>{});
         },
-        orElse: _defaultResponse,
+        orElse: __defaultResponse,
       );
       return cannedResponse.response(invocation);
     }
@@ -118,10 +141,6 @@ class Mock {
 
   @override
   String toString() => runtimeType.toString();
-
-  dynamic _noSuchMethod(Invocation invocation) {
-    throw MissingStubError(invocation);
-  }
 
   void _setExpected(Expectation<dynamic> cannedResponse) {
     _responses.add(cannedResponse);
@@ -617,6 +636,7 @@ void logInvocations(List<Mock> mocks) {
 /// In these cases, [resetMocktailState] might be called at the end of `setUp`,
 /// or in `tearDown`.
 void resetMocktailState() {
+  _defaultResponse = _nullResponse;
   _whenInProgress = false;
   _untilCalledInProgress = false;
   _verificationInProgress = false;
@@ -626,6 +646,7 @@ void resetMocktailState() {
   _capturedArgs.clear();
   _storedArgs.clear();
   _storedNamedArgs.clear();
+  _defaultResponses.clear();
 }
 
 /// Clear stubs of, and collected interactions with [mock].
