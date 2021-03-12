@@ -334,4 +334,31 @@ void main() {
       expect(() => mock.methodWithoutArgs(), throwsException);
     });
   });
+
+  group('Mocktail.throwOnMissingStub', () {
+    test('should throw when a mock was called without a matching stub', () {
+      Mock.throwOnMissingStub();
+      when(() => mock.methodWithNormalArgs(42)).thenReturn('Ultimate Answer');
+      expect(
+        () => mock.methodWithoutArgs(),
+        throwsA(const TypeMatcher<MissingStubError>()),
+      );
+    });
+
+    test('should not throw when a mock was called with a matching stub', () {
+      Mock.throwOnMissingStub();
+      when(() => mock.methodWithoutArgs()).thenReturn('A');
+      expect(() => mock.methodWithoutArgs(), returnsNormally);
+    });
+
+    test(
+        'should throw the exception when a mock was called without a matching'
+        'stub and an exception builder is set.', () {
+      Mock.throwOnMissingStub(exceptionBuilder: (_) {
+        throw Exception('test message');
+      });
+      when(() => mock.methodWithNormalArgs(42)).thenReturn('Ultimate Answer');
+      expect(() => mock.methodWithoutArgs(), throwsException);
+    });
+  });
 }

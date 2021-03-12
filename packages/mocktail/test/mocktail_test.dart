@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mocktail/src/mocktail.dart';
 import 'package:test/test.dart';
@@ -28,6 +29,9 @@ class Foo {
   void voidWithPositionalArgs(int x, int y) {}
 }
 
+/// Ensure mocks are immutable.
+/// See [MockBar].
+@immutable
 class Bar {
   const Bar(this.foo);
   final Foo foo;

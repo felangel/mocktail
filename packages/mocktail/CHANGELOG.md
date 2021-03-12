@@ -1,3 +1,8 @@
+# 0.1.0
+
+- feat: add `Mock.throwOnMissingStub()`
+- fix: make `Mock` instances immutable
+
 # 0.0.2-dev.6
 
 - fix: typo in matcher registration (`setUpAll`)
