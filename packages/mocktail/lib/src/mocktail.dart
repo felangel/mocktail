@@ -636,6 +636,7 @@ void logInvocations(List<Mock> mocks) {
 /// In these cases, [resetMocktailState] might be called at the end of `setUp`,
 /// or in `tearDown`.
 void resetMocktailState() {
+  _defaultResponse = _nullResponse;
   _whenInProgress = false;
   _untilCalledInProgress = false;
   _verificationInProgress = false;
