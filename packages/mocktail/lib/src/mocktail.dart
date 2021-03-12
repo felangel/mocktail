@@ -39,7 +39,7 @@ final _capturedArgs = <dynamic>[];
 final _storedArgs = <ArgMatcher>[];
 final _storedNamedArgs = <String, ArgMatcher>{};
 final _verifyCalls = <_VerifyCall>[];
-final _mockDefaultResponses = <Mock, _ReturnsCannedResponse>{};
+final _defaultResponses = <Mock, _ReturnsCannedResponse>{};
 
 /// Opt-into [Mock] throwing [NoSuchMethodError] for unimplemented methods.
 ///
@@ -48,7 +48,7 @@ void throwOnMissingStub(
   Mock mock, {
   void Function(Invocation)? exceptionBuilder,
 }) {
-  _mockDefaultResponses[mock] = () => _exceptionResponse(exceptionBuilder);
+  _defaultResponses[mock] = () => _exceptionResponse(exceptionBuilder);
 }
 
 /// Extend or mixin this class to mark the implementation as a [Mock].
@@ -105,7 +105,7 @@ class Mock {
   final _realCalls = <RealCall>[];
 
   _ReturnsCannedResponse get __defaultResponse {
-    return _mockDefaultResponses[this] ?? _defaultResponse;
+    return _defaultResponses[this] ?? _defaultResponse;
   }
 
   @override
@@ -645,6 +645,7 @@ void resetMocktailState() {
   _capturedArgs.clear();
   _storedArgs.clear();
   _storedNamedArgs.clear();
+  _defaultResponses.clear();
 }
 
 /// Clear stubs of, and collected interactions with [mock].
