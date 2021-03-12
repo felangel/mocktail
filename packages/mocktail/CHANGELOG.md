@@ -2,6 +2,7 @@
 
 - feat: add `Mock.throwOnMissingStub()`
 - fix: make `Mock` instances immutable
+- chore: convert to `test: ^1.16.0`
 
 # 0.0.2-dev.6
 

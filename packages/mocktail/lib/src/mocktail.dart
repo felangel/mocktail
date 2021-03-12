@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mocktail/mocktail.dart';
-// ignore: deprecated_member_use
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 part '_arg_matcher.dart';
 part '_invocation_matcher.dart';
