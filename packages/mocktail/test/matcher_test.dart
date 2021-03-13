@@ -16,7 +16,7 @@ void main() {
     when(() => mock<dynamic>(any<dynamic>())).thenReturn('OK');
     when(() => mock<Map<String, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String, Object>>(any())).thenReturn('OK');
-    when(() => mock<Map<String, Object>>(any())).thenReturn('OK');
+    when(() => mock<Map<String, Object?>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object?>>(any())).thenReturn('OK');
