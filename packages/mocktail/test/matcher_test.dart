@@ -20,6 +20,11 @@ void main() {
     when(() => mock<Map<String?, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object?>>(any())).thenReturn('OK');
+    when(() => mock<Map<ComplexObject, ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<Map<ComplexObject, ComplexObject?>>(any()))
+        .thenReturn('OK');
+    when(() => mock<Map<ComplexObject?, ComplexObject?>>(any()))
+        .thenReturn('OK');
     when(() => mock<List<int>>(any())).thenReturn('OK');
     when(() => mock<List<int?>>(any())).thenReturn('OK');
     when(() => mock<List<double>>(any())).thenReturn('OK');
@@ -33,6 +38,8 @@ void main() {
     when(() => mock<List<bool>>(any())).thenReturn('OK');
     when(() => mock<List<bool?>>(any())).thenReturn('OK');
     when(() => mock<List<dynamic>>(any())).thenReturn('OK');
+    when(() => mock<List<ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<List<ComplexObject?>>(any())).thenReturn('OK');
     when(() => mock<Set<int>>(any())).thenReturn('OK');
     when(() => mock<Set<int?>>(any())).thenReturn('OK');
     when(() => mock<Set<double>>(any())).thenReturn('OK');
@@ -46,6 +53,8 @@ void main() {
     when(() => mock<Set<bool>>(any())).thenReturn('OK');
     when(() => mock<Set<bool?>>(any())).thenReturn('OK');
     when(() => mock<Set<dynamic>>(any())).thenReturn('OK');
+    when(() => mock<Set<ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<Set<ComplexObject?>>(any())).thenReturn('OK');
 
     expect(mock<bool>(false), 'OK');
     expect(mock<int>(42), 'OK');
