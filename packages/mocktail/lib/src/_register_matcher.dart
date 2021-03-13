@@ -63,8 +63,8 @@ void main() {
 }
 
 /// Allows [any] and [captureAny] to be used on parameters of type [T].
-/// 
-/// If [matchExactType] is set to true the fallback is only used for parameters 
+///
+/// If [matchExactType] is set to true the fallback is only used for parameters
 /// of exact type [T]. Otherwise it is used wherever possible.
 /// Fallbacks registered with [matchExactType] set to true always take
 /// precedence. Then, the first possible value registered with [matchExactType]
