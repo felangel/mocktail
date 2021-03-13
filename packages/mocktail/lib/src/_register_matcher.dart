@@ -70,7 +70,7 @@ void main() {
 /// precedence. Then, the first possible value registered with [matchExactType]
 /// set to false is used.
 ///
-///  It is necessary for tests to call  [registerFallbackValue] before using
+/// It is necessary for tests to call  [registerFallbackValue] before using
 /// [any]/[captureAny] because otherwise it would not be possible to assign
 /// [any]/[captureAny] as value to a non-nullable parameter.
 ///
