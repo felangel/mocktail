@@ -147,13 +147,82 @@ void main() {
     );
   });
 
-  test('calling registerFallbackValue allows matchers to work with this type',
-      () {
-    registerFallbackValue<ManuallyRegisteredObject>(ManuallyRegisteredObject());
+  group('registerFallbackValue with matchExactType set to false', () {
+    test('allows matchers to work with this type', () {
+      registerFallbackValue<ManuallyRegisteredObject>(
+        ManuallyRegisteredObject(),
+      );
 
-    when(() => mock<ManuallyRegisteredObject>(any())).thenReturn('OK');
+      when(() => mock<ManuallyRegisteredObject>(any())).thenReturn('OK');
 
-    expect(mock<ManuallyRegisteredObject>(ManuallyRegisteredObject()), 'OK');
+      expect(mock<ManuallyRegisteredObject>(ManuallyRegisteredObject()), 'OK');
+    });
+
+    test('allows matchers to work with supertypes', () {
+      registerFallbackValue<ManuallyRegisteredSubclass>(
+        ManuallyRegisteredSubclass(),
+      );
+
+      when(() => mock<AllowedSuperclass>(any())).thenReturn('OK');
+
+      expect(mock<AllowedSuperclass>(AllowedSuperclass()), 'OK');
+    });
+  });
+
+  group('registerFallbackValue with matchExactType set to true', () {
+    test('allows matchers to work with this type', () {
+      registerFallbackValue<ExactlyRegisteredClass>(
+        ExactlyRegisteredClass(),
+        matchExactType: true,
+      );
+
+      when(() => mock<ExactlyRegisteredClass>(any())).thenReturn('OK');
+
+      expect(mock<ExactlyRegisteredClass>(ExactlyRegisteredClass()), 'OK');
+    });
+
+    test('does not allow matchers to work with supertypes', () {
+      registerFallbackValue<ManuallyRegisteredExactSubclass>(
+        ManuallyRegisteredExactSubclass(),
+        matchExactType: true,
+      );
+
+      expect(
+        () => when(() => mock<NotAllowedSuperclass>(any())).thenReturn('OK'),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            '''
+A test tried to use `any` or `captureAny` on a parameter of type `NotAllowedSuperclass`, but
+registerFallbackValue was not previously called to register a fallback value for `NotAllowedSuperclass`
+
+To fix, do:
+
+```
+void main() {
+  setUpAll(() {
+    registerFallbackValue<NotAllowedSuperclass>(NotAllowedSuperclass());
+  });
+}
+```
+
+If you cannot easily create an instance of NotAllowedSuperclass, consider defining a `Fake`:
+
+```
+class NotAllowedSuperclassFake extends Fake implements NotAllowedSuperclass {}
+
+void main() {
+  setUpAll(() {
+    registerFallbackValue<NotAllowedSuperclass>(NotAllowedSuperclassFake());
+  });
+}
+```
+''',
+          ),
+        ),
+      );
+    });
   });
 
   test('registered types are preserved accross reset', () {
@@ -174,5 +243,15 @@ class MyMock extends Mock {
 class ComplexObject {}
 
 class ManuallyRegisteredObject {}
+
+class AllowedSuperclass {}
+
+class ManuallyRegisteredSubclass extends AllowedSuperclass {}
+
+class NotAllowedSuperclass {}
+
+class ManuallyRegisteredExactSubclass extends NotAllowedSuperclass {}
+
+class ExactlyRegisteredClass {}
 
 class UnregisteredObject {}
