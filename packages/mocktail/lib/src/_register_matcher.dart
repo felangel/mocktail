@@ -20,19 +20,69 @@ Map<Type, Object?> _createInitialFallbackValues() {
   return result;
 }
 
+Never _fallbackCallback([
+  Object? a1,
+  Object? a2,
+  Object? a3,
+  Object? a4,
+  Object? a5,
+  Object? a6,
+  Object? a7,
+  Object? a8,
+  Object? a9,
+  Object? a10,
+  Object? a11,
+  Object? a12,
+  Object? a13,
+  Object? a14,
+  Object? a15,
+  Object? a16,
+  Object? a17,
+  Object? a18,
+  Object? a19,
+  Object? a20,
+]) {
+  throw UnsupportedError(
+    '''
+A test tried to call mockito\'s internal dummy callback.
+This dummy callback is only meant to be passed around, but never called.''',
+  );
+}
+
 List<Object?> _genericFallbackValues = [
   const <Never>[],
   const <Never, Never>{},
   const <Never>{},
+  _fallbackCallback,
 ];
 
 final _fallbackValues = _createInitialFallbackValues();
 
 T _getFallbackValue<T>() {
+  bool isFunction<T>() {
+    return T.toString().contains('=>');
+  }
+
   final value = _fallbackValues[T] ??
       _genericFallbackValues.firstWhereOrNull((element) => element is T);
   if (value is! T) {
-    throw StateError('''
+    if (isFunction<T>()) {
+      throw StateError('''
+A test tried to use `any` or `captureAny` on a parameter of type `$T`, but
+registerFallbackValue was not previously called to register a fallback value for `$T`
+
+To fix, do:
+
+```
+void main() {
+  setUpAll(() {
+    registerFallbackValue(([your callback's argument list]) => throw Error());
+  });
+}
+```
+''');
+    } else {
+      throw StateError('''
 A test tried to use `any` or `captureAny` on a parameter of type `$T`, but
 registerFallbackValue was not previously called to register a fallback value for `$T`
 
@@ -58,6 +108,7 @@ void main() {
 }
 ```
 ''');
+    }
   }
   return value;
 }

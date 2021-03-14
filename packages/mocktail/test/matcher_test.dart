@@ -55,6 +55,9 @@ void main() {
     when(() => mock<Set<dynamic>>(any())).thenReturn('OK');
     when(() => mock<Set<ComplexObject>>(any())).thenReturn('OK');
     when(() => mock<Set<ComplexObject?>>(any())).thenReturn('OK');
+    when(() => mock<VoidCallback>(any())).thenReturn('OK');
+    when(() => mock<ValueCallback>(any())).thenReturn('OK');
+    when(() => mock<ReturningCallback>(any())).thenReturn('OK');
 
     expect(mock<bool>(false), 'OK');
     expect(mock<int>(42), 'OK');
@@ -95,6 +98,29 @@ void main() {
     expect(mock<Set<bool>>({}), 'OK');
     expect(mock<Set<bool?>>({}), 'OK');
     expect(mock<Set<dynamic>>(<dynamic>{}), 'OK');
+    expect(mock<VoidCallback>(() {}), 'OK');
+    expect(mock<ValueCallback>((ComplexObject obj) {}), 'OK');
+    expect(
+      mock<ReturningCallback>((ComplexObject obj, int n, String bar) => obj),
+      'OK',
+    );
+  });
+
+  test('the pre-registered fallback callback throws when called', () {
+    when(
+      () => expect(
+        any<Function>(),
+        throwsA(
+          isA<UnsupportedError>().having(
+            (e) => e.message,
+            'message',
+            '''
+A test tried to call mockito\'s internal dummy callback.
+This dummy callback is only meant to be passed around, but never called.''',
+          ),
+        ),
+      ),
+    );
   });
 
   test(
@@ -105,6 +131,27 @@ void main() {
     expect(mock<ComplexObject?>(ComplexObject()), 'OK');
   });
 
+  test('when a function type is not registered, throws an error', () {
+    expect(
+      () => when(() => mock<UnregisteredCallback>(any())),
+      throwsA(
+        isA<StateError>().having((e) => e.message, 'message', '''
+A test tried to use `any` or `captureAny` on a parameter of type `({String foo, int n, ComplexObject obj}) => ComplexObject`, but
+registerFallbackValue was not previously called to register a fallback value for `({String foo, int n, ComplexObject obj}) => ComplexObject`
+
+To fix, do:
+
+```
+void main() {
+  setUpAll(() {
+    registerFallbackValue(([your callback's argument list]) => throw Error());
+  });
+}
+```
+'''),
+      ),
+    );
+  });
   test('when a type is not registered, throws an error', () {
     expect(
       () => when(() => mock<UnregisteredObject>(any())),
@@ -255,3 +302,19 @@ class ManuallyRegisteredExactSubclass extends NotAllowedSuperclass {}
 class ExactlyRegisteredClass {}
 
 class UnregisteredObject {}
+
+typedef VoidCallback = void Function();
+
+typedef ValueCallback = void Function(ComplexObject obj);
+
+typedef ReturningCallback = ComplexObject Function(
+  ComplexObject obj,
+  int n,
+  String foo,
+);
+
+typedef UnregisteredCallback = ComplexObject Function({
+  ComplexObject obj,
+  int n,
+  String foo,
+});
