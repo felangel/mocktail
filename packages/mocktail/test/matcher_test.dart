@@ -56,7 +56,7 @@ void main() {
     expect(mock<dynamic>(42), 'OK');
     expect(mock<Map<String, dynamic>>(<String, dynamic>{}), 'OK');
     expect(mock<Map<String, Object>>({}), 'OK');
-    expect(mock<Map<String, Object>>({}), 'OK');
+    expect(mock<Map<String, Object?>>({}), 'OK');
     expect(mock<Map<String?, dynamic>>(<String?, dynamic>{}), 'OK');
     expect(mock<Map<String?, Object>>({}), 'OK');
     expect(mock<Map<String?, Object?>>({}), 'OK');
