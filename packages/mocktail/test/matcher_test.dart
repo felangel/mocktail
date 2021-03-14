@@ -115,7 +115,7 @@ void main() {
             (e) => e.message,
             'message',
             '''
-A test tried to call mockito\'s internal dummy callback.
+A test tried to call mocktail\'s internal dummy callback.
 This dummy callback is only meant to be passed around, but never called.''',
           ),
         ),
