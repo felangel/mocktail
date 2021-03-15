@@ -6,6 +6,7 @@ Map<Type, Object?> _createInitialFallbackValues() {
   final result = <Type, Object?>{};
 
   void createValue<T>(T value) {
+    assert(!result.containsKey(T));
     result[T] = value;
   }
 
@@ -18,7 +19,7 @@ Map<Type, Object?> _createInitialFallbackValues() {
   createValue<dynamic>('42');
   createValue<Map<String, dynamic>>(const <String, dynamic>{});
   createValue<Map<String, Object>>(const <String, Object>{});
-  createValue<Map<String, Object>>(const <String, Object>{});
+  createValue<Map<String, Object?>>(const <String, Object?>{});
   createValue<Map<String?, dynamic>>(const <String, dynamic>{});
   createValue<Map<String?, Object>>(const <String, Object>{});
   createValue<Map<String?, Object?>>(const <String, Object>{});
