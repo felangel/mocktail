@@ -1,3 +1,8 @@
+# 0.1.1
+
+- fix: add missing fallback value ([#34](https://github.com/felangel/mocktail/pull/34))
+- docs: fix broken link in API documentation ([#33](https://github.com/felangel/mocktail/pull/33))
+
 # 0.1.0
 
 - feat: add `Mock.throwOnMissingStub()`
