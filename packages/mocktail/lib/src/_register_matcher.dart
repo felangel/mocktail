@@ -6,6 +6,7 @@ Map<Type, Object?> _createInitialFallbackValues() {
   final result = <Type, Object?>{};
 
   void createValue<T>(T value) {
+    assert(!result.containsKey(T));
     result[T] = value;
   }
 

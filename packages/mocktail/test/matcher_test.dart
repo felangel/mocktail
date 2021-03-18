@@ -16,7 +16,7 @@ void main() {
     when(() => mock<dynamic>(any<dynamic>())).thenReturn('OK');
     when(() => mock<Map<String, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String, Object>>(any())).thenReturn('OK');
-    when(() => mock<Map<String, Object>>(any())).thenReturn('OK');
+    when(() => mock<Map<String, Object?>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object?>>(any())).thenReturn('OK');
@@ -68,7 +68,7 @@ void main() {
     expect(mock<dynamic>(42), 'OK');
     expect(mock<Map<String, dynamic>>(<String, dynamic>{}), 'OK');
     expect(mock<Map<String, Object>>({}), 'OK');
-    expect(mock<Map<String, Object>>({}), 'OK');
+    expect(mock<Map<String, Object?>>({}), 'OK');
     expect(mock<Map<String?, dynamic>>(<String?, dynamic>{}), 'OK');
     expect(mock<Map<String?, Object>>({}), 'OK');
     expect(mock<Map<String?, Object?>>({}), 'OK');
