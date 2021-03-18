@@ -44,7 +44,7 @@ Never _fallbackCallback([
 ]) {
   throw UnsupportedError(
     '''
-A test tried to call mocktail\'s internal dummy callback.
+A test tried to call mocktail's internal dummy callback.
 This dummy callback is only meant to be passed around, but never called.''',
   );
 }
@@ -59,56 +59,42 @@ List<Object?> _genericFallbackValues = [
 final _fallbackValues = _createInitialFallbackValues();
 
 T _getFallbackValue<T>() {
-  bool isFunction<T>() {
-    return T.toString().contains('=>');
-  }
-
   final value = _fallbackValues[T] ??
       _genericFallbackValues.firstWhereOrNull((element) => element is T);
   if (value is! T) {
-    if (isFunction<T>()) {
-      throw StateError('''
+    throw StateError('''
 A test tried to use `any` or `captureAny` on a parameter of type `$T`, but
-registerFallbackValue was not previously called to register a fallback value for `$T`
+registerFallbackValue was not previously called to register a fallback value for `$T`.
 
 To fix, do:
 
 ```
 void main() {
   setUpAll(() {
-    registerFallbackValue(([your callback's argument list]) => throw Error());
-  });
-}
-```
-''');
-    } else {
-      throw StateError('''
-A test tried to use `any` or `captureAny` on a parameter of type `$T`, but
-registerFallbackValue was not previously called to register a fallback value for `$T`
-
-To fix, do:
-
-```
-void main() {
-  setUpAll(() {
-    registerFallbackValue<$T>($T());
+    registerFallbackValue(/* create a dummy instance of `$T` */);
   });
 }
 ```
 
-If you cannot easily create an instance of $T, consider defining a `Fake`:
+This instance of `$T` will only be passed around, but never be interacted with.
+Therefore, if `$T` is a function, it does not have to return a valid object and
+could throw unconditionally.
+If you cannot easily create an instance of `$T`, consider defining a `Fake`:
 
 ```
-class ${T}Fake extends Fake implements $T {}
+class MyTypeFake extends Fake implements MyType {}
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<$T>(${T}Fake());
+    registerFallbackValue(MyTypeFake());
   });
 }
 ```
+
+Fallbacks are required because mocktail has to know of a valid `$T` to prevent
+TypeErrors from being thrown in Dart's sound null safe mode, while still
+providing a convenient syntax.
 ''');
-    }
   }
   return value;
 }

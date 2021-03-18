@@ -115,7 +115,7 @@ void main() {
             (e) => e.message,
             'message',
             '''
-A test tried to call mocktail\'s internal dummy callback.
+A test tried to call mocktail's internal dummy callback.
 This dummy callback is only meant to be passed around, but never called.''',
           ),
         ),
@@ -131,56 +131,42 @@ This dummy callback is only meant to be passed around, but never called.''',
     expect(mock<ComplexObject?>(ComplexObject()), 'OK');
   });
 
-  test('when a function type is not registered, throws an error', () {
-    expect(
-      () => when(() => mock<UnregisteredCallback>(any())),
-      throwsA(
-        isA<StateError>().having((e) => e.message, 'message', '''
-A test tried to use `any` or `captureAny` on a parameter of type `({String foo, int n, ComplexObject obj}) => ComplexObject`, but
-registerFallbackValue was not previously called to register a fallback value for `({String foo, int n, ComplexObject obj}) => ComplexObject`
-
-To fix, do:
-
-```
-void main() {
-  setUpAll(() {
-    registerFallbackValue(([your callback's argument list]) => throw Error());
-  });
-}
-```
-'''),
-      ),
-    );
-  });
   test('when a type is not registered, throws an error', () {
     expect(
       () => when(() => mock<UnregisteredObject>(any())),
       throwsA(
         isA<StateError>().having((e) => e.message, 'message', '''
 A test tried to use `any` or `captureAny` on a parameter of type `UnregisteredObject`, but
-registerFallbackValue was not previously called to register a fallback value for `UnregisteredObject`
+registerFallbackValue was not previously called to register a fallback value for `UnregisteredObject`.
 
 To fix, do:
 
 ```
 void main() {
   setUpAll(() {
-    registerFallbackValue<UnregisteredObject>(UnregisteredObject());
+    registerFallbackValue(/* create a dummy instance of `UnregisteredObject` */);
   });
 }
 ```
 
-If you cannot easily create an instance of UnregisteredObject, consider defining a `Fake`:
+This instance of `UnregisteredObject` will only be passed around, but never be interacted with.
+Therefore, if `UnregisteredObject` is a function, it does not have to return a valid object and
+could throw unconditionally.
+If you cannot easily create an instance of `UnregisteredObject`, consider defining a `Fake`:
 
 ```
-class UnregisteredObjectFake extends Fake implements UnregisteredObject {}
+class MyTypeFake extends Fake implements MyType {}
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<UnregisteredObject>(UnregisteredObjectFake());
+    registerFallbackValue(MyTypeFake());
   });
 }
 ```
+
+Fallbacks are required because mocktail has to know of a valid `UnregisteredObject` to prevent
+TypeErrors from being thrown in Dart's sound null safe mode, while still
+providing a convenient syntax.
 '''),
       ),
     );
@@ -237,36 +223,39 @@ void main() {
       expect(
         () => when(() => mock<NotAllowedSuperclass>(any())).thenReturn('OK'),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            '''
+          isA<StateError>().having((e) => e.message, 'message', '''
 A test tried to use `any` or `captureAny` on a parameter of type `NotAllowedSuperclass`, but
-registerFallbackValue was not previously called to register a fallback value for `NotAllowedSuperclass`
+registerFallbackValue was not previously called to register a fallback value for `NotAllowedSuperclass`.
 
 To fix, do:
 
 ```
 void main() {
   setUpAll(() {
-    registerFallbackValue<NotAllowedSuperclass>(NotAllowedSuperclass());
+    registerFallbackValue(/* create a dummy instance of `NotAllowedSuperclass` */);
   });
 }
 ```
 
-If you cannot easily create an instance of NotAllowedSuperclass, consider defining a `Fake`:
+This instance of `NotAllowedSuperclass` will only be passed around, but never be interacted with.
+Therefore, if `NotAllowedSuperclass` is a function, it does not have to return a valid object and
+could throw unconditionally.
+If you cannot easily create an instance of `NotAllowedSuperclass`, consider defining a `Fake`:
 
 ```
-class NotAllowedSuperclassFake extends Fake implements NotAllowedSuperclass {}
+class MyTypeFake extends Fake implements MyType {}
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<NotAllowedSuperclass>(NotAllowedSuperclassFake());
+    registerFallbackValue(MyTypeFake());
   });
 }
 ```
-''',
-          ),
+
+Fallbacks are required because mocktail has to know of a valid `NotAllowedSuperclass` to prevent
+TypeErrors from being thrown in Dart's sound null safe mode, while still
+providing a convenient syntax.
+'''),
         ),
       );
     });
