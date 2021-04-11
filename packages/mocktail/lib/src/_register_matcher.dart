@@ -2,25 +2,6 @@ part of 'mocktail.dart';
 
 Type _typeof<T>() => T;
 
-Map<Type, Object?> _createInitialFallbackValues() {
-  final result = <Type, Object?>{};
-
-  void createValue<T>(T value) {
-    assert(!result.containsKey(T));
-    result[T] = value;
-  }
-
-  createValue<bool>(false);
-  createValue<int>(42);
-  createValue<double>(42);
-  createValue<num>(42);
-  createValue<String>('42');
-  createValue<Object>('42');
-  createValue<dynamic>('42');
-
-  return result;
-}
-
 Never _fallbackCallback([
   Object? a1,
   Object? a2,
@@ -50,18 +31,19 @@ This dummy callback is only meant to be passed around, but never called.''',
   );
 }
 
-List<Object?> _genericFallbackValues = [
+List<Object?> _fallbackValues = [
+  false,
+  42,
+  42.0,
+  '42',
   const <Never>[],
   const <Never, Never>{},
   const <Never>{},
   _fallbackCallback,
 ];
 
-final _fallbackValues = _createInitialFallbackValues();
-
 T _getFallbackValue<T>() {
-  final value = _fallbackValues[T] ??
-      _genericFallbackValues.firstWhereOrNull((element) => element is T);
+  final value = _fallbackValues.firstWhereOrNull((element) => element is T);
   if (value is! T) {
     throw StateError('''
 A test tried to use `any` or `captureAny` on a parameter of type `$T`, but
@@ -102,13 +84,7 @@ providing a convenient syntax.
 
 /// Allows [any] and [captureAny] to be used on parameters of type [T].
 ///
-/// If [matchExactType] is set to true the fallback is only used for parameters
-/// of exact type [T]. Otherwise it is used wherever possible.
-/// Fallbacks registered with [matchExactType] set to true always take
-/// precedence. Then, the first possible value registered with [matchExactType]
-/// set to false is used.
-///
-/// It is necessary for tests to call  [registerFallbackValue] before using
+/// It is necessary for tests to call [registerFallbackValue] before using
 /// [any]/[captureAny] because otherwise it would not be possible to assign
 /// [any]/[captureAny] as value to a non-nullable parameter.
 ///
@@ -120,12 +96,8 @@ providing a convenient syntax.
 ///
 /// It is a good practice to create a function shared between all tests that
 /// calls [registerFallbackValue] with various types used in the project.
-void registerFallbackValue<T>(T value, {bool matchExactType = false}) {
-  if (matchExactType) {
-    _fallbackValues[T] = value;
-  } else {
-    _genericFallbackValues.add(value);
-  }
+void registerFallbackValue<T>(T value) {
+  _fallbackValues.add(value);
 }
 
 /// An argument matcher that matches any argument passed in.

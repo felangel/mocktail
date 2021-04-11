@@ -202,65 +202,6 @@ providing a convenient syntax.
     });
   });
 
-  group('registerFallbackValue with matchExactType set to true', () {
-    test('allows matchers to work with this type', () {
-      registerFallbackValue<ExactlyRegisteredClass>(
-        ExactlyRegisteredClass(),
-        matchExactType: true,
-      );
-
-      when(() => mock<ExactlyRegisteredClass>(any())).thenReturn('OK');
-
-      expect(mock<ExactlyRegisteredClass>(ExactlyRegisteredClass()), 'OK');
-    });
-
-    test('does not allow matchers to work with supertypes', () {
-      registerFallbackValue<ManuallyRegisteredExactSubclass>(
-        ManuallyRegisteredExactSubclass(),
-        matchExactType: true,
-      );
-
-      expect(
-        () => when(() => mock<NotAllowedSuperclass>(any())).thenReturn('OK'),
-        throwsA(
-          isA<StateError>().having((e) => e.message, 'message', '''
-A test tried to use `any` or `captureAny` on a parameter of type `NotAllowedSuperclass`, but
-registerFallbackValue was not previously called to register a fallback value for `NotAllowedSuperclass`.
-
-To fix, do:
-
-```
-void main() {
-  setUpAll(() {
-    registerFallbackValue(/* create a dummy instance of `NotAllowedSuperclass` */);
-  });
-}
-```
-
-This instance of `NotAllowedSuperclass` will only be passed around, but never be interacted with.
-Therefore, if `NotAllowedSuperclass` is a function, it does not have to return a valid object and
-could throw unconditionally.
-If you cannot easily create an instance of `NotAllowedSuperclass`, consider defining a `Fake`:
-
-```
-class MyTypeFake extends Fake implements MyType {}
-
-void main() {
-  setUpAll(() {
-    registerFallbackValue(MyTypeFake());
-  });
-}
-```
-
-Fallbacks are required because mocktail has to know of a valid `NotAllowedSuperclass` to prevent
-TypeErrors from being thrown in Dart's sound null safe mode, while still
-providing a convenient syntax.
-'''),
-        ),
-      );
-    });
-  });
-
   test('registered types are preserved accross reset', () {
     registerFallbackValue<ManuallyRegisteredObject>(ManuallyRegisteredObject());
 
