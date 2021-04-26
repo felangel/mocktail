@@ -1,3 +1,8 @@
+# 0.1.2
+
+- feat: improve generic fallback support
+- feat: improve error message for missing `registerFallbackValue`
+
 # 0.1.1
 
 - fix: add missing fallback value ([#34](https://github.com/felangel/mocktail/pull/34))
