@@ -20,6 +20,11 @@ void main() {
     when(() => mock<Map<String?, dynamic>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object>>(any())).thenReturn('OK');
     when(() => mock<Map<String?, Object?>>(any())).thenReturn('OK');
+    when(() => mock<Map<ComplexObject, ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<Map<ComplexObject, ComplexObject?>>(any()))
+        .thenReturn('OK');
+    when(() => mock<Map<ComplexObject?, ComplexObject?>>(any()))
+        .thenReturn('OK');
     when(() => mock<List<int>>(any())).thenReturn('OK');
     when(() => mock<List<int?>>(any())).thenReturn('OK');
     when(() => mock<List<double>>(any())).thenReturn('OK');
@@ -33,6 +38,8 @@ void main() {
     when(() => mock<List<bool>>(any())).thenReturn('OK');
     when(() => mock<List<bool?>>(any())).thenReturn('OK');
     when(() => mock<List<dynamic>>(any())).thenReturn('OK');
+    when(() => mock<List<ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<List<ComplexObject?>>(any())).thenReturn('OK');
     when(() => mock<Set<int>>(any())).thenReturn('OK');
     when(() => mock<Set<int?>>(any())).thenReturn('OK');
     when(() => mock<Set<double>>(any())).thenReturn('OK');
@@ -46,6 +53,11 @@ void main() {
     when(() => mock<Set<bool>>(any())).thenReturn('OK');
     when(() => mock<Set<bool?>>(any())).thenReturn('OK');
     when(() => mock<Set<dynamic>>(any())).thenReturn('OK');
+    when(() => mock<Set<ComplexObject>>(any())).thenReturn('OK');
+    when(() => mock<Set<ComplexObject?>>(any())).thenReturn('OK');
+    when(() => mock<VoidCallback>(any())).thenReturn('OK');
+    when(() => mock<ValueCallback>(any())).thenReturn('OK');
+    when(() => mock<ReturningCallback>(any())).thenReturn('OK');
 
     expect(mock<bool>(false), 'OK');
     expect(mock<int>(42), 'OK');
@@ -86,6 +98,29 @@ void main() {
     expect(mock<Set<bool>>({}), 'OK');
     expect(mock<Set<bool?>>({}), 'OK');
     expect(mock<Set<dynamic>>(<dynamic>{}), 'OK');
+    expect(mock<VoidCallback>(() {}), 'OK');
+    expect(mock<ValueCallback>((ComplexObject obj) {}), 'OK');
+    expect(
+      mock<ReturningCallback>((ComplexObject obj, int n, String bar) => obj),
+      'OK',
+    );
+  });
+
+  test('the pre-registered fallback callback throws when called', () {
+    when(
+      () => expect(
+        any<Function>(),
+        throwsA(
+          isA<UnsupportedError>().having(
+            (e) => e.message,
+            'message',
+            '''
+A test tried to call mocktail's internal dummy callback.
+This dummy callback is only meant to be passed around, but never called.''',
+          ),
+        ),
+      ),
+    );
   });
 
   test(
@@ -102,29 +137,36 @@ void main() {
       throwsA(
         isA<StateError>().having((e) => e.message, 'message', '''
 A test tried to use `any` or `captureAny` on a parameter of type `UnregisteredObject`, but
-registerFallbackValue was not previously called to register a fallback value for `UnregisteredObject`
+registerFallbackValue was not previously called to register a fallback value for `UnregisteredObject`.
 
 To fix, do:
 
 ```
 void main() {
   setUpAll(() {
-    registerFallbackValue<UnregisteredObject>(UnregisteredObject());
+    registerFallbackValue(/* create a dummy instance of `UnregisteredObject` */);
   });
 }
 ```
 
-If you cannot easily create an instance of UnregisteredObject, consider defining a `Fake`:
+This instance of `UnregisteredObject` will only be passed around, but never be interacted with.
+Therefore, if `UnregisteredObject` is a function, it does not have to return a valid object and
+could throw unconditionally.
+If you cannot easily create an instance of `UnregisteredObject`, consider defining a `Fake`:
 
 ```
-class UnregisteredObjectFake extends Fake implements UnregisteredObject {}
+class MyTypeFake extends Fake implements MyType {}
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<UnregisteredObject>(UnregisteredObjectFake());
+    registerFallbackValue(MyTypeFake());
   });
 }
 ```
+
+Fallbacks are required because mocktail has to know of a valid `UnregisteredObject` to prevent
+TypeErrors from being thrown in Dart's sound null safe mode, while still
+providing a convenient syntax.
 '''),
       ),
     );
@@ -138,13 +180,26 @@ void main() {
     );
   });
 
-  test('calling registerFallbackValue allows matchers to work with this type',
-      () {
-    registerFallbackValue<ManuallyRegisteredObject>(ManuallyRegisteredObject());
+  group('registerFallbackValue with matchExactType set to false', () {
+    test('allows matchers to work with this type', () {
+      registerFallbackValue<ManuallyRegisteredObject>(
+        ManuallyRegisteredObject(),
+      );
 
-    when(() => mock<ManuallyRegisteredObject>(any())).thenReturn('OK');
+      when(() => mock<ManuallyRegisteredObject>(any())).thenReturn('OK');
 
-    expect(mock<ManuallyRegisteredObject>(ManuallyRegisteredObject()), 'OK');
+      expect(mock<ManuallyRegisteredObject>(ManuallyRegisteredObject()), 'OK');
+    });
+
+    test('allows matchers to work with supertypes', () {
+      registerFallbackValue<ManuallyRegisteredSubclass>(
+        ManuallyRegisteredSubclass(),
+      );
+
+      when(() => mock<AllowedSuperclass>(any())).thenReturn('OK');
+
+      expect(mock<AllowedSuperclass>(AllowedSuperclass()), 'OK');
+    });
   });
 
   test('registered types are preserved accross reset', () {
@@ -166,4 +221,30 @@ class ComplexObject {}
 
 class ManuallyRegisteredObject {}
 
+class AllowedSuperclass {}
+
+class ManuallyRegisteredSubclass extends AllowedSuperclass {}
+
+class NotAllowedSuperclass {}
+
+class ManuallyRegisteredExactSubclass extends NotAllowedSuperclass {}
+
+class ExactlyRegisteredClass {}
+
 class UnregisteredObject {}
+
+typedef VoidCallback = void Function();
+
+typedef ValueCallback = void Function(ComplexObject obj);
+
+typedef ReturningCallback = ComplexObject Function(
+  ComplexObject obj,
+  int n,
+  String foo,
+);
+
+typedef UnregisteredCallback = ComplexObject Function({
+  ComplexObject obj,
+  int n,
+  String foo,
+});
