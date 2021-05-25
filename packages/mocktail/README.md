@@ -114,3 +114,35 @@ expect(captured.last, equals(['dog food']));
 ```dart
 reset(cat); // Reset stubs and interactions
 ```
+
+## How it works
+
+Mocktail uses closures to handle catching `TypeError` instances which would otherwise propagate and cause test failures when non-nullable return types are stubbed/verified.
+
+In order to support argument matchers such as `any` and `captureAny` mocktail has to register default fallback values to return when the argument matchers are used. Out of the box, it automatically handles all primitive types, however, when using argument matchers in place of custom types developers must use `registerFallbackValue` to provide a default return value. It is only required to call `registerFallbackValue` once per type so it is recommended to place all `registerFallbackValue` calls within `setUpAll`.
+
+```dart
+class Food {...}
+
+class Cat {
+  bool likes(Food food) {...}
+}
+
+...
+
+class MockCat extends Mock implements Cat {}
+
+class FakeFood extends Fake implements Food {}
+
+void main() {
+  setUpAll(() {
+    registerFallbackValue(FakeFood());
+  });
+
+  test('...', () {
+    final cat = MockCat();
+    when(() => cat.likes(any()).thenReturn(true);
+    ...
+  });
+}
+```
