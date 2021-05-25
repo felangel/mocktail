@@ -8,6 +8,7 @@ import 'package:test/test.dart';
 class Foo {
   int get intValue => 0;
   Map<String, String> get mapValue => {'foo': 'bar'};
+  Future<void> futureVoidFunction() => Future.value();
   Future<int> asyncValue() => Future.value(1);
   Future<int> asyncValueWithPositionalArg(int x) => Future.value(x);
   Future<int> asyncValueWithPositionalArgs(int x, int y) => Future.value(x + y);
@@ -341,6 +342,11 @@ void main() {
       when(() => foo.voidFunction()).thenReturn(null);
       expect(() => foo.voidFunction(), returnsNormally);
       verify(() => foo.voidFunction()).called(1);
+    });
+
+    test('when voidFunction answers with void', () {
+      when(() => foo.futureVoidFunction()).thenAnswerWithVoid();
+      expect(() => foo.voidFunction(), returnsNormally);
     });
 
     test('when voidWithPositionalAndOptionalNamedArg (default)', () {

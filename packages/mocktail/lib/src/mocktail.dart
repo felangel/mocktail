@@ -6,10 +6,15 @@ import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 part '_arg_matcher.dart';
+
 part '_invocation_matcher.dart';
+
 part '_is_invocation.dart';
+
 part '_real_call.dart';
+
 part '_register_matcher.dart';
+
 part '_time_stamp_provider.dart';
 
 _WhenCall? _whenCall;
@@ -268,6 +273,13 @@ class When<T> {
     _whenCall = null;
     _whenInProgress = false;
   }
+}
+
+/// Extension to enable [thenAnswerWithVoid] method
+extension VoidAnswer on When<Future<void>> {
+  /// Resolves the method without any return or exceptions.
+  void thenAnswerWithVoid() =>
+      _completeWhen((invocation) => Future<void>.value());
 }
 
 class _WhenCall {
