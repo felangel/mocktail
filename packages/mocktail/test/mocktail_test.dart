@@ -8,6 +8,7 @@ import 'package:test/test.dart';
 class Foo {
   int get intValue => 0;
   Map<String, String> get mapValue => {'foo': 'bar'};
+  Future<void> asyncVoid() => Future.value();
   Future<int> asyncValue() => Future.value(1);
   Future<int> asyncValueWithPositionalArg(int x) => Future.value(x);
   Future<int> asyncValueWithPositionalArgs(int x, int y) => Future.value(x + y);
@@ -117,6 +118,12 @@ void main() {
     test('when asyncValue', () async {
       when(() => foo.asyncValue()).thenAnswer((_) async => 10);
       expect(await foo.asyncValue(), equals(10));
+    });
+
+    test('when asyncVoid (explicit)', () async {
+      when(() => foo.asyncVoid()).thenAnswer((_) async {});
+      await expectLater(foo.asyncVoid(), completes);
+      verify(() => foo.asyncVoid()).called(1);
     });
 
     test('when asyncValueWithPositionalArg (any)', () async {
@@ -335,6 +342,11 @@ void main() {
         emitsInOrder(<Matcher>[equals(42), emitsDone]),
       );
       verify(() => foo.streamValue).called(1);
+    });
+
+    test('when voidFunction (implicit)', () {
+      expect(() => foo.voidFunction(), returnsNormally);
+      verify(() => foo.voidFunction()).called(1);
     });
 
     test('when voidFunction (explicit)', () {

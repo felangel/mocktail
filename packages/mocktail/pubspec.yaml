@@ -1,11 +1,11 @@
 name: mocktail
-description: A Dart mocking library which simplifies mocking with null safety support and no manual mocks or code generation.
-version: 0.1.2
+description: A Dart mock library which simplifies mocking with null safety support and no manual mocks or code generation.
+version: 0.1.3
 repository: https://github.com/felangel/mocktail
 homepage: https://github.com/felangel/mocktail/tree/main/packages/mocktail
 
 environment:
-  sdk: ">=2.12-0-0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   collection: ^1.15.0

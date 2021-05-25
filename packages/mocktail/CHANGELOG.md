@@ -1,3 +1,8 @@
+# 0.1.3
+
+- docs: improve documentation regarding `registerFallbackValue` and how the library works
+- tests: add additional tests for asyncVoid stubbing and verification
+
 # 0.1.2
 
 - feat: improve generic fallback support
