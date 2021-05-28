@@ -39,6 +39,7 @@ List<Object?> _fallbackValues = [
   const <Never>[],
   const <Never, Never>{},
   const <Never>{},
+  DateTime(42),
   _fallbackCallback,
 ];
 
