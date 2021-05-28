@@ -1,3 +1,7 @@
+# 0.1.4
+
+- fix: add built-in fallback for `DateTime`
+
 # 0.1.3
 
 - docs: improve documentation regarding `registerFallbackValue` and how the library works
