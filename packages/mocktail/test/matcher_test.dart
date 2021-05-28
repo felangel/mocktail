@@ -58,6 +58,7 @@ void main() {
     when(() => mock<VoidCallback>(any())).thenReturn('OK');
     when(() => mock<ValueCallback>(any())).thenReturn('OK');
     when(() => mock<ReturningCallback>(any())).thenReturn('OK');
+    when(() => mock<DateTime>(any())).thenReturn('OK');
 
     expect(mock<bool>(false), 'OK');
     expect(mock<int>(42), 'OK');
@@ -104,6 +105,7 @@ void main() {
       mock<ReturningCallback>((ComplexObject obj, int n, String bar) => obj),
       'OK',
     );
+    expect(mock<DateTime>(DateTime(2021)), 'OK');
   });
 
   test('the pre-registered fallback callback throws when called', () {
