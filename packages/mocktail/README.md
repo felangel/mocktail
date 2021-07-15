@@ -146,3 +146,25 @@ void main() {
   });
 }
 ```
+
+## FAQ
+
+#### Why am I getting an invalid_implementation_override error when trying to Fake certain classes like ThemeData and ColorScheme?
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/59)
+
+This is likely due to differences in the function signature of `toString` for the class and can be resolved
+using a mixin as demonstrated below:
+
+```dart
+mixin DiagnosticableToStringMixin on Object {
+  @override
+  String toString({DiagonsticLevel minLevel = DiagnosticLevel.info}) {
+    return super.toString();
+  }
+}
+
+class FakeThemeData extends Fake
+  with DiagnosticableToStringMixin
+  implements ThemeData {}
+```
