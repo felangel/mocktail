@@ -147,7 +147,7 @@ void main() {
 }
 ```
 
-## FAQ
+## Common Issues
 
 #### Why am I getting an invalid_implementation_override error when trying to Fake certain classes like ThemeData and ColorScheme?
 
@@ -168,3 +168,11 @@ class FakeThemeData extends Fake
   with DiagnosticableToStringMixin
   implements ThemeData {}
 ```
+
+#### Why can't I stub/verify extension methods?
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/58)
+
+Extension methods cannot be stubbed/verified as extension methods are treated like static methods meaning that calls go directly to the extension without caring about the instance. As a result, stubs and verify calls to extensions always result in an invocation of the real extension method.
+
+In summary, avoid exposing extension methods as part of the public interface for your classes and limit extension methods to internal class logic.
