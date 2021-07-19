@@ -169,10 +169,10 @@ class FakeThemeData extends Fake
   implements ThemeData {}
 ```
 
-#### Why can't I stub/verify extension methods?
+#### Why can't I stub/verify extension methods properly?
 
 [Relevant Issue](https://github.com/felangel/mocktail/issues/58)
 
-Extension methods cannot be stubbed/verified as extension methods are treated like static methods meaning that calls go directly to the extension without caring about the instance. As a result, stubs and verify calls to extensions always result in an invocation of the real extension method.
+Extension methods cannot be stubbed/verified as they are treated like static methods. This means that calls go directly to the extension method without caring about the instance. As a result, stubs and verify calls to extensions always result in an invocation of the real extension method.
 
-In summary, avoid exposing extension methods as part of the public interface for your classes and limit extension methods to internal class logic.
+We recommend avoiding exposing extension methods as part of the public interface for your classes; limit extension methods to internal logic only. 
