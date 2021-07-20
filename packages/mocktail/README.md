@@ -159,7 +159,7 @@ using a mixin as demonstrated below:
 ```dart
 mixin DiagnosticableToStringMixin on Object {
   @override
-  String toString({DiagonsticLevel minLevel = DiagnosticLevel.info}) {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return super.toString();
   }
 }
