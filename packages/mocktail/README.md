@@ -175,4 +175,4 @@ class FakeThemeData extends Fake
 
 Extension methods cannot be stubbed/verified as they are treated like static methods. This means that calls go directly to the extension method without caring about the instance. As a result, stubs and verify calls to extensions always result in an invocation of the real extension method.
 
-We recommend avoiding exposing extension methods as part of the public interface for your classes; limit extension methods to internal logic only. 
+Instead of stubbing/verifying extension methods directly, prefer to stub/verify public members on the instance with which the extension methods interact.
