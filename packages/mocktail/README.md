@@ -147,7 +147,7 @@ void main() {
 }
 ```
 
-## Common Issues
+## FAQs
 
 #### Why am I getting an invalid_implementation_override error when trying to Fake certain classes like ThemeData and ColorScheme?
 
