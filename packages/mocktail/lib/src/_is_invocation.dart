@@ -17,11 +17,14 @@ class _InvocationMatcher implements Matcher {
       }
       return d;
     }
-    // For a method, return <member>(<args>).
-    d = d
-        .add(_symbolToString(invocation.memberName))
-        .add('(')
-        .addAll('', ', ', '', invocation.positionalArguments);
+    // For a method, return <member><<typeergs>>(<args>).
+    d = d.add(_symbolToString(invocation.memberName));
+
+    if (invocation.typeArguments.isNotEmpty) {
+      d.add('<').addAll('', ', ', '', invocation.typeArguments).add('>');
+    }
+
+    d.add('(').addAll('', ', ', '', invocation.positionalArguments);
     if (invocation.positionalArguments.isNotEmpty &&
         invocation.namedArguments.isNotEmpty) {
       d = d.add(', ');
@@ -62,6 +65,8 @@ class _InvocationMatcher implements Matcher {
       _invocation.memberName == item.memberName &&
       _invocation.isSetter == item.isSetter &&
       _invocation.isGetter == item.isGetter &&
+      const ListEquality<dynamic>(_MatcherEquality())
+          .equals(_invocation.typeArguments, item.typeArguments) &&
       const ListEquality<dynamic>(_MatcherEquality())
           .equals(_invocation.positionalArguments, item.positionalArguments) &&
       const MapEquality<dynamic, dynamic>(values: _MatcherEquality())

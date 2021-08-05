@@ -12,6 +12,8 @@ class _RealClass {
   String? methodWithPositionalArgs(int? x, [int? y]) => 'Real';
   String? methodWithNamedArgs(int x, {int? y}) => 'Real';
   String? methodWithOnlyNamedArgs({int? y = 0, int? z}) => 'Real';
+  String? methodWithTypeArgs<T>(int? x) => 'Real';
+  String? methodWithDefaultTypeArg<T extends num>() => 'Real';
   String? get getter => 'Real';
   String get nsGetter => 'Real';
   set setter(String arg) {
@@ -90,6 +92,7 @@ void main() {
       verify(() => mock.methodWithPositionalArgs(42, 17));
     });
 
+
     test('should mock method with named args', () {
       mock.methodWithNamedArgs(42, y: 17);
       expectFail(
@@ -105,6 +108,30 @@ void main() {
         verify(() => mock.methodWithNamedArgs(42, y: 18));
       });
       verify(() => mock.methodWithNamedArgs(42, y: 17));
+    });
+
+
+    test('should verify method with type args', () {
+      mock.methodWithTypeArgs<List<double>>(42);
+      expectFail(
+          'No matching calls. All calls: '
+              '_MockedClass.methodWithTypeArgs<List<double>>(42)\n'
+              '$noMatchingCallsFooter', () {
+        verify(() => mock.methodWithTypeArgs<List<String>>(42));
+      });
+      verify(() => mock.methodWithTypeArgs<List<double>>(42));
+    });
+
+
+    test('should verify method with default type args', () {
+      mock.methodWithDefaultTypeArg();
+      expectFail(
+          'No matching calls. All calls: '
+              '_MockedClass.methodWithDefaultTypeArg<num>()\n'
+              '$noMatchingCallsFooter', () {
+        verify(() => mock.methodWithDefaultTypeArg<int>());
+      });
+      verify(() => mock.methodWithDefaultTypeArg());
     });
 
     test('should mock method with list args', () {

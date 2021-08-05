@@ -52,6 +52,25 @@ void main() {
       );
     });
 
+    test('type arguments', () {
+      stub.promotesTheUprisingOfTheWorkingClass<int>();
+      var call1 = Stub.lastInvocation;
+      stub.promotesTheUprisingOfTheWorkingClass<int>();
+      var call2 = Stub.lastInvocation;
+      stub.promotesTheUprisingOfTheWorkingClass();
+      var call3 = Stub.lastInvocation;
+      shouldPass(call1, isInvocation(call2));
+
+      shouldFail(
+        call1,
+        isInvocation(call3),
+        'Expected: promotesTheUprisingOfTheWorkingClass<Type:<num>>() '
+        "Actual: <Instance of '${call3.runtimeType}'> "
+        'Which: Does not match promotesTheUprisingOfTheWorkingClass'
+            '<Type:<int>>()',
+      );
+    });
+
     test('optional arguments', () {
       stub.lie(true);
       var call1 = Stub.lastInvocation;
@@ -123,11 +142,19 @@ void main() {
 
 abstract class Interface {
   bool? get value;
+
   set value(bool? value);
+
   void say(String text);
+
   void eat(String food, {bool? alsoDrink});
+
   void lie([bool? facingDown]);
+
   void fly({int? miles});
+
+  void promotesTheUprisingOfTheWorkingClass<A extends num>();
+
   bool? property;
 }
 
@@ -138,6 +165,7 @@ class MockDescription extends Mock implements Description {}
 /// Any call always returns an [Invocation].
 class Stub implements Interface {
   const Stub();
+
   static late Invocation lastInvocation;
 
   @override
