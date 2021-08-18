@@ -295,9 +295,9 @@ void main() {
 
       test('waits for method with default type args', () async {
         streamController.add(CallMethodsEvent());
-        verifyNever(() =>  mock.methodWithDefaultTypeArg());
+        verifyNever(() => mock.methodWithDefaultTypeArg());
 
-        await untilCalled(() =>  mock.methodWithDefaultTypeArg());
+        await untilCalled(() => mock.methodWithDefaultTypeArg());
 
         verify(() => mock.methodWithDefaultTypeArg()).called(1);
       });

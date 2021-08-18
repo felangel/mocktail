@@ -92,7 +92,6 @@ void main() {
       verify(() => mock.methodWithPositionalArgs(42, 17));
     });
 
-
     test('should mock method with named args', () {
       mock.methodWithNamedArgs(42, y: 17);
       expectFail(
@@ -110,25 +109,23 @@ void main() {
       verify(() => mock.methodWithNamedArgs(42, y: 17));
     });
 
-
     test('should verify method with type args', () {
       mock.methodWithTypeArgs<List<double>>(42);
       expectFail(
           'No matching calls. All calls: '
-              '_MockedClass.methodWithTypeArgs<List<double>>(42)\n'
-              '$noMatchingCallsFooter', () {
+          '_MockedClass.methodWithTypeArgs<List<double>>(42)\n'
+          '$noMatchingCallsFooter', () {
         verify(() => mock.methodWithTypeArgs<List<String>>(42));
       });
       verify(() => mock.methodWithTypeArgs<List<double>>(42));
     });
 
-
     test('should verify method with default type args', () {
       mock.methodWithDefaultTypeArg();
       expectFail(
           'No matching calls. All calls: '
-              '_MockedClass.methodWithDefaultTypeArg<num>()\n'
-              '$noMatchingCallsFooter', () {
+          '_MockedClass.methodWithDefaultTypeArg<num>()\n'
+          '$noMatchingCallsFooter', () {
         verify(() => mock.methodWithDefaultTypeArg<int>());
       });
       verify(() => mock.methodWithDefaultTypeArg());

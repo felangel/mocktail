@@ -67,7 +67,7 @@ void main() {
         'Expected: promotesTheUprisingOfTheWorkingClass<Type:<num>>() '
         "Actual: <Instance of '${call3.runtimeType}'> "
         'Which: Does not match promotesTheUprisingOfTheWorkingClass'
-            '<Type:<int>>()',
+        '<Type:<int>>()',
       );
     });
 

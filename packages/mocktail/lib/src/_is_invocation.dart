@@ -17,7 +17,7 @@ class _InvocationMatcher implements Matcher {
       }
       return d;
     }
-    // For a method, return <member><<typeergs>>(<args>).
+    // For a method, return <member><<typeArgs>>(<args>).
     d = d.add(_symbolToString(invocation.memberName));
 
     if (invocation.typeArguments.isNotEmpty) {
