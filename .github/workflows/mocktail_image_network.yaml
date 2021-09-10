@@ -16,23 +16,30 @@ jobs:
     defaults:
       run:
         working-directory: packages/mocktail_image_network
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.4.0
-        with:
-          channel: beta
+
+      - uses: subosito/flutter-action@v1.5.3
+
       - name: Install Dependencies
         run: flutter packages get
+
       - name: Format
         run: flutter format --set-exit-if-changed lib test example
+
       - name: Analyze
         run: flutter analyze lib test example
+
       - name: Run tests
         run: flutter test --no-pub --coverage --test-randomize-ordering-seed random
+
       - name: Run example tests
         working-directory: packages/mocktail_image_network/example
         run: flutter test --test-randomize-ordering-seed random
+
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
