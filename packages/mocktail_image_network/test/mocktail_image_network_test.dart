@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:test/test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('mockNetworkImageFor', () {
