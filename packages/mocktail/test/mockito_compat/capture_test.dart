@@ -69,7 +69,9 @@ void main() {
     });
 
     test('should capture with matching arguments', () {
-      mock..methodWithPositionalArgs(1)..methodWithPositionalArgs(2, 3);
+      mock
+        ..methodWithPositionalArgs(1)
+        ..methodWithPositionalArgs(2, 3);
       expect(
         verify(() => mock.methodWithPositionalArgs(captureAny(), captureAny()))
             .captured,
@@ -78,7 +80,9 @@ void main() {
     });
 
     test('should capture multiple invocations', () {
-      mock..methodWithNormalArgs(1)..methodWithNormalArgs(2);
+      mock
+        ..methodWithNormalArgs(1)
+        ..methodWithNormalArgs(2);
       expect(
         verify(() => mock.methodWithNormalArgs(captureAny())).captured,
         equals([1, 2]),
