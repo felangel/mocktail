@@ -247,7 +247,9 @@ void main() {
       // At this point, verification was interrupted, so
       // `_verificationInProgress` is still `true`. Calling mock methods below
       // adds items to `_verifyCalls`.
-      mock..methodWithNamedArgs(42, y: 17)..methodWithNamedArgs(42, y: 17);
+      mock
+        ..methodWithNamedArgs(42, y: 17)
+        ..methodWithNamedArgs(42, y: 17);
       try {
         verify(() => mock.methodWithNamedArgs(42, y: 17));
         fail('verify call was expected to throw!');
@@ -295,7 +297,9 @@ void main() {
     });
 
     test('and there are multiple unmatched calls', () {
-      mock..methodWithNormalArgs(41)..methodWithNormalArgs(42);
+      mock
+        ..methodWithNormalArgs(41)
+        ..methodWithNormalArgs(42);
       expectFail(
           'No matching calls. All calls: '
           '_MockedClass.methodWithNormalArgs(41), '
@@ -332,7 +336,9 @@ void main() {
       });
 
       test('more than one passes', () {
-        mock..methodWithoutArgs()..methodWithoutArgs();
+        mock
+          ..methodWithoutArgs()
+          ..methodWithoutArgs();
         verify(() => mock.methodWithoutArgs());
       });
     });
@@ -352,7 +358,9 @@ void main() {
       });
 
       test('more than one actual call fails', () {
-        mock..methodWithoutArgs()..methodWithoutArgs();
+        mock
+          ..methodWithoutArgs()
+          ..methodWithoutArgs();
         expectFail('Expected: <1>\n  Actual: <2>\nUnexpected number of calls\n',
             () {
           verify(() => mock.methodWithoutArgs()).called(1);
@@ -381,7 +389,10 @@ void main() {
       });
 
       test('three actual calls passes', () {
-        mock..methodWithoutArgs()..methodWithoutArgs()..methodWithoutArgs();
+        mock
+          ..methodWithoutArgs()
+          ..methodWithoutArgs()
+          ..methodWithoutArgs();
         verify(() => mock.methodWithoutArgs()).called(greaterThan(2));
       });
     });

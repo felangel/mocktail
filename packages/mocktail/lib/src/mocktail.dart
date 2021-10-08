@@ -423,7 +423,7 @@ List<VerificationResult> Function<T>(
         final allInvocations = mocks
             .expand((m) => m._realCalls)
             .toList(growable: false)
-              ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp));
+          ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp));
         var otherCalls = '';
         if (allInvocations.isNotEmpty) {
           otherCalls = " All calls: ${allInvocations.join(", ")}";

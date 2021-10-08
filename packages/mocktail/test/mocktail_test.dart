@@ -509,10 +509,15 @@ void main() {
 
       verify(() => baz.add(arg1)).called(1);
 
-      baz..add(arg1)..add(arg1);
+      baz
+        ..add(arg1)
+        ..add(arg1);
       verify(() => baz.add(arg1)).called(2);
 
-      baz..add(arg1)..add(arg1)..add(arg1);
+      baz
+        ..add(arg1)
+        ..add(arg1)
+        ..add(arg1);
       verify(() => baz.add(arg1)).called(3);
     });
   });

@@ -176,3 +176,40 @@ class FakeThemeData extends Fake
 Extension methods cannot be stubbed/verified as they are treated like static methods. This means that calls go directly to the extension method without caring about the instance. As a result, stubs and verify calls to extensions always result in an invocation of the real extension method.
 
 Instead of stubbing/verifying extension methods directly, prefer to stub/verify public members on the instance with which the extension methods interact.
+
+#### type 'Null' is not a subtype of type 'Future<void>'
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/78)
+
+By default when a class extends `Mock` any unstubbed methods return `null`.
+
+For example, take the following class:
+
+```dart
+class Person {
+  Future<void> sleep() {
+    await Future<void>.delayed(Duration(hours: 8));
+  }
+}
+```
+
+We can create a `MockPerson` like:
+
+```dart
+class MockPerson extends Mock implements Person {}
+```
+
+If we have code that invokes `sleep` on `MockPerson` we will get a `TypeError`:
+
+```sh
+type 'Null' is not a subtype of type 'Future<void>'
+```
+
+This is because we did not stub `sleep` so when `sleep` is called on an instance of `MockPerson`, `mocktail` returns `null` which is not compatible with `Future<void>`.
+
+To address this, we must explicitly stub `sleep` like:
+
+```dart
+final person = MockPerson();
+when(person.sleep).thenAnswer((_) async {});
+```
