@@ -184,9 +184,7 @@ providing a convenient syntax.
 
   group('registerFallbackValue with matchExactType set to false', () {
     test('allows matchers to work with this type', () {
-      registerFallbackValue<ManuallyRegisteredObject>(
-        ManuallyRegisteredObject(),
-      );
+      registerFallbackValue(ManuallyRegisteredObject());
 
       when(() => mock<ManuallyRegisteredObject>(any())).thenReturn('OK');
 
@@ -194,9 +192,7 @@ providing a convenient syntax.
     });
 
     test('allows matchers to work with supertypes', () {
-      registerFallbackValue<ManuallyRegisteredSubclass>(
-        ManuallyRegisteredSubclass(),
-      );
+      registerFallbackValue(ManuallyRegisteredSubclass());
 
       when(() => mock<AllowedSuperclass>(any())).thenReturn('OK');
 
@@ -205,7 +201,7 @@ providing a convenient syntax.
   });
 
   test('registered types are preserved accross reset', () {
-    registerFallbackValue<ManuallyRegisteredObject>(ManuallyRegisteredObject());
+    registerFallbackValue(ManuallyRegisteredObject());
 
     resetMocktailState();
 

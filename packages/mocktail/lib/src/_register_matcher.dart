@@ -83,7 +83,7 @@ providing a convenient syntax.
   return value;
 }
 
-/// Allows [any] and [captureAny] to be used on parameters of type [T].
+/// Allows [any] and [captureAny] to be used on parameters of type [value].
 ///
 /// It is necessary for tests to call [registerFallbackValue] before using
 /// [any]/[captureAny] because otherwise it would not be possible to assign
@@ -97,9 +97,7 @@ providing a convenient syntax.
 ///
 /// It is a good practice to create a function shared between all tests that
 /// calls [registerFallbackValue] with various types used in the project.
-void registerFallbackValue<T>(T value) {
-  _fallbackValues.add(value);
-}
+void registerFallbackValue(dynamic value) => _fallbackValues.add(value);
 
 /// An argument matcher that matches any argument passed in.
 T any<T>({String? named, Matcher? that}) {

@@ -59,7 +59,7 @@ void main() {
   late _MockedClass mock;
 
   setUpAll(() {
-    registerFallbackValue<_RealClass>(_RealClass());
+    registerFallbackValue(_RealClass());
   });
 
   setUp(() {
