@@ -45,6 +45,10 @@ jobs:
           path: packages/mocktail/coverage/lcov.info
 
   pana:
+    defaults:
+      run:
+        working-directory: packages/mocktail
+        
     runs-on: ubuntu-latest
 
     steps:
