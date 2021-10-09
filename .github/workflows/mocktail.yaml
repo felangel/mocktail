@@ -40,7 +40,7 @@ jobs:
           test_coverage
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           path: packages/mocktail/coverage/lcov.info
 
