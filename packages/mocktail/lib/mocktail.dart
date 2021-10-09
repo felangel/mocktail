@@ -1,3 +1,5 @@
+/// A Dart mock library which simplifies mocking
+/// with null safety support and no manual mocks or code generation.
 library mocktail;
 
 export 'package:test/fake.dart' show Fake;
