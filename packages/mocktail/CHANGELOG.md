@@ -1,3 +1,8 @@
+# 0.2.0
+
+- **BREAKING** refactor: remove generic from `registerFallbackValue`
+- docs: add FAQs to README
+
 # 0.1.4
 
 - fix: add built-in fallback for `DateTime`

@@ -40,6 +40,26 @@ jobs:
           test_coverage
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           path: packages/mocktail/coverage/lcov.info
+
+  pana:
+    defaults:
+      run:
+        working-directory: packages/mocktail
+        
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - uses: subosito/flutter-action@v1.5.3
+
+      - name: Install Dependencies
+        run: |
+          flutter packages get
+          flutter pub global activate pana
+      
+      - name: Verify Pub Score
+        run: ../../tool/verify_pub_score.sh

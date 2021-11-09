@@ -48,8 +48,8 @@ T mockNetworkImages<T>(T Function() body) {
 
 class _MockHttpClient extends Mock implements HttpClient {
   _MockHttpClient() {
-    registerFallbackValue<void Function(List<int>)>((List<int> _) {});
-    registerFallbackValue<Uri>(Uri());
+    registerFallbackValue((List<int> _) {});
+    registerFallbackValue(Uri());
   }
 
   @override
