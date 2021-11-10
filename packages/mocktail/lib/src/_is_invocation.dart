@@ -118,6 +118,7 @@ class _InvocationForMatchedArguments extends Invocation {
     this.memberName,
     this.positionalArguments,
     this.namedArguments,
+    this.typeArguments,
     this.isGetter,
     this.isMethod,
     this.isSetter,
@@ -139,6 +140,7 @@ class _InvocationForMatchedArguments extends Invocation {
       invocation.memberName,
       positionalArguments,
       namedArguments,
+      invocation.typeArguments,
       invocation.isGetter,
       invocation.isMethod,
       invocation.isSetter,
@@ -151,6 +153,8 @@ class _InvocationForMatchedArguments extends Invocation {
   final Map<Symbol, dynamic> namedArguments;
   @override
   final List<dynamic> positionalArguments;
+  @override
+  final List<Type> typeArguments;
   @override
   final bool isGetter;
   @override
