@@ -53,7 +53,7 @@ verify(() => cat.sound()).called(1);
 cat.sound();
 
 // Verify the interaction occurred twice.
-verify(() => cat.sound()).called(1);
+verify(() => cat.sound()).called(2);
 ```
 
 ## Additional Usage
