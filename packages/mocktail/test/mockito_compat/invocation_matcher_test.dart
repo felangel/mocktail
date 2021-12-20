@@ -52,20 +52,20 @@ void main() {
     });
 
     test('type arguments', () {
-      stub.promotesTheUprisingOfTheWorkingClass<int>();
+      stub.calculate<int>();
       var call1 = Stub.lastInvocation;
-      stub.promotesTheUprisingOfTheWorkingClass<int>();
+      stub.calculate<int>();
       var call2 = Stub.lastInvocation;
-      stub.promotesTheUprisingOfTheWorkingClass();
+      stub.calculate();
       var call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
 
       shouldFail(
         call1,
         isInvocation(call3),
-        'Expected: promotesTheUprisingOfTheWorkingClass<Type:<num>>() '
+        'Expected: calculate<Type:<num>>() '
         "Actual: <Instance of '${call3.runtimeType}'> "
-        'Which: Does not match promotesTheUprisingOfTheWorkingClass'
+        'Which: Does not match calculate'
         '<Type:<int>>()',
       );
     });
@@ -141,19 +141,12 @@ void main() {
 
 abstract class Interface {
   bool? get value;
-
   set value(bool? value);
-
   void say(String text);
-
   void eat(String food, {bool? alsoDrink});
-
   void lie([bool? facingDown]);
-
   void fly({int? miles});
-
-  void promotesTheUprisingOfTheWorkingClass<A extends num>();
-
+  void calculate<A extends num>();
   bool? property;
 }
 
