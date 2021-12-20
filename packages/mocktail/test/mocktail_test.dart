@@ -27,6 +27,8 @@ class Foo {
   void voidWithDefaultNamedArgs({int x = 0, int y = 0}) {}
   void voidWithPositionalAndOptionalNamedArg(int x, {int? y}) {}
   void voidWithPositionalArgs(int x, int y) {}
+  void voidWithGenericTypeArg<T>(T x) {}
+  void voidWithGenericDefaultTypeArg<T extends num>(T x) {}
 }
 
 /// Ensure mocks are immutable.
@@ -433,6 +435,68 @@ void main() {
       when(() => foo.voidWithPositionalArgs(any(), any())).thenReturn(null);
       expect(() => foo.voidWithPositionalArgs(1, 10), returnsNormally);
       verify(() => foo.voidWithPositionalArgs(1, any())).called(1);
+    });
+
+    test('when voidWithGenericTypeArg (default)', () {
+      when(() => foo.voidWithGenericTypeArg<num>(any())).thenReturn(null);
+      expect(() => foo.voidWithGenericTypeArg(1), returnsNormally);
+      verify(() => foo.voidWithGenericTypeArg(1)).called(1);
+    });
+
+    test('when voidWithGenericTypeArg (specific verify type)', () {
+      when(() => foo.voidWithGenericTypeArg<num>(any())).thenReturn(null);
+      expect(() => foo.voidWithGenericTypeArg(1), returnsNormally);
+      verify(() => foo.voidWithGenericTypeArg<int>(1)).called(1);
+    });
+
+    test('when voidWithGenericTypeArg (specific call/verify type)', () {
+      when(() => foo.voidWithGenericTypeArg<num>(any())).thenReturn(null);
+      expect(() => foo.voidWithGenericTypeArg<num>(1), returnsNormally);
+      verify(() => foo.voidWithGenericTypeArg<num>(1)).called(1);
+    });
+
+    test('when voidWithGenericDefaultTypeArg (default)', () {
+      when(() => foo.voidWithGenericDefaultTypeArg(1)).thenReturn(null);
+      expect(() => foo.voidWithGenericDefaultTypeArg(1), returnsNormally);
+      verify(() => foo.voidWithGenericDefaultTypeArg(1)).called(1);
+    });
+
+    test('when voidWithGenericDefaultTypeArg (specific verify type)', () {
+      when(() => foo.voidWithGenericDefaultTypeArg<num>(any()))
+          .thenReturn(null);
+      expect(() => foo.voidWithGenericDefaultTypeArg(1), returnsNormally);
+      verify(() => foo.voidWithGenericDefaultTypeArg<int>(1)).called(1);
+    });
+
+    test('when voidWithGenericDefaultTypeArg (specific call/verify type)', () {
+      when(() => foo.voidWithGenericDefaultTypeArg<num>(any()))
+          .thenReturn(null);
+      expect(() => foo.voidWithGenericDefaultTypeArg<num>(1), returnsNormally);
+      verify(() => foo.voidWithGenericDefaultTypeArg<num>(1)).called(1);
+    });
+
+    test('when voidWithGenericTypeArg throws', () {
+      final exception = Exception();
+      when(() => foo.voidWithGenericTypeArg<num>(any())).thenThrow(exception);
+
+      verifyNever(() => foo.voidWithGenericTypeArg<double>(any()));
+      verifyNever(() => foo.voidWithGenericTypeArg<num>(any()));
+
+      expect(() => foo.voidWithGenericTypeArg<double>(1.0), returnsNormally);
+
+      verify(() => foo.voidWithGenericTypeArg<double>(1.0)).called(1);
+      verifyNever(() => foo.voidWithGenericTypeArg<num>(any()));
+
+      expect(() => foo.voidWithGenericTypeArg<num>(1), throwsA(exception));
+
+      verifyNever(() => foo.voidWithGenericTypeArg<double>(1.0));
+      verify(() => foo.voidWithGenericTypeArg<num>(1)).called(1);
+
+      expect(() => foo.voidWithGenericTypeArg<double>(1.0), returnsNormally);
+      expect(() => foo.voidWithGenericTypeArg<num>(1), throwsA(exception));
+
+      verify(() => foo.voidWithGenericTypeArg<double>(1.0)).called(1);
+      verify(() => foo.voidWithGenericTypeArg<num>(1)).called(1);
     });
 
     test('throws Exception when thenThrow is used to stub the mock', () {
