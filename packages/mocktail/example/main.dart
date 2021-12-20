@@ -3,7 +3,9 @@ import 'package:test/test.dart';
 
 class Food {}
 
-class Fish extends Food {}
+class Chicken extends Food {}
+
+class Tuna extends Food {}
 
 // A Real Cat class
 class Cat {
@@ -16,14 +18,13 @@ class Cat {
 // A Mock Cat class
 class MockCat extends Mock implements Cat {}
 
-// A Fake Fish class
-class FakeFish extends Fish {}
-
 void main() {
   group('Cat', () {
     setUpAll(() {
-      // Register fallback values when using `any` with custom types.
-      registerFallbackValue(FakeFish());
+      // Register fallback values when using
+      // `any` or `captureAny` with custom objects.
+      registerFallbackValue(Chicken());
+      registerFallbackValue(Tuna());
     });
 
     late Cat cat;
@@ -52,10 +53,13 @@ void main() {
       verify(() => cat.likes('fish', isHungry: true)).called(1);
 
       // Interact with the mock.
-      cat.eat(Fish());
+      cat
+        ..eat(Chicken())
+        ..eat(Tuna());
 
       // Verify the interaction with specific type arguments.
-      verify(() => cat.eat<Fish>(any())).called(1);
+      verify(() => cat.eat<Chicken>(any())).called(1);
+      verify(() => cat.eat<Tuna>(any())).called(1);
       verifyNever(() => cat.eat<Food>(any()));
     });
   });

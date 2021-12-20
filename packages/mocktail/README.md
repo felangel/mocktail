@@ -177,7 +177,7 @@ Extension methods cannot be stubbed/verified as they are treated like static met
 
 Instead of stubbing/verifying extension methods directly, prefer to stub/verify public members on the instance with which the extension methods interact.
 
-#### type 'Null' is not a subtype of type 'Future<void>'
+#### Why am I seeing error: type 'Null' is not a subtype of type 'Future<void>'?
 
 [Relevant Issue](https://github.com/felangel/mocktail/issues/78)
 

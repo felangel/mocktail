@@ -1,3 +1,9 @@
+# 0.3.0-dev.1
+
+- **BREAKING** feat: add support for type argument matching ([#66](https://github.com/felangel/mocktail/issues/66))
+- docs: minor snippet fixes in `README` ([#94](https://github.com/felangel/mocktail/pull/94))
+- docs: enhance example to illustrate more use cases
+
 # 0.2.0
 
 - **BREAKING** refactor: remove generic from `registerFallbackValue`
