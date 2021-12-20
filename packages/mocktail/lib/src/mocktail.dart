@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
-import 'package:matcher/matcher.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -397,12 +396,10 @@ List<VerificationResult> Function<T>(
   _verificationInProgress = true;
   return <T>(List<T Function()> _) {
     for (final invocation in _) {
-      if (invocation is Function) {
-        try {
-          invocation();
-        } catch (_) {
-          if (_ is! TypeError) rethrow;
-        }
+      try {
+        invocation();
+      } catch (_) {
+        if (_ is! TypeError) rethrow;
       }
     }
 

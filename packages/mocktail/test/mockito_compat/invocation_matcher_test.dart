@@ -1,4 +1,3 @@
-import 'package:mocktail/mocktail.dart';
 import 'package:mocktail/src/mocktail.dart';
 import 'package:test/test.dart';
 

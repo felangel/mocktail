@@ -45,10 +45,8 @@ class InvocationMatcher {
     for (final roleKey in roleInvocation.namedArguments.keys) {
       final dynamic roleArg = roleInvocation.namedArguments[roleKey];
       final dynamic actArg = invocation.namedArguments[roleKey];
-      if (roleArg is ArgMatcher) {
-        if (roleArg is ArgMatcher && roleArg._capture) {
-          _capturedArgs.add(actArg);
-        }
+      if (roleArg is ArgMatcher && roleArg._capture) {
+        _capturedArgs.add(actArg);
       }
     }
   }
