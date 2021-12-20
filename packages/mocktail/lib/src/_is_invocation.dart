@@ -17,11 +17,14 @@ class _InvocationMatcher implements Matcher {
       }
       return d;
     }
-    // For a method, return <member>(<args>).
-    d = d
-        .add(_symbolToString(invocation.memberName))
-        .add('(')
-        .addAll('', ', ', '', invocation.positionalArguments);
+    // For a method, return <member><<typeArgs>>(<args>).
+    d = d.add(_symbolToString(invocation.memberName));
+
+    if (invocation.typeArguments.isNotEmpty) {
+      d.add('<').addAll('', ', ', '', invocation.typeArguments).add('>');
+    }
+
+    d.add('(').addAll('', ', ', '', invocation.positionalArguments);
     if (invocation.positionalArguments.isNotEmpty &&
         invocation.namedArguments.isNotEmpty) {
       d = d.add(', ');
@@ -62,6 +65,8 @@ class _InvocationMatcher implements Matcher {
       _invocation.memberName == item.memberName &&
       _invocation.isSetter == item.isSetter &&
       _invocation.isGetter == item.isGetter &&
+      const ListEquality<dynamic>(_MatcherEquality())
+          .equals(_invocation.typeArguments, item.typeArguments) &&
       const ListEquality<dynamic>(_MatcherEquality())
           .equals(_invocation.positionalArguments, item.positionalArguments) &&
       const MapEquality<dynamic, dynamic>(values: _MatcherEquality())
@@ -113,6 +118,7 @@ class _InvocationForMatchedArguments extends Invocation {
     this.memberName,
     this.positionalArguments,
     this.namedArguments,
+    this.typeArguments,
     this.isGetter,
     this.isMethod,
     this.isSetter,
@@ -134,6 +140,7 @@ class _InvocationForMatchedArguments extends Invocation {
       invocation.memberName,
       positionalArguments,
       namedArguments,
+      invocation.typeArguments,
       invocation.isGetter,
       invocation.isMethod,
       invocation.isSetter,
@@ -146,6 +153,8 @@ class _InvocationForMatchedArguments extends Invocation {
   final Map<Symbol, dynamic> namedArguments;
   @override
   final List<dynamic> positionalArguments;
+  @override
+  final List<Type> typeArguments;
   @override
   final bool isGetter;
   @override

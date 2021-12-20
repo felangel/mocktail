@@ -62,14 +62,29 @@ class InvocationMatcher {
         roleInvocation.namedArguments.length) {
       return false;
     }
-    var index = 0;
+    if (invocation.typeArguments.length !=
+        roleInvocation.typeArguments.length) {
+      return false;
+    }
+
+    var positionalArgIndex = 0;
     for (final roleArg in roleInvocation.positionalArguments) {
-      final dynamic actArg = invocation.positionalArguments[index];
+      final dynamic actArg = invocation.positionalArguments[positionalArgIndex];
       if (!_isMatchingArg(roleArg, actArg)) {
         return false;
       }
-      index++;
+      positionalArgIndex++;
     }
+
+    var typeArgIndex = 0;
+    for (final roleArg in roleInvocation.typeArguments) {
+      final dynamic actArg = invocation.typeArguments[typeArgIndex];
+      if (!_isMatchingTypeArg(roleArg, actArg)) {
+        return false;
+      }
+      typeArgIndex++;
+    }
+
     Set roleKeys = roleInvocation.namedArguments.keys.toSet();
     Set actKeys = invocation.namedArguments.keys.toSet();
     if (roleKeys.difference(actKeys).isNotEmpty ||
@@ -92,5 +107,9 @@ class InvocationMatcher {
     } else {
       return equals(roleArg).matches(actArg, <dynamic, dynamic>{});
     }
+  }
+
+  bool _isMatchingTypeArg(Type roleTypeArg, dynamic actTypeArg) {
+    return roleTypeArg == actTypeArg;
   }
 }

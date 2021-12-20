@@ -75,7 +75,12 @@ extension on Invocation {
 
     var method = _symbolToString(memberName);
     if (isMethod) {
-      method = '$method($argString)';
+      var typeArgsString = '';
+      if (typeArguments.isNotEmpty) {
+        typeArgsString = '<${typeArguments.join(', ')}>';
+      }
+
+      method = '$method$typeArgsString($argString)';
     } else if (isGetter) {
       method = '$method';
     } else if (isSetter) {

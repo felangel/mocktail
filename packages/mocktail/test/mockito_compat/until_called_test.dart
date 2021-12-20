@@ -11,6 +11,8 @@ class _RealClass {
   String? methodWithNamedArgs(int? x, {int? y}) => 'Real';
   String? methodWithTwoNamedArgs(int? x, {int? y, int? z}) => 'Real';
   String? methodWithObjArgs(_RealClass? x) => 'Real';
+  String? methodWithTypeArgs<T>() => 'Real';
+  String? methodWithDefaultTypeArg<T extends num>() => 'Real';
   String? typeParameterizedFn(List<int>? w, List<int>? x,
           [List<int>? y, List<int>? z]) =>
       'Real';
@@ -45,6 +47,8 @@ class _RealClassController {
       ..methodWithNamedArgs(1, y: 2)
       ..methodWithTwoNamedArgs(1, y: 2, z: 3)
       ..methodWithObjArgs(_RealClass())
+      ..methodWithTypeArgs<List<String>>()
+      ..methodWithDefaultTypeArg()
       ..typeParameterizedFn([1, 2], [3, 4], [5, 6], [7, 8])
       ..typeParameterizedNamedFn([1, 2], [3, 4], y: [5, 6], z: [7, 8])
       ..getter
@@ -134,6 +138,22 @@ void main() {
         await untilCalled(() => mock.methodWithObjArgs(any()));
 
         verify(() => mock.methodWithObjArgs(any())).called(1);
+      });
+
+      test('waits for method with type args', () async {
+        mock.methodWithTypeArgs<List<String>>();
+
+        await untilCalled(() => mock.methodWithTypeArgs<List<String>>());
+
+        verify(() => mock.methodWithTypeArgs<List<String>>()).called(1);
+      });
+
+      test('waits for method with default type args', () async {
+        mock.methodWithDefaultTypeArg();
+
+        await untilCalled(() => mock.methodWithDefaultTypeArg());
+
+        verify(() => mock.methodWithDefaultTypeArg<num>()).called(1);
       });
 
       test('waits for function with positional parameters', () async {
@@ -262,6 +282,24 @@ void main() {
         await untilCalled(() => mock.methodWithObjArgs(any()));
 
         verify(() => mock.methodWithObjArgs(any())).called(1);
+      });
+
+      test('waits for method with type args', () async {
+        streamController.add(CallMethodsEvent());
+        verifyNever(() => mock.methodWithTypeArgs<List<String>>());
+
+        await untilCalled(() => mock.methodWithTypeArgs<List<String>>());
+
+        verify(() => mock.methodWithTypeArgs<List<String>>()).called(1);
+      });
+
+      test('waits for method with default type args', () async {
+        streamController.add(CallMethodsEvent());
+        verifyNever(() => mock.methodWithDefaultTypeArg());
+
+        await untilCalled(() => mock.methodWithDefaultTypeArg());
+
+        verify(() => mock.methodWithDefaultTypeArg()).called(1);
       });
 
       test('waits for function with positional parameters', () async {
