@@ -122,7 +122,7 @@ T captureAny<T>({String? named, Matcher? that}) {
 /// Registers [matcher] into the stored arguments collections.
 ///
 /// Creates an [ArgMatcher] with [matcher] and [capture], then if [named] is
-/// non-null, stores that into the positional stored arguments list; otherwise
+/// null, stores that into the positional stored arguments list; otherwise
 /// stores it into the named stored arguments map, keyed on [named].
 /// [argumentMatcher] is the name of the public API used to register [matcher],
 /// for error messages.
