@@ -81,12 +81,11 @@ expect(cat.likes('fish', isHungry: false), isTrue);
 // You can verify the interaction for specific arguments.
 verify(() => cat.likes('fish', isHungry: false)).called(1);
 
-// You can stub a method using positional argument matchers: `any`.
-when(() => cat.likes(any(), isHungry: false)).thenReturn(true);
-expect(cat.likes('fish', isHungry: false), isTrue);
-
-// You can stub a method using named argument matchers: `any`.  When using named arguments, the `any` function must be supplied with the argument name. 
-when(() => cat.likes('fish', isHungry: any(named: 'isHungry', that: isFalse)).thenReturn(true);
+// You can stub a method using argument matcher: `any`.
+// When stubbing a positional argument, use `any()`.
+// When stubbing a named argument, use `any(named: '<argName>`)`.
+// A matcher can be specified using `any(that: myMatcher)`.
+when(() => cat.likes(any(), isHungry: any(named: 'isHungry', that: isFalse)).thenReturn(true);
 expect(cat.likes('fish', isHungry: false), isTrue);
 
 // You can stub a method to throw.
