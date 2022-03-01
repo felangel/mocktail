@@ -1,6 +1,7 @@
 # 0.3.0
 
 - **BREAKING** feat: add support for type argument matching ([#66](https://github.com/felangel/mocktail/issues/66))
+- feat: improve verifyNoMoreInteractions failure message ([#118](https://github.com/felangel/mocktail/issues/118))
 - docs: improve argument matcher documentation in `README` ([#102](https://github.com/felangel/mocktail/pull/102))
 - docs: fix typo in \_registerMatcher inline docs ([#101](https://github.com/felangel/mocktail/pull/101))
 - docs: minor snippet fixes in `README` ([#94](https://github.com/felangel/mocktail/pull/94))
