@@ -21,7 +21,7 @@ class RealCall {
 
   @override
   String toString() {
-    var verifiedText = verified ? '[VERIFIED] ' : '';
+    final verifiedText = verified ? '[VERIFIED] ' : '';
     return '$verifiedText$mock.${invocation.toPrettyString()}';
   }
 }

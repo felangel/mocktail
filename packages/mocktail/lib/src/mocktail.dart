@@ -443,7 +443,9 @@ void verifyNoMoreInteractions(dynamic mock) {
   if (mock is Mock) {
     final unverified = mock._realCalls.where((inv) => !inv.verified).toList();
     if (unverified.isNotEmpty) {
-      fail('No more calls expected, but following found: ${unverified.join()}');
+      fail(
+        '''No more calls expected, but following found: ${unverified.join(', ')}\nDid you forget to call verify?\nExample: verify(() => cat.meow()).called(1);''',
+      );
     }
   } else {
     _throwMockArgumentError('verifyNoMoreInteractions', mock);
