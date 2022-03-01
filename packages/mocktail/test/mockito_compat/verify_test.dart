@@ -489,13 +489,22 @@ void main() {
       verifyNoMoreInteractions(mock);
     });
 
-    test('any unverified touch fails', () {
+    test('any unverified touch fails (single invocation)', () {
       mock.methodWithoutArgs();
       expectFail(
-          'No more calls expected, but following found: '
-          '_MockedClass.methodWithoutArgs()', () {
-        verifyNoMoreInteractions(mock);
-      });
+        '''No more calls expected, but following found: _MockedClass.methodWithoutArgs()\nDid you forget to call verify?\nExample: verify(() => cat.meow()).called(1);''',
+        () => verifyNoMoreInteractions(mock),
+      );
+    });
+
+    test('any unverified touch fails (multiple invocations)', () {
+      mock
+        ..methodWithoutArgs()
+        ..methodWithOptionalArg();
+      expectFail(
+        '''No more calls expected, but following found: _MockedClass.methodWithoutArgs(), _MockedClass.methodWithOptionalArg(null)\nDid you forget to call verify?\nExample: verify(() => cat.meow()).called(1);''',
+        () => verifyNoMoreInteractions(mock),
+      );
     });
 
     test('verified touch passes', () {
