@@ -1,3 +1,7 @@
+# 0.3.0
+
+- feat: upgrade to `mocktail ^0.3.0`
+
 # 0.3.0-dev.1
 
 - feat: upgrade to `mocktail ^0.3.0-dev.1`
