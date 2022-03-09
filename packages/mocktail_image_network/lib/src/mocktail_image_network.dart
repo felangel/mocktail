@@ -81,8 +81,9 @@ HttpClient _createHttpClient() {
   ).thenAnswer((invocation) {
     final onData =
         invocation.positionalArguments[0] as void Function(List<int>);
+    final onDone = invocation.namedArguments[#onDone] as void Function()?;
     return Stream<List<int>>.fromIterable(<List<int>>[_transparentPixelPng])
-        .listen(onData);
+        .listen(onData, onDone: onDone);
   });
   when(() => request.headers).thenReturn(headers);
   when(request.close).thenAnswer((_) async => response);

@@ -5,7 +5,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('mockNetworkImageFor', () {
+  group('mockNetworkImages', () {
     test(
       'should properly mock getUrl and complete without exceptions',
       () async {
@@ -27,5 +27,24 @@ void main() {
         });
       },
     );
+
+    test('should properly pass through onDone', () async {
+      await mockNetworkImages(() async {
+        final client = HttpClient()..autoUncompress = false;
+        final request = await client.getUrl(Uri.https('', ''));
+        final response = await request.close();
+        var onDoneCalled = false;
+        final onDone = () {
+          onDoneCalled = true;
+        };
+
+        response.listen((_) {}, onDone: onDone);
+
+        // Wait for all microtasks to run
+        await Future<void>.delayed(Duration.zero);
+
+        expect(onDoneCalled, isTrue);
+      });
+    });
   });
 }
