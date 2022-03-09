@@ -1,3 +1,7 @@
+# 0.3.1
+
+- fix: pass `onDone` callback ([#120](https://github.com/felangel/mocktail/pull/120))
+
 # 0.3.0
 
 - feat: upgrade to `mocktail ^0.3.0`
