@@ -216,6 +216,13 @@ When<T> Function<T>(T Function() x) get when {
   };
 }
 
+/// Set of helps to [when] class
+extension WhenExtension on When<void> {
+
+  /// Store a void function which is called when this method stub is called. 
+  void thenAnswerVoid() => _completeWhen((_) async { });
+}
+
 /// Result of [when] which enables methods to be stubbed via
 /// - [thenReturn]
 /// - [thenThrow]

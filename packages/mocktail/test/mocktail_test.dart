@@ -122,7 +122,7 @@ void main() {
     });
 
     test('when asyncVoid (explicit)', () async {
-      when(() => foo.asyncVoid()).thenAnswer((_) async {});
+      when(() => foo.asyncVoid()).thenAnswerVoid();
       await expectLater(foo.asyncVoid(), completes);
       verify(() => foo.asyncVoid()).called(1);
     });
