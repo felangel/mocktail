@@ -1,3 +1,7 @@
+# 0.4.0
+
+- chore: upgrade to `test: ^1.21.1` to support analyzer 4.0.0
+
 # 0.3.1
 
 - fix: pass `onDone` callback ([#120](https://github.com/felangel/mocktail/pull/120))

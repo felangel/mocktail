@@ -1,3 +1,8 @@
+# 0.4.0
+
+- chore: upgrade to `test: ^1.21.1` to support analyzer 4.0.0
+
+
 # 0.3.0
 
 - **BREAKING** feat: add support for type argument matching ([#66](https://github.com/felangel/mocktail/issues/66))
