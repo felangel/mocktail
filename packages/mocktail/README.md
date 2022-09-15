@@ -214,5 +214,5 @@ To address this, we must explicitly stub `sleep` like:
 
 ```dart
 final person = MockPerson();
-when(person.sleep).thenAnswer((_) async {});
+when(() => person.sleep()).thenAnswer((_) async {});
 ```
