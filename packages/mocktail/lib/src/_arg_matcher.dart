@@ -5,6 +5,7 @@ part of 'mocktail.dart';
 /// {@endtemplate}
 class ArgMatcher<T> {
   /// {@macro arg_matcher}
+  // ignore: avoid_positional_boolean_parameters
   const ArgMatcher(this.matcher, this._fallbackValue, this._capture);
 
   /// The [Matcher] instance.

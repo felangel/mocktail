@@ -34,9 +34,9 @@ void main() {
         final request = await client.getUrl(Uri.https('', ''));
         final response = await request.close();
         var onDoneCalled = false;
-        final onDone = () {
+        void onDone() {
           onDoneCalled = true;
-        };
+        }
 
         response.listen((_) {}, onDone: onDone);
 

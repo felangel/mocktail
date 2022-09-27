@@ -53,6 +53,7 @@ class _MockHttpClient extends Mock implements HttpClient {
   }
 
   @override
+  // ignore: avoid_setters_without_getters
   set autoUncompress(bool _autoUncompress) {}
 }
 

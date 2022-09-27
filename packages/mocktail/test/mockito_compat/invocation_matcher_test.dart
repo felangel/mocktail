@@ -7,11 +7,11 @@ void main() {
   group('$isInvocation', () {
     test('positional arguments', () {
       stub.say('Hello');
-      var call1 = Stub.lastInvocation;
+      final call1 = Stub.lastInvocation;
       stub.say('Hello');
-      var call2 = Stub.lastInvocation;
+      final call2 = Stub.lastInvocation;
       stub.say('Guten Tag');
-      var call3 = Stub.lastInvocation;
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
       shouldFail(
         call1,
@@ -36,11 +36,11 @@ void main() {
 
     test('named arguments', () {
       stub.eat('Chicken', alsoDrink: true);
-      var call1 = Stub.lastInvocation;
+      final call1 = Stub.lastInvocation;
       stub.eat('Chicken', alsoDrink: true);
-      var call2 = Stub.lastInvocation;
+      final call2 = Stub.lastInvocation;
       stub.eat('Chicken', alsoDrink: false);
-      var call3 = Stub.lastInvocation;
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
       shouldFail(
         call1,
@@ -53,11 +53,11 @@ void main() {
 
     test('type arguments', () {
       stub.calculate<int>();
-      var call1 = Stub.lastInvocation;
+      final call1 = Stub.lastInvocation;
       stub.calculate<int>();
-      var call2 = Stub.lastInvocation;
+      final call2 = Stub.lastInvocation;
       stub.calculate();
-      var call3 = Stub.lastInvocation;
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
 
       shouldFail(
@@ -65,35 +65,34 @@ void main() {
         isInvocation(call3),
         'Expected: calculate<Type:<num>>() '
         "Actual: <Instance of '${call3.runtimeType}'> "
-        'Which: Does not match calculate'
-        '<Type:<int>>()',
+        'Which: Does not match calculate<Type:<int>>()',
       );
     });
 
     test('optional arguments', () {
-      stub.lie(true);
-      var call1 = Stub.lastInvocation;
-      stub.lie(true);
-      var call2 = Stub.lastInvocation;
-      stub.lie(false);
-      var call3 = Stub.lastInvocation;
+      stub.dance('flamenco');
+      final call1 = Stub.lastInvocation;
+      stub.dance('flamenco');
+      final call2 = Stub.lastInvocation;
+      stub.dance('ballet');
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
       shouldFail(
         call1,
         isInvocation(call3),
-        'Expected: lie(<false>) '
+        "Expected: dance('ballet') "
         "Actual: <Instance of '${call3.runtimeType}'> "
-        'Which: Does not match lie(<true>)',
+        "Which: Does not match dance('flamenco')",
       );
     });
 
     test('getter', () {
       stub.value;
-      var call1 = Stub.lastInvocation;
+      final call1 = Stub.lastInvocation;
       stub.value;
-      var call2 = Stub.lastInvocation;
+      final call2 = Stub.lastInvocation;
       stub.value = true;
-      var call3 = Stub.lastInvocation;
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
       shouldFail(
         call1,
@@ -107,11 +106,11 @@ void main() {
 
     test('setter', () {
       stub.value = true;
-      var call1 = Stub.lastInvocation;
+      final call1 = Stub.lastInvocation;
       stub.value = true;
-      var call2 = Stub.lastInvocation;
+      final call2 = Stub.lastInvocation;
       stub.value = false;
-      var call3 = Stub.lastInvocation;
+      final call3 = Stub.lastInvocation;
       shouldPass(call1, isInvocation(call2));
       shouldFail(
         call1,
@@ -144,7 +143,7 @@ abstract class Interface {
   set value(bool? value);
   void say(String text);
   void eat(String food, {bool? alsoDrink});
-  void lie([bool? facingDown]);
+  void dance([String? genre]);
   void fly({int? miles});
   void calculate<A extends num>();
   bool? property;

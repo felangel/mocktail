@@ -35,8 +35,10 @@ class _InvocationMatcher implements Matcher {
 
   // Returns named arguments as an iterable of '<name>: <value>'.
   static Iterable<String> _namedArgsAndValues(Invocation invocation) =>
-      invocation.namedArguments.keys.map((name) =>
-          '${_symbolToString(name)}: ${invocation.namedArguments[name]}');
+      invocation.namedArguments.keys.map(
+        (name) =>
+            '${_symbolToString(name)}: ${invocation.namedArguments[name]}',
+      );
 
   // This will give is a mangled symbol in dart2js/aot with minification
   // enabled, but it's safe to assume very few people will use the invocation
@@ -51,7 +53,8 @@ class _InvocationMatcher implements Matcher {
   Description describe(Description d) => _describeInvocation(d, _invocation);
 
   @override
-  Description describeMismatch(dynamic item, Description d, _, __) {
+  Description describeMismatch(dynamic item, Description description, _, __) {
+    var d = description;
     if (item is Invocation) {
       d = d.add('Does not match ');
       return _describeInvocation(d, item);
@@ -114,16 +117,6 @@ Invocation _useMatchedInvocationIfSet(Invocation invocation) {
 /// An Invocation implementation that takes arguments from [_storedArgs] and
 /// [_storedNamedArgs].
 class _InvocationForMatchedArguments extends Invocation {
-  _InvocationForMatchedArguments._(
-    this.memberName,
-    this.positionalArguments,
-    this.namedArguments,
-    this.typeArguments,
-    this.isGetter,
-    this.isMethod,
-    this.isSetter,
-  );
-
   @override
   factory _InvocationForMatchedArguments(Invocation invocation) {
     // Handle named arguments first, so that we can provide useful errors for
@@ -147,6 +140,16 @@ class _InvocationForMatchedArguments extends Invocation {
     );
   }
 
+  _InvocationForMatchedArguments._(
+    this.memberName,
+    this.positionalArguments,
+    this.namedArguments,
+    this.typeArguments,
+    this.isGetter,
+    this.isMethod,
+    this.isSetter,
+  );
+
   @override
   final Symbol memberName;
   @override
@@ -169,9 +172,7 @@ class _InvocationForMatchedArguments extends Invocation {
   // by a stored value in [_storedNamedArgs].
   static Map<Symbol, dynamic> _reconstituteNamedArgs(Invocation invocation) {
     final namedArguments = <Symbol, dynamic>{};
-    final storedNamedArgSymbols = _storedNamedArgs.keys.map(
-      (name) => Symbol(name),
-    );
+    final storedNamedArgSymbols = _storedNamedArgs.keys.map(Symbol.new);
 
     // Iterate through [invocation]'s named args, validate them, and add them
     // to the return map.
@@ -192,7 +193,7 @@ class _InvocationForMatchedArguments extends Invocation {
     // Iterate through the stored named args, validate them, and add them to
     // the return map.
     _storedNamedArgs.forEach((name, arg) {
-      var nameSymbol = Symbol(name);
+      final nameSymbol = Symbol(name);
       if (!invocation.namedArguments.containsKey(nameSymbol)) {
         // Clear things out for the next call.
         _storedArgs.clear();
