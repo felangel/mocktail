@@ -1,66 +1,26 @@
 name: mocktail_image_network
 
-on:
-  push:
-    paths:
-      - "packages/mocktail_image_network/**"
-      - ".github/workflows/mocktail_image_network.yaml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
+on:
   pull_request:
+    branches:
+      - main
     paths:
       - "packages/mocktail_image_network/**"
       - ".github/workflows/mocktail_image_network.yaml"
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: packages/mocktail_image_network
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: subosito/flutter-action@v1.5.3
-
-      - name: Install Dependencies
-        run: flutter packages get
-
-      - name: Format
-        run: flutter format --set-exit-if-changed lib test example
-
-      - name: Analyze
-        run: flutter analyze lib test example
-
-      - name: Run tests
-        run: flutter test --no-pub --coverage --test-randomize-ordering-seed random
-
-      - name: Run example tests
-        working-directory: packages/mocktail_image_network/example
-        run: flutter test --test-randomize-ordering-seed random
-
-      - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
-        with:
-          path: packages/mocktail_image_network/coverage/lcov.info
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_channel: stable
+      flutter_version: 3.3.2
+      working_directory: packages/mocktail_image_network
 
   pana:
-    defaults:
-      run:
-        working-directory: packages/mocktail_image_network
-        
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2.3.4
-
-      - uses: subosito/flutter-action@v1.5.3
-
-      - name: Install Dependencies
-        run: |
-          flutter packages get
-          flutter pub global activate pana
-      
-      - name: Verify Pub Score
-        run: ../../tool/verify_pub_score.sh 110
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+    with:
+      working_directory: packages/mocktail_image_network

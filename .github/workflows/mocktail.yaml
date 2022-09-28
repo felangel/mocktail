@@ -1,64 +1,24 @@
 name: mocktail
 
-on:
-  push:
-    paths:
-      - "packages/mocktail/**"
-      - ".github/workflows/mocktail.yaml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
+on:
   pull_request:
+    branches:
+      - main
     paths:
       - "packages/mocktail/**"
       - ".github/workflows/mocktail.yaml"
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: packages/mocktail
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: dart-lang/setup-dart@v1
-
-      - name: Install Dependencies
-        run: dart pub get
-
-      - name: Format
-        run: dart format --set-exit-if-changed .
-
-      - name: Analyze
-        run: dart analyze --fatal-infos --fatal-warnings .
-
-      - name: Run Tests
-        run: |
-          dart pub global activate coverage 1.2.0
-          dart test --coverage=coverage && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
-
-      - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
-        with:
-          path: packages/mocktail/coverage/lcov.info
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    with:
+      working_directory: packages/mocktail
 
   pana:
-    defaults:
-      run:
-        working-directory: packages/mocktail
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2.3.4
-
-      - uses: subosito/flutter-action@v1.5.3
-
-      - name: Install Dependencies
-        run: |
-          flutter packages get
-          flutter pub global activate pana
-
-      - name: Verify Pub Score
-        run: ../../tool/verify_pub_score.sh
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+    with:
+      working_directory: packages/mocktail
