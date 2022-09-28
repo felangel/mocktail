@@ -17,7 +17,7 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       flutter_channel: stable
-      flutter_version: 3.3.1
+      flutter_version: 3.3.2
       working_directory: packages/mocktail_image_network
 
   pana:
