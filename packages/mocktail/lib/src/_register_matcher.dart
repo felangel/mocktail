@@ -99,6 +99,27 @@ providing a convenient syntax.
 /// calls [registerFallbackValue] with various types used in the project.
 void registerFallbackValue(dynamic value) => _fallbackValues.add(value);
 
+/// If there are multiple custom objects that need to be registered with
+/// [registerFallbackValue], then instead of calling [registerFallbackValue]
+/// multiple times, we can use [registerMultipleFallbackValues] allowing us to
+/// do something like
+/// ```dart
+/// setUpAll(() {
+///   registerMultipleFallbackValues([FakeObj1(), FakeObj2(), FakeObj3()]);
+/// });
+/// ```
+/// instead of
+/// ```dart
+/// setUpAll(() {
+///   registerFallbackValue(FakeObj1());
+///   registerFallbackValue(FakeObj2());
+///   registerFallbackValue(FakeObj3());
+/// });
+/// ```
+void registerMultipleFallbackValues(List<dynamic> values) {
+  for (final value in values) registerFallbackValue(value);
+}
+
 /// An argument matcher that matches any argument passed in.
 T any<T>({String? named, Matcher? that}) {
   return _registerMatcher(
