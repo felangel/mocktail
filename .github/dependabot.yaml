@@ -17,3 +17,7 @@ updates:
     directory: "packages/mocktail_image_network"
     schedule:
       interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "packages/mocktail_image_network/example"
+    schedule:
+      interval: "daily"
