@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:meta/meta.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -19,23 +21,27 @@ var _verificationInProgress = false;
 
 _ReturnsCannedResponse _defaultResponse = _nullResponse;
 
-Expectation<Null> _nullResponse() {
-  return Expectation<Null>.allInvocations((_) => null);
+Expectation<void> _nullResponse() {
+  return Expectation<void>.allInvocations((_) {
+    return;
+  });
 }
 
 Expectation<dynamic> _exceptionResponse(
   void Function(Invocation)? exceptionBuilder,
 ) {
-  exceptionBuilder ??= (invocation) {
-    throw MissingStubError(invocation);
-  };
-  return Expectation<dynamic>.allInvocations(exceptionBuilder);
+  return Expectation<dynamic>.allInvocations(
+    exceptionBuilder ??
+        (invocation) {
+          throw MissingStubError(invocation);
+        },
+  );
 }
 
 final _timer = _TimeStampProvider();
 final _capturedArgs = <dynamic>[];
-final _storedArgs = <ArgMatcher>[];
-final _storedNamedArgs = <String, ArgMatcher>{};
+final _storedArgs = <ArgMatcher<dynamic>>[];
+final _storedNamedArgs = <String, ArgMatcher<dynamic>>{};
 final _verifyCalls = <_VerifyCall>[];
 final _defaultResponses = <Mock, _ReturnsCannedResponse>{};
 
@@ -87,6 +93,7 @@ void throwOnMissingStub(
 /// be generated. As such, [Mock] should strictly _not_ be used in any
 /// production code, especially if used within the context of Dart for Web
 /// (dart2js, DDC) and Dart for Mobile (Flutter).
+@immutable
 class Mock {
   /// A method which can be invoked to trigger all unstubbed methods
   /// to result in exceptions.
@@ -109,26 +116,26 @@ class Mock {
 
   @override
   dynamic noSuchMethod(Invocation invocation) {
-    invocation = _useMatchedInvocationIfSet(invocation);
+    final invoc = _useMatchedInvocationIfSet(invocation);
     if (_whenInProgress) {
-      _whenCall = _WhenCall(this, invocation);
+      _whenCall = _WhenCall(this, invoc);
       return null;
     } else if (_verificationInProgress) {
-      _verifyCalls.add(_VerifyCall(this, invocation));
+      _verifyCalls.add(_VerifyCall(this, invoc));
       return null;
     } else if (_untilCalledInProgress) {
-      _untilCall = _UntilCall(this, invocation);
+      _untilCall = _UntilCall(this, invoc);
       return null;
     } else {
-      _realCalls.add(RealCall(this, invocation));
-      _invocationStreamController.add(invocation);
+      _realCalls.add(RealCall(this, invoc));
+      _invocationStreamController.add(invoc);
       final cannedResponse = _responses.lastWhere(
         (response) {
-          return response.call.matches(invocation, <dynamic, dynamic>{});
+          return response.call.matches(invoc, <dynamic, dynamic>{});
         },
         orElse: __defaultResponse,
       );
-      return cannedResponse.response(invocation);
+      return cannedResponse.response(invoc);
     }
   }
 
@@ -139,6 +146,7 @@ class Mock {
   bool operator ==(Object other) => identical(this, other);
 
   @override
+  // ignore: no_runtimetype_tostring
   String toString() => runtimeType.toString();
 
   void _setExpected(Expectation<dynamic> cannedResponse) {
@@ -146,7 +154,7 @@ class Mock {
   }
 
   String _realCallsToString([Iterable<RealCall>? realCalls]) {
-    var stringRepresentations =
+    final stringRepresentations =
         (realCalls ?? _realCalls).map((call) => call.toString());
     if (stringRepresentations.any((s) => s.contains('\n'))) {
       // As each call contains newlines, put each on its own line, for better
@@ -331,7 +339,7 @@ class Expectation<T> {
 ///
 /// See also: [verifyNever], [verifyInOrder], [verifyZeroInteractions], and
 /// [verifyNoMoreInteractions].
-_Verify get verify => _makeVerify(false);
+Verify get verify => _makeVerify(false);
 
 /// Verify that a method on a mock object was never called with the given
 /// arguments.
@@ -345,7 +353,7 @@ _Verify get verify => _makeVerify(false);
 ///
 /// Mocktail will pass the current test case, as `cat.eatFood` has not been
 /// called with `"chicken"`.
-_Verify get verifyNever => _makeVerify(true);
+Verify get verifyNever => _makeVerify(true);
 
 /// Verifies that a list of methods on a mock object have been called with the
 /// given arguments. For example:
@@ -431,7 +439,7 @@ List<VerificationResult> Function<T>(
         );
       }
     }
-    for (var call in matchedCalls) {
+    for (final call in matchedCalls) {
       call.verified = true;
     }
     return verificationResults;
@@ -481,7 +489,7 @@ void _throwMockArgumentError(String method, dynamic nonMockInstance) {
   throw ArgumentError('$method must only be given a Mock object');
 }
 
-_Verify _makeVerify(bool never) {
+Verify _makeVerify(bool never) {
   if (_verifyCalls.isNotEmpty) {
     var message = 'Verification appears to be in progress.';
     if (_verifyCalls.length == 1) {
@@ -509,9 +517,11 @@ _Verify _makeVerify(bool never) {
     }
     _verificationInProgress = false;
     if (_verifyCalls.length == 1) {
-      var verifyCall = _verifyCalls.removeLast();
-      var result = VerificationResult._(verifyCall.matchingInvocations.length,
-          verifyCall.matchingCapturedArgs);
+      final verifyCall = _verifyCalls.removeLast();
+      final result = VerificationResult._(
+        verifyCall.matchingInvocations.length,
+        verifyCall.matchingCapturedArgs,
+      );
       verifyCall._checkWith(never);
       return result;
     } else {
@@ -520,7 +530,8 @@ _Verify _makeVerify(bool never) {
   };
 }
 
-typedef _Verify = VerificationResult Function<T>(
+/// Returns a [VerificationResult] dependent on matchingInvocations.
+typedef Verify = VerificationResult Function<T>(
   T Function() matchingInvocations,
 );
 
@@ -621,7 +632,7 @@ void logInvocations(List<Mock> mocks) {
   mocks.expand((m) => m._realCalls).toList(growable: false)
     ..sort((inv1, inv2) => inv1.timeStamp.compareTo(inv2.timeStamp))
     ..forEach((inv) {
-      print(inv.toString());
+      log(inv.toString());
     });
 }
 
@@ -668,13 +679,6 @@ void clearInteractions(dynamic mock) {
 }
 
 class _VerifyCall {
-  _VerifyCall._(
-    this.mock,
-    this.verifyInvocation,
-    this.matchingInvocations,
-    this.matchingCapturedArgs,
-  );
-
   factory _VerifyCall(Mock mock, Invocation verifyInvocation) {
     final expectedMatcher = InvocationMatcher(verifyInvocation);
     final matchingInvocations = <RealCallWithCapturedArgs>[];
@@ -698,6 +702,12 @@ class _VerifyCall {
       matchingCapturedArgs,
     );
   }
+  _VerifyCall._(
+    this.mock,
+    this.verifyInvocation,
+    this.matchingInvocations,
+    this.matchingCapturedArgs,
+  );
 
   final Mock mock;
   final Invocation verifyInvocation;
@@ -705,9 +715,11 @@ class _VerifyCall {
   final List<Object?> matchingCapturedArgs;
 
   RealCallWithCapturedArgs _findAfter(DateTime time) {
-    return matchingInvocations.firstWhere((invocation) =>
-        !invocation.realCall.verified &&
-        invocation.realCall.timeStamp.isAfter(time));
+    return matchingInvocations.firstWhere(
+      (invocation) =>
+          !invocation.realCall.verified &&
+          invocation.realCall.timeStamp.isAfter(time),
+    );
   }
 
   void _checkWith(bool never) {
@@ -716,7 +728,7 @@ class _VerifyCall {
       if (mock._realCalls.isEmpty) {
         message = 'No matching calls (actually, no calls at all).';
       } else {
-        var otherCalls = mock._realCallsToString();
+        final otherCalls = mock._realCallsToString();
         message = 'No matching calls. All calls: $otherCalls';
       }
       fail('$message\n'
@@ -724,10 +736,10 @@ class _VerifyCall {
           '`verifyNever(...);`.)');
     }
     if (never && matchingInvocations.isNotEmpty) {
-      var calls = mock._unverifiedCallsToString();
+      final calls = mock._unverifiedCallsToString();
       fail('Unexpected calls: $calls');
     }
-    for (var invocation in matchingInvocations) {
+    for (final invocation in matchingInvocations) {
       invocation.realCall.verified = true;
     }
   }

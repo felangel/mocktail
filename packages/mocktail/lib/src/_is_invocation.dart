@@ -6,8 +6,12 @@ Matcher isInvocation(Invocation invocation) => _InvocationMatcher(invocation);
 class _InvocationMatcher implements Matcher {
   _InvocationMatcher(this._invocation);
 
-  static Description _describeInvocation(Description d, Invocation invocation) {
+  static Description _describeInvocation(
+    Description description,
+    Invocation invocation,
+  ) {
     // For a getter or a setter, just return get <member> or set <member> <arg>.
+    var d = description;
     if (invocation.isAccessor) {
       d = d
           .add(invocation.isGetter ? 'get ' : 'set ')
@@ -35,8 +39,10 @@ class _InvocationMatcher implements Matcher {
 
   // Returns named arguments as an iterable of '<name>: <value>'.
   static Iterable<String> _namedArgsAndValues(Invocation invocation) =>
-      invocation.namedArguments.keys.map((name) =>
-          '${_symbolToString(name)}: ${invocation.namedArguments[name]}');
+      invocation.namedArguments.keys.map(
+        (name) =>
+            '${_symbolToString(name)}: ${invocation.namedArguments[name]}',
+      );
 
   // This will give is a mangled symbol in dart2js/aot with minification
   // enabled, but it's safe to assume very few people will use the invocation
@@ -53,8 +59,7 @@ class _InvocationMatcher implements Matcher {
   @override
   Description describeMismatch(dynamic item, Description d, _, __) {
     if (item is Invocation) {
-      d = d.add('Does not match ');
-      return _describeInvocation(d, item);
+      return _describeInvocation(d.add('Does not match '), item);
     }
     return d.add('Is not an Invocation');
   }
@@ -78,9 +83,11 @@ class _MatcherEquality extends DeepCollectionEquality {
   const _MatcherEquality();
 
   @override
-  bool equals(dynamic e1, dynamic e2) {
+  bool equals(dynamic arg1, dynamic agr2) {
     // All argument matches are wrapped in `ArgMatcher`, so we have to unwrap
     // them into the raw `Matcher` type in order to finish our equality checks.
+    var e1 = arg1;
+    var e2 = agr2;
     if (e1 is ArgMatcher) {
       e1 = e1.matcher;
     }
@@ -106,7 +113,7 @@ class _MatcherEquality extends DeepCollectionEquality {
 // the existing invocation object.
 Invocation _useMatchedInvocationIfSet(Invocation invocation) {
   if (_storedArgs.isNotEmpty || _storedNamedArgs.isNotEmpty) {
-    invocation = _InvocationForMatchedArguments(invocation);
+    return _InvocationForMatchedArguments(invocation);
   }
   return invocation;
 }
@@ -114,16 +121,6 @@ Invocation _useMatchedInvocationIfSet(Invocation invocation) {
 /// An Invocation implementation that takes arguments from [_storedArgs] and
 /// [_storedNamedArgs].
 class _InvocationForMatchedArguments extends Invocation {
-  _InvocationForMatchedArguments._(
-    this.memberName,
-    this.positionalArguments,
-    this.namedArguments,
-    this.typeArguments,
-    this.isGetter,
-    this.isMethod,
-    this.isSetter,
-  );
-
   @override
   factory _InvocationForMatchedArguments(Invocation invocation) {
     // Handle named arguments first, so that we can provide useful errors for
@@ -146,6 +143,15 @@ class _InvocationForMatchedArguments extends Invocation {
       invocation.isSetter,
     );
   }
+  _InvocationForMatchedArguments._(
+    this.memberName,
+    this.positionalArguments,
+    this.namedArguments,
+    this.typeArguments,
+    this.isGetter,
+    this.isMethod,
+    this.isSetter,
+  );
 
   @override
   final Symbol memberName;
@@ -169,9 +175,7 @@ class _InvocationForMatchedArguments extends Invocation {
   // by a stored value in [_storedNamedArgs].
   static Map<Symbol, dynamic> _reconstituteNamedArgs(Invocation invocation) {
     final namedArguments = <Symbol, dynamic>{};
-    final storedNamedArgSymbols = _storedNamedArgs.keys.map(
-      (name) => Symbol(name),
-    );
+    final storedNamedArgSymbols = _storedNamedArgs.keys.map(Symbol.new);
 
     // Iterate through [invocation]'s named args, validate them, and add them
     // to the return map.
@@ -192,7 +196,7 @@ class _InvocationForMatchedArguments extends Invocation {
     // Iterate through the stored named args, validate them, and add them to
     // the return map.
     _storedNamedArgs.forEach((name, arg) {
-      var nameSymbol = Symbol(name);
+      final nameSymbol = Symbol(name);
       if (!invocation.namedArguments.containsKey(nameSymbol)) {
         // Clear things out for the next call.
         _storedArgs.clear();

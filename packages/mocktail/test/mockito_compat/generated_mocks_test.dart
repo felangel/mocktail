@@ -10,6 +10,7 @@ class Foo<T> {
   String? nullableMethod(int x) => 'Real';
   String? get nullableGetter => 'Real';
   String methodWithBarArg(Bar bar) => 'result';
+  // ignore: avoid_setters_without_getters
   set setter(int value) {}
   Future<void> returnsFutureVoid() => Future.value();
 }

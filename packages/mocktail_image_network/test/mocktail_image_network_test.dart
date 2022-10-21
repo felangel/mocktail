@@ -34,11 +34,13 @@ void main() {
         final request = await client.getUrl(Uri.https('', ''));
         final response = await request.close();
         var onDoneCalled = false;
-        final onDone = () {
-          onDoneCalled = true;
-        };
 
-        response.listen((_) {}, onDone: onDone);
+        response.listen(
+          (_) {},
+          onDone: () {
+            onDoneCalled = true;
+          },
+        );
 
         // Wait for all microtasks to run
         await Future<void>.delayed(Duration.zero);

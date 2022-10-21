@@ -145,10 +145,14 @@ void main() {
     });
 
     test('when asyncValueWithPositionalArg (custom matcher)', () async {
-      final isEven = isA<int>().having((x) => x % 2 == 0, 'isEven', true);
-      when(() => foo.asyncValueWithPositionalArg(any(
+      final isEven = isA<int>().having((x) => x.isEven, 'isEven', true);
+      when(
+        () => foo.asyncValueWithPositionalArg(
+          any(
             that: isEven,
-          ))).thenAnswer((_) async => 10);
+          ),
+        ),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArg(2), equals(10));
       verify(() => foo.asyncValueWithPositionalArg(2)).called(1);
     });
@@ -201,7 +205,7 @@ void main() {
     });
 
     test('when asyncValueWithNamedArg (custom matcher)', () async {
-      final isOdd = isA<int>().having((x) => x % 2 == 0, 'isOdd', false);
+      final isOdd = isA<int>().having((x) => x.isOdd, 'isOdd', true);
       when(
         () => foo.asyncValueWithNamedArg(
           x: any(that: isOdd, named: 'x'),
@@ -360,7 +364,9 @@ void main() {
       when(() => foo.voidWithPositionalAndOptionalNamedArg(10))
           .thenReturn(null);
       expect(
-          () => foo.voidWithPositionalAndOptionalNamedArg(10), returnsNormally);
+        () => foo.voidWithPositionalAndOptionalNamedArg(10),
+        returnsNormally,
+      );
       verify(() => foo.voidWithPositionalAndOptionalNamedArg(10)).called(1);
     });
 
@@ -482,20 +488,20 @@ void main() {
       verifyNever(() => foo.voidWithGenericTypeArg<double>(any()));
       verifyNever(() => foo.voidWithGenericTypeArg<num>(any()));
 
-      expect(() => foo.voidWithGenericTypeArg<double>(1.0), returnsNormally);
+      expect(() => foo.voidWithGenericTypeArg<double>(1), returnsNormally);
 
-      verify(() => foo.voidWithGenericTypeArg<double>(1.0)).called(1);
+      verify(() => foo.voidWithGenericTypeArg<double>(1)).called(1);
       verifyNever(() => foo.voidWithGenericTypeArg<num>(any()));
 
       expect(() => foo.voidWithGenericTypeArg<num>(1), throwsA(exception));
 
-      verifyNever(() => foo.voidWithGenericTypeArg<double>(1.0));
+      verifyNever(() => foo.voidWithGenericTypeArg<double>(1));
       verify(() => foo.voidWithGenericTypeArg<num>(1)).called(1);
 
-      expect(() => foo.voidWithGenericTypeArg<double>(1.0), returnsNormally);
+      expect(() => foo.voidWithGenericTypeArg<double>(1), returnsNormally);
       expect(() => foo.voidWithGenericTypeArg<num>(1), throwsA(exception));
 
-      verify(() => foo.voidWithGenericTypeArg<double>(1.0)).called(1);
+      verify(() => foo.voidWithGenericTypeArg<double>(1)).called(1);
       verify(() => foo.voidWithGenericTypeArg<num>(1)).called(1);
     });
 
@@ -643,8 +649,8 @@ void main() {
 
   group('Expectation', () {
     test('toString', () {
-      final call = isFalse;
-      final response = (Invocation _) => 10;
+      const call = isFalse;
+      int response(Invocation _) => 10;
       final expectation = Expectation<int>(call, response);
       expect(
         expectation.toString(),
