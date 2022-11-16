@@ -1,23 +1,22 @@
 version: 2
-enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
   - package-ecosystem: "pub"
-    directory: "packages/mocktail"
+    directory: "/packages/mocktail"
     schedule:
       interval: "daily"
   - package-ecosystem: "pub"
-    directory: "packages/mocktail/example"
+    directory: "/packages/mocktail/example"
     schedule:
       interval: "daily"
   - package-ecosystem: "pub"
-    directory: "packages/mocktail_image_network"
+    directory: "/packages/mocktail_image_network"
     schedule:
       interval: "daily"
   - package-ecosystem: "pub"
-    directory: "packages/mocktail_image_network/example"
+    directory: "/packages/mocktail_image_network/example"
     schedule:
       interval: "daily"
