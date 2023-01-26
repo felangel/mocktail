@@ -1,8 +1,8 @@
 /// A Dart mock library which simplifies mocking
 /// with null safety support and no manual mocks or code generation.
 library mocktail;
-
-export 'package:test/fake.dart' show Fake;
+// ignore: deprecated_member_use
+export 'package:test_api/fake.dart' show Fake;
 export 'src/mocktail.dart'
     show
         Mock,
