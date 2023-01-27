@@ -10,5 +10,5 @@ coverage/
 .test_coverage.dart
 build/
 
-# Files created by custom lint rules
+# Files created by custom_lint
 **/custom_lint.log
