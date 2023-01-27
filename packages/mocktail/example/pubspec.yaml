@@ -9,3 +9,10 @@ dev_dependencies:
   mocktail:
     path: ../
   test: ^1.16.0
+  custom_lint: ^0.2.0
+  mocktail_lints:
+    path: ../../mocktail_lints
+
+analyzer:
+  plugins:
+    - custom_lint

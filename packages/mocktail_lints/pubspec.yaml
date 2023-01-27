@@ -1,0 +1,15 @@
+name: mocktail_lints
+description: Lints for mocktail.
+version: 0.0.1
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  analyzer: ^5.4.0
+  analyzer_plugin: ^0.11.2
+  custom_lint: ^0.2.0
+  custom_lint_builder: ^0.2.0
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
