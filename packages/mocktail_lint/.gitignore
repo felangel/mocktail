@@ -1,2 +1,14 @@
-**/.dart_tool
+# See https://dart.dev/guides/libraries/private-files
+
+# Files and directories created by pub
+.dart_tool
+.packages
+.pub
+pubspec.lock
+
+coverage/
+.test_coverage.dart
+build/
+
+# Files created by custom lint rules
 **/custom_lint.log
