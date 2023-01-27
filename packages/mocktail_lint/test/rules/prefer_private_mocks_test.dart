@@ -40,8 +40,7 @@ void main() {
   late LintRuleNodeRegistry registry;
 
   setUp(() {
-    final _ClassDeclarationListener listener = (node) => {};
-    registerFallbackValue(listener);
+    registerFallbackValue((ClassDeclaration node) {});
 
     resolver = _MockCustomLintResolver();
     reporter = _MockErrorReporter();
@@ -51,8 +50,8 @@ void main() {
   });
 
   test(
-      'reportErrorForNode called when $ClassDeclaration is public and subclass of $Mock',
-      () {
+      'reportErrorForNode called when '
+      '$ClassDeclaration is public and subclass of $Mock', () {
     final lint = PreferPrivateMocks();
 
     late _ClassDeclarationListener listener;

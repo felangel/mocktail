@@ -4,10 +4,30 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:meta/meta.dart';
 import 'package:mocktail/mocktail.dart';
 
+/// The URI of the mocktail package where the [Mock] class is defined.
+///
+/// Used to ensure that the lint only applies to mocks defined in mocktail.
 @visibleForTesting
 const mocktailUri = 'package:mocktail/src/mocktail.dart';
 
+/// {@template mocktail_prefer_private_mocks}
+/// A lint rule that enforces that mocks are declared private.
+///
+/// This is to ensure that mocks are not accidentally shared between test files,
+/// since test files should remain isolated from each other (self-contained).
+///
+/// Do:
+/// ```
+/// class _MockDog extends Mock implementes Dog {}
+/// ```
+///
+/// Don't:
+/// ```
+/// class MockDog extends Mock implementes Dog {}
+/// ```
+/// {@endtemplate}
 class PreferPrivateMocks extends DartLintRule {
+  /// {@macro mocktail_prefer_private_mocks}
   PreferPrivateMocks() : super(code: _code);
 
   static const _code = LintCode(
