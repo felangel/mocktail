@@ -87,7 +87,7 @@
     },
     {
       "name": "custom_lint_example_lint",
-      "rootUri": "../example_lint",
+      "rootUri": "../../",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -272,7 +272,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-01-27T15:06:24.700038Z",
+  "generated": "2023-01-27T15:26:04.361334Z",
   "generator": "pub",
   "generatorVersion": "2.19.0"
 }

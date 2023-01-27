@@ -11,7 +11,7 @@ dependencies:
 dev_dependencies:
   custom_lint: ^0.2.0
   custom_lint_example_lint:
-    path: ./example_lint
+    path: ../
 
 dependency_overrides:
   custom_lint: ^0.2.0

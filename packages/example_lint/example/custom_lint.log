@@ -1,0 +1,146 @@
+The Dart VM service is listening on http://127.0.0.1:52985/krB_5dXTsqs=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52985/krB_5dXTsqs=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A52985%2FkrB_5dXTsqs%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:54551/uEzZYv2fHR8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54551/uEzZYv2fHR8=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A54551%2FuEzZYv2fHR8%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:55045/91gMUddEpMU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55045/91gMUddEpMU=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A55045%2F91gMUddEpMU%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:56824/Y7tpowynfYY=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:56824/Y7tpowynfYY=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A56824%2FY7tpowynfYY%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:56908/0g44EQ-j0yQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:56908/0g44EQ-j0yQ=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A56908%2F0g44EQ-j0yQ%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:56988/bFsrqpZhQRk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:56988/bFsrqpZhQRk=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A56988%2FbFsrqpZhQRk%3D%2Fws
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: No pubspec.yaml found at /Users/alestiago/Developer/workspace/oss/mocktail/packages/example/example_lint/.
+at:
+package:riverpod/src/framework/provider_base.dart 179:29            _ExternalProviderSubscription.read
+package:custom_lint/src/plugin.dart 26:10                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 264:9   CustomLintServer._handleAnalysisSetContextRoots.<fn>
+package:custom_lint/src/async_operation.dart 14:14                  PendingOperation.run
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 124:22  CustomLintServer._handleRequest
+===== asynchronous gap ===========================
+package:riverpod/src/framework/element.dart 729:20                  ProviderElementBase.watch
+package:custom_lint/src/plugin.dart 91:17                           allPluginLinkKeysProvider.<fn>.<fn>
+dart:_internal/iterable.dart 483:31                                 ExpandIterator.moveNext
+dart:_internal/iterable.dart 392:19                                 MappedIterator.moveNext
+dart:collection/set.dart 57:23                                      SetMixin.addAll
+dart:collection-patch/compact_hash.dart 984:11                      _Set.addAll
+dart:collection/linked_hash_set.dart 192:27                         new LinkedHashSet.of
+dart:core/iterable.dart 486:21                                      Iterable.toSet
+package:custom_lint/src/plugin.dart 94:8                            allPluginLinkKeysProvider.<fn>
+package:riverpod/src/framework/container.dart 273:21                ProviderContainer.listen
+package:custom_lint/src/plugin.dart 20:31                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 264:9   CustomLintServer._handleAnalysisSetContextRoots.<fn>
+package:custom_lint/src/async_operation.dart 14:14                  PendingOperation.run
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 124:22  CustomLintServer._handleRequest
+===== asynchronous gap ===========================
+package:custom_lint/src/plugin.dart 158:5                           _loadPubspecAt
+package:custom_lint/src/plugin.dart 142:11                          pluginMetasForContextRootProvider.<fn>._getPluginsForContext
+dart:async-patch/async_patch.dart 528:14                            _SyncStarIterator.moveNext
+dart:core-patch/growable_array.dart 202:26                          new _GrowableList._ofOther
+dart:core-patch/growable_array.dart 152:26                          new _GrowableList.of
+dart:core-patch/array_patch.dart 52:28                              new List.of
+dart:core/iterable.dart 470:12                                      Iterable.toList
+package:custom_lint/src/plugin.dart 152:45                          pluginMetasForContextRootProvider.<fn>
+package:riverpod/src/framework/element.dart 703:32                  ProviderElementBase.watch
+package:custom_lint/src/plugin.dart 91:17                           allPluginLinkKeysProvider.<fn>.<fn>
+dart:_internal/iterable.dart 483:31                                 ExpandIterator.moveNext
+dart:_internal/iterable.dart 392:19                                 MappedIterator.moveNext
+dart:collection/set.dart 57:23                                      SetMixin.addAll
+dart:collection-patch/compact_hash.dart 984:11                      _Set.addAll
+dart:collection/linked_hash_set.dart 192:27                         new LinkedHashSet.of
+dart:core/iterable.dart 486:21                                      Iterable.toSet
+package:custom_lint/src/plugin.dart 94:8                            allPluginLinkKeysProvider.<fn>
+package:riverpod/src/framework/container.dart 273:21                ProviderContainer.listen
+package:custom_lint/src/plugin.dart 20:31                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+
+The Dart VM service is listening on http://127.0.0.1:57193/NHcw5xtzGfI=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57193/NHcw5xtzGfI=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57193%2FNHcw5xtzGfI%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:57359/JIqfCVCGcGI=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57359/JIqfCVCGcGI=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57359%2FJIqfCVCGcGI%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:57403/BpgvAQAOCL0=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57403/BpgvAQAOCL0=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57403%2FBpgvAQAOCL0%3D%2Fws
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 Plugin _ConvertToStreamProvider threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/example/lib/main.dart:
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #4      DartAssist.startUp (package:custom_lint_builder/src/assist.dart:69:33)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #5      _ClientAnalyzerPlugin._runAssistStartup.<anonymous closure> (package:custom_lint_builder/src/client.dart:421:20)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #6      _rootRun (dart:async/zone.dart:1398:13)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #8      _runZoned (dart:async/zone.dart:1803:10)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #11     _ClientAnalyzerPlugin._runAssistStartup (package:custom_lint_builder/src/client.dart:419:12)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #12     _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:383:9)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 <asynchronous suspension>
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #13     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:564:18)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 <asynchronous suspension>
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 #14     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:611:18)
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858 <asynchronous suspension>
+[_ConvertToStreamProvider] 2023-01-27T15:25:23.904858
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: No pubspec.yaml found at /Users/alestiago/Developer/workspace/oss/mocktail/packages/example_lint/example_lint/.
+at:
+package:riverpod/src/framework/provider_base.dart 179:29            _ExternalProviderSubscription.read
+package:custom_lint/src/plugin.dart 26:10                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 264:9   CustomLintServer._handleAnalysisSetContextRoots.<fn>
+package:custom_lint/src/async_operation.dart 14:14                  PendingOperation.run
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 124:22  CustomLintServer._handleRequest
+===== asynchronous gap ===========================
+package:riverpod/src/framework/element.dart 729:20                  ProviderElementBase.watch
+package:custom_lint/src/plugin.dart 91:17                           allPluginLinkKeysProvider.<fn>.<fn>
+dart:_internal/iterable.dart 483:31                                 ExpandIterator.moveNext
+dart:_internal/iterable.dart 392:19                                 MappedIterator.moveNext
+dart:collection/set.dart 57:23                                      SetMixin.addAll
+dart:collection-patch/compact_hash.dart 984:11                      _Set.addAll
+dart:collection/linked_hash_set.dart 192:27                         new LinkedHashSet.of
+dart:core/iterable.dart 486:21                                      Iterable.toSet
+package:custom_lint/src/plugin.dart 94:8                            allPluginLinkKeysProvider.<fn>
+package:riverpod/src/framework/container.dart 273:21                ProviderContainer.listen
+package:custom_lint/src/plugin.dart 20:31                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 264:9   CustomLintServer._handleAnalysisSetContextRoots.<fn>
+package:custom_lint/src/async_operation.dart 14:14                  PendingOperation.run
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 124:22  CustomLintServer._handleRequest
+===== asynchronous gap ===========================
+package:custom_lint/src/plugin.dart 158:5                           _loadPubspecAt
+package:custom_lint/src/plugin.dart 142:11                          pluginMetasForContextRootProvider.<fn>._getPluginsForContext
+dart:async-patch/async_patch.dart 528:14                            _SyncStarIterator.moveNext
+dart:core-patch/growable_array.dart 202:26                          new _GrowableList._ofOther
+dart:core-patch/growable_array.dart 152:26                          new _GrowableList.of
+dart:core-patch/array_patch.dart 52:28                              new List.of
+dart:core/iterable.dart 470:12                                      Iterable.toList
+package:custom_lint/src/plugin.dart 152:45                          pluginMetasForContextRootProvider.<fn>
+package:riverpod/src/framework/element.dart 703:32                  ProviderElementBase.watch
+package:custom_lint/src/plugin.dart 91:17                           allPluginLinkKeysProvider.<fn>.<fn>
+dart:_internal/iterable.dart 483:31                                 ExpandIterator.moveNext
+dart:_internal/iterable.dart 392:19                                 MappedIterator.moveNext
+dart:collection/set.dart 57:23                                      SetMixin.addAll
+dart:collection-patch/compact_hash.dart 984:11                      _Set.addAll
+dart:collection/linked_hash_set.dart 192:27                         new LinkedHashSet.of
+dart:core/iterable.dart 486:21                                      Iterable.toSet
+package:custom_lint/src/plugin.dart 94:8                            allPluginLinkKeysProvider.<fn>
+package:riverpod/src/framework/container.dart 273:21                ProviderContainer.listen
+package:custom_lint/src/plugin.dart 20:31                           getPackageListForContextRoots
+package:custom_lint/src/v2/server_to_client_channel.dart 141:21     new _SocketCustomLintServerToClientChannel
+package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart 280:53  CustomLintServer._maybeSpawnCustomLintPlugin
+
+The Dart VM service is listening on http://127.0.0.1:57634/9Ryf0K99KqU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57634/9Ryf0K99KqU=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57634%2F9Ryf0K99KqU%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:57713/MPqjrLHe2Zg=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57713/MPqjrLHe2Zg=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57713%2FMPqjrLHe2Zg%3D%2Fws

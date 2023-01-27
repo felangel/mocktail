@@ -116,7 +116,7 @@ packages:
   custom_lint_example_lint:
     dependency: "direct dev"
     description:
-      path: example_lint
+      path: ".."
       relative: true
     source: path
     version: "0.0.1"
