@@ -49,7 +49,7 @@ class PreferPrivateMocks extends DartLintRule {
       final isMock = element.allSupertypes.any((interfaceType) =>
           interfaceType.element.name == '$Mock' &&
           interfaceType.element.source.uri.toString() == mocktailUri);
-      final isPublic = !element.name.startsWith('_');
+      final isPublic = !element.isPrivate;
       if (isMock && isPublic) {
         reporter.reportErrorForNode(_code, node);
       }
