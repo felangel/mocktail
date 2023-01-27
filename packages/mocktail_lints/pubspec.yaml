@@ -9,6 +9,8 @@ dependencies:
   analyzer_plugin: ^0.11.2
   custom_lint: ^0.2.0
   custom_lint_builder: ^0.2.0
+  mocktail:
+    path: ../mocktail
 
 dev_dependencies:
   lints: ^2.0.0
