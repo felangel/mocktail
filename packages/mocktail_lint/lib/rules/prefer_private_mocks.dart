@@ -1,5 +1,4 @@
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/error.dart';
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:meta/meta.dart';
@@ -34,36 +33,6 @@ class PreferPrivateMocks extends DartLintRule {
       if (isMock && isPublic) {
         reporter.reportErrorForNode(_code, node);
       }
-    });
-  }
-
-  @override
-  List<Fix> getFixes() => [_PreferPrivateMocksFix()];
-}
-
-class _PreferPrivateMocksFix extends DartFix {
-  @override
-  void run(
-    CustomLintResolver resolver,
-    ChangeReporter reporter,
-    CustomLintContext context,
-    AnalysisError analysisError,
-    List<AnalysisError> others,
-  ) {
-    context.registry.addClassDeclaration((ClassDeclaration node) {
-      if (!analysisError.sourceRange.intersects(node.sourceRange)) return;
-
-      final changeBuilder = reporter.createChangeBuilder(
-        message: 'Make Mock private.',
-        priority: 1,
-      );
-
-      changeBuilder.addDartFileEdit((builder) {
-        final element = node.declaredElement;
-        if (element == null) return;
-
-        builder.addSimpleInsertion(element.nameOffset, '_');
-      });
     });
   }
 }
