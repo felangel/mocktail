@@ -1,0 +1,1714 @@
+The Dart VM service is listening on http://127.0.0.1:62572/22ug1AfHFSQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62572/22ug1AfHFSQ=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A62572%2F22ug1AfHFSQ%3D%2Fws
+[custom_lint] 2023-01-27T15:58:31.148769 lib/custom_lint_client.dart:4:8: Error: Error when reading '/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart': No such file or directory
+[custom_lint] 2023-01-27T15:58:31.148769 import 'package:mocktail_lint/mocktail_lint.dart' as mocktail_lint;
+[custom_lint] 2023-01-27T15:58:31.148769        ^
+[custom_lint] 2023-01-27T15:58:31.148769 lib/custom_lint_client.dart:14:37: Error: Undefined name 'createPlugin'.
+[custom_lint] 2023-01-27T15:58:31.148769     {'mocktail_lint': mocktail_lint.createPlugin,
+[custom_lint] 2023-01-27T15:58:31.148769                                     ^^^^^^^^^^^^
+[custom_lint] 2023-01-27T15:58:31.148769
+[custom_lint] 2023-01-27T15:58:31.148769
+Failed to start pluginsThe request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: Failed to start the plugins.
+at:
+#0      _SocketCustomLintServerToClientChannel._checkInitializationFail.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:332:11)
+#1      _rootRunUnary (dart:async/zone.dart:1406:47)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+<asynchronous suspension>
+#3      Future.any.onValue (dart:async/future.dart:612:5)
+<asynchronous suspension>
+
+The Dart VM service is listening on http://127.0.0.1:62654/ZCiXHGCLY7c=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62654/ZCiXHGCLY7c=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A62654%2FZCiXHGCLY7c%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:62659/n8pcdcfSoTE=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62659/n8pcdcfSoTE=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A62659%2Fn8pcdcfSoTE%3D%2Fws
+[custom_lint] 2023-01-27T15:59:00.458635 lib/custom_lint_client.dart:4:8: Error: Error when reading '/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart': No such file or directory
+[custom_lint] 2023-01-27T15:59:00.458635 import 'package:mocktail_lint/mocktail_lint.dart' as mocktail_lint;
+[custom_lint] 2023-01-27T15:59:00.458635        ^
+[custom_lint] 2023-01-27T15:59:00.458635 lib/custom_lint_client.dart:14:37: Error: Undefined name 'createPlugin'.
+[custom_lint] 2023-01-27T15:59:00.458635     {'mocktail_lint': mocktail_lint.createPlugin,
+[custom_lint] 2023-01-27T15:59:00.458635                                     ^^^^^^^^^^^^
+[custom_lint] 2023-01-27T15:59:00.458635
+[custom_lint] 2023-01-27T15:59:00.458635
+Failed to start pluginsThe request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: Failed to start the plugins.
+at:
+#0      _SocketCustomLintServerToClientChannel._checkInitializationFail.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:332:11)
+#1      _rootRunUnary (dart:async/zone.dart:1406:47)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+<asynchronous suspension>
+#3      Future.any.onValue (dart:async/future.dart:612:5)
+<asynchronous suspension>
+
+[custom_lint] 2023-01-27T15:59:00.808326 lib/custom_lint_client.dart:4:8: Error: Error when reading '/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart': No such file or directory
+[custom_lint] 2023-01-27T15:59:00.808326 import 'package:mocktail_lint/mocktail_lint.dart' as mocktail_lint;
+[custom_lint] 2023-01-27T15:59:00.808326        ^
+[custom_lint] 2023-01-27T15:59:00.808326 lib/custom_lint_client.dart:14:37: Error: Undefined name 'createPlugin'.
+[custom_lint] 2023-01-27T15:59:00.808326     {'mocktail_lint': mocktail_lint.createPlugin,
+[custom_lint] 2023-01-27T15:59:00.808326                                     ^^^^^^^^^^^^
+[custom_lint] 2023-01-27T15:59:00.808326
+[custom_lint] 2023-01-27T15:59:00.808326
+Failed to start pluginsThe request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: Failed to start the plugins.
+at:
+#0      _SocketCustomLintServerToClientChannel._checkInitializationFail.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:332:11)
+#1      _rootRunUnary (dart:async/zone.dart:1406:47)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+<asynchronous suspension>
+#3      Future.any.onValue (dart:async/future.dart:612:5)
+<asynchronous suspension>
+
+The Dart VM service is listening on http://127.0.0.1:62704/YDbOLDd4kiU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62704/YDbOLDd4kiU=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A62704%2FYDbOLDd4kiU%3D%2Fws
+[custom_lint] 2023-01-27T15:59:12.540410 lib/custom_lint_client.dart:4:8: Error: Error when reading '/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart': No such file or directory
+[custom_lint] 2023-01-27T15:59:12.540410 import 'package:mocktail_lint/mocktail_lint.dart' as mocktail_lint;
+[custom_lint] 2023-01-27T15:59:12.540410        ^
+[custom_lint] 2023-01-27T15:59:12.540410 lib/custom_lint_client.dart:14:37: Error: Undefined name 'createPlugin'.
+[custom_lint] 2023-01-27T15:59:12.540410     {'mocktail_lint': mocktail_lint.createPlugin,
+[custom_lint] 2023-01-27T15:59:12.540410                                     ^^^^^^^^^^^^
+[custom_lint] 2023-01-27T15:59:12.540410
+[custom_lint] 2023-01-27T15:59:12.540410
+Failed to start pluginsThe request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: Failed to start the plugins.
+at:
+#0      _SocketCustomLintServerToClientChannel._checkInitializationFail.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:332:11)
+#1      _rootRunUnary (dart:async/zone.dart:1406:47)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+<asynchronous suspension>
+#3      Future.any.onValue (dart:async/future.dart:612:5)
+<asynchronous suspension>
+
+The Dart VM service is listening on http://127.0.0.1:50564/fe5OUldEqQo=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:50564/fe5OUldEqQo=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A50564%2Ffe5OUldEqQo%3D%2Fws
+[custom_lint client] 2023-01-27T17:34:55.385944 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:34:55.385944 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:34:55.385944 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:34:55.385944 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:34:55.385944 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:34:55.385944 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:34:55.385944 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:34:55.385944 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:34:55.385944 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:34:55.385944 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:34:55.385944 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:34:55.385944 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:34:55.385944 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:34:55.385944 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:34:55.385944 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:34:55.385944 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:34:55.385944 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:34:55.385944 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:34:55.385944 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:34:55.385944 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:34:55.385944 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:34:55.385944 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:34:55.385944 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:34:55.385944
+[custom_lint client] 2023-01-27T17:35:00.179880 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:35:00.179880 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:35:00.179880 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:35:00.179880 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:35:00.179880 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:35:00.179880 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:35:00.179880 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:35:00.179880 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:35:00.179880 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:35:00.179880 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:35:00.179880 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:35:00.179880 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:35:00.179880 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:35:00.179880 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:00.179880 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:35:00.179880 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:35:00.179880 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:35:00.179880 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:00.179880 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:35:00.179880 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:35:00.179880 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:35:00.179880 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:35:00.179880 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:35:00.179880
+[custom_lint client] 2023-01-27T17:35:18.292920 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:35:18.292920 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:35:18.292920 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:35:18.292920 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:35:18.292920 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:35:18.292920 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:35:18.292920 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:35:18.292920 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:35:18.292920 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:35:18.292920 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:35:18.292920 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:35:18.292920 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:35:18.292920 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:35:18.292920 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:18.292920 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:35:18.292920 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:35:18.292920 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:35:18.292920 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:18.292920 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:35:18.292920 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:35:18.292920 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:35:18.292920 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:35:18.292920 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:35:18.292920
+[custom_lint client] 2023-01-27T17:35:20.065830 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:35:20.065830 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:35:20.065830 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:35:20.065830 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:35:20.065830 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:35:20.065830 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:35:20.065830 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:35:20.065830 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:35:20.065830 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:35:20.065830 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:35:20.065830 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:35:20.065830 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:35:20.065830 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:35:20.065830 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:20.065830 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:35:20.065830 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:35:20.065830 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:35:20.065830 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:20.065830 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:35:20.065830 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:35:20.065830 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:35:20.065830 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:35:20.065830 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:35:20.065830
+[custom_lint client] 2023-01-27T17:35:25.206181 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:35:25.206181 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:35:25.206181 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:35:25.206181 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:35:25.206181 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:35:25.206181 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:35:25.206181 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:35:25.206181 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:35:25.206181 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:35:25.206181 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:35:25.206181 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:35:25.206181 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:35:25.206181 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:35:25.206181 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:25.206181 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:35:25.206181 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:35:25.206181 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:35:25.206181 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:25.206181 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:35:25.206181 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:35:25.206181 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:35:25.206181 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:35:25.206181 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:35:25.206181
+[custom_lint client] 2023-01-27T17:35:28.507386 Unimplemented handling of missing static target
+[custom_lint client] 2023-01-27T17:35:28.507386 #0      _CustomLintAnalysisConfigs._lintRulesForContext.<anonymous closure> (package:custom_lint_builder/src/client.dart:235:42)
+[custom_lint client] 2023-01-27T17:35:28.507386 #1      ExpandIterator.moveNext (dart:_internal/iterable.dart:483:31)
+[custom_lint client] 2023-01-27T17:35:28.507386 #2      WhereIterator.moveNext (dart:_internal/iterable.dart:440:22)
+[custom_lint client] 2023-01-27T17:35:28.507386 #3      new _GrowableList._ofOther (dart:core-patch/growable_array.dart:202:26)
+[custom_lint client] 2023-01-27T17:35:28.507386 #4      new _GrowableList.of (dart:core-patch/growable_array.dart:152:26)
+[custom_lint client] 2023-01-27T17:35:28.507386 #5      new List.of (dart:core-patch/array_patch.dart:52:28)
+[custom_lint client] 2023-01-27T17:35:28.507386 #6      Iterable.toList (dart:core/iterable.dart:470:12)
+[custom_lint client] 2023-01-27T17:35:28.507386 #7      _CustomLintAnalysisConfigs._lintRulesForContext (package:custom_lint_builder/src/client.dart:237:10)
+[custom_lint client] 2023-01-27T17:35:28.507386 #8      new _CustomLintAnalysisConfigs.from (package:custom_lint_builder/src/client.dart:216:19)
+[custom_lint client] 2023-01-27T17:35:28.507386 #9      _ClientAnalyzerPlugin.afterNewContextCollection.<anonymous closure> (package:custom_lint_builder/src/client.dart:339:42)
+[custom_lint client] 2023-01-27T17:35:28.507386 #10     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[custom_lint client] 2023-01-27T17:35:28.507386 #11     _rootRun (dart:async/zone.dart:1390:47)
+[custom_lint client] 2023-01-27T17:35:28.507386 #12     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:28.507386 #13     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[custom_lint client] 2023-01-27T17:35:28.507386 #14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[custom_lint client] 2023-01-27T17:35:28.507386 #15     _rootRun (dart:async/zone.dart:1398:13)
+[custom_lint client] 2023-01-27T17:35:28.507386 #16     _CustomZone.run (dart:async/zone.dart:1300:19)
+[custom_lint client] 2023-01-27T17:35:28.507386 #17     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[custom_lint client] 2023-01-27T17:35:28.507386 #18     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[custom_lint client] 2023-01-27T17:35:28.507386 #19     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[custom_lint client] 2023-01-27T17:35:28.507386 #20     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[custom_lint client] 2023-01-27T17:35:28.507386 #21     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[custom_lint client] 2023-01-27T17:35:28.507386
+The Dart VM service is listening on http://127.0.0.1:50786/wZyVrESyIhU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:50786/wZyVrESyIhU=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A50786%2FwZyVrESyIhU%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:52.310002
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T17:35:55.933712
+The Dart VM service is listening on http://127.0.0.1:51141/6g1gCUeiIeI=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:51141/6g1gCUeiIeI=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A51141%2F6g1gCUeiIeI%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:51399/4rjy7_9t6fo=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:51399/4rjy7_9t6fo=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A51399%2F4rjy7_9t6fo%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:51404/EKJfP3DmC5c=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:51404/EKJfP3DmC5c=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A51404%2FEKJfP3DmC5c%3D%2Fws
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 Plugin _PreferPrivateMocksFix threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:286:33)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:134:23)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_builder/src/change_reporter.dart:116:33)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #5      _PreferPrivateMocksFix.run.<anonymous closure> (package:mocktail_lint/mocktail_lint.dart:67:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #6      _rootRunUnary (dart:async/zone.dart:1414:13)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #7      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #8      LinterVisitor._runSubscriptions (package:custom_lint_builder/src/node_lint_visitor.dart:1034:27)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #9      LinterVisitor.visitClassDeclaration (package:custom_lint_builder/src/node_lint_visitor.dart:159:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #10     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2080:50)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #11     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:9445:20)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #12     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2596:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #13     LinterVisitor.visitCompilationUnit (package:custom_lint_builder/src/node_lint_visitor.dart:184:10)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #14     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:2589:50)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #15     DartFix.startUp.<anonymous closure> (package:custom_lint_builder/src/fixes.dart:74:17)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #16     _rootRun (dart:async/zone.dart:1398:13)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #17     _CustomZone.run (dart:async/zone.dart:1300:19)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #18     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #19     _ClientAnalyzerPlugin._runPostRunCallbacks (package:custom_lint_builder/src/client.dart:770:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #20     _ClientAnalyzerPlugin._handlesFixesForError (package:custom_lint_builder/src/client.dart:544:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #21     Future.wait.<anonymous closure> (dart:async/future.dart:522:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #22     _ClientAnalyzerPlugin.handleEditGetFixes (package:custom_lint_builder/src/client.dart:473:32)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #23     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:572:18)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 #24     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:611:18)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.006241
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 Plugin _PreferPrivateMocksFix threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:286:33)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:134:23)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_builder/src/change_reporter.dart:116:33)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #5      _PreferPrivateMocksFix.run.<anonymous closure> (package:mocktail_lint/mocktail_lint.dart:67:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #6      _rootRunUnary (dart:async/zone.dart:1414:13)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #7      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #8      LinterVisitor._runSubscriptions (package:custom_lint_builder/src/node_lint_visitor.dart:1034:27)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #9      LinterVisitor.visitClassDeclaration (package:custom_lint_builder/src/node_lint_visitor.dart:159:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #10     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2080:50)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #11     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:9445:20)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #12     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2596:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #13     LinterVisitor.visitCompilationUnit (package:custom_lint_builder/src/node_lint_visitor.dart:184:10)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #14     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:2589:50)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #15     DartFix.startUp.<anonymous closure> (package:custom_lint_builder/src/fixes.dart:74:17)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #16     _rootRun (dart:async/zone.dart:1398:13)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #17     _CustomZone.run (dart:async/zone.dart:1300:19)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #18     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #19     _ClientAnalyzerPlugin._runPostRunCallbacks (package:custom_lint_builder/src/client.dart:770:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #20     _ClientAnalyzerPlugin._handlesFixesForError (package:custom_lint_builder/src/client.dart:544:5)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #21     Future.wait.<anonymous closure> (dart:async/future.dart:522:21)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #22     _ClientAnalyzerPlugin.handleEditGetFixes (package:custom_lint_builder/src/client.dart:473:32)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #23     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:572:18)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 #24     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:611:18)
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345 <asynchronous suspension>
+[_PreferPrivateMocksFix] 2023-01-27T17:53:54.007345
+The Dart VM service is listening on http://127.0.0.1:52652/guqNmDseaAM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52652/guqNmDseaAM=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A52652%2FguqNmDseaAM%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:01:40.510291
+The Dart VM service is listening on http://127.0.0.1:52802/6-b_x5DeM6o=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52802/6-b_x5DeM6o=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A52802%2F6-b_x5DeM6o%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.394833 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.397769 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.397969 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.411711 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.412264 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:46.412424 hello world @@@@@@@@@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:05:55.183547
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.078228 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.080869 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.081085 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.081221 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.081351 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.081470 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.081585 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.109110 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.109904 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.110059 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.110210 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.110325 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.110473 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:09.110594 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.403759 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.404820 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405373 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405587 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405747 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405876 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405992 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.405381 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.406986 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.407218 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.407373 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.407787 package:custom_lint_example_app/main.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.408099 package:mocktail/src/mocktail.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:35.408655 dart:core/object.dart
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.591221 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.591901 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.592146 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.592351 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.592506 PublicMock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.592630 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.593060 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.609348 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.609652 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.609810 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.609949 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.610231 PublicMock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.610395 Mock hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:06:55.610524 Object hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.335316 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.336542 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.336807 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.337129 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.337677 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.338019 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.338229 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.364673 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.366066 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.366486 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.366743 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.367286 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.367949 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:20.368134 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.153885 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.154568 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.154758 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.154909 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.155123 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.155249 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.155553 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.163092 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.164335 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.164556 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.164729 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.164871 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.165008 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:42.165144 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.219617 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.220040 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.220430 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.220610 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.220748 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.221316 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.221741 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.222094 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.222357 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.222522 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.229461 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.229854 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.230141 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.230298 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.230422 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.230767 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.230914 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.231038 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.231161 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:07:47.231270 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.591586 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.592327 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.592494 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.592692 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.593129 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.593477 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.594289 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.595163 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.595461 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.595644 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.633329 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.634193 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.634412 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.634548 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.634723 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.635040 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.635202 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.635337 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.635490 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:09.635628 false
+The Dart VM service is listening on http://127.0.0.1:53148/Xu_GfPgr-2I=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:53148/Xu_GfPgr-2I=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A53148%2FXu_GfPgr-2I%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.944371 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.945055 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.945217 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.945388 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.945696 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.945901 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.946056 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.946759 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.947243 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:38.947514 false
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:33:66: Error: Can't find '}' to match '{'.
+[custom_lint] 2023-01-27T18:08:40.431551     context.registry.addClassDeclaration((ClassDeclaration node) {
+[custom_lint] 2023-01-27T18:08:40.431551                                                                  ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:47:6: Error: Expected a class member, but got ')'.
+[custom_lint] 2023-01-27T18:08:40.431551     });
+[custom_lint] 2023-01-27T18:08:40.431551      ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:47:7: Error: Expected a class member, but got ';'.
+[custom_lint] 2023-01-27T18:08:40.431551     });
+[custom_lint] 2023-01-27T18:08:40.431551       ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:58:1: Error: Expected a declaration, but got '}'.
+[custom_lint] 2023-01-27T18:08:40.431551 }
+[custom_lint] 2023-01-27T18:08:40.431551 ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:41:74: Error: Expected ';' after this.
+[custom_lint] 2023-01-27T18:08:40.431551           .any((element) => _isMock2(element.element as InterfaceElement)))
+[custom_lint] 2023-01-27T18:08:40.431551                                                                          ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:41:75: Error: Expected ';' after this.
+[custom_lint] 2023-01-27T18:08:40.431551           .any((element) => _isMock2(element.element as InterfaceElement)))
+[custom_lint] 2023-01-27T18:08:40.431551                                                                           ^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:42:13: Error: The getter 'isMock' isn't defined for the class 'PreferPrivateMocks'.
+[custom_lint] 2023-01-27T18:08:40.431551  - 'PreferPrivateMocks' is from 'package:mocktail_lint/mocktail_lint.dart' ('/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart').
+[custom_lint] 2023-01-27T18:08:40.431551 Try correcting the name to the name of an existing getter, or defining a getter or field named 'isMock'.
+[custom_lint] 2023-01-27T18:08:40.431551       print(isMock);
+[custom_lint] 2023-01-27T18:08:40.431551             ^^^^^^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:43:25: Error: The getter 'element' isn't defined for the class 'PreferPrivateMocks'.
+[custom_lint] 2023-01-27T18:08:40.431551  - 'PreferPrivateMocks' is from 'package:mocktail_lint/mocktail_lint.dart' ('/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart').
+[custom_lint] 2023-01-27T18:08:40.431551 Try correcting the name to the name of an existing getter, or defining a getter or field named 'element'.
+[custom_lint] 2023-01-27T18:08:40.431551       final isPublic = !element.name.startsWith('_');
+[custom_lint] 2023-01-27T18:08:40.431551                         ^^^^^^^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:44:11: Error: The getter 'isMock' isn't defined for the class 'PreferPrivateMocks'.
+[custom_lint] 2023-01-27T18:08:40.431551  - 'PreferPrivateMocks' is from 'package:mocktail_lint/mocktail_lint.dart' ('/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart').
+[custom_lint] 2023-01-27T18:08:40.431551 Try correcting the name to the name of an existing getter, or defining a getter or field named 'isMock'.
+[custom_lint] 2023-01-27T18:08:40.431551       if (isMock && isPublic) {
+[custom_lint] 2023-01-27T18:08:40.431551           ^^^^^^
+[custom_lint] 2023-01-27T18:08:40.431551 /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart:45:44: Error: The getter 'node' isn't defined for the class 'PreferPrivateMocks'.
+[custom_lint] 2023-01-27T18:08:40.431551  - 'PreferPrivateMocks' is from 'package:mocktail_lint/mocktail_lint.dart' ('/Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/lib/mocktail_lint.dart').
+[custom_lint] 2023-01-27T18:08:40.431551 Try correcting the name to the name of an existing getter, or defining a getter or field named 'node'.
+[custom_lint] 2023-01-27T18:08:40.431551         reporter.reportErrorForNode(_code, node);
+[custom_lint] 2023-01-27T18:08:40.431551                                            ^^^^
+[custom_lint] 2023-01-27T18:08:40.431551
+[custom_lint] 2023-01-27T18:08:40.431551
+Failed to start pluginsThe request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Bad state: Failed to start the plugins.
+at:
+#0      _SocketCustomLintServerToClientChannel._checkInitializationFail.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:332:11)
+#1      _rootRunUnary (dart:async/zone.dart:1406:47)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+<asynchronous suspension>
+#3      Future.any.onValue (dart:async/future.dart:612:5)
+<asynchronous suspension>
+
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.276788 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.277419 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.277589 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.277709 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.277834 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.278422 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.278728 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.278873 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.279259 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:08:43.279393 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.438807 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.439925 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.440149 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.440288 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.440404 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.440529 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.440643 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.441554 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.442366 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:09.442749 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.255857 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.256799 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257003 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257296 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257470 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257716 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257846 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.257972 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.258093 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.258203 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.258310 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.258420 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.264939 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:52.265199 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.399675 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.400755 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401077 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401296 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401462 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401626 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401758 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.401918 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.402060 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.402211 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.402322 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.404660 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.405749 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:09:53.406275 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.322035 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.322874 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323065 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323213 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323333 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323453 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323561 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323668 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323784 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.323906 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.324010 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:03.324130 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.252257 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.253470 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.253645 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.253882 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.254008 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.256069 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.265870 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.267550 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.268094 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.272408 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.273760 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:12.275551 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.334753 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.335294 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.335453 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.335585 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.335721 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.335841 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336129 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336258 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336373 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336482 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336580 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:20.336704 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.367852 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.368639 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.368860 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.369789 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.370200 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.370863 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.371140 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.371310 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.371468 false
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.371590 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.371938 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.372111 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.372268 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.372416 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.373988 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.374193 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:31.374335 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.976397 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.977642 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.977889 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978034 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978165 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978281 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978383 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978708 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978819 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.978937 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.979042 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:42.979150 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.495930 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.496401 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.496599 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.496722 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.496840 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.497369 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.497857 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.498027 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.498144 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.498257 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.498364 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:44.498469 true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.133896 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.134341 Main package:custom_lint_example_app/main.dart false true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.134529 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.134674 Mock package:custom_lint_example_app/main.dart false true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.134822 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.134959 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.135256 NotMocktailMock package:custom_lint_example_app/main.dart false true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.135393 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.135528 PublicMock package:custom_lint_example_app/main.dart true true
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.135699 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.135830 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:10:55.136179 SecondPublicMock package:custom_lint_example_app/main.dart true true
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.398770 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.399511 name: Main uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.399709 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.399856 name: Mock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.399975 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400083 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400224 name: NotMocktailMock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400413 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400667 name: PublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400811 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.400972 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:11:25.401172 name: SecondPublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.704636 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.705202 name: Main uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.705366 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.705494 name: Mock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.705608 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.705719 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706037 name: NotMocktailMock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706176 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706313 name: PublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706424 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706585 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:00.706752 name: SecondPublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.709936 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.718350 name: Main uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721044 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721405 name: Mock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721597 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721727 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721838 name: NotMocktailMock uri: package:custom_lint_example_app/main.dart isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.721960 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.722074 name: PublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.722194 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.722298 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:06.722396 name: SecondPublicMock uri: package:custom_lint_example_app/main.dart isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.403411 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.404449 name: Main isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.404609 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.404736 name: Mock isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.404846 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.404949 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405048 name: NotMocktailMock isMock: false, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405148 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405248 name: PublicMock isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405350 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405451 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:12.405550 name: SecondPublicMock isMock: true, isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.316246 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.316647 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.316975 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317098 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317224 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317516 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317641 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317754 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317868 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.317974 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.318077 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:15.318234 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.072163 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078111 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078292 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078462 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078577 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078723 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078833 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.078938 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.079063 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.079163 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.079264 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:36.079363 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.379274 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.379771 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.380212 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.380449 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.380642 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.381236 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.381521 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.381681 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.381808 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.381921 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.382026 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:37.382129 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.844844 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.845497 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.845966 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846184 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846338 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846454 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846590 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846721 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846834 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.846930 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.847031 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:44.847131 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.509843 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.510711 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.510893 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511032 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511150 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511259 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511360 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511469 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511580 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511685 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511785 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:12:59.511882 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.839210 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.840437 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.840661 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.840796 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.840911 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841013 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841113 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841213 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841314 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841429 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841560 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:02.841661 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.870725 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.875167 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.875692 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.875885 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876018 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876138 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876257 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876361 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876469 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876576 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876678 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:06.876777 name: SecondPublicMock isPublic: true
+The Dart VM service is listening on http://127.0.0.1:53502/ZT47lkGk8PQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:53502/ZT47lkGk8PQ=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A53502%2FZT47lkGk8PQ%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.205342 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.206031 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.206197 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.207326 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.209091 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.209471 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.209644 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.209792 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.209941 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.210073 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.210207 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.210344 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.252784 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.253844 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254039 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254166 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254272 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254376 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254485 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254588 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254688 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254799 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.254911 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:36.255007 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.917264 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.923086 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.923372 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.923545 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.923700 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.923848 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.924029 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.924201 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.924349 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.927070 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.927424 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.927588 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.966231 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.968799 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.969240 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.969832 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970074 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970231 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970363 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970481 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970632 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970742 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970852 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:49.970966 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.418478 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.418907 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.419150 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.419294 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.419437 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.419558 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.419680 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.420162 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.420296 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.420415 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.420532 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.420645 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.699443 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.699819 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.700105 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.700885 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.701200 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.701516 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.701683 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.701842 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.701986 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.702120 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.702266 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.702394 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.835734 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.836173 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.836455 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.836614 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.837329 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.837532 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.837653 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.837783 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.837898 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.838015 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.838127 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:52.838232 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.869263 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.869506 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.869661 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.874509 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.877304 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.877539 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.877685 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.877833 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.877940 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.878040 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.878142 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.878262 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.908975 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.909453 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.909690 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.909939 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.910376 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.912012 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.912270 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.912618 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.912893 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.915169 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.916354 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:13:54.916634 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.518424 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.519025 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.519291 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.519441 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.519778 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.519951 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520097 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520232 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520365 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520565 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520738 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.520882 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.629684 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.630131 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.630295 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.630511 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.630883 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631018 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631144 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631276 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631397 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631520 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.631916 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.632073 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.787031 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.787832 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.788212 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.788629 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.788945 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.789507 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.789733 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.790426 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.792711 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.792926 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.793097 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.793236 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.866028 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.866427 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.866697 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.866909 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.867360 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.867539 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.867820 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.868014 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.868274 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.868496 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.868718 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.869432 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.942928 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.943598 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.943799 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.943951 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.944100 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.944231 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.944358 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.944494 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.944616 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.945308 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.945579 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:30.945734 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.081360 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.081967 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.082620 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.082801 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.082955 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.083241 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.083435 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.083601 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.083785 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.083919 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.084059 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.084178 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.175787 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.176634 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.176979 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.177211 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.177375 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.177521 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.177878 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.178378 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.178599 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.178772 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.178906 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.179243 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.303263 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.309317 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.309642 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.309798 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.310532 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.312212 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.314568 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.316024 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.316278 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.316443 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.316572 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.316705 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.603529 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.603946 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.604273 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.604434 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.604913 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605076 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605201 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605321 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605450 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605586 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.605928 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.606181 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.796451 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797104 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797297 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797439 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797578 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797705 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797832 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.797954 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.798071 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.798336 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.798459 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.798709 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.844288 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.844608 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.844778 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.845127 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.845422 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.846074 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.846317 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.846538 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.846751 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.846940 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.847122 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:31.847383 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.063104 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.063861 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.064189 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.064417 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.064764 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.064920 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065056 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065183 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065308 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065435 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065553 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.065665 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.397641 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.398250 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.398529 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.398671 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.398797 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.398915 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.399030 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.399194 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.399314 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.399658 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:32.399789 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.539175 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.539596 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.539747 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.539871 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.540002 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.540136 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.540372 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.540490 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.540970 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.541263 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.541411 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:33.541537 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.053043 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.053547 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.053727 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.053863 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.053974 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.054094 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.054197 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.054682 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.054944 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.055115 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.055244 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:34.055363 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.183812 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.184958 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.185266 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.186423 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.186881 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187174 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187324 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187470 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187606 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187732 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.187871 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.188007 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.265695 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.266142 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.266310 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.266440 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.266968 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.267145 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.267336 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.267569 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.267713 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.269128 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.269580 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:35.270645 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.771415 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.771893 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772081 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772230 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772364 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772503 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772637 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772770 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.772916 name: _PublicMock isPublic: false
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.773471 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:36.773766 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.454398 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.454701 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.454842 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.454968 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455097 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455224 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455337 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455458 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455569 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.455932 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.456166 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.456489 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.942190 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.942888 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943041 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943175 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943303 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943536 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943682 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.943824 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.944205 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.944376 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.944520 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.944645 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.945421 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.945598 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.945729 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.945851 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.945970 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946093 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946211 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946328 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946445 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946558 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946667 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:41.946778 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.063230 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.064033 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.064327 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.064503 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.064648 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.065164 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.065655 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.066434 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.066664 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.066802 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.070465 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.071912 name: SecondPublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.084780 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.085608 name: Main isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.085832 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086007 name: Mock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086154 Mock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086307 Object dart:core/object.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086431 name: NotMocktailMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086563 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086682 name: PublicMock isPublic: true
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086793 PublicMock package:custom_lint_example_app/main.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.086897 Mock package:mocktail/src/mocktail.dart hello@@@
+[mocktail_prefer_private_mocks] 2023-01-27T18:14:43.087008 name: SecondPublicMock isPublic: true
+The Dart VM service is listening on http://127.0.0.1:54248/PzybOMdkhpY=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54248/PzybOMdkhpY=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A54248%2FPzybOMdkhpY%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:54701/f2oajfHjOKg=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54701/f2oajfHjOKg=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A54701%2Ff2oajfHjOKg%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:54948/df1xkBQNOqE=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54948/df1xkBQNOqE=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A54948%2Fdf1xkBQNOqE%3D%2Fws
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:27.245226
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:45:45.148481
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:46:25.217285
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:49:16.044841
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:54:01.802834
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T18:59:37.784003
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:03:11.202797
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:07.502193
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #23     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:429:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134 #24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:05:33.562134
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.637651
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:27.743151
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 Plugin mocktail_prefer_private_mocks threw while analyzing /Users/alestiago/Developer/workspace/oss/mocktail/packages/mocktail_lint/example/lib/main.dart:
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #2      ServerPlugin.getResolvedUnitResult (package:analyzer_plugin/plugin/plugin.dart:186:48)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #3      CustomLintResolverImpl.getResolvedUnitResult (package:custom_lint_builder/src/resolver.dart:55:67)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #4      DartLintRule.startUp (package:custom_lint_builder/src/lint_rule.dart:115:33)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #5      _ClientAnalyzerPlugin._startUpLintRule.<anonymous closure> (package:custom_lint_builder/src/client.dart:854:22)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #6      _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #7      _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #8      _runZoned (dart:async/zone.dart:1803:10)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #9      runZonedGuarded (dart:async/zone.dart:1791:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #10     _ClientAnalyzerPlugin._runLintZoned (package:custom_lint_builder/src/client.dart:837:12)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #11     _ClientAnalyzerPlugin._startUpLintRule (package:custom_lint_builder/src/client.dart:852:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #12     _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:706:11)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #13     new Future.<anonymous closure> (dart:async/future.dart:253:37)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #14     _rootRun (dart:async/zone.dart:1390:47)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #15     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #16     _CustomZone.runGuarded (dart:async/zone.dart:1208:7)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #17     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1248:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #18     _rootRun (dart:async/zone.dart:1398:13)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #19     _CustomZone.run (dart:async/zone.dart:1300:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #20     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1232:23)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #21     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #22     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:398:19)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549 #23     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:26)
+[mocktail_prefer_private_mocks] 2023-01-27T19:07:35.091549
+The Dart VM service is listening on http://127.0.0.1:57311/9NIZQ0UktdE=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57311/9NIZQ0UktdE=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57311%2F9NIZQ0UktdE%3D%2Fws
+The Dart VM service is listening on http://127.0.0.1:57441/9mS22wZZK78=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57441/9mS22wZZK78=/devtools/#/?uri=ws%3A%2F%2F127.0.0.1%3A57441%2F9mS22wZZK78%3D%2Fws
+[custom_lint client] 2023-01-27T19:14:45.658634 FormatException: Unexpected character (at character 1)
+[custom_lint client] 2023-01-27T19:14:45.658634 e combination of the language version for the enclosing\n  /// package, ena...
+[custom_lint client] 2023-01-27T19:14:45.658634 ^
+[custom_lint client] 2023-01-27T19:14:45.658634
+[custom_lint client] 2023-01-27T19:14:45.658634 #0      _ChunkedJsonParser.fail (dart:convert-patch/convert_patch.dart:1383:5)
+[custom_lint client] 2023-01-27T19:14:45.658634 #1      _ChunkedJsonParser.parseNumber (dart:convert-patch/convert_patch.dart:1250:9)
+[custom_lint client] 2023-01-27T19:14:45.658634 #2      _ChunkedJsonParser.parse (dart:convert-patch/convert_patch.dart:915:22)
+[custom_lint client] 2023-01-27T19:14:45.658634 #3      _parseJson (dart:convert-patch/convert_patch.dart:35:10)
+[custom_lint client] 2023-01-27T19:14:45.658634 #4      JsonDecoder.convert (dart:convert/json.dart:610:36)
+[custom_lint client] 2023-01-27T19:14:45.658634 #5      JsonCodec.decode (dart:convert/json.dart:216:41)
+[custom_lint client] 2023-01-27T19:14:45.658634 #6      jsonDecode (dart:convert/json.dart:155:10)
+[custom_lint client] 2023-01-27T19:14:45.658634 #7      _MapStream._handleData (dart:async/stream_pipe.dart:213:31)
+[custom_lint client] 2023-01-27T19:14:45.658634 #8      _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.658634 #9      _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.658634 #10     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #11     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #12     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #13     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #14     _ForwardingStreamSubscription._add (dart:async/stream_pipe.dart:123:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #15     _ExpandStream._handleData (dart:async/stream_pipe.dart:233:14)
+[custom_lint client] 2023-01-27T19:14:45.658634 #16     _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.658634 #17     _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.658634 #18     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #19     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #20     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #21     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #22     _ForwardingStreamSubscription._add (dart:async/stream_pipe.dart:123:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #23     _MapStream._handleData (dart:async/stream_pipe.dart:218:10)
+[custom_lint client] 2023-01-27T19:14:45.658634 #24     _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.658634 #25     _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.658634 #26     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #27     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #28     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #29     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #30     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:774:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #31     _StreamController._add (dart:async/stream_controller.dart:648:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #32     _StreamController.add (dart:async/stream_controller.dart:596:5)
+[custom_lint client] 2023-01-27T19:14:45.658634 #33     _Socket._onData (dart:io-patch/socket_patch.dart:2355:41)
+[custom_lint client] 2023-01-27T19:14:45.658634 #34     _rootRunUnary (dart:async/zone.dart:1414:13)
+[custom_lint client] 2023-01-27T19:14:45.658634 #35     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #36     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #37     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.658634 #38     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #39     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:774:19)
+[custom_lint client] 2023-01-27T19:14:45.658634 #40     _StreamController._add (dart:async/stream_controller.dart:648:7)
+[custom_lint client] 2023-01-27T19:14:45.658634 #41     _StreamController.add (dart:async/stream_controller.dart:596:5)
+[custom_lint client] 2023-01-27T19:14:45.658634 #42     new _RawSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:1877:33)
+[custom_lint client] 2023-01-27T19:14:45.658634 #43     _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:1334:14)
+[custom_lint client] 2023-01-27T19:14:45.658634 #44     _microtaskLoop (dart:async/schedule_microtask.dart:40:21)
+[custom_lint client] 2023-01-27T19:14:45.658634 #45     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49:5)
+[custom_lint client] 2023-01-27T19:14:45.658634 #46     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:123:13)
+[custom_lint client] 2023-01-27T19:14:45.658634 #47     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:193:5)
+[custom_lint client] 2023-01-27T19:14:45.658634
+[custom_lint client] 2023-01-27T19:14:45.659708 FormatException: Unexpected character (at character 1)
+[custom_lint client] 2023-01-27T19:14:45.659708 e combination of the language version for the enclosing\n  /// package, ena...
+[custom_lint client] 2023-01-27T19:14:45.659708 ^
+[custom_lint client] 2023-01-27T19:14:45.659708
+[custom_lint client] 2023-01-27T19:14:45.659708 #0      _ChunkedJsonParser.fail (dart:convert-patch/convert_patch.dart:1383:5)
+[custom_lint client] 2023-01-27T19:14:45.659708 #1      _ChunkedJsonParser.parseNumber (dart:convert-patch/convert_patch.dart:1250:9)
+[custom_lint client] 2023-01-27T19:14:45.659708 #2      _ChunkedJsonParser.parse (dart:convert-patch/convert_patch.dart:915:22)
+[custom_lint client] 2023-01-27T19:14:45.659708 #3      _parseJson (dart:convert-patch/convert_patch.dart:35:10)
+[custom_lint client] 2023-01-27T19:14:45.659708 #4      JsonDecoder.convert (dart:convert/json.dart:610:36)
+[custom_lint client] 2023-01-27T19:14:45.659708 #5      JsonCodec.decode (dart:convert/json.dart:216:41)
+[custom_lint client] 2023-01-27T19:14:45.659708 #6      jsonDecode (dart:convert/json.dart:155:10)
+[custom_lint client] 2023-01-27T19:14:45.659708 #7      _MapStream._handleData (dart:async/stream_pipe.dart:213:31)
+[custom_lint client] 2023-01-27T19:14:45.659708 #8      _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.659708 #9      _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.659708 #10     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #11     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #12     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #13     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #14     _ForwardingStreamSubscription._add (dart:async/stream_pipe.dart:123:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #15     _ExpandStream._handleData (dart:async/stream_pipe.dart:233:14)
+[custom_lint client] 2023-01-27T19:14:45.659708 #16     _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.659708 #17     _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.659708 #18     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #19     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #20     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #21     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #22     _ForwardingStreamSubscription._add (dart:async/stream_pipe.dart:123:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #23     _MapStream._handleData (dart:async/stream_pipe.dart:218:10)
+[custom_lint client] 2023-01-27T19:14:45.659708 #24     _ForwardingStreamSubscription._handleData (dart:async/stream_pipe.dart:153:13)
+[custom_lint client] 2023-01-27T19:14:45.659708 #25     _rootRunUnary (dart:async/zone.dart:1406:47)
+[custom_lint client] 2023-01-27T19:14:45.659708 #26     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #27     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #28     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #29     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #30     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:774:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #31     _StreamController._add (dart:async/stream_controller.dart:648:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #32     _StreamController.add (dart:async/stream_controller.dart:596:5)
+[custom_lint client] 2023-01-27T19:14:45.659708 #33     _Socket._onData (dart:io-patch/socket_patch.dart:2355:41)
+[custom_lint client] 2023-01-27T19:14:45.659708 #34     _rootRunUnary (dart:async/zone.dart:1414:13)
+[custom_lint client] 2023-01-27T19:14:45.659708 #35     _CustomZone.runUnary (dart:async/zone.dart:1307:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #36     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1216:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #37     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:339:11)
+[custom_lint client] 2023-01-27T19:14:45.659708 #38     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:271:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #39     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:774:19)
+[custom_lint client] 2023-01-27T19:14:45.659708 #40     _StreamController._add (dart:async/stream_controller.dart:648:7)
+[custom_lint client] 2023-01-27T19:14:45.659708 #41     _StreamController.add (dart:async/stream_controller.dart:596:5)
+[custom_lint client] 2023-01-27T19:14:45.659708 #42     new _RawSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:1877:33)
+[custom_lint client] 2023-01-27T19:14:45.659708 #43     _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:1334:14)
+[custom_lint client] 2023-01-27T19:14:45.659708 #44     _microtaskLoop (dart:async/schedule_microtask.dart:40:21)
+[custom_lint client] 2023-01-27T19:14:45.659708 #45     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49:5)
+[custom_lint client] 2023-01-27T19:14:45.659708 #46     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:123:13)
+[custom_lint client] 2023-01-27T19:14:45.659708 #47     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:193:5)
+[custom_lint client] 2023-01-27T19:14:45.659708

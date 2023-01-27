@@ -1,0 +1,19 @@
+name: custom_lint_example_app
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  mocktail:
+    path: ../../mocktail
+
+dev_dependencies:
+  custom_lint: ^0.2.0
+  mocktail_lint:
+    path: ../
+
+dependency_overrides:
+  custom_lint: ^0.2.0
+  custom_lint_builder: ^0.2.0

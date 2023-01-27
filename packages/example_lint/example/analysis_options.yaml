@@ -1,8 +1,0 @@
-analyzer:
-  plugins:
-    - custom_lint
-
-linter:
-  rules:
-    public_member_api_docs: false
-    avoid_print: false
