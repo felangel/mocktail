@@ -1,8 +1,8 @@
 # 🍹 mocktail_image_network
 
 [![Pub](https://img.shields.io/pub/v/mocktail_image_network.svg)](https://pub.dev/packages/mocktail_image_network)
-[![build](https://github.com/felangel/mocktail/workflows/build/badge.svg)](https://github.com/felangel/mocktail/actions)
-[![coverage](https://raw.githubusercontent.com/felangel/mocktail/main/coverage_badge.svg)](https://github.com/felangel/mocktail/actions)
+[![mocktail_image_network](https://github.com/felangel/mocktail/actions/workflows/mocktail_image_network.yaml/badge.svg)](https://github.com/felangel/mocktail/actions)
+[![coverage](https://raw.githubusercontent.com/felangel/mocktail/main/coverage_badge.svg)]()
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 Mock `Image.network` in your widget tests with confidence using [mocktail](https://pub.dev/packages/mocktail)
