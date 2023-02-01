@@ -1,6 +1,6 @@
 # 🍹 mocktail
 
-[![build](https://github.com/felangel/mocktail/workflows/build/badge.svg)](https://github.com/felangel/mocktail/actions)
+[![ci](https://github.com/felangel/mocktail/actions/workflows/ci.yaml/badge.svg)](https://github.com/felangel/mocktail/actions)
 [![coverage](https://raw.githubusercontent.com/felangel/mocktail/main/coverage_badge.svg)](https://github.com/felangel/mocktail/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
