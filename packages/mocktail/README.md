@@ -216,3 +216,40 @@ To address this, we must explicitly stub `sleep` like:
 final person = MockPerson();
 when(() => person.sleep()).thenAnswer((_) async {});
 ```
+
+#### Why is my method throwing a `TypeError` when stubbing using `any()`?
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/162)
+
+By default when a class extends `Mock` any unstubbed methods return `null`. When stubbing using `any()` the type must be inferable. However, when a method has a generic type argument it might not be able to infer the type and the method would act as if it was unstubbed.
+
+For example, take the following class and its method:
+
+```dart
+class MockPerson extends Mock implements Person {}
+
+class Person {
+  T doSomething<T>(T value) => value;
+}
+```
+
+Stubbing `doSomething` won't be able to infer the type when doing:
+
+```dart
+// The type of `any<T>()` can't be inferred.
+when(() => person.doSomething(any())).thenAnswer((_) => 1);
+```
+
+To address this, we must explicitly stub `doSomething` with a type:
+
+```dart
+when(() => person.doSomething(any<int>())).thenAnswer((_) => 1);
+person.doSomething(1);
+verify(() => person.doSomething(any<int>())).called(1);
+```
+
+The type doesn't need to be applied to `any<T>()`, any explicit type that allows `any<T>()` infer its type will allow the method to be stubbed for that type:
+
+```dart
+when(() => person.doSomething<int>(any())).thenAnswer((_) => 1);
+```
