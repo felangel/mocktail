@@ -221,7 +221,7 @@ when(() => person.sleep()).thenAnswer((_) async {});
 
 [Relevant Issue](https://github.com/felangel/mocktail/issues/162)
 
-By default when a class extends `Mock` any unstubbed methods return `null`. When stubbing using `any()` the type must be inferable. However, when a method has a generic type argument it might not be able to infer the type and the method would act as if it was unstubbed.
+By default when a class extends `Mock` any unstubbed methods return `null`. When stubbing using `any()` the type must be inferable. However, when a method has a generic type argument it might not be able to infer the type and as a result, the generic would fallback to `dynamic` causing the method to act as if it was unstubbed.
 
 For example, take the following class and its method:
 
