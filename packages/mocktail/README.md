@@ -236,7 +236,7 @@ class Person {
 Stubbing `doSomething` won't be able to infer the type when doing:
 
 ```dart
-// The type of `any<T>()` can't be inferred.
+// The type `T` of `any<T>()` is inferred to be `dynamic`.
 when(() => person.doSomething(any())).thenAnswer((_) => 1);
 ```
 
