@@ -233,7 +233,7 @@ class Person {
 }
 ```
 
-Stubbing `doSomething` won't be able to infer the type when doing:
+The following stub will be equivalent to calling `doSomething<dynamic>(...)`:
 
 ```dart
 // The type `T` of `any<T>()` is inferred to be `dynamic`.
