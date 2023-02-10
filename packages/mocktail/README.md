@@ -237,14 +237,14 @@ The following stub will be equivalent to calling `set<dynamic>(...)`:
 
 ```dart
 // The type `T` of `any<T>()` is inferred to be `dynamic`.
-when(() => cache.set(any(), any())).thenAnswer((_) => true);
+when(() => cache.set(any(), any())).thenReturn((_) => true);
 ```
 
 To address this, we must explicitly stub `set` with a type:
 
 ```dart
 final cache = MockCache();
-when(() => cache.set<int>(any(), any())).thenAnswer((_) => true);
+when(() => cache.set<int>(any(), any())).thenReturn((_) => true);
 cache.set<int>('key', 1);
 verify(() => cache.set<int>(any(), any())).called(1);
 ```
@@ -252,5 +252,5 @@ verify(() => cache.set<int>(any(), any())).called(1);
 The type doesn't need to be applied to `set<T>()`, any explicit type that allows `any<T>()` infer its type will allow the method to be stubbed for that type:
 
 ```dart
-when(() => cache.set(any(), any<int>())).thenAnswer((_) => true);
+when(() => cache.set(any(), any<int>())).thenReturn((_) => true);
 ```
