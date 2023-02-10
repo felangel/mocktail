@@ -226,30 +226,31 @@ By default when a class extends `Mock` any unstubbed methods return `null`. When
 For example, take the following class and its method:
 
 ```dart
-class MockPerson extends Mock implements Person {}
-
-class Person {
-  T doSomething<T>(T value) => value;
+class Cache {
+  bool set<T>(String key, T value) {
+    return true;
+  }
 }
 ```
 
-The following stub will be equivalent to calling `doSomething<dynamic>(...)`:
+The following stub will be equivalent to calling `set<dynamic>(...)`:
 
 ```dart
 // The type `T` of `any<T>()` is inferred to be `dynamic`.
-when(() => person.doSomething(any())).thenAnswer((_) => 1);
+when(() => cache.set(any(), any())).thenAnswer((_) => true);
 ```
 
-To address this, we must explicitly stub `doSomething` with a type:
+To address this, we must explicitly stub `set` with a type:
 
 ```dart
-when(() => person.doSomething(any<int>())).thenAnswer((_) => 1);
-person.doSomething(1);
-verify(() => person.doSomething(any<int>())).called(1);
+final cache = MockCache();
+when(() => cache.set<int>(any(), any())).thenAnswer((_) => true);
+cache.set<int>('key', 1);
+verify(() => cache.set<int>(any(), any())).called(1);
 ```
 
-The type doesn't need to be applied to `any<T>()`, any explicit type that allows `any<T>()` infer its type will allow the method to be stubbed for that type:
+The type doesn't need to be applied to `set<T>()`, any explicit type that allows `any<T>()` infer its type will allow the method to be stubbed for that type:
 
 ```dart
-when(() => person.doSomething<int>(any())).thenAnswer((_) => 1);
+when(() => cache.set(any(), any<int>())).thenAnswer((_) => true);
 ```
