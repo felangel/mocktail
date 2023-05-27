@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:test/test.dart';
 
@@ -13,7 +13,8 @@ void main() {
           final expectedData = base64Decode(
             '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==''',
           );
-          final client = HttpClient()..autoUncompress = false;
+          final client = debugNetworkImageHttpClientProvider!()
+            ..autoUncompress = false;
           final request = await client.getUrl(Uri.https('', ''));
           final response = await request.close();
           final data = <int>[];
@@ -30,7 +31,8 @@ void main() {
 
     test('should properly pass through onDone', () async {
       await mockNetworkImages(() async {
-        final client = HttpClient()..autoUncompress = false;
+        final client = debugNetworkImageHttpClientProvider!()
+          ..autoUncompress = false;
         final request = await client.getUrl(Uri.https('', ''));
         final response = await request.close();
         var onDoneCalled = false;

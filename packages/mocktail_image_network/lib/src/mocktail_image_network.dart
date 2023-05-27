@@ -1,11 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 /// {@template mocktail_image_network}
 /// Utility method that allows you to execute a widget test when you pump a
 /// widget that contains an `Image.network` node in its tree.
+/// The http client will return with [HttpStatus.ok] and a default image.
+/// After the body is executed it also will clear the
+/// [PaintingBinding.imageCache] so other tests will not be affected.
+///
 ///
 /// For example, if you have the following app:
 ///
@@ -31,7 +37,7 @@ import 'package:mocktail/mocktail.dart';
 /// ```dart
 /// void main() {
 ///   testWidgets('can use mocktail for network images', (tester) async {
-///     await mockNetworkImages(() async {
+///      await mockNetworkImages(() async {
 ///       await tester.pumpWidget(FakeApp());
 ///       expect(find.byType(Image), findsOneWidget);
 ///     });
@@ -39,11 +45,12 @@ import 'package:mocktail/mocktail.dart';
 /// }
 /// ```
 /// {@endtemplate}
-T mockNetworkImages<T>(T Function() body) {
-  return HttpOverrides.runZoned(
-    body,
-    createHttpClient: (_) => _createHttpClient(),
-  );
+Future<void> mockNetworkImages(Future<void> Function() body) async {
+  debugNetworkImageHttpClientProvider = _createHttpClient;
+  await body();
+  TestWidgetsFlutterBinding.instance.imageCache.clear();
+  TestWidgetsFlutterBinding.instance.imageCache.clearLiveImages();
+  debugNetworkImageHttpClientProvider = null;
 }
 
 class _MockHttpClient extends Mock implements HttpClient {

@@ -8,10 +8,23 @@ class FakeApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Image.network(
-            'https://uploads-ssl.webflow.com/5ee12d8d7f840543bde883de/5eec278f49a4916759d679aa_vgv-wordmark-black.svg',
+            kImageUrl,
+            errorBuilder: (
+              context,
+              error,
+              stackTrace,
+            ) {
+              return const Text(kErrorText);
+            },
           ),
         ),
       ),
     );
   }
 }
+
+/// public image url for testing
+const kImageUrl = 'https://randmom-uri.com';
+
+/// public error text for testing
+const kErrorText = 'You are Doomed!';

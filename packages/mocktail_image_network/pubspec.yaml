@@ -9,6 +9,11 @@ environment:
 
 dependencies:
   mocktail: ^0.3.0
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
 
 dev_dependencies:
   test: ^1.16.0
+
