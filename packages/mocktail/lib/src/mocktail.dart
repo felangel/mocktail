@@ -19,9 +19,9 @@ var _whenInProgress = false;
 bool _untilCalledInProgress = false;
 var _verificationInProgress = false;
 
-_ReturnsCannedResponse _defaultResponse = _nullResponse;
+_ReturnsCannedResponse _defaultResponse = _voidResponse;
 
-Expectation<void> _nullResponse() {
+Expectation<void> _voidResponse() {
   return Expectation<void>.allInvocations((_) {});
 }
 
@@ -641,7 +641,7 @@ void logInvocations(List<Mock> mocks) {
 /// In these cases, [resetMocktailState] might be called at the end of `setUp`,
 /// or in `tearDown`.
 void resetMocktailState() {
-  _defaultResponse = _nullResponse;
+  _defaultResponse = _voidResponse;
   _whenInProgress = false;
   _untilCalledInProgress = false;
   _verificationInProgress = false;
