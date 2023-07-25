@@ -51,9 +51,6 @@ class _MockHttpClient extends Mock implements HttpClient {
     registerFallbackValue((List<int> _) {});
     registerFallbackValue(Uri());
   }
-
-  @override
-  set autoUncompress(bool _autoUncompress) {}
 }
 
 class _MockHttpClientRequest extends Mock implements HttpClientRequest {}

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// {@template fake_app}
 /// Sample app used to showcase `mocktail_image_network`
+/// {@endtemplate}
 class FakeApp extends StatelessWidget {
+  /// {@macro fake_app}
+  const FakeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

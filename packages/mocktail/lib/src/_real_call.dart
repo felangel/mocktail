@@ -47,7 +47,7 @@ extension on Invocation {
   /// improve readability.
   String toPrettyString() {
     String argString;
-    var args = positionalArguments.map((dynamic v) => '$v');
+    final args = positionalArguments.map((dynamic v) => '$v');
     if (args.any((arg) => arg.contains('\n'))) {
       // As one or more arg contains newlines, put each on its own line, and
       // indent each, for better readability.
@@ -82,7 +82,7 @@ extension on Invocation {
 
       method = '$method$typeArgsString($argString)';
     } else if (isGetter) {
-      method = '$method';
+      // no-op
     } else if (isSetter) {
       method = '$method=$argString';
     } else {

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_setters_without_getters
+
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

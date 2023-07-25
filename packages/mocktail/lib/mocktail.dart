@@ -23,6 +23,7 @@ export 'src/mocktail.dart'
         verifyNoMoreInteractions,
         verifyZeroInteractions,
         VerificationResult,
+        Verify,
         ListOfVerificationResult,
 
         // -- misc

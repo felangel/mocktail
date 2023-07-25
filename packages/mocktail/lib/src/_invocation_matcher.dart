@@ -13,7 +13,7 @@ class InvocationMatcher {
   /// matches function which determines whether the current
   /// [roleInvocation] matches the provided [invocation].
   bool matches(Invocation invocation) {
-    var isMatching =
+    final isMatching =
         _isMethodMatches(invocation) && _isArgumentsMatches(invocation);
     if (isMatching) {
       _captureArguments(invocation);
@@ -83,8 +83,8 @@ class InvocationMatcher {
       typeArgIndex++;
     }
 
-    Set roleKeys = roleInvocation.namedArguments.keys.toSet();
-    Set actKeys = invocation.namedArguments.keys.toSet();
+    final roleKeys = roleInvocation.namedArguments.keys.toSet();
+    final actKeys = invocation.namedArguments.keys.toSet();
     if (roleKeys.difference(actKeys).isNotEmpty ||
         actKeys.difference(roleKeys).isNotEmpty) {
       return false;
