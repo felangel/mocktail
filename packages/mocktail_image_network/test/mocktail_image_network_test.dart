@@ -14,7 +14,7 @@ void main() {
             '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==''',
           );
           final client = HttpClient()..autoUncompress = false;
-          final request = await client.getUrl(Uri.https('', ''));
+          final request = await client.getUrl(Uri.https(''));
           final response = await request.close();
           final data = <int>[];
 
@@ -31,12 +31,10 @@ void main() {
     test('should properly pass through onDone', () async {
       await mockNetworkImages(() async {
         final client = HttpClient()..autoUncompress = false;
-        final request = await client.getUrl(Uri.https('', ''));
+        final request = await client.getUrl(Uri.https(''));
         final response = await request.close();
         var onDoneCalled = false;
-        final onDone = () {
-          onDoneCalled = true;
-        };
+        void onDone() => onDoneCalled = true;
 
         response.listen((_) {}, onDone: onDone);
 

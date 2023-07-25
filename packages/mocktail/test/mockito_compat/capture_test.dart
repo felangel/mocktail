@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_setters_without_getters
+
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -26,8 +28,9 @@ void main() {
     test('captureAny should match anything', () {
       mock.methodWithNormalArgs(42);
       expect(
-          verify(() => mock.methodWithNormalArgs(captureAny())).captured.single,
-          equals(42));
+        verify(() => mock.methodWithNormalArgs(captureAny())).captured.single,
+        equals(42),
+      );
     });
 
     test('captureThat should match some things', () {
@@ -92,8 +95,13 @@ void main() {
     test('should capture invocations with named arguments', () {
       mock.methodWithTwoNamedArgs(1, y: 42, z: 43);
       expect(
-        verify(() => mock.methodWithTwoNamedArgs(any(),
-            y: captureAny(named: 'y'), z: captureAny(named: 'z'))).captured,
+        verify(
+          () => mock.methodWithTwoNamedArgs(
+            any(),
+            y: captureAny(named: 'y'),
+            z: captureAny(named: 'z'),
+          ),
+        ).captured,
         equals([42, 43]),
       );
     });
@@ -103,8 +111,13 @@ void main() {
         ..methodWithTwoNamedArgs(1, y: 42, z: 43)
         ..methodWithTwoNamedArgs(1, y: 44, z: 45);
       expect(
-        verify(() => mock.methodWithTwoNamedArgs(any(),
-            y: captureAny(named: 'y'), z: captureAny(named: 'z'))).captured,
+        verify(
+          () => mock.methodWithTwoNamedArgs(
+            any(),
+            y: captureAny(named: 'y'),
+            z: captureAny(named: 'z'),
+          ),
+        ).captured,
         equals([42, 43, 44, 45]),
       );
     });
@@ -114,8 +127,13 @@ void main() {
         ..methodWithTwoNamedArgs(1, z: 42, y: 43)
         ..methodWithTwoNamedArgs(1, y: 44, z: 45);
       expect(
-        verify(() => mock.methodWithTwoNamedArgs(any(),
-            y: captureAny(named: 'y'), z: captureAny(named: 'z'))).captured,
+        verify(
+          () => mock.methodWithTwoNamedArgs(
+            any(),
+            y: captureAny(named: 'y'),
+            z: captureAny(named: 'z'),
+          ),
+        ).captured,
         equals([43, 42, 44, 45]),
       );
     });

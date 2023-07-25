@@ -22,6 +22,7 @@ class _Dynamic {
   final dynamic value;
 }
 
+// ignore: one_member_abstracts
 abstract class _Foo {
   String? bar();
 }
@@ -44,7 +45,7 @@ void expectFail(String expectedMessage, void Function() expectedToFail) {
     expectedToFail();
     fail('It was expected to fail!');
   } catch (e) {
-    if (!(e is TestFailure)) {
+    if (e is! TestFailure) {
       rethrow;
     } else {
       if (expectedMessage != e.message) {
@@ -70,8 +71,8 @@ void main() {
 
   group('mixin support', () {
     test('should work', () {
-      var foo = _MockFoo();
-      when(() => foo.baz()).thenReturn('baz');
+      final foo = _MockFoo();
+      when(foo.baz).thenReturn('baz');
       expect(foo.bar(), 'baz');
     });
   });
@@ -89,7 +90,7 @@ void main() {
     });
 
     test('should mock method with mock args', () {
-      var m1 = _MockedClass();
+      final m1 = _MockedClass();
       when(() => mock.methodWithObjArgs(m1)).thenReturn('Ultimate Answer');
       expect(mock.methodWithObjArgs(_MockedClass()), isNull);
       expect(mock.methodWithObjArgs(m1), equals('Ultimate Answer'));
@@ -201,7 +202,7 @@ void main() {
     });
 
     test('should use identical equality between it is not mocked', () {
-      var anotherMock = _MockedClass();
+      final anotherMock = _MockedClass();
       expect(mock == anotherMock, isFalse);
       expect(mock == mock, isTrue);
     });
@@ -213,14 +214,15 @@ void main() {
 
     test('should mock method with calculated result', () {
       when(() => mock.methodWithNormalArgs(any())).thenAnswer(
-          (Invocation inv) => inv.positionalArguments[0].toString());
+        (Invocation inv) => inv.positionalArguments[0].toString(),
+      );
       expect(mock.methodWithNormalArgs(43), equals('43'));
       expect(mock.methodWithNormalArgs(42), equals('42'));
     });
 
     test('should return mock to make simple oneline mocks', () {
-      _RealClass mockWithSetup = _MockedClass();
-      when(() => mockWithSetup.methodWithoutArgs()).thenReturn('oneline');
+      final _RealClass mockWithSetup = _MockedClass();
+      when(mockWithSetup.methodWithoutArgs).thenReturn('oneline');
       expect(mockWithSetup.methodWithoutArgs(), equals('oneline'));
     });
 
@@ -231,12 +233,20 @@ void main() {
     });
 
     test('should mock method with calculated result', () {
-      when(() => mock.methodWithNormalArgs(any(
+      when(
+        () => mock.methodWithNormalArgs(
+          any(
             that: equals(43),
-          ))).thenReturn('43');
-      when(() => mock.methodWithNormalArgs(any(
+          ),
+        ),
+      ).thenReturn('43');
+      when(
+        () => mock.methodWithNormalArgs(
+          any(
             that: equals(42),
-          ))).thenReturn('42');
+          ),
+        ),
+      ).thenReturn('42');
       expect(mock.methodWithNormalArgs(43), equals('43'));
     });
 
@@ -244,11 +254,12 @@ void main() {
     test('should throw if `when` is called while stubbing', () {
       expect(
         () {
-          final responseHelper = () {
+          _RealClass responseHelper() {
             final mock2 = _MockedClass();
             when(() => mock2.getter).thenReturn('A');
             return mock2;
-          };
+          }
+
           when(() => mock.innerObj).thenReturn(responseHelper());
         },
         throwsStateError,
@@ -298,10 +309,10 @@ void main() {
     });
 
     test('should throw if attempting to stub a real method', () {
-      var foo = _MockFoo();
+      final foo = _MockFoo();
       expect(
         () {
-          when(() => foo.quux()).thenReturn('Stub');
+          when(foo.quux).thenReturn('Stub');
         },
         throwsStateError,
       );
@@ -325,11 +336,14 @@ void main() {
     });
 
     test(
-        'should throw the exception when a mock was called without a matching'
+        'should throw the exception when a mock was called without a matching '
         'stub and an exception builder is set.', () {
-      throwOnMissingStub(mock, exceptionBuilder: (_) {
-        throw Exception('test message');
-      });
+      throwOnMissingStub(
+        mock,
+        exceptionBuilder: (_) {
+          throw Exception('test message');
+        },
+      );
       when(() => mock.methodWithNormalArgs(42)).thenReturn('Ultimate Answer');
       expect(() => mock.methodWithoutArgs(), throwsException);
     });
@@ -352,11 +366,13 @@ void main() {
     });
 
     test(
-        'should throw the exception when a mock was called without a matching'
+        'should throw the exception when a mock was called without a matching '
         'stub and an exception builder is set.', () {
-      Mock.throwOnMissingStub(exceptionBuilder: (_) {
-        throw Exception('test message');
-      });
+      Mock.throwOnMissingStub(
+        exceptionBuilder: (_) {
+          throw Exception('test message');
+        },
+      );
       when(() => mock.methodWithNormalArgs(42)).thenReturn('Ultimate Answer');
       expect(() => mock.methodWithoutArgs(), throwsException);
     });

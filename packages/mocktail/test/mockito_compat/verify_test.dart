@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_setters_without_getters
+
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -20,15 +22,19 @@ class _RealClass {
     throw StateError('I must be mocked');
   }
 
-  String? methodWithLongArgs(LongToString? a, LongToString? b,
-          {LongToString? c, LongToString? d}) =>
+  String? methodWithLongArgs(
+    LongToString? a,
+    LongToString? b, {
+    LongToString? c,
+    LongToString? d,
+  }) =>
       'Real';
 }
 
 class LongToString {
   const LongToString(this.aList, this.aMap, this.aString);
-  final List aList;
-  final Map aMap;
+  final List<dynamic> aList;
+  final Map<dynamic, dynamic> aMap;
   final String aString;
 
   @override
@@ -46,9 +52,11 @@ void expectFail(Pattern expectedMessage, void Function() expectedToFail) {
     expectedToFail();
     fail('It was expected to fail!');
   } on TestFailure catch (e) {
-    expect(e.message,
-        expectedMessage is String ? expectedMessage : contains(expectedMessage),
-        reason: 'Failed but with unexpected message');
+    expect(
+      e.message,
+      expectedMessage is String ? expectedMessage : contains(expectedMessage),
+      reason: 'Failed but with unexpected message',
+    );
   }
 }
 
@@ -153,9 +161,7 @@ void main() {
         );
       });
       verify(
-        () => mock.methodWithNormalArgs(
-          any(that: greaterThanOrEqualTo(100)),
-        ),
+        () => mock.methodWithNormalArgs(any(that: greaterThanOrEqualTo(100))),
       );
     });
 
@@ -177,11 +183,16 @@ void main() {
           'No matching calls. All calls: '
           '_MockedClass.methodWithPositionalArgs(100, 17)\n'
           '$noMatchingCallsFooter', () {
-        verify(() =>
-            mock.methodWithPositionalArgs(any(that: greaterThan(100)), 17));
+        verify(
+          () => mock.methodWithPositionalArgs(any(that: greaterThan(100)), 17),
+        );
       });
-      verify(() => mock.methodWithPositionalArgs(
-          any(that: greaterThanOrEqualTo(100)), 17));
+      verify(
+        () => mock.methodWithPositionalArgs(
+          any(that: greaterThanOrEqualTo(100)),
+          17,
+        ),
+      );
     });
 
     test('should fail on non-mock object', () {
@@ -200,7 +211,7 @@ void main() {
       final expectedMessage = RegExp.escape('No matching calls. '
           'All calls: _MockedClass.setter==A\n$noMatchingCallsFooter');
       // RegExp needed because of https://github.com/dart-lang/sdk/issues/33565
-      var expectedPattern = RegExp(expectedMessage.replaceFirst('==', '=?='));
+      final expectedPattern = RegExp(expectedMessage.replaceFirst('==', '=?='));
 
       expectFail(expectedPattern, () => verify(() => mock.setter = 'B'));
       verify(() => mock.setter = 'A');
@@ -210,7 +221,7 @@ void main() {
         'should throw meaningful errors '
         'when verification is interrupted (1)', () {
       // ignore: only_throw_errors
-      final badHelper = () => throw 'boo';
+      Never badHelper() => throw 'boo';
       try {
         verify(() => mock.methodWithNamedArgs(42, y: badHelper()));
       } catch (_) {}
@@ -240,7 +251,7 @@ void main() {
         'should throw meaningful errors '
         'when verification is interrupted (2)', () {
       // ignore: only_throw_errors
-      final badHelper = () => throw 'boo';
+      Never badHelper() => throw 'boo';
       try {
         verify(() => mock.methodWithNamedArgs(42, y: badHelper()));
       } catch (_) {}
@@ -619,7 +630,7 @@ void main() {
         'should throw meaningful errors '
         'when verification is interrupted', () {
       // ignore: only_throw_errors
-      final badHelper = () => throw 'boo';
+      Never badHelper() => throw 'boo';
       try {
         verify(() => mock.methodWithNamedArgs(42, y: badHelper()));
       } catch (_) {}
@@ -648,7 +659,7 @@ void main() {
   group('multiline toStrings on objects', () {
     test(
         '"No matching calls" message visibly separates unmatched calls, '
-        'if an arg\'s string representations is multiline', () {
+        "if an arg's string representations is multiline", () {
       mock
         ..methodWithLongArgs(
           const LongToString(
@@ -671,7 +682,10 @@ void main() {
             'i',
           ),
           d: const LongToString(
-              <int>[7, 8], <int, String>{7: 'j', 8: 'k'}, 'l'),
+            <int>[7, 8],
+            <int, String>{7: 'j', 8: 'k'},
+            'l',
+          ),
         );
       expectFail(
           'No matching calls. All calls: '
