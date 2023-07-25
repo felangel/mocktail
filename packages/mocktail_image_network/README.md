@@ -34,10 +34,8 @@ without a problem!
 ```dart
 void main() {
   testWidgets('can use mocktail for network images', (tester) async {
-    await mockNetworkImages(() async {
-      await tester.pumpWidget(FakeApp());
-      expect(find.byType(Image), findsOneWidget);
-    });
+    await mockNetworkImages(() async => tester.pumpWidget(FakeApp()));
+    expect(find.byType(Image), findsOneWidget);
   });
 }
 ```
