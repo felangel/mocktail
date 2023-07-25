@@ -161,9 +161,7 @@ void main() {
         );
       });
       verify(
-        () => mock.methodWithNormalArgs(
-          any(that: greaterThanOrEqualTo(100)),
-        ),
+        () => mock.methodWithNormalArgs(any(that: greaterThanOrEqualTo(100))),
       );
     });
 
