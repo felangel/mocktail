@@ -145,7 +145,6 @@ abstract class Interface {
   set value(bool? value);
   void say(String text);
   void eat(String food, {bool? alsoDrink});
-  // ignore: avoid_positional_boolean_parameters
   void lie([bool? facingDown]);
   void fly({int? miles});
   void calculate<A extends num>();
