@@ -1,7 +1,7 @@
 # 🍹 mocktail
 
 [![Pub](https://img.shields.io/pub/v/mocktail.svg)](https://pub.dev/packages/mocktail)
-[![build](https://github.com/felangel/mocktail/workflows/build/badge.svg)](https://github.com/felangel/mocktail/actions)
+[![mocktail](https://github.com/felangel/mocktail/actions/workflows/mocktail.yaml/badge.svg)](https://github.com/felangel/mocktail/actions)
 [![coverage](https://raw.githubusercontent.com/felangel/mocktail/main/coverage_badge.svg)](https://github.com/felangel/mocktail/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
@@ -215,4 +215,42 @@ To address this, we must explicitly stub `sleep` like:
 ```dart
 final person = MockPerson();
 when(() => person.sleep()).thenAnswer((_) async {});
+```
+
+#### Why is my method throwing a `TypeError` when stubbing using `any()`?
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/162)
+
+By default when a class extends `Mock` any unstubbed methods return `null`. When stubbing using `any()` the type must be inferable. However, when a method has a generic type argument it might not be able to infer the type and as a result, the generic would fallback to `dynamic` causing the method to act as if it was unstubbed.
+
+For example, take the following class and its method:
+
+```dart
+class Cache {
+  bool set<T>(String key, T value) {
+    return true;
+  }
+}
+```
+
+The following stub will be equivalent to calling `set<dynamic>(...)`:
+
+```dart
+// The type `T` of `any<T>()` is inferred to be `dynamic`.
+when(() => cache.set(any(), any())).thenReturn((_) => true);
+```
+
+To address this, we must explicitly stub `set` with a type:
+
+```dart
+final cache = MockCache();
+when(() => cache.set<int>(any(), any())).thenReturn((_) => true);
+cache.set<int>('key', 1);
+verify(() => cache.set<int>(any(), any())).called(1);
+```
+
+The type doesn't need to be applied to `set<T>()`, any explicit type that allows `any<T>()` infer its type will allow the method to be stubbed for that type:
+
+```dart
+when(() => cache.set(any(), any<int>())).thenReturn((_) => true);
 ```
