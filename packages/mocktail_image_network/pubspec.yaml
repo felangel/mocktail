@@ -1,14 +1,15 @@
 name: mocktail_image_network
 description: A Dart package which allows you to mock Image.network in your widget tests with confidence using the mocktail package.
-version: 0.3.1
+version: 1.0.0-dev.0
 repository: https://github.com/felangel/mocktail
 homepage: https://github.com/felangel/mocktail/tree/main/packages/mocktail_image_network
+topics: [mock, test]
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
-  mocktail: ^0.3.0
+  mocktail: ^1.0.0-dev.0
 
 dev_dependencies:
   test: ^1.16.0
