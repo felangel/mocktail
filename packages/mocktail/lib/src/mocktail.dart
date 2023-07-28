@@ -21,9 +21,7 @@ var _verificationInProgress = false;
 
 _ReturnsCannedResponse _defaultResponse = _voidResponse;
 
-Expectation<void> _voidResponse() {
-  return Expectation<void>.allInvocations((_) {});
-}
+Expectation<void> _voidResponse() => Expectation<void>.allInvocations((_) {});
 
 Expectation<dynamic> _exceptionResponse(
   void Function(Invocation)? exceptionBuilder,
