@@ -155,39 +155,45 @@ void main() {
     });
 
     test('when asyncValueWithPositionalArg (any)', () async {
-      when(() => foo.asyncValueWithPositionalArg(any()))
-          .thenAnswer((_) async => 10);
-      when(() => foo.asyncValueWithPositionalArg(1))
-          .thenAnswer((_) async => 42);
+      when(
+        () => foo.asyncValueWithPositionalArg(any()),
+      ).thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithPositionalArg(1),
+      ).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithPositionalArg(1), 42);
       expect(await foo.asyncValueWithPositionalArg(2), equals(10));
       verify(() => foo.asyncValueWithPositionalArg(1)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (any)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(), any()))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithPositionalArgs(any(), any()),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(10));
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (1 any matcher)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(), 2))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithPositionalArgs(any(), 2),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(10));
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (2 any matchers)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(any(), any()))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithPositionalArgs(any(), any()),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(10));
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(1);
     });
 
     test('when asyncValueWithPositionalArgs (explicit)', () async {
-      when(() => foo.asyncValueWithPositionalArgs(1, 2))
-          .thenAnswer((_) async => 42);
+      when(
+        () => foo.asyncValueWithPositionalArgs(1, 2),
+      ).thenAnswer((_) async => 42);
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(42));
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(42));
       verify(() => foo.asyncValueWithPositionalArgs(1, 2)).called(2);
@@ -219,15 +225,17 @@ void main() {
     });
 
     test('when asyncValueWithNamedArgs', () async {
-      when(() => foo.asyncValueWithNamedArgs(x: 1, y: 2))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithNamedArgs(x: 1, y: 2),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), equals(10));
       verify(() => foo.asyncValueWithNamedArgs(x: 1, y: 2)).called(1);
     });
 
     test('when asyncValueWithNamedArgs (1 any matchers)', () async {
-      when(() => foo.asyncValueWithNamedArgs(x: any(named: 'x'), y: 2))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithNamedArgs(x: any(named: 'x'), y: 2),
+      ).thenAnswer((_) async => 10);
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), equals(10));
       verify(() => foo.asyncValueWithNamedArgs(x: 1, y: 2)).called(1);
     });
@@ -244,8 +252,9 @@ void main() {
     });
 
     test('when asyncValueWithNamedAndPositionalArgs (any)', () async {
-      when(() => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2))
-          .thenAnswer((_) async => 10);
+      when(
+        () => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
+      ).thenAnswer((_) async => 10);
       expect(
         await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
         equals(10),
@@ -256,8 +265,9 @@ void main() {
     test('invocation contains correct arguments', () async {
       late Iterable<Object?> positionalArguments;
       late Map<Symbol, dynamic> namedArguments;
-      when(() => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2))
-          .thenAnswer((invocation) async {
+      when(
+        () => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
+      ).thenAnswer((invocation) async {
         positionalArguments = invocation.positionalArguments;
         namedArguments = invocation.namedArguments;
         return 10;
@@ -271,8 +281,9 @@ void main() {
     });
 
     test('captureAny captures any positional argument', () async {
-      when(() => foo.asyncValueWithPositionalArgs(1, 2))
-          .thenAnswer((_) => Future.value(10));
+      when(
+        () => foo.asyncValueWithPositionalArgs(1, 2),
+      ).thenAnswer((_) => Future.value(10));
       expect(await foo.asyncValueWithPositionalArgs(1, 2), equals(10));
       final captured = verify(
         () => foo.asyncValueWithPositionalArgs(captureAny(), captureAny()),
@@ -281,8 +292,9 @@ void main() {
     });
 
     test('captureAny captures any named argument', () async {
-      when(() => foo.asyncValueWithNamedArgs(x: 1, y: 2))
-          .thenAnswer((_) => Future.value(10));
+      when(
+        () => foo.asyncValueWithNamedArgs(x: 1, y: 2),
+      ).thenAnswer((_) => Future.value(10));
       expect(await foo.asyncValueWithNamedArgs(x: 1, y: 2), equals(10));
       final captured = verify(
         () => foo.asyncValueWithNamedArgs(
@@ -294,8 +306,9 @@ void main() {
     });
 
     test('captureAny captures any positional and named argument', () async {
-      when(() => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2))
-          .thenAnswer((_) => Future.value(10));
+      when(
+        () => foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
+      ).thenAnswer((_) => Future.value(10));
       expect(
         await foo.asyncValueWithNamedAndPositionalArgs(1, y: 2),
         equals(10),
@@ -358,8 +371,9 @@ void main() {
     });
 
     test('when voidWithPositionalAndOptionalNamedArg (default)', () {
-      when(() => foo.voidWithPositionalAndOptionalNamedArg(10))
-          .thenReturn(null);
+      when(
+        () => foo.voidWithPositionalAndOptionalNamedArg(10),
+      ).thenReturn(null);
       expect(
         () => foo.voidWithPositionalAndOptionalNamedArg(10),
         returnsNormally,
@@ -368,14 +382,16 @@ void main() {
     });
 
     test('when voidWithPositionalAndOptionalNamedArg (override)', () {
-      when(() => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42))
-          .thenReturn(null);
+      when(
+        () => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42),
+      ).thenReturn(null);
       expect(
         () => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42),
         returnsNormally,
       );
-      verify(() => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42))
-          .called(1);
+      verify(
+        () => foo.voidWithPositionalAndOptionalNamedArg(10, y: 42),
+      ).called(1);
     });
 
     test('when voidWithOptionalPositionalArg (default)', () {
@@ -428,8 +444,9 @@ void main() {
 
     test('when voidWithDefaultNamedArgs throws mismatch named arg matcher', () {
       expect(
-        () => when(() => foo.voidWithDefaultNamedArgs(x: any(named: 'y')))
-            .thenReturn(null),
+        () => when(
+          () => foo.voidWithDefaultNamedArgs(x: any(named: 'y')),
+        ).thenReturn(null),
         throwsArgumentError,
       );
     });
@@ -465,15 +482,17 @@ void main() {
     });
 
     test('when voidWithGenericDefaultTypeArg (specific verify type)', () {
-      when(() => foo.voidWithGenericDefaultTypeArg<num>(any()))
-          .thenReturn(null);
+      when(
+        () => foo.voidWithGenericDefaultTypeArg<num>(any()),
+      ).thenReturn(null);
       expect(() => foo.voidWithGenericDefaultTypeArg(1), returnsNormally);
       verify(() => foo.voidWithGenericDefaultTypeArg<int>(1)).called(1);
     });
 
     test('when voidWithGenericDefaultTypeArg (specific call/verify type)', () {
-      when(() => foo.voidWithGenericDefaultTypeArg<num>(any()))
-          .thenReturn(null);
+      when(
+        () => foo.voidWithGenericDefaultTypeArg<num>(any()),
+      ).thenReturn(null);
       expect(() => foo.voidWithGenericDefaultTypeArg<num>(1), returnsNormally);
       verify(() => foo.voidWithGenericDefaultTypeArg<num>(1)).called(1);
     });
