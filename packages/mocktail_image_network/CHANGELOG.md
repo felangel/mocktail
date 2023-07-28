@@ -1,3 +1,10 @@
+# 1.0.0
+
+- refactor: use more strict analysis options ([#203](https://github.com/felangel/mocktail/issues/203))
+- docs: improve example in `README`
+- docs: adjust `LICENSE` year
+- docs: add topics to `pubspec.yaml`
+
 # 0.3.1
 
 - fix: pass `onDone` callback ([#120](https://github.com/felangel/mocktail/pull/120))
