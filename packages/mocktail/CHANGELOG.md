@@ -1,4 +1,4 @@
-# 1.0.0-dev.0
+# 1.0.0
 
 - refactor: use more strict analysis options ([#203](https://github.com/felangel/mocktail/issues/203))
 - docs: adjust `LICENSE` year

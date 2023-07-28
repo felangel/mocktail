@@ -13,7 +13,8 @@ class FakeApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Image.network(
-            'https://uploads-ssl.webflow.com/5ee12d8d7f840543bde883de/5eec278f49a4916759d679aa_vgv-wordmark-black.svg',
+            // URL to the Flutter logo from https://flutter.dev/brand
+            'https://storage.googleapis.com/cms-storage-bucket/c823e53b3a1a7b0d36a9.png',
           ),
         ),
       ),
