@@ -1,3 +1,9 @@
+# 1.0.0-dev.0
+
+- refactor: use more strict analysis options ([#203](https://github.com/felangel/mocktail/issues/203))
+- docs: adjust `LICENSE` year
+- docs: add topics to `pubspec.yaml`
+
 # 0.3.0
 
 - **BREAKING** feat: add support for type argument matching ([#66](https://github.com/felangel/mocktail/issues/66))
