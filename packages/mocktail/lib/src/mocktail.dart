@@ -3,8 +3,8 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:matcher/expect.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:test/test.dart';
 
 part '_arg_matcher.dart';
 part '_invocation_matcher.dart';
