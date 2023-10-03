@@ -1,3 +1,8 @@
+# 1.0.1
+
+- chore(deps): replace dependency on `package:test` with `package:test_api` to resolve version resolution issues with `pkg:analyzer`, `pkg:test`, and `flutter_test` ([#209](https://github.com/felangel/mocktail/issues/209))
+- chore(deps): upgrade to `package:matcher` ^0.12.15
+
 # 1.0.0
 
 - refactor: use more strict analysis options ([#203](https://github.com/felangel/mocktail/issues/203))
