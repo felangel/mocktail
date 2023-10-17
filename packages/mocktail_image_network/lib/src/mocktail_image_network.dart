@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:mocktail/mocktail.dart';
 
@@ -39,10 +40,10 @@ import 'package:mocktail/mocktail.dart';
 /// }
 /// ```
 /// {@endtemplate}
-T mockNetworkImages<T>(T Function() body) {
+T mockNetworkImages<T>(T Function() body, {Uint8List? imageData}) {
   return HttpOverrides.runZoned(
     body,
-    createHttpClient: (_) => _createHttpClient(),
+    createHttpClient: (_) => _createHttpClient(imageData),
   );
 }
 
@@ -59,7 +60,7 @@ class _MockHttpClientResponse extends Mock implements HttpClientResponse {}
 
 class _MockHttpHeaders extends Mock implements HttpHeaders {}
 
-HttpClient _createHttpClient() {
+HttpClient _createHttpClient([Uint8List? imageData]) {
   final client = _MockHttpClient();
   final request = _MockHttpClientRequest();
   final response = _MockHttpClientResponse();
@@ -79,8 +80,9 @@ HttpClient _createHttpClient() {
     final onData =
         invocation.positionalArguments[0] as void Function(List<int>);
     final onDone = invocation.namedArguments[#onDone] as void Function()?;
-    return Stream<List<int>>.fromIterable(<List<int>>[_transparentPixelPng])
-        .listen(onData, onDone: onDone);
+    return Stream<List<int>>.fromIterable(
+      <List<int>>[imageData ?? _transparentPixelPng],
+    ).listen(onData, onDone: onDone);
   });
   when(() => request.headers).thenReturn(headers);
   when(request.close).thenAnswer((_) async => response);

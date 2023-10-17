@@ -44,5 +44,31 @@ void main() {
         expect(onDoneCalled, isTrue);
       });
     });
+
+    test(
+      'should mock provided data',
+      () async {
+        // Mock green pixel generated with https://png-pixel.com/
+        final data = base64Decode(
+          '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==''',
+        );
+        await mockNetworkImages(
+          () async {
+            final client = HttpClient()..autoUncompress = false;
+            final request = await client.getUrl(Uri.https(''));
+            final response = await request.close();
+            final data = <int>[];
+
+            response.listen(data.addAll);
+
+            // Wait for all microtasks to run
+            await Future<void>.delayed(Duration.zero);
+
+            expect(data, equals(data));
+          },
+          imageData: data,
+        );
+      },
+    );
   });
 }
