@@ -49,11 +49,14 @@ cat.sound();
 // Verify the interaction occurred.
 verify(() => cat.sound()).called(1);
 
+// When mocktail verifies a method call, said call is then excluded from further verifications.
+verifyNever(() => cat.sound());
+
 // Interact with the mock instance again.
 cat.sound();
 
-// Verify the interaction occurred twice.
-verify(() => cat.sound()).called(2);
+// The interaction count is now one again and not two.
+verify(() => cat.sound()).called(1);
 ```
 
 ## Additional Usage
