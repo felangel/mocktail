@@ -1,3 +1,8 @@
+# 1.0.2
+
+- chore(deps): allow pkg:test_api >=0.7.0 ([#220](https://github.com/felangel/mocktail/issues/220))
+- docs: update `verify` example in `README.md` ([#215](https://github.com/felangel/mocktail/issues/215))
+
 # 1.0.1
 
 - chore(deps): replace dependency on `package:test` with `package:test_api` to resolve version resolution issues with `pkg:analyzer`, `pkg:test`, and `flutter_test` ([#209](https://github.com/felangel/mocktail/issues/209))
