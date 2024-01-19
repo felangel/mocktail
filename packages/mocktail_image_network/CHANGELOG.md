@@ -1,3 +1,9 @@
+# 1.1.0
+
+- feat: add customizable `imageBytes` to `mockNetworkImages` ([#214](https://github.com/felangel/mocktail/issues/214))
+- chore: remove deprecated lint rules
+- docs: adjust `LICENSE` year
+
 # 1.0.0
 
 - refactor: use more strict analysis options ([#203](https://github.com/felangel/mocktail/issues/203))
