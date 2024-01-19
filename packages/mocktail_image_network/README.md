@@ -9,7 +9,7 @@ Mock `Image.network` in your widget tests with confidence using [mocktail](https
 
 ---
 
-## How to use
+## Usage
 
 If you want to test a widget with a similar structure to this one:
 
@@ -40,7 +40,7 @@ void main() {
 }
 ```
 
-### Why should you use mocktail_image_network
+### Why should you use `mocktail_image_network`
 
 If your application uses [Image.network](https://api.flutter.dev/flutter/widgets/Image/Image.network.html)
 to present images hosted in a URL, you will notice that your widget tests fail
