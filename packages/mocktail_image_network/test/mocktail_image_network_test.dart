@@ -45,30 +45,26 @@ void main() {
       });
     });
 
-    test(
-      'should use custom imageData',
-      () async {
-        // Mock green pixel generated with https://png-pixel.com/
-        final greenPixel = base64Decode(
-          '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==''',
-        );
-        await mockNetworkImages(
-          () async {
-            final client = HttpClient()..autoUncompress = false;
-            final request = await client.getUrl(Uri.https(''));
-            final response = await request.close();
-            final data = <int>[];
+    test('should properly use custom imageBytes', () async {
+      final greenPixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==''',
+      );
+      await mockNetworkImages(
+        () async {
+          final client = HttpClient()..autoUncompress = false;
+          final request = await client.getUrl(Uri.https(''));
+          final response = await request.close();
+          final data = <int>[];
 
-            response.listen(data.addAll);
+          response.listen(data.addAll);
 
-            // Wait for all microtasks to run
-            await Future<void>.delayed(Duration.zero);
+          // Wait for all microtasks to run
+          await Future<void>.delayed(Duration.zero);
 
-            expect(data, equals(greenPixel));
-          },
-          imageData: greenPixel,
-        );
-      },
-    );
+          expect(data, equals(greenPixel));
+        },
+        imageBytes: greenPixel,
+      );
+    });
   });
 }
