@@ -44,5 +44,27 @@ void main() {
         expect(onDoneCalled, isTrue);
       });
     });
+
+    test('should properly use custom imageBytes', () async {
+      final greenPixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==''',
+      );
+      await mockNetworkImages(
+        () async {
+          final client = HttpClient()..autoUncompress = false;
+          final request = await client.getUrl(Uri.https(''));
+          final response = await request.close();
+          final data = <int>[];
+
+          response.listen(data.addAll);
+
+          // Wait for all microtasks to run
+          await Future<void>.delayed(Duration.zero);
+
+          expect(data, equals(greenPixel));
+        },
+        imageBytes: greenPixel,
+      );
+    });
   });
 }
