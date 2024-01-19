@@ -46,10 +46,10 @@ void main() {
     });
 
     test(
-      'should mock provided data',
+      'should use custom imageData',
       () async {
         // Mock green pixel generated with https://png-pixel.com/
-        final data = base64Decode(
+        final greenPixel = base64Decode(
           '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==''',
         );
         await mockNetworkImages(
@@ -64,9 +64,9 @@ void main() {
             // Wait for all microtasks to run
             await Future<void>.delayed(Duration.zero);
 
-            expect(data, equals(data));
+            expect(data, equals(greenPixel));
           },
-          imageData: data,
+          imageData: greenPixel,
         );
       },
     );
