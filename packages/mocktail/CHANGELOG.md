@@ -1,3 +1,9 @@
+# 1.0.3
+
+- docs: update ` README.md`` to include  `any(that: ...)` ([#226](https://github.com/felangel/mocktail/issues/226))
+- chore: update LICENSE year
+- chore: remove deprecated lint rules
+
 # 1.0.2
 
 - chore(deps): allow pkg:test_api >=0.7.0 ([#220](https://github.com/felangel/mocktail/issues/220))
