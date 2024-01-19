@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:mocktail/mocktail.dart';
 
@@ -38,13 +39,12 @@ import 'package:mocktail/mocktail.dart';
 /// }
 /// ```
 /// {@endtemplate}
-T mockNetworkImages<T>(
-  T Function() body, {
-  List<int> imageBytes = _transparentPixelPng,
-}) {
+T mockNetworkImages<T>(T Function() body, {Uint8List? imageBytes}) {
   return HttpOverrides.runZoned(
     body,
-    createHttpClient: (_) => _createHttpClient(data: imageBytes),
+    createHttpClient: (_) => _createHttpClient(
+      data: imageBytes ?? _transparentPixelPng,
+    ),
   );
 }
 
