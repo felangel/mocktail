@@ -66,5 +66,27 @@ void main() {
         imageBytes: greenPixel,
       );
     });
+
+    test(
+      'should properly mock svg response and complete without exceptions',
+      () async {
+        await mockNetworkImages(() async {
+          final expectedData = base64Decode(
+            '''PHN2ZyB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgdmlld0JveD0nMCAwIDEgMCAxMDAnIC8+''',
+          );
+          final client = HttpClient()..autoUncompress = false;
+          final request = await client.getUrl(Uri.https('', '/image.svg'));
+          final response = await request.close();
+          final data = <int>[];
+
+          response.listen(data.addAll);
+
+          // Wait for all microtasks to run
+          await Future<void>.delayed(Duration.zero);
+
+          expect(data, equals(expectedData));
+        });
+      },
+    );
   });
 }
