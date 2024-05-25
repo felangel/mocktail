@@ -71,9 +71,7 @@ void main() {
       'should properly mock svg response and complete without exceptions',
       () async {
         await mockNetworkImages(() async {
-          final expectedData = base64Decode(
-            '''PHN2ZyB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgdmlld0JveD0nMCAwIDEgMCAxMDAnIC8+''',
-          );
+          final expectedData = '<svg viewBox="0 0 100 100" />'.codeUnits;
           final client = HttpClient()..autoUncompress = false;
           final request = await client.getUrl(Uri.https('', '/image.svg'));
           final response = await request.close();
@@ -88,5 +86,28 @@ void main() {
         });
       },
     );
+
+    test('should properly use custom imageMockProvider', () async {
+      final bluePixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYPj/HwADAgH/eL9GtQAAAABJRU5ErkJggg==''',
+      );
+
+      await mockNetworkImages(
+        () async {
+          final client = HttpClient()..autoUncompress = false;
+          final request = await client.getUrl(Uri.https(''));
+          final response = await request.close();
+          final data = <int>[];
+
+          response.listen(data.addAll);
+
+          // Wait for all microtasks to run
+          await Future<void>.delayed(Duration.zero);
+
+          expect(data, equals(bluePixel));
+        },
+        imageMockProvider: (uri) => bluePixel,
+      );
+    });
   });
 }
