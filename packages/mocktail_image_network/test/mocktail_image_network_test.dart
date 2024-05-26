@@ -73,7 +73,9 @@ void main() {
         await mockNetworkImages(() async {
           final expectedData = '<svg viewBox="0 0 100 100" />'.codeUnits;
           final client = HttpClient()..autoUncompress = false;
-          final request = await client.getUrl(Uri.https('', '/image.svg'));
+          final request =
+              await client.openUrl('GET', Uri.https('', '/image.svg'));
+          await request.addStream(Stream.value(<int>[]));
           final response = await request.close();
           final data = <int>[];
 
