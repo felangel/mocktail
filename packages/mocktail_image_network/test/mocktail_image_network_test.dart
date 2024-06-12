@@ -67,29 +67,29 @@ void main() {
       );
     });
 
-    test(
-      'should properly mock svg response and complete without exceptions',
-      () async {
-        await mockNetworkImages(() async {
-          final expectedData = '<svg viewBox="0 0 100 100" />'.codeUnits;
-          final client = HttpClient()..autoUncompress = false;
-          final request =
-              await client.openUrl('GET', Uri.https('', '/image.svg'));
-          await request.addStream(Stream.value(<int>[]));
-          final response = await request.close();
-          final data = <int>[];
+    test('should properly mock svg response', () async {
+      await mockNetworkImages(() async {
+        final expectedData = '<svg viewBox="0 0 10 10" />'.codeUnits;
+        final client = HttpClient()..autoUncompress = false;
+        final request = await client.openUrl(
+          'GET',
+          Uri.https('', '/image.svg'),
+        );
+        await request.addStream(Stream.value(<int>[]));
+        final response = await request.close();
+        final data = <int>[];
 
-          response.listen(data.addAll);
+        response.listen(data.addAll);
 
-          // Wait for all microtasks to run
-          await Future<void>.delayed(Duration.zero);
+        // Wait for all microtasks to run
+        await Future<void>.delayed(Duration.zero);
 
-          expect(data, equals(expectedData));
-        });
-      },
-    );
+        expect(response.redirects, isEmpty);
+        expect(data, equals(expectedData));
+      });
+    });
 
-    test('should properly use custom imageMockProvider', () async {
+    test('should properly use custom imageResolver', () async {
       final bluePixel = base64Decode(
         '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYPj/HwADAgH/eL9GtQAAAABJRU5ErkJggg==''',
       );
@@ -108,7 +108,29 @@ void main() {
 
           expect(data, equals(bluePixel));
         },
-        imageMockProvider: (uri) => bluePixel,
+        imageResolver: (_) => bluePixel,
+      );
+    });
+
+    test(
+        'should throw assertion error '
+        'when both imageBytes and imageResolver are used.', () async {
+      final bluePixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYPj/HwADAgH/eL9GtQAAAABJRU5ErkJggg==''',
+      );
+      expect(
+        () => mockNetworkImages(
+          () {},
+          imageBytes: bluePixel,
+          imageResolver: (_) => bluePixel,
+        ),
+        throwsA(
+          isA<AssertionError>().having(
+            (e) => e.message,
+            'message',
+            'One of imageBytes or imageResolver can be provided, but not both.',
+          ),
+        ),
       );
     });
   });
