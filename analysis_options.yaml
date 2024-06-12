@@ -92,6 +92,7 @@ linter:
     - no_leading_underscores_for_local_identifiers
     - no_logic_in_create_state
     - no_runtimeType_toString
+    - no_wildcard_variable_uses
     - non_constant_identifier_names
     - noop_primitive_operations
     - null_check_on_nullable_type_parameter
@@ -153,6 +154,7 @@ linter:
     - tighten_type_of_initializing_formals
     - type_annotate_public_apis
     - type_init_formals
+    - type_literal_in_constant_pattern
     - unawaited_futures
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps

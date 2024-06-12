@@ -206,11 +206,11 @@ When<T> Function<T>(T Function() x) get when {
     throw StateError('Cannot call `when` within a stub response');
   }
   _whenInProgress = true;
-  return <T>(T Function() _) {
+  return <T>(T Function() fn) {
     try {
-      _();
-    } catch (_) {
-      if (_ is! TypeError) rethrow;
+      fn();
+    } catch (e) {
+      if (e is! TypeError) rethrow;
     }
     _whenInProgress = false;
     return When<T>();
@@ -395,12 +395,12 @@ List<VerificationResult> Function<T>(
     throw StateError(_verifyCalls.join());
   }
   _verificationInProgress = true;
-  return <T>(List<T Function()> _) {
-    for (final invocation in _) {
+  return <T>(List<T Function()> invocations) {
+    for (final invocation in invocations) {
       try {
         invocation();
-      } catch (_) {
-        if (_ is! TypeError) rethrow;
+      } catch (e) {
+        if (e is! TypeError) rethrow;
       }
     }
 
@@ -503,11 +503,11 @@ Verify _makeVerify(bool never) {
     );
   }
   _verificationInProgress = true;
-  return <T>(T Function() mock) {
+  return <T>(T Function() fn) {
     try {
-      mock();
-    } catch (_) {
-      if (_ is! TypeError) rethrow;
+      fn();
+    } catch (e) {
+      if (e is! TypeError) rethrow;
     }
     _verificationInProgress = false;
     if (_verifyCalls.length == 1) {
@@ -758,11 +758,11 @@ class _VerifyCall {
 /// future will return immediately.
 Future<Invocation> Function<T>(T Function() _) get untilCalled {
   _untilCalledInProgress = true;
-  return <T>(T Function() _) {
+  return <T>(T Function() fn) {
     try {
-      _();
-    } catch (_) {
-      if (_ is! TypeError) rethrow;
+      fn();
+    } catch (e) {
+      if (e is! TypeError) rethrow;
     }
     _untilCalledInProgress = false;
     return _untilCall!.invocationFuture;
