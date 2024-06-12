@@ -1,3 +1,8 @@
+# 1.0.4
+
+- refactor: upgrade `analysis_options.yaml` ([#242](https://github.com/felangel/mocktail/issues/242))
+- chore: fix minor typo in `CHANGELOG.md`
+
 # 1.0.3
 
 - docs: update ` README.md` to include `any(that: ...)` ([#226](https://github.com/felangel/mocktail/issues/226))
