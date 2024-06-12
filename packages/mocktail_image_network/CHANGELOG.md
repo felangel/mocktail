@@ -1,3 +1,9 @@
+# 1.2.0
+
+- feat: add customizable `imageResolver` to `mockNetworkImages` ([#232](https://github.com/felangel/mocktail/issues/232))
+- fix: svg support ([#232](https://github.com/felangel/mocktail/issues/232))
+- chore: include `package:flutter_svg` in example
+
 # 1.1.0
 
 - feat: add customizable `imageBytes` to `mockNetworkImages` ([#214](https://github.com/felangel/mocktail/issues/214))
