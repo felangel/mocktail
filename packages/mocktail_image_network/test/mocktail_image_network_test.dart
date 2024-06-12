@@ -66,5 +66,72 @@ void main() {
         imageBytes: greenPixel,
       );
     });
+
+    test('should properly mock svg response', () async {
+      await mockNetworkImages(() async {
+        final expectedData = '<svg viewBox="0 0 10 10" />'.codeUnits;
+        final client = HttpClient()..autoUncompress = false;
+        final request = await client.openUrl(
+          'GET',
+          Uri.https('', '/image.svg'),
+        );
+        await request.addStream(Stream.value(<int>[]));
+        final response = await request.close();
+        final data = <int>[];
+
+        response.listen(data.addAll);
+
+        // Wait for all microtasks to run
+        await Future<void>.delayed(Duration.zero);
+
+        expect(response.redirects, isEmpty);
+        expect(data, equals(expectedData));
+      });
+    });
+
+    test('should properly use custom imageResolver', () async {
+      final bluePixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYPj/HwADAgH/eL9GtQAAAABJRU5ErkJggg==''',
+      );
+
+      await mockNetworkImages(
+        () async {
+          final client = HttpClient()..autoUncompress = false;
+          final request = await client.getUrl(Uri.https(''));
+          final response = await request.close();
+          final data = <int>[];
+
+          response.listen(data.addAll);
+
+          // Wait for all microtasks to run
+          await Future<void>.delayed(Duration.zero);
+
+          expect(data, equals(bluePixel));
+        },
+        imageResolver: (_) => bluePixel,
+      );
+    });
+
+    test(
+        'should throw assertion error '
+        'when both imageBytes and imageResolver are used.', () async {
+      final bluePixel = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYPj/HwADAgH/eL9GtQAAAABJRU5ErkJggg==''',
+      );
+      expect(
+        () => mockNetworkImages(
+          () {},
+          imageBytes: bluePixel,
+          imageResolver: (_) => bluePixel,
+        ),
+        throwsA(
+          isA<AssertionError>().having(
+            (e) => e.message,
+            'message',
+            'One of imageBytes or imageResolver can be provided, but not both.',
+          ),
+        ),
+      );
+    });
   });
 }
