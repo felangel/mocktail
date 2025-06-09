@@ -4,6 +4,7 @@ version: 1.0.4
 repository: https://github.com/felangel/mocktail
 homepage: https://github.com/felangel/mocktail/tree/main/packages/mocktail
 topics: [mock, test]
+funding: [https://github.com/sponsors/felangel]
 
 environment:
   sdk: ">=2.12.0 <4.0.0"
