@@ -116,7 +116,6 @@ Invocation _useMatchedInvocationIfSet(Invocation invocation) {
 /// An Invocation implementation that takes arguments from [_storedArgs] and
 /// [_storedNamedArgs].
 class _InvocationForMatchedArguments extends Invocation {
-  @override
   factory _InvocationForMatchedArguments(Invocation invocation) {
     // Handle named arguments first, so that we can provide useful errors for
     // the various bad states. If all is well with the named arguments, then we
