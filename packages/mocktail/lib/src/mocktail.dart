@@ -122,14 +122,29 @@ class Mock {
     } else {
       _realCalls.add(RealCall(this, invocation));
       _invocationStreamController.add(invocation);
-      final cannedResponse = _responses.lastWhere(
-        (response) {
-          return response.call.matches(invocation, <dynamic, dynamic>{});
-        },
-        orElse: __defaultResponse,
-      );
-      return cannedResponse.response(invocation);
+      final match = _lastMatch(_responses, invocation);
+      return match != null
+          ? match.response(invocation)
+          : __defaultResponse().response(invocation);
     }
+  }
+
+  /// Returns the last [Expectation] in [responses] whose [Matcher] matches
+  /// [invocation], or `null` if none match.
+  ///
+  /// Iterates backward so the most-recently-added stub wins without scanning
+  /// the entire list — O(1) in the common case where the latest stub matches,
+  /// vs O(n) for [Iterable.lastWhere] which always reads the full list.
+  Expectation<dynamic>? _lastMatch(
+    List<Expectation<dynamic>> responses,
+    Invocation invocation,
+  ) {
+    for (var i = responses.length - 1; i >= 0; i--) {
+      if (responses[i].call.matches(invocation, const {})) {
+        return responses[i];
+      }
+    }
+    return null;
   }
 
   @override
