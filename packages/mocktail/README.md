@@ -260,92 +260,84 @@ The type doesn't need to be applied to `set<T>()`, any explicit type that allows
 ```dart
 when(() => cache.set(any(), any<int>())).thenReturn((_) => true);
 ```
+
 ## Migrating from Mockito
 
-If you are upgrading to null safety and switching from `mockito` to `mocktail`, the API is intentionally similar. The key differences are:
+Mocktail maintains a very similar API to mockito to make the migration as smooth as possible.
 
-1. **No code generation** — remove `@GenerateMocks`, `build_runner`, and generated `.mocks.dart` files
-2. **Closure-wrapped calls** — stub and verify with `() => mock.method()` instead of `mock.method()`
-3. **Unified matchers** — `any()`, `any(named:)`, `any(that:)` replace `anyString`, `anyInt`, `argThat`, etc.
+The key differences are:
 
-### Quick reference
+1. **No code generation** — remove `@GenerateMocks`, `build_runner`, and generated `.mocks.dart` files.
+1. **Wrap calls in closures** — stub and verify with `() => mock.method()` instead of `mock.method()`
+1. **Unified matchers** — `any()`, `any(named:)`, `any(that:)` replace `anyString`, `anyInt`, `argThat`, etc.
 
-| Mockito | mocktail |
-|---------|----------|
-| `@GenerateMocks([Cat])` + `build_runner` | `class MockCat extends Mock implements Cat {}` |
-| `MockitoAnnotations.initMocks(this)` | *(not needed)* |
-| `when(mock.sound()).thenReturn('meow')` | `when(() => mock.sound()).thenReturn('meow')` |
-| `when(mock.sound()).thenAnswer((_) => 'purr')` | `when(() => mock.sound()).thenAnswer((_) => 'purr')` |
-| `when(mock.sound()).thenThrow(Exception())` | `when(() => mock.sound()).thenThrow(Exception())` |
-| `when(mock.fetch(any()))` | `when(() => mock.fetch(any()))` |
-| `when(mock.fetch(anyNamed('url')))` | `when(() => mock.fetch(any(named: 'url')))` |
+### Quick Reference
+
+| `mockito`                                       | `mocktail`                                              |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| `@GenerateMocks([Cat])` + `build_runner`        | `class MockCat extends Mock implements Cat {}`          |
+| `MockitoAnnotations.initMocks(this)`            | _(not needed)_                                          |
+| `when(mock.sound()).thenReturn('meow')`         | `when(() => mock.sound()).thenReturn('meow')`           |
+| `when(mock.sound()).thenAnswer((_) => 'purr')`  | `when(() => mock.sound()).thenAnswer((_) => 'purr')`    |
+| `when(mock.sound()).thenThrow(Exception())`     | `when(() => mock.sound()).thenThrow(Exception())`       |
+| `when(mock.fetch(any()))`                       | `when(() => mock.fetch(any()))`                         |
+| `when(mock.fetch(anyNamed('url')))`             | `when(() => mock.fetch(any(named: 'url')))`             |
 | `when(mock.fetch(argThat(startsWith('http'))))` | `when(() => mock.fetch(any(that: startsWith('http'))))` |
-| `verify(mock.sound()).called(1)` | `verify(() => mock.sound()).called(1)` |
-| `verifyNever(mock.sound())` | `verifyNever(() => mock.sound())` |
-| `verifyInOrder([mock.a(), mock.b()])` | `verifyInOrder([() => mock.a(), () => mock.b()])` |
-| `verify(mock.fetch(captureAny)).captured` | `verify(() => mock.fetch(captureAny())).captured` |
-| `verify(mock.fetch(captureThat(isNotNull)))` | `verify(() => mock.fetch(captureAny(that: isNotNull)))` |
-| `reset(mock)` | `reset(mock)` |
-| `resetMockitoState()` | `resetMocktailState()` |
+| `verify(mock.sound()).called(1)`                | `verify(() => mock.sound()).called(1)`                  |
+| `verifyNever(mock.sound())`                     | `verifyNever(() => mock.sound())`                       |
+| `verifyInOrder([mock.a(), mock.b()])`           | `verifyInOrder([() => mock.a(), () => mock.b()])`       |
+| `verify(mock.fetch(captureAny)).captured`       | `verify(() => mock.fetch(captureAny())).captured`       |
+| `verify(mock.fetch(captureThat(isNotNull)))`    | `verify(() => mock.fetch(captureAny(that: isNotNull)))` |
+| `reset(mock)`                                   | `reset(mock)`                                           |
+| `resetMockitoState()`                           | `resetMocktailState()`                                  |
 
-### Before/After example
+### Sample Migration
 
-**Before (mockito):**
+**Before (mockito)**
+
 ```dart
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'cat_test.mocks.dart'; // generated
+import 'cat_test.mocks.dart';
 
 @GenerateMocks([Cat])
 void main() {
-  late MockCat cat;
-  setUp(() => cat = MockCat());
-
   test('sounds', () {
+    final Cat cat = MockCat();
     when(cat.sound()).thenReturn('meow');
     expect(cat.sound(), 'meow');
     verify(cat.sound()).called(1);
   });
 
-  test('fetch with matcher', () {
-    when(cat.fetch(argThat(startsWith('http')))).thenAnswer((_) async => 'ok');
+  test('eat with matcher', () {
+    final Cat cat = MockCat();
+    when(cat.eat(argThat(startsWith('fish')))).thenAnswer((_) async => 'yum');
+    expect(cat.eat('fishy'), completion(equals('yum')));
+    verify(cat.eat('fishy')).called(1);
   });
 }
-After (mocktail):
+```
 
+**After (mocktail)**
 
+```dart
 import 'package:mocktail/mocktail.dart';
 
 class MockCat extends Mock implements Cat {}
 
 void main() {
-  late MockCat cat;
-  setUp(() => cat = MockCat());
-  tearDown(() => resetMocktailState());
-
   test('sounds', () {
+    final Cat cat = MockCat();
     when(() => cat.sound()).thenReturn('meow');
     expect(cat.sound(), 'meow');
     verify(() => cat.sound()).called(1);
   });
 
-  test('fetch with matcher', () {
-    when(() => cat.fetch(any(that: startsWith('http')))).thenAnswer((_) async => 'ok');
+  test('eat with matcher', () {
+    final Cat cat = MockCat();
+    when(() => cat.eat(any(that: startsWith('fish')))).thenAnswer((_) async => 'yum');
+    expect(cat.eat('fishy'), completion(equals('yum')));
+    verify(() => cat.eat('fishy')).called(1);
   });
 }
-pubspec.yaml changes
-
-# Remove
-dev_dependencies:
-  mockito: ^5.x.x
-  build_runner: ^2.x.x
-
-# Add
-dev_dependencies:
-  mocktail: ^0.3.0
-Note: If you pass custom types (e.g. Uri, your own classes) as arguments to any(), register a fallback value once in setUpAll: registerFallbackValue(Uri()).
-
-
-
-4. **PR title:** `docs: add Mockito migration guide (closes #92)`
-5. **PR description:**
+```
