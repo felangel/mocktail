@@ -263,7 +263,7 @@ when(() => cache.set(any(), any<int>())).thenReturn((_) => true);
 
 ## Migrating from Mockito
 
-Mocktail maintains a very similar API to mockito to make the migration as smooth as possible.
+Mocktail's API is very similar to Mockito making the migration as smooth as possible.
 
 The key differences are:
 
