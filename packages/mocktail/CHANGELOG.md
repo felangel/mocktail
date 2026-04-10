@@ -1,3 +1,10 @@
+# 1.0.5
+
+- chore: minor improvements to example ([#266](https://github.com/felangel/mocktail/issues/266))
+- docs: add mockito migration guide ([#265](https://github.com/felangel/mocktail/issues/265))
+- chore: remove a stray override annotation ([#261](https://github.com/felangel/mocktail/issues/261))
+- chore: add `funding` to `pubspec.yaml` ([#246](https://github.com/felangel/mocktail/issues/246))
+
 # 1.0.4
 
 - refactor: upgrade `analysis_options.yaml` ([#242](https://github.com/felangel/mocktail/issues/242))
