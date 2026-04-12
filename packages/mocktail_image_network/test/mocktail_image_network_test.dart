@@ -218,7 +218,6 @@ class _App extends StatelessWidget {
           child: Image.network(
             // URL to the png Flutter logo from https://flutter.dev/brand
             'https://storage.googleapis.com/cms-storage-bucket/c823e53b3a1a7b0d36a9.png',
-            fit: BoxFit.cover,
           ),
         ),
       ),
