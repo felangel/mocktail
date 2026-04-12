@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('mockNetworkImages', () {
@@ -133,5 +134,94 @@ void main() {
         ),
       );
     });
+
+    testWidgets('can use mocktail for network images', (tester) async {
+      await mockNetworkImages(() async => tester.pumpWidget(const _App()));
+      expect(find.byType(Image), findsOneWidget);
+    });
+
+    testWidgets('network image renders correctly (red)', (tester) async {
+      final redSquare = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8AARIQB46hC+ioEAGX8E/cKr6qsAAAAAElFTkSuQmCC''',
+      );
+      await mockNetworkImages(
+        () async {
+          await tester.runAsync(() async {
+            await tester.pumpWidget(const _App());
+            await _waitForPaint();
+          });
+          await tester.pumpAndSettle();
+          await expectLater(
+            find.byType(Image),
+            matchesGoldenFile('mock_red_network_image.png'),
+          );
+        },
+        imageBytes: redSquare,
+      );
+    });
+
+    testWidgets('network image renders correctly (green)', (tester) async {
+      final greenSquare = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFElEQVR42mNk+A+ERADGUYX0VQgAXAYT9xTSUocAAAAASUVORK5CYII=''',
+      );
+      await mockNetworkImages(
+        () async {
+          await tester.runAsync(() async {
+            await tester.pumpWidget(const _App());
+            await _waitForPaint();
+          });
+          await tester.pumpAndSettle();
+          await expectLater(
+            find.byType(Image),
+            matchesGoldenFile('mock_green_network_image.png'),
+          );
+        },
+        imageBytes: greenSquare,
+      );
+    });
+
+    testWidgets('network image renders correctly (blue)', (tester) async {
+      final blueSquare = base64Decode(
+        '''iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNkYPj/n4EIwDiqkL4KAVIQE/f1/NxEAAAAAElFTkSuQmCC''',
+      );
+      await mockNetworkImages(
+        () async {
+          await tester.runAsync(() async {
+            await tester.pumpWidget(const _App());
+            await _waitForPaint();
+          });
+          await tester.pumpAndSettle();
+          await expectLater(
+            find.byType(Image),
+            matchesGoldenFile('mock_blue_network_image.png'),
+          );
+        },
+        imageBytes: blueSquare,
+      );
+    });
   });
+}
+
+Future<void> _waitForPaint() {
+  return Future<void>.delayed(const Duration(milliseconds: 50));
+}
+
+class _App extends StatelessWidget {
+  const _App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: Image.network(
+            // URL to the png Flutter logo from https://flutter.dev/brand
+            'https://storage.googleapis.com/cms-storage-bucket/c823e53b3a1a7b0d36a9.png',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
 }
