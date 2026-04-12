@@ -1,3 +1,9 @@
+# 1.3.0
+
+- feat: improved Flutter support ([#268](https://github.com/felangel/mocktail/issues/268))
+  - fixes `mockNetworkImage` affecting other tests
+  - fixes `mockNetworkImage` prevents testing failure conditions
+
 # 1.2.0
 
 - feat: add customizable `imageResolver` to `mockNetworkImages` ([#232](https://github.com/felangel/mocktail/issues/232))
