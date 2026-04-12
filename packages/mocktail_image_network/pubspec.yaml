@@ -10,7 +10,10 @@ environment:
   sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   mocktail: ^1.0.0
 
 dev_dependencies:
-  test: ^1.16.0
+  flutter_test:
+    sdk: flutter

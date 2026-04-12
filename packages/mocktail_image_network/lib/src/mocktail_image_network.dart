@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/widgets.dart';
 import 'package:mocktail/mocktail.dart';
 
 /// Signature for a function that returns a `List<int>` for a given [Uri].
@@ -53,12 +54,20 @@ T mockNetworkImages<T>(
     imageBytes == null || imageResolver == null,
     'One of imageBytes or imageResolver can be provided, but not both.',
   );
-  return HttpOverrides.runZoned(
-    body,
-    createHttpClient: (_) => _createHttpClient(
-      imageResolver ??= _defaultImageResolver(imageBytes),
-    ),
+  final httpClient = _createHttpClient(
+    imageResolver ??= _defaultImageResolver(imageBytes),
   );
+  WidgetsFlutterBinding.ensureInitialized();
+  PaintingBinding.instance.imageCache.clear();
+  PaintingBinding.instance.imageCache.clearLiveImages();
+  debugNetworkImageHttpClientProvider = () => httpClient;
+  try {
+    return HttpOverrides.runZoned(body, createHttpClient: (_) => httpClient);
+  } finally {
+    debugNetworkImageHttpClientProvider = null;
+    PaintingBinding.instance.imageCache.clear();
+    PaintingBinding.instance.imageCache.clearLiveImages();
+  }
 }
 
 class _MockHttpClient extends Mock implements HttpClient {
