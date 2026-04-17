@@ -201,6 +201,20 @@ void main() {
       });
     });
 
+    test('should fail when closure invokes multiple mock members', () {
+      expectFail(
+        RegExp('exactly one mock method or getter invocation'),
+        () => verify(() {
+          mock
+            ..getter
+            ..methodWithoutArgs();
+        }),
+      );
+      // Subsequent verify calls should still work — internal state cleared.
+      mock.getter;
+      verify(() => mock.getter);
+    });
+
     test('should mock getter', () {
       mock.getter;
       verify(() => mock.getter);

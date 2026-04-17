@@ -518,8 +518,19 @@ Verify _makeVerify(bool never) {
       );
       verifyCall._checkWith(never);
       return result;
-    } else {
+    } else if (_verifyCalls.isEmpty) {
       fail('Used on a non-mocktail object');
+    } else {
+      final names = _verifyCalls
+          .map((c) => c.verifyInvocation.memberName.toString())
+          .toList(growable: false);
+      _verifyCalls.clear();
+      fail(
+        'verify expects exactly one mock method or getter invocation inside '
+        'the closure, but ${names.length} were recorded: ${names.join(', ')}. '
+        'Capture other mock values into local variables before calling '
+        'verify(...).',
+      );
     }
   };
 }
