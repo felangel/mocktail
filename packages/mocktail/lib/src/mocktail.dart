@@ -184,6 +184,27 @@ class MissingStubError extends Error {
 
 typedef _ReturnsCannedResponse = Expectation<dynamic> Function();
 
+class StubStateError extends StateError {
+  final _WhenCall? whenCall;
+
+  StubStateError(String message, {this.whenCall}) : super(message);
+
+  String toString() {
+    var wc = whenCall;
+    var out = "Bad state: $message";
+
+    if (wc == null) {
+      return out;
+    }
+
+    final type = wc.mock.runtimeType;
+    final member = wc.whenInvocation.memberName;
+    out +=
+        ", Mock: ${type}, MemberName: ${member}, RegistrationStack:\n${wc.stack}";
+    return out;
+  }
+}
+
 /// Create a stub method response.
 ///
 /// Call a method on a mock object within the call to `when`, and call a
@@ -203,7 +224,8 @@ typedef _ReturnsCannedResponse = Expectation<dynamic> Function();
 /// See the README for more information.
 When<T> Function<T>(T Function() x) get when {
   if (_whenCall != null) {
-    throw StateError('Cannot call `when` within a stub response');
+    throw StubStateError('Cannot call `when` within a stub response',
+        whenCall: _whenCall);
   }
   _whenInProgress = true;
   return <T>(T Function() fn) {
@@ -271,8 +293,9 @@ class When<T> {
 }
 
 class _WhenCall {
-  _WhenCall(this.mock, this.whenInvocation);
+  _WhenCall(this.mock, this.whenInvocation) : stack = StackTrace.current;
 
+  final StackTrace stack;
   final Mock mock;
   final Invocation whenInvocation;
 
