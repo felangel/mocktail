@@ -223,6 +223,25 @@ final person = MockPerson();
 when(() => person.sleep()).thenAnswer((_) async {});
 ```
 
+#### Why does `verify` fail after testing an async exception?
+
+[Relevant Issue](https://github.com/felangel/mocktail/issues/247)
+
+When testing an async exception, `expect()` registers the async matcher but does
+not wait before continuing. If you call `verify` immediately after it, the
+future may not have completed and not all mock invocations have happened yet.
+
+Use `expectLater` and await it before verifying:
+
+```dart
+await expectLater(
+  () => remoteDataSource.getSomething(),
+  throwsA(isA<Exception>()),
+);
+
+verify(() => http.post(any())).called(1);
+```
+
 #### Why is my method throwing a `TypeError` when stubbing using `any()`?
 
 [Relevant Issue](https://github.com/felangel/mocktail/issues/162)

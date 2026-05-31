@@ -128,6 +128,25 @@ void main() {
       verify(() => foo.asyncVoid()).called(1);
     });
 
+    test('verify after awaited async throwsA expectation', () async {
+      final exception = Exception('oops');
+      when(() => foo.asyncValueWithPositionalArg(1)).thenAnswer((_) async => 1);
+      when(() => foo.asyncValueWithPositionalArg(2)).thenAnswer((_) async => 2);
+      when(() => foo.asyncValueWithPositionalArg(3)).thenThrow(exception);
+
+      Future<void> callAsyncValues() async {
+        await foo.asyncValueWithPositionalArg(1);
+        await foo.asyncValueWithPositionalArg(2);
+        await foo.asyncValueWithPositionalArg(3);
+      }
+
+      await expectLater(callAsyncValues(), throwsA(exception));
+
+      verify(() => foo.asyncValueWithPositionalArg(1)).called(1);
+      verify(() => foo.asyncValueWithPositionalArg(2)).called(1);
+      verify(() => foo.asyncValueWithPositionalArg(3)).called(1);
+    });
+
     test('when asyncValueWithPositionalArg (any)', () async {
       when(() => foo.asyncValueWithPositionalArg(any())).thenAnswer(
         (_) async => 10,
