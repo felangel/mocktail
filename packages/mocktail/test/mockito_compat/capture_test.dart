@@ -7,6 +7,8 @@ class _RealClass {
   String? methodWithNormalArgs(int? x) => 'Real';
   String? methodWithListArgs(List<int>? x) => 'Real';
   String? methodWithPositionalArgs(int? x, [int? y]) => 'Real';
+  String? methodWithNullableAndNonNullablePositionalArgs(int? x, int y) =>
+      'Real';
   String? methodWithTwoNamedArgs(int? x, {int? y, int? z}) => 'Real';
   set setter(String? arg) {
     throw StateError('I must be mocked');
@@ -80,6 +82,19 @@ void main() {
             .captured,
         equals([1, null, 2, 3]),
       );
+    });
+
+    test('should capture matcher after null positional arg', () {
+      mock.methodWithNullableAndNonNullablePositionalArgs(null, 3);
+
+      final captured = verify(
+        () => mock.methodWithNullableAndNonNullablePositionalArgs(
+          null,
+          captureAny(),
+        ),
+      ).captured;
+
+      expect(captured, equals([3]));
     });
 
     test('should capture multiple invocations', () {

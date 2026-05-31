@@ -227,14 +227,13 @@ class _InvocationForMatchedArguments extends Invocation {
 
   static List<dynamic> _reconstitutePositionalArgs(Invocation invocation) {
     final positionalArguments = <dynamic>[];
-    final nullPositionalArguments =
+    final matchedPositionalArguments =
         invocation.positionalArguments.where((dynamic arg) {
-      return arg == null ||
-          _storedArgs.any(
-            (storedArg) => storedArg._fallbackValue == arg,
-          );
+      return _storedArgs.any(
+        (storedArg) => storedArg._fallbackValue == arg,
+      );
     });
-    if (_storedArgs.length > nullPositionalArguments.length) {
+    if (_storedArgs.length > matchedPositionalArguments.length) {
       // More _positional_ ArgMatchers were stored than were actually passed as
       // positional arguments. There are three ways this call could have been
       // parsed and resolved:
@@ -265,8 +264,7 @@ class _InvocationForMatchedArguments extends Invocation {
       final arg = _storedArgs[storedIndex];
       final dynamic positionalArgument =
           invocation.positionalArguments[positionalIndex];
-      if (positionalArgument == null ||
-          positionalArgument == arg._fallbackValue) {
+      if (positionalArgument == arg._fallbackValue) {
         // Add the [ArgMatcher] given to the argument matching helper.
         positionalArguments.add(arg);
         storedIndex++;

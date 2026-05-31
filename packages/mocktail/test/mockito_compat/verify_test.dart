@@ -12,6 +12,8 @@ class _RealClass {
   String? methodWithListArgs(List<int>? x) => 'Real';
   String? methodWithOptionalArg([int? x]) => 'Real';
   String? methodWithPositionalArgs(int? x, [int? y]) => 'Real';
+  String? methodWithNullableAndNonNullablePositionalArgs(int? x, int y) =>
+      'Real';
   String? methodWithNamedArgs(int x, {int? y}) => 'Real';
   String? methodWithOnlyNamedArgs({int? y = 0, int? z}) => 'Real';
   String? methodWithTypeArgs<T>(int? x) => 'Real';
@@ -98,6 +100,14 @@ void main() {
         verify(() => mock.methodWithPositionalArgs(42, 18));
       });
       verify(() => mock.methodWithPositionalArgs(42, 17));
+    });
+
+    test('should verify null positional arg followed by matcher', () {
+      mock.methodWithNullableAndNonNullablePositionalArgs(null, 3);
+
+      verify(
+        () => mock.methodWithNullableAndNonNullablePositionalArgs(null, any()),
+      ).called(1);
     });
 
     test('should mock method with named args', () {
