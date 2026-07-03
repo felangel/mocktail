@@ -724,6 +724,10 @@ class _VerifyCall {
       } else {
         final otherCalls = mock._realCallsToString();
         message = 'No matching calls. All calls: $otherCalls';
+        final closestMismatch = _describeClosestMismatch();
+        if (closestMismatch != null) {
+          message = '$message\n$closestMismatch';
+        }
       }
       fail('$message\n'
           '(If you called `verify(...).called(0);`, please instead use '
@@ -736,6 +740,38 @@ class _VerifyCall {
     for (final invocation in matchingInvocations) {
       invocation.realCall.verified = true;
     }
+  }
+
+  /// Describes why the closest real call did not match [verifyInvocation],
+  /// or `null` when no such description would help.
+  ///
+  /// The closest call is the unverified call that targets the same member
+  /// with the same shape and mismatches on the fewest arguments. Returns
+  /// `null` when there is no such call, or when every mismatched value is
+  /// small enough that the plain call listing already makes the difference
+  /// obvious.
+  String? _describeClosestMismatch() {
+    final expectedMatcher = InvocationMatcher(verifyInvocation);
+    List<_ArgumentMismatch>? closest;
+    for (final realCall in mock._realCalls) {
+      if (realCall.verified) continue;
+      final mismatches =
+          expectedMatcher._argumentMismatches(realCall.invocation);
+      if (mismatches == null || mismatches.isEmpty) continue;
+      if (closest == null || mismatches.length < closest.length) {
+        closest = mismatches;
+      }
+    }
+    if (closest == null || !closest.any((mismatch) => mismatch.isDiffWorthy)) {
+      return null;
+    }
+    final member = _symbolToString(verifyInvocation.memberName);
+    final buffer = StringBuffer('Closest matching call: $member');
+    for (final mismatch in closest) {
+      final description = mismatch.describe().split('\n').join('\n    ');
+      buffer.write('\n  ${mismatch.location}: $description');
+    }
+    return buffer.toString();
   }
 
   @override
