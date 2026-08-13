@@ -75,6 +75,18 @@ class MockBaz<T> extends Mock implements Baz<T> {
 
 class MockInvocation extends Mock implements Invocation {}
 
+class DataProvider {
+  String getValue() => 'value';
+}
+
+class ActionSink {
+  void doSomethingImportant(String value) {}
+}
+
+class MockDataProvider extends Mock implements DataProvider {}
+
+class MockActionSink extends Mock implements ActionSink {}
+
 void main() {
   group('Foo', () {
     late Foo foo;
@@ -672,6 +684,46 @@ void main() {
         expectation.toString(),
         equals('$Expectation {$call -> $response}'),
       );
+    });
+  });
+
+  group('verify with a second mock in the callback', () {
+    late MockDataProvider provider;
+    late MockActionSink sink;
+
+    setUp(() {
+      provider = MockDataProvider();
+      sink = MockActionSink();
+    });
+
+    tearDown(resetMocktailState);
+
+    test('call count error names the mock that was actually verified', () {
+      when(() => provider.getValue()).thenReturn('mock value');
+      for (var i = 0; i < 5; i++) {
+        provider.getValue();
+      }
+      sink.doSomethingImportant(provider.getValue());
+
+      expect(
+        () => verify(
+          () => sink.doSomethingImportant(provider.getValue()),
+        ).called(1),
+        throwsA(
+          isA<TestFailure>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('Unexpected number of calls'),
+              contains('MockDataProvider'),
+              contains('getValue'),
+              isNot(contains('doSomethingImportant')),
+            ),
+          ),
+        ),
+      );
+
+      verify(() => sink.doSomethingImportant('mock value')).called(1);
     });
   });
 }

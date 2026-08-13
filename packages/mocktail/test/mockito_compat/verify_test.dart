@@ -372,7 +372,9 @@ void main() {
         mock
           ..methodWithoutArgs()
           ..methodWithoutArgs();
-        expectFail('Expected: <1>\n  Actual: <2>\nUnexpected number of calls\n',
+        expectFail(
+            'Expected: <1>\n  Actual: <2>\n'
+            'Unexpected number of calls of _MockedClass.methodWithoutArgs\n',
             () {
           verify(() => mock.methodWithoutArgs()).called(1);
         });
@@ -394,7 +396,8 @@ void main() {
             'Expected: a value greater than <2>\n'
             '  Actual: <1>\n'
             '   Which: is not a value greater than <2>\n'
-            'Unexpected number of calls\n', () {
+            'Unexpected number of calls of _MockedClass.methodWithoutArgs\n',
+            () {
           verify(() => mock.methodWithoutArgs()).called(greaterThan(2));
         });
       });
@@ -422,7 +425,8 @@ void main() {
         expectFail(
             'Expected: <0>\n'
             '  Actual: <1>\n'
-            'Unexpected number of calls\n', () {
+            'Unexpected number of calls of _MockedClass.methodWithoutArgs\n',
+            () {
           verify(() => mock.methodWithoutArgs()).called(0);
         });
       });

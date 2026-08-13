@@ -512,9 +512,11 @@ Verify _makeVerify(bool never) {
     _verificationInProgress = false;
     if (_verifyCalls.length == 1) {
       final verifyCall = _verifyCalls.removeLast();
+      final member = _symbolToString(verifyCall.verifyInvocation.memberName);
       final result = VerificationResult._(
         verifyCall.matchingInvocations.length,
         verifyCall.matchingCapturedArgs,
+        verifiedCall: '${verifyCall.mock.runtimeType}.$member',
       );
       verifyCall._checkWith(never);
       return result;
@@ -536,9 +538,14 @@ typedef Verify = VerificationResult Function<T>(
 /// * verifying call count, via [called],
 /// * collecting captured arguments, via [captured].
 class VerificationResult {
-  VerificationResult._(this.callCount, this._captured);
+  VerificationResult._(
+    this.callCount,
+    this._captured, {
+    String? verifiedCall,
+  }) : _verifiedCall = verifiedCall;
 
   final List<dynamic> _captured;
+  final String? _verifiedCall;
 
   /// List of all arguments captured in real calls.
   ///
@@ -592,10 +599,13 @@ class VerificationResult {
   ///
   /// To assert that a method was called zero times, use [verifyNever].
   void called(dynamic matcher) {
+    final target = _verifiedCall;
     expect(
       callCount,
       wrapMatcher(matcher),
-      reason: 'Unexpected number of calls',
+      reason: target == null
+          ? 'Unexpected number of calls'
+          : 'Unexpected number of calls of $target',
     );
   }
 }
