@@ -370,6 +370,24 @@ void main() {
       verify(() => foo.voidFunction()).called(1);
     });
 
+    test('when without then* reports incomplete stub on next when', () {
+      when(() => foo.voidFunction());
+      expect(
+        () => when(() => foo.intValue).thenReturn(10),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'message',
+            allOf(
+              contains('thenReturn'),
+              contains('thenAnswer'),
+              contains('thenThrow'),
+            ),
+          ),
+        ),
+      );
+    });
+
     test('when voidWithPositionalAndOptionalNamedArg (default)', () {
       when(
         () => foo.voidWithPositionalAndOptionalNamedArg(10),

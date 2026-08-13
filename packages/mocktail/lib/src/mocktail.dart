@@ -203,7 +203,11 @@ typedef _ReturnsCannedResponse = Expectation<dynamic> Function();
 /// See the README for more information.
 When<T> Function<T>(T Function() x) get when {
   if (_whenCall != null) {
-    throw StateError('Cannot call `when` within a stub response');
+    throw StateError(
+      'Cannot call `when` within a stub response. '
+      'If this is unexpected, complete the previous `when` with '
+      '`thenReturn`, `thenAnswer`, or `thenThrow`.',
+    );
   }
   _whenInProgress = true;
   return <T>(T Function() fn) {
