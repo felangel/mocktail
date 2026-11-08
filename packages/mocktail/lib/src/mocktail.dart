@@ -606,8 +606,15 @@ class _UntilCall {
   final InvocationMatcher _invocationMatcher;
   final Mock _mock;
 
-  bool _matchesInvocation(RealCall realCall) =>
-      _invocationMatcher.matches(realCall.invocation);
+  bool _matches(Invocation invocation) {
+    final isMatching = _invocationMatcher.matches(invocation);
+    // `untilCalled` does not expose captured arguments, so discard them to
+    // avoid leaking them into the next verification.
+    _capturedArgs.clear();
+    return isMatching;
+  }
+
+  bool _matchesInvocation(RealCall realCall) => _matches(realCall.invocation);
 
   List<RealCall> get _realCalls => _mock._realCalls;
 
@@ -616,8 +623,7 @@ class _UntilCall {
       return Future.value(_realCalls.firstWhere(_matchesInvocation).invocation);
     }
 
-    return _mock._invocationStreamController.stream
-        .firstWhere(_invocationMatcher.matches);
+    return _mock._invocationStreamController.stream.firstWhere(_matches);
   }
 }
 

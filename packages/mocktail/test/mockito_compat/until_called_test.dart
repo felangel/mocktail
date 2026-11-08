@@ -216,6 +216,16 @@ void main() {
 
         verify(() => mock.setter = 'A').called(1);
       });
+
+      test('does not leak captured args into verify', () async {
+        mock.methodWithNormalArgs(1);
+
+        await untilCalled(() => mock.methodWithNormalArgs(captureAny()));
+
+        final captured =
+            verify(() => mock.methodWithNormalArgs(captureAny())).captured;
+        expect(captured, equals([1]));
+      });
     });
 
     group('on methods not yet called', () {
@@ -383,6 +393,16 @@ void main() {
         await untilCalled(() => mock.setter = 'A');
 
         verify(() => mock.setter = 'A').called(1);
+      });
+
+      test('does not leak captured args into verify', () async {
+        streamController.add(CallMethodsEvent());
+
+        await untilCalled(() => mock.methodWithNormalArgs(captureAny()));
+
+        final captured =
+            verify(() => mock.methodWithNormalArgs(captureAny())).captured;
+        expect(captured, equals([1]));
       });
 
       test('throws if exception occurs within lambda', () {
